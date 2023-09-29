@@ -10,7 +10,7 @@ import SwiftUI
 struct LoginSignUpView: View {
     var body: some View {
         NavigationView {
-            
+            //aligns to the top
             ZStack(alignment: .top) {
                 Color.black.ignoresSafeArea()
                 //logo
