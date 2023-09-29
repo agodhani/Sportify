@@ -5,4 +5,14 @@
 //  Created by Joshua Tseng on 9/29/23.
 //
 
-import Foundation
+import SwiftUI
+
+struct ForgotPasswordView: View {
+    var body: some View {
+        Text("test text")
+    }
+}
+
+#Preview {
+    ForgotPasswordView()
+}
