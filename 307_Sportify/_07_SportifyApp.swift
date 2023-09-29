@@ -18,6 +18,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
   }
 }
 
+// test
+
 @main
 struct YourApp: App {
   // register app delegate for Firebase setup
