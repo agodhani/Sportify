@@ -13,7 +13,7 @@ struct ContentView: View {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
-            Text("GithubTest")
+            Text("This is the dev branch")
         }
         .padding()
     }
