@@ -39,6 +39,8 @@
 		BA8B74DC2AC64FBC00BBE70B /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BA8B74DB2AC64FBC00BBE70B /* FirebaseRemoteConfigSwift */; };
 		BA8B74DE2AC64FBC00BBE70B /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = BA8B74DD2AC64FBC00BBE70B /* FirebaseStorage */; };
 		BA8B74E02AC64FBC00BBE70B /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = BA8B74DF2AC64FBC00BBE70B /* FirebaseStorageCombine-Community */; };
+		BA8B74E32AC671E600BBE70B /* LoginSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B74E22AC671E600BBE70B /* LoginSignUpView.swift */; };
+		BA8B74E62AC684AE00BBE70B /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B74E52AC684AE00BBE70B /* LogInView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		BA8B749E2AC6301600BBE70B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BA8B74A12AC6301600BBE70B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BA8B74A82AC64EEE00BBE70B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BA8B74E22AC671E600BBE70B /* LoginSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignUpView.swift; sourceTree = "<group>"; };
+		BA8B74E52AC684AE00BBE70B /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,9 +111,8 @@
 		BA8B74992AC6301400BBE70B /* 307_Sportify */ = {
 			isa = PBXGroup;
 			children = (
-				BA8B74A82AC64EEE00BBE70B /* GoogleService-Info.plist */,
-				BA8B749A2AC6301400BBE70B /* _07_SportifyApp.swift */,
-				BA8B749C2AC6301400BBE70B /* ContentView.swift */,
+				BA8B74E42AC679AF00BBE70B /* App */,
+				BA8B74E12AC671A900BBE70B /* Views */,
 				BA8B749E2AC6301600BBE70B /* Assets.xcassets */,
 				BA8B74A02AC6301600BBE70B /* Preview Content */,
 			);
@@ -122,6 +125,25 @@
 				BA8B74A12AC6301600BBE70B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BA8B74E12AC671A900BBE70B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BA8B749C2AC6301400BBE70B /* ContentView.swift */,
+				BA8B74E22AC671E600BBE70B /* LoginSignUpView.swift */,
+				BA8B74E52AC684AE00BBE70B /* LogInView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BA8B74E42AC679AF00BBE70B /* App */ = {
+			isa = PBXGroup;
+			children = (
+				BA8B74A82AC64EEE00BBE70B /* GoogleService-Info.plist */,
+				BA8B749A2AC6301400BBE70B /* _07_SportifyApp.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,7 +249,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA8B74E32AC671E600BBE70B /* LoginSignUpView.swift in Sources */,
 				BA8B749D2AC6301400BBE70B /* ContentView.swift in Sources */,
+				BA8B74E62AC684AE00BBE70B /* LogInView.swift in Sources */,
 				BA8B749B2AC6301400BBE70B /* _07_SportifyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
