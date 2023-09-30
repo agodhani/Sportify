@@ -51,4 +51,18 @@ class UserAuthentication: ObservableObject {
         
         print("Current User is \(self.currUser)")
     }
+    
+    func forgotPasswordFindEmail(email: String) async throws {
+        print("Finding associated email")
+        
+        // TODO - JOSH
+        
+        // query the database for user associated with email
+        
+        // return true if email found
+            // send email with code to the email
+        
+        // return false if email not found
+        
+    }
 }
