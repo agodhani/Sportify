@@ -20,4 +20,8 @@ class UserAuthentication: ObservableObject {
     func createUser(with email: String, password: String, fullname: String) async throws {
         print("User Created")
     }
+    
+    func forgotPassword() {
+        
+    }
 }
