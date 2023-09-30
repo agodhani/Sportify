@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA2570CE2AC7B846004E528A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2570CD2AC7B846004E528A /* User.swift */; };
 		BA8B749B2AC6301400BBE70B /* _07_SportifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B749A2AC6301400BBE70B /* _07_SportifyApp.swift */; };
 		BA8B749D2AC6301400BBE70B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B749C2AC6301400BBE70B /* ContentView.swift */; };
 		BA8B749F2AC6301600BBE70B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA8B749E2AC6301600BBE70B /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BA2570CD2AC7B846004E528A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BA8B74972AC6301400BBE70B /* 307_Sportify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 307_Sportify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA8B749A2AC6301400BBE70B /* _07_SportifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _07_SportifyApp.swift; sourceTree = "<group>"; };
 		BA8B749C2AC6301400BBE70B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -92,6 +94,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BA2570CC2AC7B831004E528A /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				BA2570CD2AC7B846004E528A /* User.swift */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
 		BA8B748E2AC6301400BBE70B = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +123,7 @@
 			children = (
 				BA8B74E42AC679AF00BBE70B /* App */,
 				BA8B74E12AC671A900BBE70B /* Views */,
+				BA2570CC2AC7B831004E528A /* Objects */,
 				BA8B749E2AC6301600BBE70B /* Assets.xcassets */,
 				BA8B74A02AC6301600BBE70B /* Preview Content */,
 			);
@@ -252,6 +263,7 @@
 				BA8B74E32AC671E600BBE70B /* LoginSignUpView.swift in Sources */,
 				BA8B749D2AC6301400BBE70B /* ContentView.swift in Sources */,
 				BA8B74E62AC684AE00BBE70B /* LogInView.swift in Sources */,
+				BA2570CE2AC7B846004E528A /* User.swift in Sources */,
 				BA8B749B2AC6301400BBE70B /* _07_SportifyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,8 +8,47 @@
 import SwiftUI
 
 struct LogInView: View {
+    @State private var username = "";
+    @State private var password = "";
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            ZStack {
+                Color.black.ignoresSafeArea()
+                
+                Image("SportifyLogoOriginal")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 300, height: 200)
+                    .padding(.vertical, -250)
+                
+                TextField("Username", text: $username)
+                    .padding()
+                    .background(Color.white.opacity(0.8))
+                    .frame(width: 300, height: 50)
+                    .clipShape(Rectangle())
+                    .offset(CGSize(width: 0, height: 50))
+                
+                
+                SecureField("Password", text: $password)
+                    .padding()
+                    .background(Color.white.opacity(0.8))
+                    .frame(width: 300, height: 50)
+                    .clipShape(Rectangle())
+                    .offset(CGSize(width: 0, height: 125))
+                
+                //login button
+                Button("LOG IN") {
+                    
+                }
+                .foregroundColor(.black)
+                .fontWeight(.heavy)
+                    .frame(width: 225, height: 50)
+                    .background(Color("SportGold"))
+                    .cornerRadius(200)
+                    .offset(CGSize(width: 0, height: 200))
+                    
+            }
+        }
     }
 }
 
