@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct LogInView: View {
-    @State private var username = "";
+    @State private var email = "";
     @State private var password = "";
+    @EnvironmentObject var userAuth: UserAuthentication
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -21,7 +23,7 @@ struct LogInView: View {
                     .frame(width: 300, height: 200)
                     .padding(.vertical, -250)
                 
-                TextField("Username", text: $username)
+                TextField("Email", text: $email)
                     .padding()
                     .background(Color.white.opacity(0.8))
                     .frame(width: 300, height: 50)
@@ -38,7 +40,9 @@ struct LogInView: View {
                 
                 //login button
                 Button("LOG IN") {
-                    
+                    Task {
+                        try await userAuth.signIn(withEmail: email, password: password)
+                    }
                 }
                 .foregroundColor(.black)
                 .fontWeight(.heavy)

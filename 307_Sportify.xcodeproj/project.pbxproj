@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BA2570CE2AC7B846004E528A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2570CD2AC7B846004E528A /* User.swift */; };
 		6D39AAB72AC73BFE00515C20 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D39AAB62AC73BFE00515C20 /* ForgotPasswordView.swift */; };
+		BA2570CE2AC7B846004E528A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2570CD2AC7B846004E528A /* User.swift */; };
+		BA2570D12AC89B4D004E528A /* UserAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2570D02AC89B4D004E528A /* UserAuthentication.swift */; };
+		BA2570D32AC8A58D004E528A /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2570D22AC8A58D004E528A /* SignUpView.swift */; };
 		BA8B749B2AC6301400BBE70B /* _07_SportifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B749A2AC6301400BBE70B /* _07_SportifyApp.swift */; };
 		BA8B749D2AC6301400BBE70B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B749C2AC6301400BBE70B /* ContentView.swift */; };
 		BA8B749F2AC6301600BBE70B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA8B749E2AC6301600BBE70B /* Assets.xcassets */; };
@@ -43,11 +45,19 @@
 		BA8B74E02AC64FBC00BBE70B /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = BA8B74DF2AC64FBC00BBE70B /* FirebaseStorageCombine-Community */; };
 		BA8B74E32AC671E600BBE70B /* LoginSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B74E22AC671E600BBE70B /* LoginSignUpView.swift */; };
 		BA8B74E62AC684AE00BBE70B /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B74E52AC684AE00BBE70B /* LogInView.swift */; };
+		FBF11AB82AC8A8EF00FF39FC /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF11AB72AC8A8EF00FF39FC /* EventsView.swift */; };
+		FBF11ABA2AC8A91900FF39FC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF11AB92AC8A91900FF39FC /* HomeView.swift */; };
+		FBF11ABC2AC8A95200FF39FC /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF11ABB2AC8A95100FF39FC /* MessageView.swift */; };
+		FBF11ABE2AC8A97E00FF39FC /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF11ABD2AC8A97E00FF39FC /* NotificationView.swift */; };
+		FBF11AC02AC8A9A300FF39FC /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF11ABF2AC8A9A300FF39FC /* ProfileView.swift */; };
+		FBF11AC22AC8A9EC00FF39FC /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF11AC12AC8A9EC00FF39FC /* HomePageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BA2570CD2AC7B846004E528A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6D39AAB62AC73BFE00515C20 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		BA2570CD2AC7B846004E528A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		BA2570D02AC89B4D004E528A /* UserAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthentication.swift; sourceTree = "<group>"; };
+		BA2570D22AC8A58D004E528A /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		BA8B74972AC6301400BBE70B /* 307_Sportify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 307_Sportify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA8B749A2AC6301400BBE70B /* _07_SportifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _07_SportifyApp.swift; sourceTree = "<group>"; };
 		BA8B749C2AC6301400BBE70B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,6 +66,12 @@
 		BA8B74A82AC64EEE00BBE70B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BA8B74E22AC671E600BBE70B /* LoginSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignUpView.swift; sourceTree = "<group>"; };
 		BA8B74E52AC684AE00BBE70B /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
+		FBF11AB72AC8A8EF00FF39FC /* EventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
+		FBF11AB92AC8A91900FF39FC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		FBF11ABB2AC8A95100FF39FC /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		FBF11ABD2AC8A97E00FF39FC /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		FBF11ABF2AC8A9A300FF39FC /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		FBF11AC12AC8A9EC00FF39FC /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +120,14 @@
 			path = Objects;
 			sourceTree = "<group>";
 		};
+		BA2570CF2AC89B2C004E528A /* Methods */ = {
+			isa = PBXGroup;
+			children = (
+				BA2570D02AC89B4D004E528A /* UserAuthentication.swift */,
+			);
+			path = Methods;
+			sourceTree = "<group>";
+		};
 		BA8B748E2AC6301400BBE70B = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				BA8B74E42AC679AF00BBE70B /* App */,
+				BA2570CF2AC89B2C004E528A /* Methods */,
 				BA8B74E12AC671A900BBE70B /* Views */,
 				BA2570CC2AC7B831004E528A /* Objects */,
 				BA8B749E2AC6301600BBE70B /* Assets.xcassets */,
@@ -146,7 +171,14 @@
 				BA8B749C2AC6301400BBE70B /* ContentView.swift */,
 				BA8B74E22AC671E600BBE70B /* LoginSignUpView.swift */,
 				BA8B74E52AC684AE00BBE70B /* LogInView.swift */,
+				BA2570D22AC8A58D004E528A /* SignUpView.swift */,
 				6D39AAB62AC73BFE00515C20 /* ForgotPasswordView.swift */,
+				FBF11AB72AC8A8EF00FF39FC /* EventsView.swift */,
+				FBF11AB92AC8A91900FF39FC /* HomeView.swift */,
+				FBF11ABB2AC8A95100FF39FC /* MessageView.swift */,
+				FBF11ABD2AC8A97E00FF39FC /* NotificationView.swift */,
+				FBF11ABF2AC8A9A300FF39FC /* ProfileView.swift */,
+				FBF11AC12AC8A9EC00FF39FC /* HomePageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -264,11 +296,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA8B74E32AC671E600BBE70B /* LoginSignUpView.swift in Sources */,
+				FBF11AB82AC8A8EF00FF39FC /* EventsView.swift in Sources */,
 				BA8B749D2AC6301400BBE70B /* ContentView.swift in Sources */,
+				FBF11ABC2AC8A95200FF39FC /* MessageView.swift in Sources */,
 				BA8B74E62AC684AE00BBE70B /* LogInView.swift in Sources */,
+				BA2570D12AC89B4D004E528A /* UserAuthentication.swift in Sources */,
+				BA2570D32AC8A58D004E528A /* SignUpView.swift in Sources */,
 				BA2570CE2AC7B846004E528A /* User.swift in Sources */,
+				FBF11ABA2AC8A91900FF39FC /* HomeView.swift in Sources */,
 				6D39AAB72AC73BFE00515C20 /* ForgotPasswordView.swift in Sources */,
 				BA8B749B2AC6301400BBE70B /* _07_SportifyApp.swift in Sources */,
+				FBF11AC02AC8A9A300FF39FC /* ProfileView.swift in Sources */,
+				FBF11AC22AC8A9EC00FF39FC /* HomePageView.swift in Sources */,
+				FBF11ABE2AC8A97E00FF39FC /* NotificationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
