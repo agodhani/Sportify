@@ -24,14 +24,20 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct YourApp: App {
   // register app delegate for Firebase setup
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @State var userAuth = UserAuthentication()
+    
 
   var body: some Scene {
-    WindowGroup {
-      NavigationView {
-          LoginSignUpView()
-              .environmentObject(userAuth)
+      @State var userAuth = UserAuthentication()
+      WindowGroup {
+          NavigationView {
+              if(userAuth.userSession != nil) {
+                  HomePageView()
+              } else {
+                  LoginSignUpView()
+                      .environmentObject(userAuth)
+                  
+              }
+          }
       }
-    }
   }
 }

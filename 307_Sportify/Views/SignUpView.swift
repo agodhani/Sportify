@@ -43,19 +43,20 @@ struct SignUpView: View {
                 .frame(width: 300, height: 50)
                 .clipShape(Rectangle())
                 .offset(CGSize(width: 0, height: 200))
-            
-            //login button
-            Button("SIGN UP") {
-                Task {
-                    try await userAuth.createUser(with: email, password: password, fullname: fullName)
+            NavigationLink(destination: HomePageView()) {
+                //Sign UP button
+                Button("SIGN UP") {
+                    Task {
+                        try await userAuth.createUser(withEmail: email, password: password, fullname: fullName)
+                    }
                 }
-            }
-            .foregroundColor(.black)
-            .fontWeight(.heavy)
+                .foregroundColor(.black)
+                .fontWeight(.heavy)
                 .frame(width: 225, height: 50)
                 .background(Color("SportGold"))
                 .cornerRadius(200)
                 .offset(CGSize(width: 0, height: 275))
+            }
         }
     }
 }
