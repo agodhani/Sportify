@@ -47,7 +47,7 @@ class UserAuthentication: ObservableObject {
         guard let userId = Auth.auth().currentUser?.uid else {return }
         
         guard let userInfo = try? await Firestore.firestore().collection("Users").document(userId).getDocument() else {return}
-        let currUser = try? userInfo.data(as: User.self)
+        self.currUser = try? userInfo.data(as: User.self)
         
         print("Current User is \(self.currUser)")
     }
