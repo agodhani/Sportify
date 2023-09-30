@@ -10,7 +10,7 @@ import SwiftUI
 
     
 struct LoginSignUpView: View {
-    
+    @EnvironmentObject var userAuth: UserAuthentication
     var body: some View {
         
             //aligns to the top
@@ -33,7 +33,7 @@ struct LoginSignUpView: View {
                     //.padding(.vertical, 250)
                 
                 //login button
-                NavigationLink(destination: LogInView()) {
+                NavigationLink(destination: LogInView().environmentObject(userAuth)) {
                     Button("LOG IN") {
                     }
                     .foregroundColor(.black)
@@ -44,16 +44,17 @@ struct LoginSignUpView: View {
                     .offset(CGSize(width: 0, height: 50))
                 }
                 //signup button
-                Button("SIGN UP") {
-                    
-                }
-                .foregroundColor(.black)
-                .fontWeight(.heavy)
+                NavigationLink(destination: SignUpView().environmentObject(userAuth)) {
+                    Button("SIGN UP") {
+                        
+                    }
+                    .foregroundColor(.black)
+                    .fontWeight(.heavy)
                     .frame(width: 225, height: 50)
                     .background(.gray)
                     .cornerRadius(200)
                     .offset(CGSize(width: 0, height: 125))
-                
+                }
 
                     
             }
