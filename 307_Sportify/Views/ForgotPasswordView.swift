@@ -13,6 +13,7 @@ struct ForgotPasswordView: View {
     
     var body: some View {
         ZStack {
+            
             Color.black.ignoresSafeArea()
             
             Text("Input your associated account email")
@@ -40,8 +41,6 @@ struct ForgotPasswordView: View {
                 .offset(CGSize(width: 0, height: 75))
             
         }
-        
-
     }
 }
 
