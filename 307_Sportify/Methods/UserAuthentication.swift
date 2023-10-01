@@ -31,7 +31,7 @@ class UserAuthentication: ObservableObject {
         do {
             let result = try await Auth.auth().createUser(withEmail: email, password: password)
             self.userSession = result.user
-            let user = User(id: result.user.uid, name: fullname, email: password)
+            let user = User(id: result.user.uid, name: fullname, email: email, password: password)
             //encode takes the "codable" protocal (in User), and encodes it as raw Data but as the User struct
             let encodedUser  = try Firestore.Encoder().encode(user)
             //adds to the collecton of Users, and adds the User data
@@ -58,6 +58,7 @@ class UserAuthentication: ObservableObject {
         // TODO - JOSH
         
         // query the database for user associated with email
+        
         
         // return true if email found
             // send email with code to the email

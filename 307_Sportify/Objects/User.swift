@@ -11,6 +11,7 @@ struct User: Identifiable, Codable {
     let id: String
     let name: String
     let email: String
+    var password: String
     
     //?might not need this: let password: String
     /*

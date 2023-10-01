@@ -25,6 +25,11 @@ struct YourApp: App {
   // register app delegate for Firebase setup
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
+    // initialize Firebase
+    init() {
+        FirebaseApp.configure()
+    }
+    
 
   var body: some Scene {
       @State var userAuth = UserAuthentication()
