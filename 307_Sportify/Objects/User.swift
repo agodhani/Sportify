@@ -6,34 +6,168 @@
 //
 
 import Foundation
+import CoreLocation
+import UIKit
+
+// Extend CLLocation to allow encoding
+extension CLLocation: Encodable {
+    enum CodingKeys: String, CodingKey {
+        case latitude
+        case longitude
+        case altitude
+        case horizontalAccuracy
+        case verticalAccuracy
+        case speed
+        case course
+        case timestamp
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(coordinate.latitude, forKey: .latitude)
+        try container.encode(coordinate.longitude, forKey: .longitude)
+        try container.encode(altitude, forKey: .altitude)
+        try container.encode(horizontalAccuracy, forKey: .horizontalAccuracy)
+        try container.encode(verticalAccuracy, forKey: .verticalAccuracy)
+        try container.encode(speed, forKey: .speed)
+        try container.encode(course, forKey: .course)
+        try container.encode(timestamp, forKey: .timestamp)
+    }
+}
+
+//  Wrapper to allow decoding of CLLocation
+struct LocationWrapper: Decodable {
+    var location: CLLocation
+    
+    init(location: CLLocation) {
+        self.location = location
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CLLocation.CodingKeys.self)
+        
+        let latitude = try container.decode(CLLocationDegrees.self, forKey: .latitude)
+        let longitude = try container.decode(CLLocationDegrees.self, forKey: .longitude)
+        let altitude = try container.decode(CLLocationDistance.self, forKey: .altitude)
+        let horizontalAccuracy = try container.decode(CLLocationAccuracy.self, forKey: .horizontalAccuracy)
+        let verticalAccuracy = try container.decode(CLLocationAccuracy.self, forKey: .verticalAccuracy)
+        let speed = try container.decode(CLLocationSpeed.self, forKey: .speed)
+        let course = try container.decode(CLLocationDirection.self, forKey: .course)
+        let timestamp = try container.decode(Date.self, forKey: .timestamp)
+        
+        let location = CLLocation(coordinate: CLLocationCoordinate2DMake(latitude, longitude), altitude: altitude, horizontalAccuracy: horizontalAccuracy, verticalAccuracy: verticalAccuracy, course: course, speed: speed, timestamp: timestamp)
+                
+        self.init(location: location)
+    }
+}
 
 struct User: Identifiable, Codable, Hashable {
     let id: String
-    let name: String
-    let email: String
-    var password: String
+    var name: String
+    var email: String
+    private var password: String
+    var location: CLLocation
+    var radius: Int
+    var sportsPreferences: Set<String>
+    var provateAccount: Bool
+    var profilePicture: Data
+    var age: Int
+    var birthday: Date
+    var friendList: Set<String>
+    var blockList: Set<String>
+    var eventsAttending: Set<String>
+    var eventsHosting: Set<String>
     
     //?might not need this: let password: String
-    /*
-     other vars:
-     Location
-     Radius
-     SportsPreferences
-     PrivateAccount
-     ProfilePicture
-     Age
-     Birthday
-     FriendList
-     BlockList
-     EventsAttending
-     EventsHosting
-     */
     
-    /*
-     Methods
-     joinEvent
-     hostEvent
-     removeEventAttending
-     ...
-     */
+    init(id: String, name: String, email: String, password: String, location: CLLocation, radius: Int, sportsPreferences: Set<String>, provateAccount: Bool, profilePicture: Data, age: Int, birthday: Date, friendList: Set<String>, blockList: Set<String>, eventsAttending: Set<String>, eventsHosting: Set<String>) {
+        self.id = id
+        self.name = name
+        self.email = email
+        self.password = password
+        self.location = location
+        self.radius = radius
+        self.sportsPreferences = sportsPreferences
+        self.provateAccount = provateAccount
+        self.profilePicture = profilePicture
+        self.age = age
+        self.birthday = birthday
+        self.friendList = friendList
+        self.blockList = blockList
+        self.eventsAttending = eventsAttending
+        self.eventsHosting = eventsHosting
+    }
+    
+    // TODO
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CLLocation.CodingKeys.self)
+
+        var decodedLocation = try container.decode(, forKey: )
+                
+        self.init(id: <#T##String#>, name: <#T##String#>, email: <#T##String#>, password: <#T##String#>, location: location, radius: <#T##Int#>, sportsPreferences: <#T##Set<String>#>, provateAccount: <#T##Bool#>, profilePicture: <#T##Data#>, age: <#T##Int#>, birthday: <#T##Date#>, friendList: <#T##Set<String>#>, blockList: <#T##Set<String>#>, eventsAttending: <#T##Set<String>#>, eventsHosting: <#T##Set<String>#>)
+    }
+
+    func joinEvent(event: Event) {
+        
+    }
+    
+    func hostEvent() {
+        
+    }
+    
+    mutating func removeEventAttending(event: Event) {
+        self.eventsAttending.remove(event.id)
+    }
+    
+    func sendInvite() {
+        
+    }
+    
+    func leaveEvent() {
+        
+    }
+    
+    func getUsername() -> String {
+        return self.name
+    }
+    
+    func getEmail() -> String {
+        return self.email
+    }
+    
+    func getPassword() -> String {
+        return self.password
+    }
+    
+    func getAge() -> Int {
+        return self.age
+    }
+    
+    func getRadius() -> Int {
+        return self.radius
+    }
+    
+    mutating func setUsername(name: String) {
+        self.name = name
+    }
+    
+    mutating func setEmail(email: String) {
+        self.email = email
+    }
+    
+    mutating func setPassword(password: String) {
+        self.password = password
+    }
+    
+    mutating func setAge(age: Int) {
+        self.age = age
+    }
+    
+    mutating func setRadius(radius: Int) {
+        self.radius = radius
+    }
+    
+    mutating func setProfilePic(picture: UIImage) {
+        self.profilePicture = picture.pngData()!
+    }
 }
