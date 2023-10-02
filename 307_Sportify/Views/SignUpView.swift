@@ -43,7 +43,6 @@ struct SignUpView: View {
                 .frame(width: 300, height: 50)
                 .clipShape(Rectangle())
                 .offset(CGSize(width: 0, height: 200))
-            NavigationLink(destination: HomePageView()) {
                 //Sign UP button
                 Button("SIGN UP") {
                     Task {
@@ -56,7 +55,6 @@ struct SignUpView: View {
                 .background(Color("SportGold"))
                 .cornerRadius(200)
                 .offset(CGSize(width: 0, height: 275))
-            }
         }
     }
 }
