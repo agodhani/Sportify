@@ -9,14 +9,14 @@ import Foundation
 import CoreLocation
 
 struct Event: Identifiable {
-    internal let id: String
+    let id: String
     var sprtsList = ["Tennis", "Table Tennis", "Volleyball", "Soccer", "Basketball", "Football", "Baseball", "Badminton", "Golf", "Cycling", "Running", "Hockey", "Spikeball", "Handball", "Lacrosse", "Squash"]
     var sport: Int
     var date: Date
-    var location: CLLocation
+    var location: CLLocationCoordinate2D
     var numAttendees: Int
     var attendeeList: Set<User>
-    var privateEvent: Bool
+    var pbvateEvent: Bool
     var maxParticipants: Int
     var adminsList: Set<User>
     var eventHost: User
@@ -36,7 +36,7 @@ struct Event: Identifiable {
         self.date = date
     }
     
-    mutating func setLocation(location: CLLocation) {
+    mutating func setLocation(location: CLLocationCoordinate2D) {
         self.location = location
     }
     
@@ -72,7 +72,7 @@ struct Event: Identifiable {
         return self.date
     }
     
-    func getLocation() -> CLLocation{
+    func getLocation() -> CLLocationCoordinate2D {
         return self.location
     }
     
