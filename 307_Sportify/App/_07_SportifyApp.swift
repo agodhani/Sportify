@@ -33,7 +33,7 @@ struct YourApp: App {
               if(userAuth.userSession != nil) {
                   HomePageView()
               } else {
-                  SignUpView()
+                  LoginSignUpView()
                       .environmentObject(userAuth)
                   
               }

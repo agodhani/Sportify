@@ -34,7 +34,7 @@ extension CLLocation: Encodable {
         try container.encode(timestamp, forKey: .timestamp)
     }
 }
-
+/*
 //  Wrapper to allow decoding of CLLocation
 struct LocationWrapper: Decodable {
     var location: CLLocation
@@ -59,14 +59,15 @@ struct LocationWrapper: Decodable {
                 
         self.init(location: location)
     }
-}
 
+}
+*/
 struct User: Identifiable, Codable, Hashable {
     let id: String
     var name: String
     var email: String
-    private var password: String
-    var location: CLLocation
+    
+    //var location: CLLocation
     var radius: Int
     var sportsPreferences: Set<String>
     var provateAccount: Bool
@@ -79,13 +80,13 @@ struct User: Identifiable, Codable, Hashable {
     var eventsHosting: Set<String>
     
     //?might not need this: let password: String
-    
+/*
     init(id: String, name: String, email: String, password: String, location: CLLocation, radius: Int, sportsPreferences: Set<String>, provateAccount: Bool, profilePicture: Data, age: Int, birthday: Date, friendList: Set<String>, blockList: Set<String>, eventsAttending: Set<String>, eventsHosting: Set<String>) {
         self.id = id
         self.name = name
         self.email = email
-        self.password = password
-        self.location = location
+        
+        //self.location = location
         self.radius = radius
         self.sportsPreferences = sportsPreferences
         self.provateAccount = provateAccount
@@ -106,7 +107,8 @@ struct User: Identifiable, Codable, Hashable {
                 
         self.init(id: <#T##String#>, name: <#T##String#>, email: <#T##String#>, password: <#T##String#>, location: location, radius: <#T##Int#>, sportsPreferences: <#T##Set<String>#>, provateAccount: <#T##Bool#>, profilePicture: <#T##Data#>, age: <#T##Int#>, birthday: <#T##Date#>, friendList: <#T##Set<String>#>, blockList: <#T##Set<String>#>, eventsAttending: <#T##Set<String>#>, eventsHosting: <#T##Set<String>#>)
     }
-
+ */
+     
     func joinEvent(event: Event) {
         
     }
@@ -135,9 +137,6 @@ struct User: Identifiable, Codable, Hashable {
         return self.email
     }
     
-    func getPassword() -> String {
-        return self.password
-    }
     
     func getAge() -> Int {
         return self.age
@@ -155,9 +154,7 @@ struct User: Identifiable, Codable, Hashable {
         self.email = email
     }
     
-    mutating func setPassword(password: String) {
-        self.password = password
-    }
+
     
     mutating func setAge(age: Int) {
         self.age = age
@@ -170,4 +167,5 @@ struct User: Identifiable, Codable, Hashable {
     mutating func setProfilePic(picture: UIImage) {
         self.profilePicture = picture.pngData()!
     }
+ 
 }

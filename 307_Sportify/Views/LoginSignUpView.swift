@@ -12,13 +12,12 @@ import SwiftUI
 struct LoginSignUpView: View {
     @EnvironmentObject var userAuth: UserAuthentication
     var body: some View {
-        
+        NavigationView {
             //aligns to the top
             //Zstack - places objects on top of one another
             //VStack - places objects in a vertical line
             //HStack - places objects on a horizontal line
-            ZStack() {
-                Color.black.ignoresSafeArea()
+            VStack() {
                 //logo
                 Image("SportifyLogoOriginal")
                     .resizable()
@@ -27,14 +26,16 @@ struct LoginSignUpView: View {
                     .padding(.vertical, -250)
                 
                 //Text("SPORTIFY")
-                   // .font(.largeTitle)
-                    //.bold()
-                    //.foregroundStyle(.white)
-                    //.padding(.vertical, 250)
+                // .font(.largeTitle)
+                //.bold()
+                //.foregroundStyle(.white)
+                //.padding(.vertical, 250)
                 
                 //login button
-                NavigationLink(destination: LogInView().environmentObject(userAuth)) {
+                NavigationLink(destination:LogInView().environmentObject(userAuth)) {
                     Button("LOG IN") {
+                        print("Button hit!")
+                        
                     }
                     .foregroundColor(.black)
                     .fontWeight(.heavy)
@@ -43,8 +44,10 @@ struct LoginSignUpView: View {
                     .cornerRadius(200)
                     .offset(CGSize(width: 0, height: 50))
                 }
-                //signup button
-                NavigationLink(destination: SignUpView().environmentObject(userAuth)) {
+                .padding()
+                
+                NavigationLink(destination:SignUpView().environmentObject(userAuth)) {
+                    //signup button
                     Button("SIGN UP") {
                         
                     }
@@ -55,10 +58,10 @@ struct LoginSignUpView: View {
                     .cornerRadius(200)
                     .offset(CGSize(width: 0, height: 125))
                 }
-
-                    
+                
             }
-        .navigationBarBackButtonHidden(true)
+            .navigationBarBackButtonHidden(true)
+        }
     }
 }
 

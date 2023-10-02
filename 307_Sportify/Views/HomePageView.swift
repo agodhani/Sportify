@@ -36,6 +36,7 @@ struct HomePageView: View {
                 Text("Profile")
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 
