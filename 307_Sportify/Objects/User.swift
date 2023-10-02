@@ -102,7 +102,7 @@ struct User: Identifiable, Codable, Hashable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CLLocation.CodingKeys.self)
 
-        var decodedLocation = try container.decode(, forKey: )
+        //var decodedLocation = try container.decode(, forKey: )
                 
         self.init(id: <#T##String#>, name: <#T##String#>, email: <#T##String#>, password: <#T##String#>, location: location, radius: <#T##Int#>, sportsPreferences: <#T##Set<String>#>, provateAccount: <#T##Bool#>, profilePicture: <#T##Data#>, age: <#T##Int#>, birthday: <#T##Date#>, friendList: <#T##Set<String>#>, blockList: <#T##Set<String>#>, eventsAttending: <#T##Set<String>#>, eventsHosting: <#T##Set<String>#>)
     }
