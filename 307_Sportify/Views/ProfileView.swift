@@ -121,16 +121,16 @@ struct ProfileView: View {
                     Spacer()
                 }
             
-                NavigationLink(destination:EditProfileView()){
-                    Button("Edit Profile"){
-                        
-                    }
-                    .foregroundColor(.black)
-                    .fontWeight(.heavy)
-                    .frame(width: 225, height: 50)
-                    .background(Color("SportGold"))
-                    .cornerRadius(200)
-                }
+             //   NavigationLink(destination:EditProfileView()){
+             //       Button("Edit Profile"){
+             //
+            //        }
+            //       .foregroundColor(.black)
+             //       .fontWeight(.heavy)
+             //       .frame(width: 225, height: 50)
+            //        .background(Color("SportGold"))
+            //        .cornerRadius(200)
+              //  }
                 Spacer()
                 
             }
