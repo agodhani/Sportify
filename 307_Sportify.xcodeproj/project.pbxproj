@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31562B9A2ACE4225002B3863 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31562B992ACE4225002B3863 /* EditProfileView.swift */; };
+		31562B9C2ACE4BDF002B3863 /* SelectPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31562B9B2ACE4BDF002B3863 /* SelectPicture.swift */; };
 		31CB2C532AC89E0600DF43A3 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CB2C522AC89E0600DF43A3 /* Event.swift */; };
 		6D39AAB72AC73BFE00515C20 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D39AAB62AC73BFE00515C20 /* ForgotPasswordView.swift */; };
 		BA2570CE2AC7B846004E528A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2570CD2AC7B846004E528A /* User.swift */; };
@@ -55,6 +57,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		31562B992ACE4225002B3863 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		31562B9B2ACE4BDF002B3863 /* SelectPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPicture.swift; sourceTree = "<group>"; };
 		31CB2C522AC89E0600DF43A3 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		6D39AAB62AC73BFE00515C20 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		BA2570CD2AC7B846004E528A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -127,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				BA2570D02AC89B4D004E528A /* UserAuthentication.swift */,
+				31562B9B2ACE4BDF002B3863 /* SelectPicture.swift */,
 			);
 			path = Methods;
 			sourceTree = "<group>";
@@ -182,6 +187,7 @@
 				FBF11ABD2AC8A97E00FF39FC /* NotificationView.swift */,
 				FBF11ABF2AC8A9A300FF39FC /* ProfileView.swift */,
 				FBF11AC12AC8A9EC00FF39FC /* HomePageView.swift */,
+				31562B992ACE4225002B3863 /* EditProfileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -300,8 +306,10 @@
 			files = (
 				BA8B74E32AC671E600BBE70B /* LoginSignUpView.swift in Sources */,
 				FBF11AB82AC8A8EF00FF39FC /* EventsView.swift in Sources */,
+				31562B9A2ACE4225002B3863 /* EditProfileView.swift in Sources */,
 				BA8B749D2AC6301400BBE70B /* ContentView.swift in Sources */,
 				FBF11ABC2AC8A95200FF39FC /* MessageView.swift in Sources */,
+				31562B9C2ACE4BDF002B3863 /* SelectPicture.swift in Sources */,
 				BA8B74E62AC684AE00BBE70B /* LogInView.swift in Sources */,
 				BA2570D12AC89B4D004E528A /* UserAuthentication.swift in Sources */,
 				BA2570D32AC8A58D004E528A /* SignUpView.swift in Sources */,
@@ -448,6 +456,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"307_Sportify/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access to take a profile picture";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow access to select a picture for your profile";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -476,6 +486,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"307_Sportify/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access to take a profile picture";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow access to select a picture for your profile";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
