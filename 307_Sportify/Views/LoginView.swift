@@ -53,6 +53,17 @@ struct LogInView: View {
                     
                 }
                 .padding()
+                
+                NavigationLink(destination: ForgotPasswordView()) {
+                    //forgot password button
+                    Button("Forgot Password") {
+                        
+                    }
+                    .foregroundColor(.sportGold)
+                    .offset(CGSize(width: 0, height: 175))
+                }
+                .padding()
+                
             }
         }
         

@@ -31,7 +31,7 @@ struct ForgotPasswordView: View {
                 // submit button
                 Button("Submit") {
                     Task {
-                        // try await userAuth.forgotPasswordFindEmail(email: email)
+                        try await userAuth.forgotPasswordFindEmail(email: email)
                     }
                 }
                 .foregroundColor(.black)
