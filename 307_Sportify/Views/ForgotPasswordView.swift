@@ -27,6 +27,7 @@ class OverLayerPopUp: UIViewController {
     @IBAction func doneAction(_sender: UIButton) {
         hide()
     }
+     
     
     init() {
         super.init(nibName: "OverLayerPopUp", bundle: nil)
@@ -77,26 +78,13 @@ class OverLayerPopUp: UIViewController {
 
 struct ForgotPasswordView: View {
     
+    
     @State private var email = "";
     @EnvironmentObject var userAuth: UserAuthentication
     @State var popUp: OverLayerPopUp = OverLayerPopUp()
     @State var uiController: ViewController = ViewController()
-    
-    var backView: any View {
-        
-        ZStack {
-            
-        }
-        
-    }
-    
-    var contentView: any View {
-        
-        ZStack {
-            
-        }
-        
-    }
+    @State private var test = "";
+
     
     var body: some View {
         
@@ -139,6 +127,16 @@ struct ForgotPasswordView: View {
                     .padding()
             }
             .offset(CGSize(width: 0, height: -20))
+            
+            // contentView
+            VStack {
+                Button("OK") {
+                    action: do {
+                        popUp.hide()
+                    }
+                }
+                
+            }
         }
     }
 }
