@@ -6,13 +6,100 @@
 //
 
 import SwiftUI
+import UIKit
+
+class ViewController: UIViewController {
+    
+    @IBAction func buttonAction(_ sender: UIButton) {
+        let overLayer = OverLayerPopUp()
+        overLayer.appear(sender: self)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+}
+
+class OverLayerPopUp: UIViewController {
+    
+    @IBOutlet weak var backView: UIView!
+    @IBOutlet weak var contentView: UIView!
+    @IBAction func doneAction(_sender: UIButton) {
+        hide()
+    }
+    
+    init() {
+        super.init(nibName: "OverLayerPopUp", bundle: nil)
+        self.modalPresentationStyle = .overFullScreen
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implmented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        configView()
+    }
+    
+    func configView() {
+        self.view.backgroundColor = .clear
+        self.backView.backgroundColor = .black.withAlphaComponent(0.6)
+        self.backView.alpha = 0
+        self.contentView.alpha = 0
+        self.contentView.layer.cornerRadius = 10
+    }
+    
+    func appear(sender: UIViewController) {
+        sender.present(self, animated: false)
+        self.show()
+    }
+    
+    private func show() {
+        UIView.animate(withDuration: 1, delay: 0.1) {
+            self.backView.alpha = 1
+            self.contentView.alpha = 1
+        }
+    }
+    
+    func hide() {
+        UIView.animate(withDuration: 1, delay: 0.0, options: .curveEaseOut) {
+            self.backView.alpha = 0
+            self.contentView.alpha = 0
+        } completion: { _ in
+            self.dismiss(animated: false)
+            self.removeFromParent()
+        }
+    }
+    
+}
 
 struct ForgotPasswordView: View {
     
     @State private var email = "";
     @EnvironmentObject var userAuth: UserAuthentication
+    @State var popUp: OverLayerPopUp = OverLayerPopUp()
+    @State var uiController: ViewController = ViewController()
+    
+    var backView: any View {
+        
+        ZStack {
+            
+        }
+        
+    }
+    
+    var contentView: any View {
+        
+        ZStack {
+            
+        }
+        
+    }
     
     var body: some View {
+        
         ZStack {
             
             Color.black.ignoresSafeArea()
@@ -30,8 +117,18 @@ struct ForgotPasswordView: View {
                 
                 // submit button
                 Button("Submit") {
+                    
+                    action: do {
+                        popUp.appear(sender: uiController)
+                    }
+                    
                     Task {
-                        try await userAuth.forgotPasswordFindEmail(email: email)
+                        do {
+                            try await userAuth.forgotPasswordEmail(email: email)
+                            // SUCCESS MESSAGE TODO
+                        } catch {
+                            // FAILED MESSAGE TODO
+                        }
                     }
                 }
                 .foregroundColor(.black)

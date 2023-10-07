@@ -52,18 +52,24 @@ class UserAuthentication: ObservableObject {
         print("Current User is \(self.currUser)")
     }
     
-    func forgotPasswordFindEmail(email: String) async throws {
-        print("Finding associated email")
+    enum EmailError: Error {
+        case invalidEmail
+        case otherError
+    }
+    
+    func forgotPasswordEmail(email: String) async throws {
         
-        // TODO - JOSH
+        do {
+            
+            try await Auth.auth().sendPasswordReset(withEmail: email)
+            print("Sending forgot password email was successful")
+            
+        } catch {
+            print("Sending forgot password email was unsuccessful")
+            throw EmailError.invalidEmail
+        }
         
-        // query the database for user associated with email
-        
-        
-        // return true if email found
-            // send email with code to the email
-        
-        // return false if email not found
-        
+
+                
     }
 }
