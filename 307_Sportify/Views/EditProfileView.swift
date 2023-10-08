@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct EditProfileView: View {
+    @EnvironmentObject var userAuth: UserAuthentication
     @State private var newUsername = ""
     @State private var newPassword = ""
     @State private var newLocation = ""
@@ -18,16 +19,30 @@ struct EditProfileView: View {
             VStack{
                 HStack{
                     Spacer()
-                    Image("DefaultProfile")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 200, height: 200)
-                        .cornerRadius(200)
-                        .clipShape(Circle())
+                    Button(action: {
+                       print("pic clicked")
+                    }) {
+                      //  if (userAuth.currUser?.getProfilePic() == nil) {
+                            Image("DefaultProfile")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 200, height: 200)
+                                .cornerRadius(200)
+                                .clipShape(Circle())
+//                       } else {
+//                            Image(uiImage: (userAuth.currUser?.getProfilePic())!)
+//                                .resizable()
+//                                .aspectRatio(contentMode: .fill)
+//                                .frame(width: 200, height: 200)
+//                                .cornerRadius(200)
+//                                .clipShape(Circle())
+//                        }
+                    }
                     Spacer()
                 }
-                // Spacer()
+                //Spacer()
                 TextField("New Username", text: $newUsername)
+                   // .textFieldStyle(.roundedBorder)
                     .padding()
                     .background(Color.white.opacity(0.8))
                     .frame(width: 300, height: 50)

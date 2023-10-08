@@ -167,5 +167,13 @@ struct User: Identifiable, Codable, Hashable {
     mutating func setProfilePic(picture: UIImage) {
         self.profilePicture = picture.pngData()!
     }
+    
+    func getProfilePic() -> UIImage {
+        let picture: UIImage? = UIImage(data: self.profilePicture)
+      //  if (picture == nil) {
+      //      return nil
+      //  }
+        return picture!
+    }
  
 }
