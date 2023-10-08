@@ -144,6 +144,17 @@ struct ProfileView: View {
                     .cornerRadius(200)
                 //}
                 Spacer()
+                NavigationLink(destination:EditProfileView()){
+                    Button("Friends"){
+             
+                    }
+                   .foregroundColor(.black)
+                    .fontWeight(.heavy)
+                    .frame(width: 225, height: 50)
+                    .background(Color("SportGold"))
+                    .cornerRadius(200)
+                }
+                Spacer()
                 
                 
             }
