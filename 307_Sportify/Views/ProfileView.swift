@@ -12,6 +12,8 @@ import SwiftUI
 import Firebase
 
 struct ProfileView: View {
+    @EnvironmentObject var userAuth: UserAuthentication
+    @State private var sOut = false;
     var body: some View {
         ZStack {
             Color.black
@@ -108,6 +110,13 @@ struct ProfileView: View {
                 HStack{
                     Spacer()
                 }
+                Button("Edit Profile"){
+                }
+               .foregroundColor(.black)
+                .fontWeight(.heavy)
+                .frame(width: 225, height: 50)
+                .background(Color("SportGold"))
+                .cornerRadius(200)
                 HStack{
                     Spacer()
                 }
@@ -120,19 +129,26 @@ struct ProfileView: View {
                 HStack{
                     Spacer()
                 }
+                
             
-                NavigationLink(destination:EditProfileView()){
-                    Button("Edit Profile"){
-             
+                //NavigationLink(destination:EditProfileView()){
+                    Button("Sign Out"){
+                        userAuth.signOut()
+                        sOut = true;
                     }
                    .foregroundColor(.black)
                     .fontWeight(.heavy)
                     .frame(width: 225, height: 50)
                     .background(Color("SportGold"))
+                    .foregroundColor(.red)
                     .cornerRadius(200)
-                }
+                //}
                 Spacer()
                 
+                
+            }
+            if(sOut) {
+                LoginSignUpView()
             }
         }
     }

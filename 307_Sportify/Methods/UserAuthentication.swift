@@ -22,12 +22,17 @@ class UserAuthentication: ObservableObject {
     }
     
     func signIn(withEmail email: String, password: String) async throws {
-        let userLogin = try await Auth.auth().signIn(withEmail: email, password: password)
-        self.userSession = userLogin.user
-        await getCurrUser()
+        do {
+            let userLogin = try await Auth.auth().signIn(withEmail: email, password: password)
+            self.userSession = userLogin.user
+            await getCurrUser()
+            print("sign in success")
+        } catch {
+            print("sign in failed")
+        }
     }
     
-    func createUser(withEmail email: String, password: String, fullname: String) async throws {
+    func createUser(withEmail email: String, password: String, fullname: String) async throws -> Bool {
         do {
             let result = try await Auth.auth().createUser(withEmail: email, password: password)
             self.userSession = result.user
@@ -36,9 +41,12 @@ class UserAuthentication: ObservableObject {
             let encodedUser  = try Firestore.Encoder().encode(user)
             //adds to the collecton of Users, and adds the User data
             try await Firestore.firestore().collection("Users").document(user.id).setData(encodedUser)
+            await getCurrUser()
             print("User Created")
+            return true
         } catch {
             print("User Creation Failed")
+            return false
         }
         
     }
@@ -50,6 +58,17 @@ class UserAuthentication: ObservableObject {
         self.currUser = try? userInfo.data(as: User.self)
         
         print("Current User is \(self.currUser)")
+    }
+    
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+            self.userSession = nil
+            self.currUser = nil
+            print("User Signed Out")
+        } catch {
+            print("Sign Out Failed")
+        }
     }
     
     enum EmailError: Error {

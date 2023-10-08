@@ -37,32 +37,32 @@ struct LogInView: View {
                     .offset(CGSize(width: 0, height: 125))
                 
                 
-                NavigationLink(destination: HomePageView()) {
-                    //login button
-                    Button("LOG IN") {
-                        Task {
-                            try await userAuth.signIn(withEmail: email, password: password)
-                        }
-                    }
-                    .foregroundColor(.black)
-                    .fontWeight(.heavy)
-                    .frame(width: 225, height: 50)
-                    .background(Color("SportGold"))
-                    .cornerRadius(200)
-                    .offset(CGSize(width: 0, height: 200))
-                    
-                }
-                .padding()
                 
-                NavigationLink(destination: ForgotPasswordView()) {
+                //login button
+                Button("LOG IN") {
+                    Task {
+                        try await userAuth.signIn(withEmail: email, password: password)
+                    }
+                }
+                .foregroundColor(.black)
+                .fontWeight(.heavy)
+                .frame(width: 225, height: 50)
+                .background(Color("SportGold"))
+                .cornerRadius(200)
+                .offset(CGSize(width: 0, height: 200))
+                
+                
+            }
+                
+                
+                //NavigationLink(destination: ForgotPasswordView()) {
                     //forgot password button
                     Text("Forgot Password")
                         .foregroundColor(.sportGold)
                         .offset(CGSize(width: 0, height: 175))
-                }
-                .padding()
-                
-            }
+                //}
+               
+            //}
         }
         
     }
