@@ -16,13 +16,14 @@ struct LoginSignUpView: View {
 
     var body: some View {
     
-        //NavigationStack {
+        NavigationView {
             //aligns to the top
             //Zstack - places objects on top of one another
             //VStack - places objects in a vertical line
             //HStack - places objects on a horizontal line
             ZStack() {
                 //logo
+                Color.black.ignoresSafeArea()
                 Image("SportifyLogoOriginal")
                     .resizable()
                     .scaledToFill()
@@ -37,43 +38,43 @@ struct LoginSignUpView: View {
                 
                 //login button
                 //NavigationLink(destination:LogInView().environmentObject(userAuth)) {
-                    Button("LOG IN") {
-                        print("Button hit!")
-                        showLogIn = true
-                        
-                    }
-                    .foregroundColor(.black)
-                    .fontWeight(.heavy)
-                    .frame(width: 225, height: 50)
-                    .background(Color("SportGold"))
-                    .cornerRadius(200)
-                    .offset(CGSize(width: 0, height: 50))
-                    
+                Button("LOG IN") {
+                    print("Button hit!")
+                    showLogIn = true
+                }
+                .foregroundColor(.black)
+                .fontWeight(.heavy)
+                .frame(width: 225, height: 50)
+                .background(Color("SportGold"))
+                .cornerRadius(200)
+                .offset(CGSize(width: 0, height: 50))
+                
                 //}
                 //.padding()
                 
                 //NavigationLink(destination:SignUpView().environmentObject(userAuth)) {
-                    //signup button
+                //signup button
                 
-                    Button("SIGN UP") {
-                        showSignUp = true
-                        
-                    }
-                    .foregroundColor(.black)
-                    .fontWeight(.heavy)
-                    .frame(width: 225, height: 50)
-                    .background(.gray)
-                    .cornerRadius(200)
-                    .offset(CGSize(width: 0, height: 125))
+                Button("SIGN UP") {
+                    showSignUp = true
+                    
+                }
+                .foregroundColor(.black)
+                .fontWeight(.heavy)
+                .frame(width: 225, height: 50)
+                .background(.gray)
+                .cornerRadius(200)
+                .offset(CGSize(width: 0, height: 125))
                 //}
-                    if(showLogIn) {
-                       LogInView().environmentObject(userAuth)
-                    }
-                    if(showSignUp) {
-                        SignUpView().environmentObject(userAuth)
-                    }
+                if(showLogIn) {
+                    LogInView().environmentObject(userAuth)
+                }
+                if(showSignUp) {
+                    SignUpView().environmentObject(userAuth)
+                }
                 
             }
+        }
             .navigationBarBackButtonHidden(true)
         //}
     }

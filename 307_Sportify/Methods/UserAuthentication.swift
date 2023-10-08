@@ -21,14 +21,17 @@ class UserAuthentication: ObservableObject {
         }
     }
     
-    func signIn(withEmail email: String, password: String) async throws {
+    func signIn(withEmail email: String, password: String) async throws -> Bool {
         do {
             let userLogin = try await Auth.auth().signIn(withEmail: email, password: password)
             self.userSession = userLogin.user
             await getCurrUser()
             print("sign in success")
+            return true
+            
         } catch {
             print("sign in failed")
+            return false
         }
     }
     
@@ -55,7 +58,11 @@ class UserAuthentication: ObservableObject {
         guard let userId = Auth.auth().currentUser?.uid else {return }
         
         guard let userInfo = try? await Firestore.firestore().collection("Users").document(userId).getDocument() else {return}
-        self.currUser = try? userInfo.data(as: User.self)
+        do {
+            self.currUser = try userInfo.data(as: User.self)
+        } catch {
+          print("User fetching data failed")
+        }
         
         print("Current User is \(self.currUser)")
     }

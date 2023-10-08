@@ -11,10 +11,12 @@ struct SignUpView: View {
     @State private var email = "";
     @State private var fullName = "";
     @State private var password = "";
+    @State private var SignUp = false;
     @EnvironmentObject var userAuth: UserAuthentication
     var body: some View {
         NavigationView {
-            VStack {
+            ZStack {
+                Color.black.ignoresSafeArea()
                 Image("SportifyLogoOriginal")
                     .resizable()
                     .scaledToFill()
@@ -45,7 +47,9 @@ struct SignUpView: View {
                 //Sign UP button
                 Button("SIGN UP") {
                     Task {
-                        try await userAuth.createUser(withEmail: email, password: password, fullname: fullName)
+                        if try await userAuth.createUser(withEmail: email, password: password, fullname: fullName) {
+                            SignUp = true;
+                        }
                     }
                 }
                 .foregroundColor(.black)
@@ -54,7 +58,12 @@ struct SignUpView: View {
                 .background(Color("SportGold"))
                 .cornerRadius(200)
                 .offset(CGSize(width: 0, height: 275))
+                
+                if(SignUp) {
+                    HomePageView()
+                }
             }
+            
             
             
         }

@@ -15,7 +15,6 @@
 		BA2570D12AC89B4D004E528A /* UserAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2570D02AC89B4D004E528A /* UserAuthentication.swift */; };
 		BA2570D32AC8A58D004E528A /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2570D22AC8A58D004E528A /* SignUpView.swift */; };
 		BA8B749B2AC6301400BBE70B /* _07_SportifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B749A2AC6301400BBE70B /* _07_SportifyApp.swift */; };
-		BA8B749D2AC6301400BBE70B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B749C2AC6301400BBE70B /* ContentView.swift */; };
 		BA8B749F2AC6301600BBE70B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA8B749E2AC6301600BBE70B /* Assets.xcassets */; };
 		BA8B74A22AC6301600BBE70B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA8B74A12AC6301600BBE70B /* Preview Assets.xcassets */; };
 		BA8B74A92AC64EEE00BBE70B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA8B74A82AC64EEE00BBE70B /* GoogleService-Info.plist */; };
@@ -67,7 +66,6 @@
 		BA2570D22AC8A58D004E528A /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		BA8B74972AC6301400BBE70B /* 307_Sportify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 307_Sportify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA8B749A2AC6301400BBE70B /* _07_SportifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _07_SportifyApp.swift; sourceTree = "<group>"; };
-		BA8B749C2AC6301400BBE70B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BA8B749E2AC6301600BBE70B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BA8B74A12AC6301600BBE70B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BA8B74A82AC64EEE00BBE70B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -178,17 +176,9 @@
 		BA8B74E12AC671A900BBE70B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				BA8B749C2AC6301400BBE70B /* ContentView.swift */,
-				BA8B74E22AC671E600BBE70B /* LoginSignUpView.swift */,
-				BA8B74E52AC684AE00BBE70B /* LogInView.swift */,
-				BA2570D22AC8A58D004E528A /* SignUpView.swift */,
+				BAFF1CD82AD2548E0010D8B3 /* LoginViews */,
+				BAFF1CD92AD254AB0010D8B3 /* HomeViews */,
 				6D39AAB62AC73BFE00515C20 /* ForgotPasswordView.swift */,
-				FBF11AB72AC8A8EF00FF39FC /* EventsView.swift */,
-				FBF11AB92AC8A91900FF39FC /* HomeView.swift */,
-				FBF11ABB2AC8A95100FF39FC /* MessageView.swift */,
-				FBF11ABD2AC8A97E00FF39FC /* NotificationView.swift */,
-				FBF11ABF2AC8A9A300FF39FC /* ProfileView.swift */,
-				FBF11AC12AC8A9EC00FF39FC /* HomePageView.swift */,
 				31562B992ACE4225002B3863 /* EditProfileView.swift */,
 				FBD626FB2AD242B5005642A3 /* FriendListView.swift */,
 			);
@@ -202,6 +192,29 @@
 				BA8B749A2AC6301400BBE70B /* _07_SportifyApp.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		BAFF1CD82AD2548E0010D8B3 /* LoginViews */ = {
+			isa = PBXGroup;
+			children = (
+				BA8B74E22AC671E600BBE70B /* LoginSignUpView.swift */,
+				BA8B74E52AC684AE00BBE70B /* LogInView.swift */,
+				BA2570D22AC8A58D004E528A /* SignUpView.swift */,
+			);
+			path = LoginViews;
+			sourceTree = "<group>";
+		};
+		BAFF1CD92AD254AB0010D8B3 /* HomeViews */ = {
+			isa = PBXGroup;
+			children = (
+				FBF11AB72AC8A8EF00FF39FC /* EventsView.swift */,
+				FBF11AB92AC8A91900FF39FC /* HomeView.swift */,
+				FBF11ABB2AC8A95100FF39FC /* MessageView.swift */,
+				FBF11ABD2AC8A97E00FF39FC /* NotificationView.swift */,
+				FBF11ABF2AC8A9A300FF39FC /* ProfileView.swift */,
+				FBF11AC12AC8A9EC00FF39FC /* HomePageView.swift */,
+			);
+			path = HomeViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,7 +323,6 @@
 				BA8B74E32AC671E600BBE70B /* LoginSignUpView.swift in Sources */,
 				FBF11AB82AC8A8EF00FF39FC /* EventsView.swift in Sources */,
 				31562B9A2ACE4225002B3863 /* EditProfileView.swift in Sources */,
-				BA8B749D2AC6301400BBE70B /* ContentView.swift in Sources */,
 				FBF11ABC2AC8A95200FF39FC /* MessageView.swift in Sources */,
 				31562B9C2ACE4BDF002B3863 /* SelectPicture.swift in Sources */,
 				BA8B74E62AC684AE00BBE70B /* LogInView.swift in Sources */,
@@ -458,6 +470,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"307_Sportify/Preview Content\"";
+				DEVELOPMENT_TEAM = R362FXYNBV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access to take a profile picture";
@@ -488,6 +501,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"307_Sportify/Preview Content\"";
+				DEVELOPMENT_TEAM = R362FXYNBV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access to take a profile picture";

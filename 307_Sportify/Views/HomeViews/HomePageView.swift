@@ -12,6 +12,7 @@ struct HomePageView: View {
     
     var body: some View {
         let user = userAuth.currUser
+        NavigationView {
             TabView {
                 EventsView()
                     .tabItem(){
@@ -40,6 +41,8 @@ struct HomePageView: View {
                     }
             }
             .navigationBarBackButtonHidden(true)
+            
+        }
     }
 }
 

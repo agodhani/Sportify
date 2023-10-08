@@ -39,17 +39,8 @@ struct ProfileView: View {
                 }
                 HStack{
                     Spacer()
-                }
-                HStack{
                     Spacer()
-                }
-                HStack{
                     Spacer()
-                }
-                HStack{
-                    Spacer()
-                }
-                HStack{
                     Spacer()
                 }
                 HStack{
@@ -158,9 +149,11 @@ struct ProfileView: View {
                 
                 
             }
-            if(sOut) {
-                LoginSignUpView()
-            }
+            //if(sOut) {
+             //   NavigationView {
+             //       LoginSignUpView()
+             //   }
+            //}
         }
     }
 }

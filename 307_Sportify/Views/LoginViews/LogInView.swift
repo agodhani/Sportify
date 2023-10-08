@@ -11,10 +11,11 @@ struct LogInView: View {
     @State private var email = "";
     @State private var password = "";
     @EnvironmentObject var userAuth: UserAuthentication
-    
+    @State private var homeIn = false;
     var body: some View {
         NavigationView {
-            VStack {
+            ZStack {
+                Color.black.ignoresSafeArea()
                 Image("SportifyLogoOriginal")
                     .resizable()
                     .scaledToFill()
@@ -41,7 +42,9 @@ struct LogInView: View {
                 //login button
                 Button("LOG IN") {
                     Task {
-                        try await userAuth.signIn(withEmail: email, password: password)
+                        if(try await userAuth.signIn(withEmail: email, password: password)) {
+                            homeIn = true
+                        }
                     }
                 }
                 .foregroundColor(.black)
@@ -51,6 +54,9 @@ struct LogInView: View {
                 .cornerRadius(200)
                 .offset(CGSize(width: 0, height: 200))
                 
+                if(homeIn) {
+                    HomePageView()
+                }
                 
             }
                 
