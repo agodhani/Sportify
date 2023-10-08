@@ -11,9 +11,10 @@ struct EditProfileView: View {
     @State private var newUsername = ""
     @State private var newPassword = ""
     @State private var newLocation = ""
-    
+    @State private var profile = false
     var body: some View {
         ZStack{
+            Color.black.ignoresSafeArea()
             VStack{
                 HStack{
                     Spacer()
@@ -47,15 +48,18 @@ struct EditProfileView: View {
                     .clipShape(Rectangle())
                     .offset(CGSize(width: 0, height: 50))
                 
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                    Text("Update Profile")
-                })
+                Button("Update Profile") {
+                    profile = true
+                }
                 .foregroundColor(.black)
                 .fontWeight(.heavy)
                 .frame(width: 225, height: 50)
                 .background(Color("SportGold"))
                 .cornerRadius(200)
                 .offset(CGSize(width: 0, height: 100))
+            }
+            if(profile) {
+                ProfileView()
             }
         }
     }

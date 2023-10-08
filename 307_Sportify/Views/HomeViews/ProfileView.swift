@@ -14,9 +14,12 @@ import Firebase
 struct ProfileView: View {
     @EnvironmentObject var userAuth: UserAuthentication
     @State private var sOut = false;
+    @State private var pView = false;
+    @State private var friendsView = false;
     var body: some View {
         ZStack {
-            Color.black
+            Color.black.ignoresSafeArea()
+            let user = userAuth.currUser
             VStack {
                 HStack {
                     Spacer()
@@ -29,13 +32,15 @@ struct ProfileView: View {
                         .padding()
                     Spacer()
                 }
-                HStack{
-                    Text("Name:")
-                        .foregroundColor(Color("SportGold"))
-                    Text("Andrew Brandon")
-                        .foregroundColor(Color("SportGold"))
-                    
-                    Spacer()
+                if(user != nil) {
+                    HStack{
+                        Text("Name:")
+                            .foregroundColor(Color("SportGold"))
+                        Text(user!.name)
+                            .foregroundColor(Color("SportGold"))
+                        
+                        Spacer()
+                    }
                 }
                 HStack{
                     Spacer()
@@ -102,8 +107,9 @@ struct ProfileView: View {
                     Spacer()
                 }
                 Button("Edit Profile"){
+                    pView = true
                 }
-               .foregroundColor(.black)
+                .foregroundColor(.black)
                 .fontWeight(.heavy)
                 .frame(width: 225, height: 50)
                 .background(Color("SportGold"))
@@ -121,39 +127,48 @@ struct ProfileView: View {
                     Spacer()
                 }
                 
-            
+                
                 //NavigationLink(destination:EditProfileView()){
-                    Button("Sign Out"){
-                        userAuth.signOut()
-                        sOut = true;
-                    }
-                   .foregroundColor(.black)
-                    .fontWeight(.heavy)
-                    .frame(width: 225, height: 50)
-                    .background(Color("SportGold"))
-                    .foregroundColor(.red)
-                    .cornerRadius(200)
+                Button("Sign Out"){
+                    userAuth.signOut()
+                    sOut = true;
+                }
+                .foregroundColor(.black)
+                .fontWeight(.heavy)
+                .frame(width: 225, height: 50)
+                .background(Color("SportGold"))
+                .foregroundColor(.red)
+                .cornerRadius(200)
                 //}
                 Spacer()
-                NavigationLink(destination:EditProfileView()){
+                
                     Button("Friends"){
-             
+                        friendsView = true
                     }
-                   .foregroundColor(.black)
+                    .foregroundColor(.black)
                     .fontWeight(.heavy)
                     .frame(width: 225, height: 50)
                     .background(Color("SportGold"))
                     .cornerRadius(200)
-                }
-                Spacer()
+                
                 
                 
             }
-            //if(sOut) {
-             //   NavigationView {
-             //       LoginSignUpView()
-             //   }
-            //}
+            if(sOut) {
+              NavigationView {
+                   LoginSignUpView()
+               }
+            }
+            if(pView) {
+                NavigationView {
+                    EditProfileView()
+                }
+            }
+            if(friendsView) {
+                NavigationView {
+                    FriendListView()
+                }
+            }
         }
     }
 }

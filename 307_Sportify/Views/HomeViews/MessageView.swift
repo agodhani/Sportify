@@ -10,7 +10,7 @@ import SwiftUI
 struct MessageView: View {
     var body: some View {
         ZStack {
-            Color.black
+            Color.black.ignoresSafeArea()
                     
             Image(systemName: "plus.message.fill")
                 .foregroundColor(.blue)

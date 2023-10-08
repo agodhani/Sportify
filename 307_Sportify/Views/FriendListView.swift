@@ -9,14 +9,17 @@ import SwiftUI
 
 struct FriendListView: View {
     var body: some View {
-        VStack{
-            Text("My Friends")
-                .padding()
-                .background(Color.white.opacity(0.8))
-                .frame(width: 300, height: 50)
-                .clipShape(Rectangle())
-                .offset(CGSize(width: 0, height: 50))
-            Spacer()
+        ZStack {
+            Color.black.ignoresSafeArea()
+            VStack{
+                Text("My Friends")
+                    .padding()
+                    .background(Color.white.opacity(0.8))
+                    .frame(width: 300, height: 50)
+                    .clipShape(Rectangle())
+                    .offset(CGSize(width: 0, height: 50))
+                Spacer()
+            }
         }
     }
 }

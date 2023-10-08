@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeView: View {
     var body: some View {
         ZStack {
-                Color.black
+            Color.black.ignoresSafeArea()
             
                 Image("SportifyLogoOriginal")
                     .foregroundColor(.sportGold)

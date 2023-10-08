@@ -10,7 +10,7 @@ import SwiftUI
 struct EventsView: View {
     var body: some View {
         ZStack {
-                Color.black
+            Color.black.ignoresSafeArea()
                     
                 Image(systemName: "calendar.badge.clock")
                         .foregroundColor(.green)

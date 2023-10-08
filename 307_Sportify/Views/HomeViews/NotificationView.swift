@@ -10,7 +10,7 @@ import SwiftUI
 struct NotificationView: View {
     var body: some View {
         ZStack {
-            Color.black
+            Color.black.ignoresSafeArea()
                     
             Image(systemName: "bell.badge")
                 .foregroundColor(.yellow)
