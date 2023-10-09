@@ -12,6 +12,8 @@ struct LogInView: View {
     @State private var password = "";
     @EnvironmentObject var userAuth: UserAuthentication
     @State private var homeIn = false;
+    @State private var showForgotPassword = false;
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -58,17 +60,21 @@ struct LogInView: View {
                     HomePageView()
                 }
                 
+                // Forgot Password Button
+                Button("Forgot Password") {
+                    showForgotPassword = true;
+                }
+                .foregroundColor(.sportGold)
+                .offset(CGSize(width: 0, height: 250))
+                if (showForgotPassword) {
+                    ForgotPasswordView()
+                }
+                
             }
                 
-                
-                //NavigationLink(destination: ForgotPasswordView()) {
-                    //forgot password button
-                    Text("Forgot Password")
-                        .foregroundColor(.sportGold)
-                        .offset(CGSize(width: 0, height: 175))
-                //}
-               
-            //}
+            
+
+
         }
         
     }
