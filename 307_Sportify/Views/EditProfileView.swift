@@ -7,66 +7,29 @@
 
 import SwiftUI
 
-class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ObservableObject {
-    @EnvironmentObject var userAuth: UserAuthentication
-    
-    let profileImage: UIImageView = {
-        let profileImage = UIImageView()
-        profileImage.image = UIImage(named:"DefaultProfile")
-        profileImage.contentMode = .scaleAspectFit
-        return profileImage
-    }()
-    
-    func presentPhotoActionSheet() {
-        let actionSheet = UIAlertController(title: "Profile Picture",
-                                            message: "How would you like to select a picture?",
-                                            preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: "Choose from camera Roll",
-                                            style: .default,
-                                            handler: { [weak self] _ in
-                                            self?.presentPhotoPicker()
-        }))
-        actionSheet.addAction(UIAlertAction(title: "Take picture",
-                                            style: .default,
-                                            handler: { [weak self] _ in
-                                            self?.presentCamera()
-        }))
-        actionSheet.addAction(UIAlertAction(title: "Cancel",
-                                            style: .cancel,
-                                            handler: nil))
-        
-        present(actionSheet, animated: true)
+extension Image {
+    func style() -> some View {
+        self.resizable()
+            .aspectRatio(contentMode: .fill)
+            .frame(width: 150, height: 150)
+            .clipShape(Circle())
+            .clipped()
+            .overlay() {
+                ZStack {
+                    Image(systemName: "camera.fill")
+                        .foregroundColor(.gray)
+                        .offset(x:20, y: 60)
+                    
+                    RoundedRectangle(cornerRadius: 100)
+                        .stroke(.white, lineWidth: 4)
+                }
+            }
     }
-    
-    func presentCamera() {
-        let vc = UIImagePickerController()
-        vc.sourceType = .camera
-        vc.delegate = self
-        vc.allowsEditing = true
-        present(vc, animated: true)
-    }
-    
-    func presentPhotoPicker() {
-        let vc = UIImagePickerController()
-        vc.sourceType = .photoLibrary
-        vc.delegate = self
-        vc.allowsEditing = true
-        present(vc, animated: true)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
 }
 
 struct EditProfileView: View {
-    @StateObject var controller = EditProfileViewController()
     @EnvironmentObject var userAuth: UserAuthentication
+    @State private var profilePic: Image = Image("DefaultProfile")
     @State private var newUsername = ""
     @State private var newPassword = ""
     @State private var newLocation = ""
@@ -78,15 +41,17 @@ struct EditProfileView: View {
                 HStack{
                     Spacer()
                     Button(action: {
-                       print("pic clicked")
+                       print("pic button clicked")
                     }) {
                  //       if (userAuth.currUser?.getProfilePic() == nil) {
-                            Image(uiImage: controller.profileImage.image!)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 200, height: 200)
-                                .cornerRadius(200)
-                                .clipShape(Circle())
+                        profilePic
+                            .style()
+                
+//                                .resizable()
+//                                .aspectRatio(contentMode: .fill)
+//                                .frame(width: 200, height: 200)
+//                                .cornerRadius(200)
+//                                .clipShape(Circle())
 //                        } else {
 //                            Image(uiImage: (userAuth.currUser?.getProfilePic())!)
 //                                .resizable()
