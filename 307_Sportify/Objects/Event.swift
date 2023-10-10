@@ -17,7 +17,7 @@ struct Event: Identifiable {
     var location: CLLocationCoordinate2D
     var numAttendees: Int
     var attendeeList: Set<User>
-    var pbvateEvent: Bool
+    var privateEvent: Bool
     var maxParticipants: Int
     var adminsList: Set<User>
     var eventHost: User
@@ -27,12 +27,12 @@ struct Event: Identifiable {
     init() { // THIS WAS CREATED AS A TEST FOR EVENT CREATION - Josh - can delete and replace later
         self.eventName = "test name"
         self.id = "12345"
-        self.sport = 1
+        self.sport = 0
         self.date = Date()
         self.location = CLLocationCoordinate2D(latitude: 0, longitude: 0)
         self.numAttendees = 0
         self.attendeeList = Set<User>()
-        self.pbvateEvent = true
+        self.privateEvent = true
         self.maxParticipants = 2
         self.adminsList = Set<User>()
         self.eventHost = User(id: "123", name: "test", email: "email@test.com", radius: 1, zipCode: "47906", sportsPreferences: Set<String>(), privateAccount: true, profilePicture: Data.init(), age: 20, birthday: Date(), friendList: Set<String>(), blockList: Set<String>(), eventsAttending: Set<String>(), eventsHosting: Set<String>())

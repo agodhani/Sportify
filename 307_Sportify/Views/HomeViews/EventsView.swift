@@ -33,11 +33,10 @@ struct EventsView: View {
                     .padding(1)
                     .offset(CGSize(width: 0, height: -20))
                 
-                HStack (spacing: 30) {
+                HStack (spacing: 40) {
                     
-                    Text("Event") // default font size is 17
-                    
-                    Text("Capacity")
+                    Text("Event/Capacity") // default font size is 17
+                    //Text("Capacity")
                     
                     Text("Sport")
                     
@@ -56,51 +55,88 @@ struct EventsView: View {
                     
                     VStack {
                         ForEach(allEvents) { event in
-                            
+                                
                             // label everything
                             
-                            HStack {
-                                // Event
-                                let eventName = event.eventName
-                                Text(eventName)
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 25, weight: .heavy, design: .default))
+                            HStack (alignment: .firstTextBaseline, spacing: 18) {
                                 
+                                VStack { // Event / Capacity
+                                    
+                                    // Event
+                                    let eventName = event.eventName
+                                    Text(eventName)
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 23, weight: .heavy, design: .default))
+                                    
+                                    // private / public
+                                    let eventPrivate = event.privateEvent
+                                    var privStr = ""
+                                    if (eventPrivate) {
+                                        let privStr = "Private"
+                                    } else {
+                                        let privStr = "Public"
+                                    }
+                                    Text(privStr)
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 17, weight: .heavy, design: .default))
+                                    
+                                    // Capacity
+                                    let eventAttendees = event.numAttendees
+                                    let eventMaxParticipants = event.maxParticipants
+                                    let eventCapacity = String(eventAttendees) + "/" + String(eventMaxParticipants)
+                                    Text("Available " + eventCapacity)
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 17, weight: .heavy, design: .default))
+                                        .padding(.leading, 20)
+                                        .padding(.top, -10)
+                                }
                                 
-                                // Capacity
-                                let eventAttendees = event.numAttendees
-                                let eventMaxParticipants = event.maxParticipants
-                                let eventCapacity = String(eventAttendees) + "/" + String(eventMaxParticipants)
-                                Text(eventCapacity)
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 17, weight: .heavy, design: .default))
                                 
                                 // Sport
                                 let eventSport = event.sport // this is an int
                                 // convert int to the actual sport
                                 let sportString = event.sportsList[eventSport]
+                                
                                 Text(sportString)
                                     .foregroundColor(.white)
                                     .font(.system(size: 17, weight: .heavy, design: .default))
                                 
                                 
                                 // Location TODO - int? string?
-                                let eventLocation = event.location // zip code int
+                                let eventLocation = event.location // zip code ? TODO
+                                Text("""
+                                 Temp
+                                 Location
+                                 """)
+                                .foregroundColor(.white)
+                                .font(.system(size: 17, weight: .heavy, design: .default))
+                                .multilineTextAlignment(.center)
                                 
                                 
-                                // Date
-                                let eventDate = event.date
+                                VStack {
+                                    // Date
+                                    let eventDate = event.date.formatted()
+                                    
+                                    // split into day (0) and time (1)
+                                    let eventArr = eventDate.split(separator: ",", maxSplits: 2, omittingEmptySubsequences: true)
+                                    let dateStr = String(eventArr[0] + "\n" + eventArr[1])
+                                    Text(dateStr)
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 14, weight: .heavy, design: .default))
+                                        .multilineTextAlignment(.center)
+                                    
+                                    
+                                    // manage button
+                                }
                                 
-                                // private / public
+
                                 
-                                // manage button
                                 
-                                // put a clear button on top of it
+                                
+                                // put a clear button on top of it to click into it
                             }
                         }
                     }
-                    
-
                 }
 
                 
