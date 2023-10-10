@@ -85,6 +85,7 @@ struct ForgotPasswordView: View {
     @State var uiController: ViewController = ViewController()
     @State private var test = "";
 
+    @State var statusText = "Input your associated account email"
     
     var body: some View {
         
@@ -93,7 +94,7 @@ struct ForgotPasswordView: View {
             Color.black.ignoresSafeArea()
             
             VStack {
-                Text("Input your associated account email")
+                Text(statusText)
                     .foregroundColor(.white)
                     .padding()
                 
@@ -107,15 +108,15 @@ struct ForgotPasswordView: View {
                 Button("Submit") {
                     
                     action: do {
-                        popUp.appear(sender: uiController)
-                    }
-                    
-                    Task {
-                        do {
-                            try await userAuth.forgotPasswordEmail(email: email)
-                            // SUCCESS MESSAGE TODO
-                        } catch {
-                            // FAILED MESSAGE TODO
+                        
+                        Task {
+                            //popUp.appear(sender: uiController)
+                            do {
+                                try await userAuth.forgotPasswordEmail(email: email)
+                                statusText = "Email sent! Check your inbox for email"
+                            } catch {
+                                statusText = "Provided email was not found"
+                            }
                         }
                     }
                 }
@@ -127,16 +128,6 @@ struct ForgotPasswordView: View {
                     .padding()
             }
             .offset(CGSize(width: 0, height: -20))
-            
-            // contentView
-            VStack {
-                Button("OK") {
-                    action: do {
-                        popUp.hide()
-                    }
-                }
-                
-            }
         }
     }
 }
