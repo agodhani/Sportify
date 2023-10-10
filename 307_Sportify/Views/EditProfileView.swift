@@ -51,7 +51,7 @@ struct EditProfileView: View {
                             .onTapGesture {
                                 showImagePicker = true
                             }
-                            .onChange(of: inputImage) {_ in loadImage()}
+                            .onChange(of: inputImage) {loadImage()}
                             .sheet(isPresented: $showImagePicker) {
                                 ImagePicker(image: $inputImage)
                             }
