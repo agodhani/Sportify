@@ -10,7 +10,8 @@ import CoreLocation
 
 struct Event: Identifiable {
     let id: String
-    var sprtsList = ["Tennis", "Table Tennis", "Volleyball", "Soccer", "Basketball", "Football", "Baseball", "Badminton", "Golf", "Cycling", "Running", "Hockey", "Spikeball", "Handball", "Lacrosse", "Squash"]
+    var eventName: String
+    var sportsList = ["Tennis", "Table Tennis", "Volleyball", "Soccer", "Basketball", "Football", "Baseball", "Badminton", "Golf", "Cycling", "Running", "Hockey", "Spikeball", "Handball", "Lacrosse", "Squash"]
     var sport: Int
     var date: Date
     var location: CLLocationCoordinate2D
@@ -22,6 +23,22 @@ struct Event: Identifiable {
     var eventHost: User
     private var code: String
     var blackList: Set<User>
+    
+    init() { // THIS WAS CREATED AS A TEST FOR EVENT CREATION - Josh - can delete and replace later
+        self.eventName = "test name"
+        self.id = "12345"
+        self.sport = 1
+        self.date = Date()
+        self.location = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+        self.numAttendees = 0
+        self.attendeeList = Set<User>()
+        self.pbvateEvent = true
+        self.maxParticipants = 2
+        self.adminsList = Set<User>()
+        self.eventHost = User(id: "123", name: "test", email: "email@test.com", radius: 1, sportsPreferences: Set<String>(), privateAccount: true, profilePicture: Data.init(), age: 20, birthday: Date(), friendList: Set<String>(), blockList: Set<String>(), eventsAttending: Set<String>(), eventsHosting: Set<String>())
+        self.code = "123"
+        self.blackList = Set<User>()
+    }
     
     mutating func kickAttendee(attendee: User) {
         self.attendeeList.remove(attendee)

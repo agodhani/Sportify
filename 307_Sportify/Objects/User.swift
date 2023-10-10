@@ -81,35 +81,51 @@ struct User: Identifiable, Codable, Hashable {
     var eventsHosting: Set<String>
     
     //?might not need this: let password: String
-/*
-    init(id: String, name: String, email: String, password: String, location: CLLocation, radius: Int, sportsPreferences: Set<String>, provateAccount: Bool, profilePicture: Data, age: Int, birthday: Date, friendList: Set<String>, blockList: Set<String>, eventsAttending: Set<String>, eventsHosting: Set<String>) {
-        self.id = id
-        self.name = name
-        self.email = email
-        
-        //self.location = location
-        self.radius = radius
-        self.sportsPreferences = sportsPreferences
-        self.provateAccount = provateAccount
-        self.profilePicture = profilePicture
-        self.age = age
-        self.birthday = birthday
-        self.friendList = friendList
-        self.blockList = blockList
-        self.eventsAttending = eventsAttending
-        self.eventsHosting = eventsHosting
-    }
-    
-    // TODO
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CLLocation.CodingKeys.self)
-
-        //var decodedLocation = try container.decode(, forKey: )
-                
-        self.init(id: <#T##String#>, name: <#T##String#>, email: <#T##String#>, password: <#T##String#>, location: location, radius: <#T##Int#>, sportsPreferences: <#T##Set<String>#>, provateAccount: <#T##Bool#>, profilePicture: <#T##Data#>, age: <#T##Int#>, birthday: <#T##Date#>, friendList: <#T##Set<String>#>, blockList: <#T##Set<String>#>, eventsAttending: <#T##Set<String>#>, eventsHosting: <#T##Set<String>#>)
-    }
- */
+    /*
+     init(id: String, name: String, email: String, password: String, location: CLLocation, radius: Int, sportsPreferences: Set<String>, provateAccount: Bool, profilePicture: Data, age: Int, birthday: Date, friendList: Set<String>, blockList: Set<String>, eventsAttending: Set<String>, eventsHosting: Set<String>) {
+     self.id = id
+     self.name = name
+     self.email = email
      
+     //self.location = location
+     self.radius = radius
+     self.sportsPreferences = sportsPreferences
+     self.provateAccount = provateAccount
+     self.profilePicture = profilePicture
+     self.age = age
+     self.birthday = birthday
+     self.friendList = friendList
+     self.blockList = blockList
+     self.eventsAttending = eventsAttending
+     self.eventsHosting = eventsHosting
+     }
+     
+     // TODO
+     init(from decoder: Decoder) throws {
+     let container = try decoder.container(keyedBy: CLLocation.CodingKeys.self)
+     
+     //var decodedLocation = try container.decode(, forKey: )
+     
+     self.init(id: <#T##String#>, name: <#T##String#>, email: <#T##String#>, password: <#T##String#>, location: location, radius: <#T##Int#>, sportsPreferences: <#T##Set<String>#>, provateAccount: <#T##Bool#>, profilePicture: <#T##Data#>, age: <#T##Int#>, birthday: <#T##Date#>, friendList: <#T##Set<String>#>, blockList: <#T##Set<String>#>, eventsAttending: <#T##Set<String>#>, eventsHosting: <#T##Set<String>#>)
+     }
+     */
+/*
+    init() { // CREATED FOR TESTING PURPOSE - Josh - can delete and replace
+        self.id = "123"
+        self.name = "test user"
+        self.email = "test@test.com"
+        self.radius = 0
+        self.sportsPreferences = Set<String>()
+        self.privateAccount = true
+        self.profilePicture = Data()
+        self.age = 1
+        self.birthday = Date()
+        self.friendList = Set<String>()
+        self.blockList = Set<String>()
+        self.eventsAttending = Set<String>()
+        self.eventsHosting = Set<String>()
+    }*/
+    
     func joinEvent(event: Event) {
         
     }
@@ -145,6 +161,19 @@ struct User: Identifiable, Codable, Hashable {
     
     func getRadius() -> Int {
         return self.radius
+    }
+    
+    func getEventsHosting() -> Set<String> {
+        return self.eventsHosting
+    }
+    
+    func getEventsAttending() -> Set<String> {
+        return self.eventsAttending;
+    }
+    
+    func getAllEvents() -> Set<String> {
+        let allEvents = self.eventsAttending.union(self.eventsHosting)
+        return allEvents
     }
     
     mutating func setUsername(name: String) {

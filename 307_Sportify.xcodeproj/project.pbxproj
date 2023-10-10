@@ -183,7 +183,6 @@
 			children = (
 				BAFF1CD82AD2548E0010D8B3 /* LoginViews */,
 				BAFF1CD92AD254AB0010D8B3 /* HomeViews */,
-				6D39AAB62AC73BFE00515C20 /* ForgotPasswordView.swift */,
 				31562B992ACE4225002B3863 /* EditProfileView.swift */,
 				FBD626FB2AD242B5005642A3 /* FriendListView.swift */,
 			);
@@ -205,7 +204,11 @@
 				BA8B74E22AC671E600BBE70B /* LoginSignUpView.swift */,
 				BA8B74E52AC684AE00BBE70B /* LogInView.swift */,
 				BA2570D22AC8A58D004E528A /* SignUpView.swift */,
+<<<<<<< Updated upstream
 				BA86EF7E2AD4B97600E37BF7 /* SportPreferences.swift */,
+=======
+				6D39AAB62AC73BFE00515C20 /* ForgotPasswordView.swift */,
+>>>>>>> Stashed changes
 			);
 			path = LoginViews;
 			sourceTree = "<group>";
