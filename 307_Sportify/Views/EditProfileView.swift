@@ -18,7 +18,7 @@ extension Image {
                 ZStack {
                     Image(systemName: "camera.fill")
                         .foregroundColor(.gray)
-                        .offset(x:20, y: 60)
+                        .offset(y: 60)
                     
                     RoundedRectangle(cornerRadius: 100)
                         .stroke(.white, lineWidth: 4)
@@ -29,6 +29,8 @@ extension Image {
 
 struct EditProfileView: View {
     @EnvironmentObject var userAuth: UserAuthentication
+    @State private var showImagePicker: Bool = false
+    @State private var inputImage: UIImage?
     @State private var profilePic: Image = Image("DefaultProfile")
     @State private var newUsername = ""
     @State private var newPassword = ""
@@ -46,6 +48,13 @@ struct EditProfileView: View {
                  //       if (userAuth.currUser?.getProfilePic() == nil) {
                         profilePic
                             .style()
+                            .onTapGesture {
+                                showImagePicker = true
+                            }
+                            .onChange(of: inputImage) {_ in loadImage()}
+                            .sheet(isPresented: $showImagePicker) {
+                                ImagePicker(image: $inputImage)
+                            }
                 
 //                                .resizable()
 //                                .aspectRatio(contentMode: .fill)
@@ -100,6 +109,11 @@ struct EditProfileView: View {
                 ProfileView()
             }
         }
+    }
+    
+    func loadImage() {
+        guard let inputImage = inputImage else {return}
+        profilePic = Image(uiImage: inputImage)
     }
 }
 
