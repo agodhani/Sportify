@@ -14,6 +14,7 @@
 		BA2570CE2AC7B846004E528A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2570CD2AC7B846004E528A /* User.swift */; };
 		BA2570D12AC89B4D004E528A /* UserAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2570D02AC89B4D004E528A /* UserAuthentication.swift */; };
 		BA2570D32AC8A58D004E528A /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2570D22AC8A58D004E528A /* SignUpView.swift */; };
+		BA86EF7F2AD4B97600E37BF7 /* SportPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA86EF7E2AD4B97600E37BF7 /* SportPreferences.swift */; };
 		BA8B749B2AC6301400BBE70B /* _07_SportifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B749A2AC6301400BBE70B /* _07_SportifyApp.swift */; };
 		BA8B749F2AC6301600BBE70B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA8B749E2AC6301600BBE70B /* Assets.xcassets */; };
 		BA8B74A22AC6301600BBE70B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA8B74A12AC6301600BBE70B /* Preview Assets.xcassets */; };
@@ -47,6 +48,7 @@
 		BA8B74E02AC64FBC00BBE70B /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = BA8B74DF2AC64FBC00BBE70B /* FirebaseStorageCombine-Community */; };
 		BA8B74E32AC671E600BBE70B /* LoginSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B74E22AC671E600BBE70B /* LoginSignUpView.swift */; };
 		BA8B74E62AC684AE00BBE70B /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B74E52AC684AE00BBE70B /* LogInView.swift */; };
+		BAFF1CDB2AD2854A0010D8B3 /* Sport.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFF1CDA2AD2854A0010D8B3 /* Sport.swift */; };
 		FBD626FC2AD242B5005642A3 /* FriendListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD626FB2AD242B5005642A3 /* FriendListView.swift */; };
 		FBF11AB82AC8A8EF00FF39FC /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF11AB72AC8A8EF00FF39FC /* EventsView.swift */; };
 		FBF11ABA2AC8A91900FF39FC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF11AB92AC8A91900FF39FC /* HomeView.swift */; };
@@ -64,6 +66,7 @@
 		BA2570CD2AC7B846004E528A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BA2570D02AC89B4D004E528A /* UserAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthentication.swift; sourceTree = "<group>"; };
 		BA2570D22AC8A58D004E528A /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		BA86EF7E2AD4B97600E37BF7 /* SportPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportPreferences.swift; sourceTree = "<group>"; };
 		BA8B74972AC6301400BBE70B /* 307_Sportify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 307_Sportify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA8B749A2AC6301400BBE70B /* _07_SportifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _07_SportifyApp.swift; sourceTree = "<group>"; };
 		BA8B749E2AC6301600BBE70B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -71,6 +74,7 @@
 		BA8B74A82AC64EEE00BBE70B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BA8B74E22AC671E600BBE70B /* LoginSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignUpView.swift; sourceTree = "<group>"; };
 		BA8B74E52AC684AE00BBE70B /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
+		BAFF1CDA2AD2854A0010D8B3 /* Sport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sport.swift; sourceTree = "<group>"; };
 		FBD626FB2AD242B5005642A3 /* FriendListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListView.swift; sourceTree = "<group>"; };
 		FBF11AB72AC8A8EF00FF39FC /* EventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
 		FBF11AB92AC8A91900FF39FC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -123,6 +127,7 @@
 			children = (
 				BA2570CD2AC7B846004E528A /* User.swift */,
 				31CB2C522AC89E0600DF43A3 /* Event.swift */,
+				BAFF1CDA2AD2854A0010D8B3 /* Sport.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -200,6 +205,7 @@
 				BA8B74E22AC671E600BBE70B /* LoginSignUpView.swift */,
 				BA8B74E52AC684AE00BBE70B /* LogInView.swift */,
 				BA2570D22AC8A58D004E528A /* SignUpView.swift */,
+				BA86EF7E2AD4B97600E37BF7 /* SportPreferences.swift */,
 			);
 			path = LoginViews;
 			sourceTree = "<group>";
@@ -330,8 +336,10 @@
 				FBD626FC2AD242B5005642A3 /* FriendListView.swift in Sources */,
 				BA2570D32AC8A58D004E528A /* SignUpView.swift in Sources */,
 				BA2570CE2AC7B846004E528A /* User.swift in Sources */,
+				BAFF1CDB2AD2854A0010D8B3 /* Sport.swift in Sources */,
 				FBF11ABA2AC8A91900FF39FC /* HomeView.swift in Sources */,
 				6D39AAB72AC73BFE00515C20 /* ForgotPasswordView.swift in Sources */,
+				BA86EF7F2AD4B97600E37BF7 /* SportPreferences.swift in Sources */,
 				31CB2C532AC89E0600DF43A3 /* Event.swift in Sources */,
 				BA8B749B2AC6301400BBE70B /* _07_SportifyApp.swift in Sources */,
 				FBF11AC02AC8A9A300FF39FC /* ProfileView.swift in Sources */,

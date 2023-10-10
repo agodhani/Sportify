@@ -69,8 +69,9 @@ struct User: Identifiable, Codable, Hashable {
     
     //var location: CLLocation
     var radius: Int
+    var zipCode: String
     var sportsPreferences: Set<String>
-    var provateAccount: Bool
+    var privateAccount: Bool
     var profilePicture: Data
     var age: Int
     var birthday: Date
