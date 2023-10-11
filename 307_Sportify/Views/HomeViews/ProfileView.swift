@@ -16,6 +16,8 @@ struct ProfileView: View {
     @State private var sOut = false;
     @State private var pView = false;
     @State private var friendsView = false;
+    let db = Firestore.firestore()
+   
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
@@ -48,19 +50,15 @@ struct ProfileView: View {
                     Spacer()
                     Spacer()
                 }
-                HStack{
-                    Text("Username:")
-                        .foregroundColor(Color("SportGold"))
-                    Text("brando_sports")
-                        .foregroundColor(Color("SportGold"))
-                    Spacer()
-                }
-                HStack{
-                    Spacer()
-                }
-                HStack{
-                    Spacer()
-                }
+              /*  if (user != nil){
+                    HStack{
+                        Text("Username:")
+                            .foregroundColor(Color("SportGold"))
+                        Text(user.fullName)
+                            .foregroundColor(Color("SportGold"))
+                        Spacer()
+                    }
+                }*/
                 HStack{
                     Spacer()
                 }
@@ -71,11 +69,19 @@ struct ProfileView: View {
                     Spacer()
                 }
                 HStack{
-                    Text("Location:")
-                        .foregroundColor(Color("SportGold"))
-                    Text("47906")
-                        .foregroundColor(Color("SportGold"))
                     Spacer()
+                }
+                HStack{
+                    Spacer()
+                }
+                if (user != nil){
+                    HStack{
+                        Text("Location:")
+                            .foregroundColor(Color("SportGold"))
+                        Text(user?.zipCode ?? "")
+                            .foregroundColor(Color("SportGold"))
+                        Spacer()
+                    }
                 }
                 
                 HStack{
