@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 extension Image {
     func style() -> some View {
@@ -33,12 +34,24 @@ struct EditProfileView: View {
     @State private var inputImage: UIImage?
     @State private var profilePic: Image = Image("DefaultProfile")
     @State private var newUsername = ""
-    @State private var newPassword = ""
+    @State private var newEmail = ""
     @State private var newLocation = ""
     @State private var profile = false
+    @State private var back = false
     var body: some View {
         ZStack{
             Color.black.ignoresSafeArea()
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button {
+                            print("Back button clicked")
+                            back = true
+                        } label: {
+                            Image(systemName: "chevron.backward")
+                            Text("Back")
+                        }
+                    }
+                }
             VStack{
                 HStack{
                     Spacer()
@@ -81,7 +94,7 @@ struct EditProfileView: View {
                     .clipShape(Rectangle())
                     .offset(CGSize(width: 0, height: 50))
                 
-                TextField("New Password", text: $newPassword)
+                TextField("New Email", text: $newEmail)
                     .padding()
                     .background(Color.white.opacity(0.8))
                     .frame(width: 300, height: 50)
@@ -97,6 +110,16 @@ struct EditProfileView: View {
                 
                 Button("Update Profile") {
                     profile = true
+                    let db = Firestore.firestore()
+                    var user_id = Auth.auth().currentUser?.uid
+                    let currentUser = Auth.auth().currentUser
+                    db.collection("Users").document(user_id!).updateData(["name": newUsername,
+                                    "email": newEmail,
+                                     "zipCode": newLocation])
+                    //currentUser?.updateEmail(to: newEmail)
+                    var user = userAuth.currUser
+                    user?.name = newUsername
+                    user?.zipCode = newLocation
                 }
                 .foregroundColor(.black)
                 .fontWeight(.heavy)
@@ -105,7 +128,8 @@ struct EditProfileView: View {
                 .cornerRadius(200)
                 .offset(CGSize(width: 0, height: 100))
             }
-            if(profile) {
+            if(profile || back) {
+               // EditProfileView.hidden(self)
                 ProfileView()
             }
         }
