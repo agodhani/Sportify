@@ -12,7 +12,8 @@ struct EventsView: View {
     @State var userAuth = UserAuthentication()
 
     var body: some View {
-        //var allEvents = userAuth.currUser?.getAllEvents()
+        
+        //@State var allEvents = userAuth.currUser?.getAllEvents() // TODO uncomment this THIS NEEDS TO BE A SET OF EVENTS NOT A SET OF STRINGS
         let testEvent: Event = Event()
         let allEvents: [Event] = [testEvent]
         
@@ -126,7 +127,7 @@ struct EventsView: View {
                                         .multilineTextAlignment(.center)
                                     
                                     
-                                    // manage button
+                                    // manage button TODO
                                 }
                                 
 

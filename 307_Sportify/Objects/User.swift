@@ -147,6 +147,19 @@ struct User: Identifiable, Codable, Hashable {
         return self.radius
     }
     
+    func getEventsHosting() -> Set<String> {
+        return self.eventsHosting
+    }
+
+    func getEventsAttending() -> Set<String> {
+        return self.eventsAttending;
+    }
+
+    func getAllEvents() -> Set<String> {
+        let allEvents = self.eventsAttending.union(self.eventsHosting)
+        return allEvents
+    }
+    
     mutating func setUsername(name: String) {
         self.name = name
     }
