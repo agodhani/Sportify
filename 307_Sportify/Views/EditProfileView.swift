@@ -37,9 +37,21 @@ struct EditProfileView: View {
     @State private var newEmail = ""
     @State private var newLocation = ""
     @State private var profile = false
+    @State private var back = false
     var body: some View {
         ZStack{
             Color.black.ignoresSafeArea()
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button {
+                            print("Back button clicked")
+                            back = true
+                        } label: {
+                            Image(systemName: "chevron.backward")
+                            Text("Back")
+                        }
+                    }
+                }
             VStack{
                 HStack{
                     Spacer()
@@ -116,7 +128,8 @@ struct EditProfileView: View {
                 .cornerRadius(200)
                 .offset(CGSize(width: 0, height: 100))
             }
-            if(profile) {
+            if(profile || back) {
+               // EditProfileView.hidden(self)
                 ProfileView()
             }
         }
