@@ -36,7 +36,8 @@ struct SingleEventView: View {
                 let eventName = event.eventName
                 Text(eventName)
                     .foregroundColor(.white)
-                    .font(.system(size: 35, weight: .heavy, design: .default))
+                    .font(.system(size: 40, weight: .heavy, design: .default))
+                    .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 20)
                 
@@ -46,11 +47,31 @@ struct SingleEventView: View {
                 let eventArr = eventDate.split(separator: ",", maxSplits: 2, omittingEmptySubsequences: true)
                 let dateStr = String(eventArr[0] + " at" + eventArr[1])
                 Text(dateStr)
-                    .foregroundColor(.gray)
-                    .font(.system(size: 15, weight: .heavy, design: .default))
+                    .foregroundColor(.white)
+                    .font(.system(size: 20, weight: .heavy, design: .default))
                     .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 20)
+                
+                // Address / location
+                // TODO
+                let eventLocation = event.location // zip code ? TODO
+                Text("1234 Tempo Location, Lafayette, IN 94507")
+                .foregroundColor(.gray)
+                .font(.system(size: 15, weight: .heavy, design: .default))
+                .multilineTextAlignment(.leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, 20)
+                
+                
+                // Guest List
+                ScrollView {
+                    
+                    VStack {
+                        
+                    }
+                    
+                }
                 
                 
                 

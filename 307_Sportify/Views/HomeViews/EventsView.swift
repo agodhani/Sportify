@@ -15,7 +15,8 @@ struct EventsView: View {
         
         //@State var allEvents = userAuth.currUser?.getAllEvents() // TODO uncomment this THIS NEEDS TO BE A SET OF EVENTS NOT A SET OF STRINGS
         let testEvent: Event = Event()
-        let allEvents: [Event] = [testEvent]
+        let testEvent2: Event = Event()
+        let allEvents: [Event] = [testEvent, testEvent2]
         
         ZStack (alignment: .top) {
             Color.black.ignoresSafeArea()
@@ -129,13 +130,17 @@ struct EventsView: View {
                                     
                                     // manage button TODO
                                 }
-                                
-
-                                
-                                
-                                
-                                // put a clear button on top of it to click into it
                             }
+                            
+                            // bottom border
+                            Rectangle()
+                                .fill(Color.white)
+                                .frame(width: 450, height: 2)
+                                .padding(1)
+                        
+                            
+                            // TODO put a clear button on top of it to click into it
+
                         }
                     }
                 }
