@@ -35,7 +35,7 @@ struct Event: Identifiable {
         self.privateEvent = true
         self.maxParticipants = 2
         self.adminsList = Set<User>()
-        self.eventHost = User(id: "123", name: "host name", email: "email@test.com", radius: 1, zipCode: "47906", sportsPreferences: Set<String>(), privateAccount: true, profilePicture: Data.init(), age: 20, birthday: Date(), friendList: Set<String>(), blockList: Set<String>(), eventsAttending: Set<String>(), eventsHosting: Set<String>())
+        self.eventHost = User(id: "123", name: "host name", email: "email@test.com", radius: 1, zipCode: "47906", sportsPreferences: Set<String>(), privateAccount: true, profilePicture: String(), age: 20, birthday: Date(), friendList: Set<String>(), blockList: Set<String>(), eventsAttending: Set<String>(), eventsHosting: Set<String>())
         self.code = "123"
         self.blackList = Set<User>()
     }
