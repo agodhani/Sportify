@@ -18,9 +18,9 @@ struct SingleEventView: View {
         ZStack {
             Color.black.ignoresSafeArea()
             
-            VStack (alignment: .leading) {
+            VStack (alignment: .trailing) {
                 
-                // private / public
+                // private / public TODO TODO TODO
                 let eventPrivate = event.privateEvent
                 var privStr: String = ""
                 if (eventPrivate) {
@@ -30,8 +30,31 @@ struct SingleEventView: View {
                 }
                 Text(privStr)
                     .foregroundColor(.white)
-                    .font(.system(size: 17, weight: .heavy, design: .default))
+                    .font(.system(size: 12, weight: .heavy, design: .default))
                 
+                // Event Name
+                let eventName = event.eventName
+                Text(eventName)
+                    .foregroundColor(.white)
+                    .font(.system(size: 35, weight: .heavy, design: .default))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading, 20)
+                
+                // Event Date
+                let eventDate = event.date.formatted()
+                // split into day (0) and time (1)
+                let eventArr = eventDate.split(separator: ",", maxSplits: 2, omittingEmptySubsequences: true)
+                let dateStr = String(eventArr[0] + " at" + eventArr[1])
+                Text(dateStr)
+                    .foregroundColor(.gray)
+                    .font(.system(size: 15, weight: .heavy, design: .default))
+                    .multilineTextAlignment(.leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading, 20)
+                
+                
+                
+               Spacer()
             }
             
         }
