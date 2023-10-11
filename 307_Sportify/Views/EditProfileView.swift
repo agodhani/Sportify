@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import FirebaseStorage
 
 extension Image {
     func style() -> some View {
@@ -113,6 +114,31 @@ struct EditProfileView: View {
                     let db = Firestore.firestore()
                     var user_id = Auth.auth().currentUser?.uid
                     let currentUser = Auth.auth().currentUser
+                    
+                    let newPic = inputImage
+                    let newPicData = newPic?.jpegData(compressionQuality: 0.4)
+                    
+                    let storageRef = Storage.storage().reference(forURL: "gs://sportify-cc497.appspot.com")
+                    let storageProfilePicRef = storageRef.child("Profile Picture").child(user_id!)
+                    
+                    let metadata = StorageMetadata()
+                    metadata.contentType = "image/jpeg"
+                    
+                    storageProfilePicRef.putData(newPicData!, metadata: metadata, completion:
+                                                    { (StorageMetadata, error) in
+                        if error != nil {
+                            print(error?.localizedDescription as Any)
+                        }
+                        
+                        storageProfilePicRef.downloadURL(completion: { (url, error) in
+                            if let profilePicUrl = url?.absoluteString {
+                                print(profilePicUrl)
+                                //TODO: update user profile pic in firebase
+                                
+                            }
+                        })
+                    })
+                    
                     db.collection("Users").document(user_id!).updateData(["name": newUsername,
                                     "email": newEmail,
                                      "zipCode": newLocation])

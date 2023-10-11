@@ -72,7 +72,7 @@ struct User: Identifiable, Codable, Hashable {
     var zipCode: String
     var sportsPreferences: Set<String>
     var privateAccount: Bool
-    var profilePicture: Data
+    var profilePicture: String
     var age: Int
     var birthday: Date
     var friendList: Set<String>
@@ -178,16 +178,16 @@ struct User: Identifiable, Codable, Hashable {
         self.radius = radius
     }
     
-    mutating func setProfilePic(picture: UIImage) {
-        self.profilePicture = picture.pngData()!
-    }
+    //mutating func setProfilePic(picture: UIImage) {
+    //    self.profilePicture = picture.pngData()!
+    //}
     
-    func getProfilePic() -> UIImage {
-        let picture: UIImage? = UIImage(data: self.profilePicture)
+    //func getProfilePic() -> UIImage {
+      //  let picture: UIImage? = UIImage(data: self.profilePicture)
       //  if (picture == nil) {
       //      return nil
       //  }
-        return picture!
-    }
+        //return picture!
+    //}
  
 }
