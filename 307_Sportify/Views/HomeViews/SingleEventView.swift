@@ -11,9 +11,9 @@ struct SingleEventView: View {
     @State var userAuth = UserAuthentication()
     // how to get the current user? TODO change this once figured out
     @State var currentUser = User(userid: "54321")
-    
+
     // EVENT TODO how to get from outside
-    let event: Event = Event(hostID: "54321") // delete this once figure out to
+    let event: Event = Event(hostID: "54321") // delete this once figure out current user
     
     let testUser1 = User(userid: "1")
     let testUser2 = User(userid: "2")
@@ -21,7 +21,7 @@ struct SingleEventView: View {
     // TODO for all text fields - EDIT
     
     var body: some View {
-        
+                
         var guestList: [User] = [testUser1, testUser2]
         
         ZStack {
