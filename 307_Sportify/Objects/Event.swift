@@ -94,6 +94,10 @@ struct Event: Identifiable {
         
     }
     
+    mutating func setPrivate(priv: Bool) {
+        self.privateEvent = priv
+    }
+    
     mutating func addAdmin(admin: User) {
         self.adminsList.insert(admin)
     }
@@ -127,5 +131,9 @@ struct Event: Identifiable {
             return true
         }
         return false
+    }
+    
+    func acceptUser() {
+        
     }
 }
