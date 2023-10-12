@@ -10,18 +10,27 @@ import SwiftUI
 struct EventsView: View {
     
     @State var userAuth = UserAuthentication()
+    // how to get the current user? TODO change this once figured out
+    @State var currentUser = User(userid: "54321")
 
     var body: some View {
         
         //@State var allEvents = userAuth.currUser?.getAllEvents() // TODO uncomment this THIS NEEDS TO BE A SET OF EVENTS NOT A SET OF STRINGS
-        let testEvent: Event = Event()
-        let testEvent2: Event = Event()
-        let allEvents: [Event] = [testEvent, testEvent2]
+        
+        let testEvent = Event(hostID: "12345")
+        let testEvent2 = Event(hostID: "11111")
+        let testEvent3 = Event(hostID: "54321")
+        
+        let allEvents: [Event] = [testEvent, testEvent2, testEvent3]
         
         ZStack (alignment: .top) {
             Color.black.ignoresSafeArea()
             
             VStack (alignment: .center) {
+                
+                /*Text(currentUser.id) // trying to see the currentUser ID
+                    .foregroundColor(.white)*/
+                
                 Text("MY EVENTS")
                     .foregroundColor(Color("SportGold"))
                     .background(Color("Black"))
@@ -56,7 +65,7 @@ struct EventsView: View {
                 ScrollView {
                     
                     VStack {
-                        ForEach(allEvents) { event in
+                        ForEach(allEvents, id: \.eventHostID) { event in
                                 
                             // label everything
                             
@@ -70,27 +79,23 @@ struct EventsView: View {
                                         .foregroundColor(.white)
                                         .font(.system(size: 23, weight: .heavy, design: .default))
                                     
-                                    // private / public
-                                    let eventPrivate = event.privateEvent
-                                    var privStr = ""
-                                    if (eventPrivate) {
-                                        let privStr = "Private"
-                                    } else {
-                                        let privStr = "Public"
-                                    }
-                                    Text(privStr)
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 17, weight: .heavy, design: .default))
                                     
                                     // Capacity
                                     let eventAttendees = event.numAttendees
                                     let eventMaxParticipants = event.maxParticipants
                                     let eventCapacity = String(eventAttendees) + "/" + String(eventMaxParticipants)
-                                    Text("Available " + eventCapacity)
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 17, weight: .heavy, design: .default))
-                                        .padding(.leading, 20)
-                                        .padding(.top, -10)
+                                    
+                                    // private / public
+                                    if event.privateEvent {
+                                        Text("Private " + eventCapacity)
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 17, weight: .heavy, design: .default))
+                                            .padding(.leading, 20)
+                                            .padding(.top, -10)
+                                    }
+                                    
+                                    
+ 
                                 }
                                 
                                 
@@ -129,6 +134,32 @@ struct EventsView: View {
                                     
                                     
                                     // manage button TODO
+                                    if event.userIsEventHost(user: currentUser) {
+                                        Button("Manage") {
+                                            action: do {
+                                                // TODO SAME AS MANAGE - will change inside of SingleEventView accordingly
+                                            }
+                                        }
+                                        .foregroundColor(.black)
+                                        .fontWeight(.heavy)
+                                            .frame(width: 75, height: 30)
+                                            .background(Color("SportGold"))
+                                            .cornerRadius(200)
+                                            .font(.system(size: 13, weight: .heavy, design: .default))
+                                    } else {
+                                        Button("View") {
+                                            action: do {
+                                                // TODO SAME AS MANAGE - will change inside of SingleEventView accordingly
+                                            }
+                                        }
+                                        .foregroundColor(.black)
+                                        .fontWeight(.heavy)
+                                            .frame(width: 75, height: 30)
+                                            .background(Color("SportGold"))
+                                            .cornerRadius(200)
+                                            .font(.system(size: 13, weight: .heavy, design: .default))
+                                        
+                                    }
                                 }
                             }
                             
@@ -137,10 +168,6 @@ struct EventsView: View {
                                 .fill(Color.white)
                                 .frame(width: 450, height: 2)
                                 .padding(1)
-                        
-                            
-                            // TODO put a clear button on top of it to click into it
-
                         }
                     }
                 }
