@@ -20,14 +20,9 @@ struct SingleEventView: View {
     
     let testUser3 = User(userid: "3")
     let testUser4 = User(userid: "4")
-
-    // TODO for all text fields - EDIT
     
     var body: some View {
-        
-        @State var privStr: String = "Private Event"
-        @State var buttonColor: Color = .red
-        
+                
         @State var eventName = event.eventName
         @State var eventDate = event.date.formatted()
         // split into day (0) and time (1)
@@ -40,38 +35,34 @@ struct SingleEventView: View {
         //event.location // TODO ???
                 
         let guestList: [User] = [testUser1, testUser2] // TODO set this to the actual guestList / attendee list from current event
-        let testList: [User] = [testUser3, testUser4]
+        let testList: [User] = [testUser3, testUser4] // TODO this
         
         ZStack {
             Color.black.ignoresSafeArea()
+            
             
             VStack (alignment: .trailing) {
                 
                 // HOST VIEW
                 if event.userIsEventHost(user: currentUser) {
-                    Button("\(privStr)") { // TODO can't set the text and color
+                    
+                    // change Private/Public event by clicking on it top left
+                    Button(event.getPrivStr()) {
                         
                         action: do {
                             Task {
-                                event.setPrivate(priv: !event.getPrivateEvent())
-                                if (event.getPrivateEvent()) {
-                                    privStr = "Private Event"
-                                    buttonColor = .red
-                                } else {
-                                    privStr = "Public Event"
-                                    buttonColor = .green
-                                }
+                                event.setPrivate(priv: !event.getPrivateEvent()) // this works
                             }
                         }
                     }
-                    .foregroundColor(buttonColor)
+                    .foregroundColor(event.getPrivColor())
                     .font(.system(size: 12, weight: .heavy, design: .default))
                     .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 20)
                     
                     
-                    TextField(eventName, text: $eventName)
+                    TextField(event.eventName, text: $event.eventName)
                         .foregroundColor(.white)
                         .font(.system(size: 40, weight: .heavy, design: .default))
                         .multilineTextAlignment(.leading)
@@ -80,7 +71,7 @@ struct SingleEventView: View {
                         .padding(.top, -15)
                     
                     HStack {
-                        TextField(dateStr, text: $dateStr)
+                        TextField(dateStr, text: $dateStr) // TODO need to be able to update this
                             .foregroundColor(.white)
                             .font(.system(size: 20, weight: .heavy, design: .default))
                             .multilineTextAlignment(.leading)
@@ -93,7 +84,7 @@ struct SingleEventView: View {
                             //.frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.leading, -55)
                         
-                        TextField(timeStr, text: $timeStr)
+                        TextField(timeStr, text: $timeStr) // need to be able to update this
                             .foregroundColor(.white)
                             .font(.system(size: 20, weight: .heavy, design: .default))
                             .multilineTextAlignment(.leading)
@@ -105,7 +96,7 @@ struct SingleEventView: View {
                     
                     // Address / location
                     // TODO
-                    TextField(eventLocation, text: $eventLocation)
+                    TextField(eventLocation, text: $eventLocation) // need to be able to update this
                     .foregroundColor(.gray)
                     .font(.system(size: 15, weight: .heavy, design: .default))
                     .multilineTextAlignment(.leading)
@@ -190,7 +181,7 @@ struct SingleEventView: View {
                                 .padding(1)
                             
                             // TODO make sure this is the actual guestList once figure out real currentEvent / user
-                            ForEach(testList, id: \.id) { guest in
+                            ForEach(event.requestList, id: \.id) { guest in
                                 
                                 HStack (alignment: .firstTextBaseline) {
                                     let name = guest.name
@@ -243,14 +234,14 @@ struct SingleEventView: View {
             }  else {
                 // NON HOST VIEW
                 
-                Text(privStr)
-                    .foregroundColor(.red)
+                Text(event.getPrivStr())
+                    .foregroundColor(event.getPrivColor())
                     .font(.system(size: 12, weight: .heavy, design: .default))
                     .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 20)
                 
-                Text(eventName)
+                Text(event.eventName)
                     .foregroundColor(.white)
                     .font(.system(size: 40, weight: .heavy, design: .default))
                     .multilineTextAlignment(.leading)
@@ -321,6 +312,9 @@ struct SingleEventView: View {
                 
             } // end VStack
         } // end ZStack
+        .onAppear(perform: {
+            event.setRequestList(newList: testList) // delete this once real event works
+        })
     } // end View
 }
 

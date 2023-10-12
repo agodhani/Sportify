@@ -84,7 +84,6 @@ struct ForgotPasswordView: View {
     @State var popUp: OverLayerPopUp = OverLayerPopUp()
     @State var uiController: ViewController = ViewController()
     @State private var test = "";
-
     @State var statusText = "Input your associated account email"
     
     var body: some View {

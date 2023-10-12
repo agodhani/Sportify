@@ -144,7 +144,6 @@ struct User: Identifiable, Codable, Hashable {
     }
     
     func leaveEvent() {
-        
     }
     
     func getUsername() -> String {

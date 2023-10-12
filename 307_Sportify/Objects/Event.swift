@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreLocation
+import SwiftUI
 
 struct Event: Identifiable {
     let id: String
@@ -16,14 +17,14 @@ struct Event: Identifiable {
     var date: Date
     var location: CLLocationCoordinate2D
     var numAttendees: Int
-    var attendeeList: Set<User>
+    var attendeeList: [User]
     var privateEvent: Bool
     var maxParticipants: Int
     var adminsList: Set<User>
     var eventHostID: String // this will be the user ID
     private var code: String
     var blackList: Set<User>
-    var requestList: Set<User>
+    var requestList: [User]
     
     init(hostID: String) { // created for test
         self.eventName = "test name"
@@ -39,7 +40,7 @@ struct Event: Identifiable {
         self.eventHostID = hostID
         self.code = "123"
         self.blackList = Set<User>()
-        self.requestList = Set<User>()
+        self.requestList = [User(userid: "1")]
     }
     /*
     init() { // THIS WAS CREATED AS A TEST FOR EVENT CREATION - Josh - can delete and replace later
@@ -61,10 +62,10 @@ struct Event: Identifiable {
     
 
     
-    mutating func kickAttendee(attendee: User) {
+    /*mutating func kickAttendee(attendee: User) {
         self.attendeeList.remove(attendee)
         self.blackList.insert(attendee)
-    }
+    }*/
     
     mutating func setSport(sport: Int) {
         self.sport = sport
@@ -83,7 +84,7 @@ struct Event: Identifiable {
     }
     
     mutating func addAttendee(attendee: User) {
-        self.attendeeList.insert(attendee)
+        self.attendeeList.append(attendee)
     }
     
     mutating func setMaxParticipants(num: Int) {
@@ -92,6 +93,10 @@ struct Event: Identifiable {
     
     mutating func setAdminList() {
         
+    }
+    
+    mutating func setAttendeeList(newAttendeeList: [User]) {
+        self.attendeeList = newAttendeeList
     }
     
     mutating func setPrivate(priv: Bool) {
@@ -105,6 +110,12 @@ struct Event: Identifiable {
     mutating func setHost(host: User) {
         self.eventHostID = host.id
     }
+    
+    mutating func setRequestList(newList: [User]) {
+        self.requestList = newList
+    }
+    
+    
     
     func deleteEvent() { // TODO
         
@@ -136,4 +147,21 @@ struct Event: Identifiable {
     func acceptUser() {
         
     }
+    
+    func getPrivStr() -> String {
+        if (getPrivateEvent()) {
+            return "Private Event"
+        } else {
+            return "Public Event"
+        }
+    }
+    
+    func getPrivColor() -> Color {
+        if (getPrivateEvent()) {
+            return .red
+        } else {
+            return .green
+        }
+    }
+    
 }
