@@ -49,15 +49,19 @@ struct SingleEventView: View {
                 
                 // HOST VIEW
                 if event.userIsEventHost(user: currentUser) {
-                    
-                    Button(privStr) { // TODO can't set the text and color
-                        event.setPrivate(priv: !event.getPrivateEvent())
-                        if (event.getPrivateEvent()) {
-                            privStr = "Private Event"
-                            buttonColor = .red
-                        } else {
-                            privStr = "Public Event"
-                            buttonColor = .green
+                    Button("\(privStr)") { // TODO can't set the text and color
+                        
+                        action: do {
+                            Task {
+                                event.setPrivate(priv: !event.getPrivateEvent())
+                                if (event.getPrivateEvent()) {
+                                    privStr = "Private Event"
+                                    buttonColor = .red
+                                } else {
+                                    privStr = "Public Event"
+                                    buttonColor = .green
+                                }
+                            }
                         }
                     }
                     .foregroundColor(buttonColor)
