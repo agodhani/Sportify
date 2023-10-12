@@ -31,7 +31,7 @@ struct Event: Identifiable {
         self.date = Date()
         self.location = CLLocationCoordinate2D(latitude: 0, longitude: 0)
         self.numAttendees = 0
-        self.attendeeList = Set<User>()
+        self.attendeeList = [User(id: "12345", name: "test user name", email: "user@test.com", radius: 1, zipCode: "47906", sportsPreferences: Set<String>(), privateAccount: true, profilePicture: String(), age: 20, birthday: Date(), friendList: Set<String>(), blockList: Set<String>(), eventsAttending: Set<String>(), eventsHosting: Set<String>())]
         self.privateEvent = true
         self.maxParticipants = 2
         self.adminsList = Set<User>()
@@ -95,5 +95,9 @@ struct Event: Identifiable {
     
     func getNumAttendees() -> Int{
         return numAttendees
+    }
+    
+    func getPrivateEvent() -> Bool {
+        return privateEvent
     }
 }

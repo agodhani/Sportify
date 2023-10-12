@@ -9,28 +9,37 @@ import SwiftUI
 
 struct SingleEventView: View {
     @State var userAuth = UserAuthentication()
+    
     // EVENT TODO how to get from outside
+    let event: Event = Event() // delete this once figure out
+
+    @State var privStr: String = "Private Event"
+    // private / public TODO TODO TODO
+    //let eventPrivate: Bool = event.getPrivateEvent()
+    /*
+    if (event.getPrivateEvent()) { // TODO NEED TO FIGURE THIS OUT
+        privStr = "Private Event"
+    } else {
+        privStr = "Public Event"
+    }*/
+    
+    // after figure out ^^ make private = red
+    //                     make public = green
 
     var body: some View {
-
-        let event: Event = Event() // delete this
         
         ZStack {
             Color.black.ignoresSafeArea()
             
             VStack (alignment: .trailing) {
                 
-                // private / public TODO TODO TODO
-                let eventPrivate = event.privateEvent
-                var privStr: String = ""
-                if (eventPrivate) {
-                    let privStr = "Private Event"
-                } else {
-                    let privStr = "Public Event"
-                }
+                // private / public
                 Text(privStr)
                     .foregroundColor(.white)
                     .font(.system(size: 12, weight: .heavy, design: .default))
+                    .multilineTextAlignment(.leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading, 20)
                 
                 // Event Name
                 let eventName = event.eventName
@@ -40,6 +49,7 @@ struct SingleEventView: View {
                     .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 20)
+                    .padding(.top, -15)
                 
                 // Event Date
                 let eventDate = event.date.formatted()
@@ -63,15 +73,36 @@ struct SingleEventView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading, 20)
                 
+                Rectangle()
+                    .fill(Color.white)
+                    .frame(width: 391, height: 2)
+                    .padding(1)
+                
+                
+                // Join / leave button
                 
                 // Guest List
+                Text("Guest List")
+                    .foregroundColor(.white)
+                    .font(.system(size: 15, weight: .heavy, design: .default))
+                    .multilineTextAlignment(.leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading, 20)
+                    .padding(.top, 30)
                 ScrollView {
                     
                     VStack {
+                        // TODO can't figure out FOREACH
                         
                     }
                     
                 }
+                
+                
+                Rectangle()
+                    .fill(Color.white)
+                    .frame(width: 391, height: 2)
+                    .padding(1)
                 
                 
                 
