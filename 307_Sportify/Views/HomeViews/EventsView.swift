@@ -158,7 +158,6 @@ struct EventsView: View {
                                             .background(Color("SportGold"))
                                             .cornerRadius(200)
                                             .font(.system(size: 13, weight: .heavy, design: .default))
-                                        
                                     }
                                 }
                             }

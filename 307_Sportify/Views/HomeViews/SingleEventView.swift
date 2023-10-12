@@ -17,21 +17,21 @@ struct SingleEventView: View {
     
     let testUser1 = User(userid: "1")
     let testUser2 = User(userid: "2")
+    
+    let testUser3 = User(userid: "3")
+    let testUser4 = User(userid: "4")
 
     // TODO for all text fields - EDIT
     
     var body: some View {
                 
-        var guestList: [User] = [testUser1, testUser2]
+        let guestList: [User] = [testUser1, testUser2] // TODO set this to the actual guestList / attendee list from current event
+        let testList: [User] = [testUser3, testUser4]
         
         ZStack {
             Color.black.ignoresSafeArea()
             
             VStack (alignment: .trailing) {
-                
-                if event.getPrivateEvent() {
-                    Text("hi")
-                }
                 
                 // private / public
                 if event.getPrivateEvent() {
@@ -107,7 +107,7 @@ struct SingleEventView: View {
                             .frame(width: 391, height: 2)
                             .padding(1)
                         
-                        // TODO can't figure out FOREACH with actual event.attendeeList
+                        // TODO make sure this is the actual guestList once figure out real currentEvent / user
                         ForEach(guestList, id: \.id) { guest in
                             
                             HStack (alignment: .firstTextBaseline) {
@@ -146,6 +146,82 @@ struct SingleEventView: View {
                         }
                         
                     }
+                }
+                
+                if event.userIsEventHost(user: currentUser) {
+                    
+                    Text("Request List")
+                        .foregroundColor(.white)
+                        .font(.system(size: 20, weight: .heavy, design: .default))
+                        .multilineTextAlignment(.leading)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.leading, 20)
+                        .padding(.top, 30)
+                    
+                    ScrollView {
+                        VStack (alignment: .leading) {
+                            
+                            Rectangle()
+                                .fill(Color.gray)
+                                .frame(width: 391, height: 2)
+                                .padding(1)
+                            
+                            // TODO make sure this is the actual guestList once figure out real currentEvent / user
+                            ForEach(testList, id: \.id) { guest in
+                                
+                                HStack (alignment: .firstTextBaseline) {
+                                    let name = guest.name
+                                    Text(name)
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 15, weight: .heavy, design: .default))
+                                        .padding(.leading, 20)
+                                    
+                                    Spacer()
+                                    VStack (alignment: .trailing) {
+                                        HStack {
+                                            // BUTTON HERE if current user is host
+                                            Button("Accept") {
+                                                action: do {
+                                                    // TODO - ACCEPT USER
+                                                }
+                                            }
+                                            .foregroundColor(.black)
+                                            .fontWeight(.heavy)
+                                                .frame(width: 75, height: 30)
+                                                .background(Color(.green))
+                                                .cornerRadius(200)
+                                                .font(.system(size: 13, weight: .heavy, design: .default))
+                                            
+                                            Button("Reject") {
+                                                action: do {
+                                                    // TODO - REJECT USER
+                                                }
+                                            }
+                                            .foregroundColor(.black)
+                                            .fontWeight(.heavy)
+                                                .frame(width: 75, height: 30)
+                                                .background(Color(.red))
+                                                .cornerRadius(200)
+                                                .font(.system(size: 13, weight: .heavy, design: .default))
+                                                .padding(.trailing, 20)
+                                        }
+                                        
+
+                                        
+                                    }
+                                }
+                                .padding(7)
+                                
+                                Rectangle()
+                                    .fill(Color.gray)
+                                    .frame(width: 391, height: 2)
+                                    .padding(1)
+                                
+                            }
+                            
+                        }
+                    }
+                    
                 }
                 
                 
