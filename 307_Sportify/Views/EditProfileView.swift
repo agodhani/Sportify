@@ -124,6 +124,8 @@ struct EditProfileView: View {
                     let metadata = StorageMetadata()
                     metadata.contentType = "image/jpeg"
                     
+                    var profilePicUrl = ""
+                    
                     storageProfilePicRef.putData(newPicData!, metadata: metadata, completion:
                                                     { (StorageMetadata, error) in
                         if error != nil {
@@ -131,7 +133,7 @@ struct EditProfileView: View {
                         }
                         
                         storageProfilePicRef.downloadURL(completion: { (url, error) in
-                            if let profilePicUrl = url?.absoluteString {
+                            if var profilePicUrl = url?.absoluteString {
                                 print(profilePicUrl)
                                 //TODO: update user profile pic in firebase
                                 
@@ -141,7 +143,8 @@ struct EditProfileView: View {
                     
                     db.collection("Users").document(user_id!).updateData(["name": newUsername,
                                     "email": newEmail,
-                                     "zipCode": newLocation])
+                                    "zipCode": newLocation,
+                                    "profilePicture": profilePicUrl])
                     //currentUser?.updateEmail(to: newEmail)
                     var user = userAuth.currUser
                     user?.name = newUsername
