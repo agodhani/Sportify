@@ -10,8 +10,14 @@ import Firebase
 import FirebaseFirestoreSwift
 
 class EventMethods: ObservableObject {
+    @Published var thisEvent: Event!
     
-    
+    init (){
+        thisEvent = Event(id: "", eventName: "", sport: 0, date: Date.now, location: "", numAttendees: 0, attendeeList: Array<User>(), privateEvent: false, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "", code: "", blackList: Set<User>(), requestList: [], description: "")
+    }
+    init(eventID: String) async {
+        thisEvent = await getEvent(eventID: eventID)
+    }
     
     func createEvent(eventName: String, sport: Int, maxParticipants: Int, description: String, location: String, privateEvent: Bool, id: String) async throws {
         do {
@@ -31,11 +37,12 @@ class EventMethods: ObservableObject {
         
     }
     
-    func getEvent(eventID: Event.ID) async throws -> Event {
+    func getEvent(eventID: Event.ID) async -> Event {
         do{
             let eventDocument = try await Firestore.firestore().collection("Events").document(eventID).getDocument()
             let eventData = try eventDocument.data(as: Event.self)
             print("Event Data retrival successful")
+            self.thisEvent = eventData
             return eventData
         } catch {
             print("Event Data retrival failed - you suck!")

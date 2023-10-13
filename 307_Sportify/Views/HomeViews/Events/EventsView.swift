@@ -14,6 +14,7 @@ struct EventsView: View {
     // how to get the current user? TODO change this once figured out
     @State var createEvent = false
     @State var editEvent = false
+    @State var viewEvent = false
     var body: some View {
         @State var currentUser = userAuth.currUser
         
@@ -78,18 +79,20 @@ struct EventsView: View {
                     .cornerRadius(200)
                     .offset(CGSize(width: 0, height: 0))
                 
-                Button("Join Event") {
+                Button("View Event") {
                     // for this to work you need to plug in a valid id
                     /*
                     Task{
                         eventsm.deleteEvent(eventID: "3F592D4E-09E6-4EC1-B15A-735792E27798")
                     }
+                     
+                     Task {
+                         var user = userAuth.currUser
+                         user?.joinEvent(eventID: "0EA0ACAD-03B0-402B-860F-DE6E7D846A32", user: user!)
+                     }
                      */
-                    
-                    Task {
-                        var user = userAuth.currUser
-                        user?.joinEvent(eventID: "0EA0ACAD-03B0-402B-860F-DE6E7D846A32", user: user!)
-                    }
+                    viewEvent = true;
+
                 }.foregroundColor(.black)
                     .fontWeight(.heavy)
                     .frame(width: 225, height: 50)
@@ -226,6 +229,9 @@ struct EventsView: View {
             }
             if(editEvent) {
                 EditEventView()
+            }
+            if(viewEvent) {
+                ViewEventsListView()
             }
         }
         

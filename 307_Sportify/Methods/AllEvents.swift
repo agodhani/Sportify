@@ -34,7 +34,7 @@ class AllEvents: ObservableObject {
             
             self.events = documents.map{(queryDocumentSnapshot) -> EventHighLevel in
                     let data = queryDocumentSnapshot.data()
-                    let name = data["name"] as? String ?? ""
+                    let name = data["eventName"] as? String ?? ""
                     let id = data["id"] as? String ?? ""
                     print(EventHighLevel(id: id, name: name))
                     return EventHighLevel(id: id, name: name)

@@ -10,9 +10,7 @@ import Firebase
 
 struct ViewEventsListView: View {
     @ObservedObject var allEvents = AllEvents()
-    @State var eventm = EventMethods()
-    @State var trigger = false
-    
+
     
     var body: some View {
         NavigationView {
@@ -20,6 +18,7 @@ struct ViewEventsListView: View {
                 NavigationLink(destination: SingleEventView(eventid: event.id)) {
                     Text(event.name)
                 }
+                
                 }
             } .navigationBarTitle("All Events")
                 .onAppear(){
