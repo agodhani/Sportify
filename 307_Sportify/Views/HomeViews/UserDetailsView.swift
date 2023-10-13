@@ -14,14 +14,14 @@ struct UserDetailsView: View {
     //@EnvironmentObject var user: User // TODO the user we are viewing
     
     // the user we are viewing - delete after done testing - use ^^
-    @State var user = User(id: "1", name: "AK", email: "ak@gmail.com", radius: 1, zipCode: "47906", sportsPreferences: [2], privateAccount: false, profilePicture: "", age: 21, birthday: Date(), friendList: [], blockList: [], eventsAttending: [], eventsHosting: [])
-    
+    @State var user = User(id: "1", name: "AK", email: "ak@gmail.com", radius: 1, zipCode: "47906", sportsPreferences: [2], privateAccount: false, profilePicture: "", age: 21, birthday: Date(), friendList: [], otherUsers: [], blockList: [], eventsAttending: [], eventsHosting: [])
+            
     @State private var profilePic: Image = Image("DefaultProfile")
     
 
     var body: some View {
         //@State var currentUser = userAuth.currUser
-        @State var currentUser = User(id: "2", name: "Andrew", email: "andrew@gmail.com", radius: 1, zipCode: "47906", sportsPreferences: [0], privateAccount: false, profilePicture: "", age: 21, birthday: Date(), friendList: [], blockList: [], eventsAttending: [], eventsHosting: [])
+        @State var currentUser = User(id: "2", name: "Andrew", email: "andrew@gmail.com", radius: 1, zipCode: "47906", sportsPreferences: [0], privateAccount: false, profilePicture: "", age: 21, birthday: Date(), friendList: [], otherUsers: [], blockList: [], eventsAttending: [], eventsHosting: [])
         
         ZStack {
             Color.black.ignoresSafeArea()

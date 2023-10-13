@@ -19,14 +19,14 @@ struct BlockView: View {
 
     var body: some View {
         
-        var testUser1 = User(id: "1", name: "AK", email: "ak@gmail.com", radius: 1, zipCode: "47906", sportsPreferences: [2], privateAccount: false, profilePicture: "", age: 21, birthday: Date(), friendList: [], blockList: [], eventsAttending: [], eventsHosting: [])
+        var testUser1 = User(id: "1", name: "AK", email: "ak@gmail.com", radius: 1, zipCode: "47906", sportsPreferences: [2], privateAccount: false, profilePicture: "", age: 21, birthday: Date(), friendList: [], otherUsers: [], blockList: [], eventsAttending: [], eventsHosting: [])
         
-        var testUser2 = User(id: "2", name: "Josh", email: "josh@gmail.com", radius: 1, zipCode: "47906", sportsPreferences: [0], privateAccount: false, profilePicture: "", age: 21, birthday: Date(), friendList: [], blockList: [], eventsAttending: [], eventsHosting: [])
+        var testUser2 = User(id: "2", name: "Josh", email: "josh@gmail.com", radius: 1, zipCode: "47906", sportsPreferences: [0], privateAccount: false, profilePicture: "", age: 21, birthday: Date(), friendList: [], otherUsers: [], blockList: [], eventsAttending: [], eventsHosting: [])
         
-        var testUser3 = User(id: "3", name: "Alex", email: "alex@gmail.com", radius: 1, zipCode: "47906", sportsPreferences: [1], privateAccount: false, profilePicture: "", age: 21, birthday: Date(), friendList: [], blockList: [], eventsAttending: [], eventsHosting: [])
+        var testUser3 = User(id: "3", name: "Alex", email: "alex@gmail.com", radius: 1, zipCode: "47906", sportsPreferences: [1], privateAccount: false, profilePicture: "", age: 21, birthday: Date(), friendList: [], otherUsers: [], blockList: [], eventsAttending: [], eventsHosting: [])
 
         //@State var currentUser = userAuth.currUser
-        @State var currentUser = User(id: "4", name: "Andrew", email: "andrew@gmail.com", radius: 1, zipCode: "47906", sportsPreferences: [0], privateAccount: false, profilePicture: "", age: 21, birthday: Date(), friendList: [], blockList: [testUser1.id], eventsAttending: [], eventsHosting: [])
+        @State var currentUser = User(id: "4", name: "Andrew", email: "andrew@gmail.com", radius: 1, zipCode: "47906", sportsPreferences: [0], privateAccount: false, profilePicture: "", age: 21, birthday: Date(), friendList: [], otherUsers: [], blockList: [testUser1.id], eventsAttending: [], eventsHosting: [])
         
         @State var userList = [testUser1, testUser2, testUser3]
         

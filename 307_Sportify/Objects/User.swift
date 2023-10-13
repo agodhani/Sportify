@@ -84,7 +84,7 @@ struct User: Identifiable, Codable, Hashable {
     var blockList: Set<String>
     var eventsAttending: Set<String>
     var eventsHosting: Set<String>
-    
+    /*
     init(userid: String) { // test can delete later
         self.id = userid
         self.name = "test name"
@@ -101,7 +101,7 @@ struct User: Identifiable, Codable, Hashable {
         self.eventsAttending = Set<String>()
         self.eventsHosting = Set<String>()
         self.otherUsers = Set<String>()
-    }
+    }*/
     
     //?might not need this: let password: String
 /*
