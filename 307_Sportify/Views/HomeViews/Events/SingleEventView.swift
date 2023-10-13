@@ -12,7 +12,8 @@ struct SingleEventView: View {
     // how to get the current user? TODO change this once figured out
     
     // EVENT TODO how to get from outside
-    //@State var event: Event = Event(hostID: "54321") // delete this once figure out current user
+    //@Binding var event: Event
+    @State var event: Event = Event(id: "1", eventName: "Test Event Name", sport: 0, date: Date(), location: "Test Location", numAttendees: 1, attendeeList: [User](), privateEvent: false, maxParticipants: 2, adminsList: Set<User>(), eventHostID: "2", code: "code", blackList: Set<User>(), requestList: [User](), description: "Test Description Hello") // delete this once figure out current user
     // @EnvironmentObject var event: Event
     
     //let testUser1 = User(userid: "1")
@@ -22,28 +23,31 @@ struct SingleEventView: View {
     //let testUser4 = User(userid: "4")
     
     var body: some View {
-        @State var currentUser = userAuth.currUser
-        //@State var eventName = event.eventName
-        //@State var eventDate = event.date.formatted()
+        //@State var currentUser = userAuth.currUser // uncomment
+        @State var currentUser = User(id: "2", name: "test current user", email: "current@gmail.com", radius: 0, zipCode: "47906", sportsPreferences: [], privateAccount: false, profilePicture: "ERROR", age: 0, birthday: Date(), friendList: [], blockList: [], eventsAttending: [], eventsHosting: [])
+        
+        @State var eventName = event.eventName
+        @State var eventDate = event.date.formatted()
         // split into day (0) and time (1)
-        //let eventArr = eventDate.split(separator: ",", maxSplits: 2, omittingEmptySubsequences: true)
-        //@State var dateStr = String(eventArr[0])
-        //@State var timeStr = String(eventArr[1])
+        let eventArr = eventDate.split(separator: ",", maxSplits: 2, omittingEmptySubsequences: true)
+        @State var dateStr = String(eventArr[0])
+        @State var timeStr = String(eventArr[1])
+        @State var eventLocation = event.location
+
         //@State var dateStr = String(eventArr[0] + " at" + eventArr[1]) // TODO, this needs to be a date not string
         
-        //@State var eventLocation = "1234 Temp Location, Lafayette, IN 94507"
         //event.location // TODO ???
                 
         //let guestList: [User] = [testUser1, testUser2] // TODO set this to the actual guestList / attendee list from current event
         //let testList: [User] = [testUser3, testUser4] // TODO this
-        /*
+        
         ZStack {
             Color.black.ignoresSafeArea()
             
             VStack (alignment: .trailing) {
                 
                 // HOST VIEW
-                if event.userIsEventHost(user: currentUser) {
+                if event.userIsEventHost(user: currentUser) { // unwrap
                     
                     // change Private/Public event by clicking on it top left
                     Button(event.getPrivStr()) {
@@ -90,9 +94,7 @@ struct SingleEventView: View {
                             //.frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.leading, -40)
                     }
-                    
 
-                    
                     // Address / location
                     // TODO
                     TextField(eventLocation, text: $eventLocation) // need to be able to update this
@@ -131,7 +133,7 @@ struct SingleEventView: View {
                                 .padding(1)
                             
                             // TODO make sure this is the actual guestList once figure out real currentEvent / user
-                            ForEach(guestList, id: \.id) { guest in
+                            ForEach(event.attendeeList, id: \.id) { guest in
                                 
                                 HStack (alignment: .firstTextBaseline) {
                                     let name = guest.name
@@ -143,7 +145,7 @@ struct SingleEventView: View {
                                     Spacer()
                                     VStack (alignment: .trailing) {
                                         // BUTTON HERE if current user is host
-                                        if event.userIsEventHost(user: currentUser) {
+                                        if event.userIsEventHost(user: currentUser) { // unwrap
                                             Button("Remove") {
                                                 action: do {
                                                     // TODO - REMOVE USER
@@ -302,7 +304,7 @@ struct SingleEventView: View {
                             .padding(1)
                         
                         // TODO make sure this is the actual guestList once figure out real currentEvent / user
-                        ForEach(guestList, id: \.id) { guest in
+                        ForEach(event.attendeeList, id: \.id) { guest in
                             
                             HStack (alignment: .firstTextBaseline) {
                                 let name = guest.name
@@ -328,9 +330,9 @@ struct SingleEventView: View {
             } // end VStack
         } // end ZStack
         .onAppear(perform: {
-            event.setRequestList(newList: testList) // delete this once real event works
+            event.setRequestList(newList: event.requestList) // delete this once real event works
         })
-         */
+         
     } // end View
 }
 
