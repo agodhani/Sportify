@@ -14,8 +14,9 @@ struct SingleEventView: View {
     // EVENT TODO how to get from outside
     //@State var event: Event = Event(hostID: "54321") // delete this once figure out current user
     // @EnvironmentObject var event: Event
+    @State private var goToEditEvent = false
     
-    //let testUser1 = User(userid: "1")
+   // let testUser1 = User(from: "1" as! Decoder)
     //let testUser2 = User(userid: "2")
     
     //let testUser3 = User(userid: "3")
@@ -33,10 +34,10 @@ struct SingleEventView: View {
         
         //@State var eventLocation = "1234 Temp Location, Lafayette, IN 94507"
         //event.location // TODO ???
-                
-        //let guestList: [User] = [testUser1, testUser2] // TODO set this to the actual guestList / attendee list from current event
-        //let testList: [User] = [testUser3, testUser4] // TODO this
-        /*
+       /*
+        let guestList: [User] = [testUser1, testUser2] // TODO set this to the actual guestList / attendee list from current event
+        let testList: [User] = [testUser3, testUser4] // TODO this
+        
         ZStack {
             Color.black.ignoresSafeArea()
             
@@ -237,6 +238,18 @@ struct SingleEventView: View {
                                     .padding(1)
                             } // end ForEach
                         }
+                        Spacer()
+                        Button("Edit Event") {
+                            goToEditEvent = true
+                        }
+                        .foregroundColor(.black)
+                        .fontWeight(.heavy)
+                            .frame(width: 200, height: 50)
+                            .background(Color("SportGold"))
+                            .cornerRadius(200)
+                            .font(.system(size: 15, weight: .heavy, design: .default))
+                            .padding()
+                        
                     } // end ScrollView
                     
             }  else {
@@ -318,7 +331,6 @@ struct SingleEventView: View {
                                 .frame(width: 391, height: 2)
                                 .padding(1)
                         }
-                        
                     } // end VStack
                 } // end ScrollView
                 
@@ -327,10 +339,17 @@ struct SingleEventView: View {
                 
             } // end VStack
         } // end ZStack
+        
         .onAppear(perform: {
             event.setRequestList(newList: testList) // delete this once real event works
         })
-         */
+        
+        if (goToEditEvent) {
+            NavigationView {
+                EditEventView()
+            }
+        }
+        */
     } // end View
 }
 
