@@ -31,7 +31,7 @@ class EventMethods: ObservableObject {
         
     }
     
-    func getEvent(eventID: Event.ID) async -> Event {
+    func getEvent(eventID: Event.ID) async throws -> Event {
         do{
             let eventDocument = try await Firestore.firestore().collection("Events").document(eventID).getDocument()
             let eventData = try eventDocument.data(as: Event.self)
@@ -44,8 +44,9 @@ class EventMethods: ObservableObject {
     }
     
     func modifyEvent(eventID: Event.ID, eventName: String, date: Date, location: String, attendeeList: Array<User>, privateEvent: Bool, maxParticipants: Int, adminsList: Set<User>, eventHostID: String, code: String, blackList: Set<User>, requestList: [User], description: String) async throws {
-        let event = await self.getEvent(eventID: eventID)
+        
         do {
+            let event = try await self.getEvent(eventID: eventID)
             if(eventName != "") {
                 try await Firestore.firestore().collection("Events").document(event.id).updateData(["eventName": eventName])
             }

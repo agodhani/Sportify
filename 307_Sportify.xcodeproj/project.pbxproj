@@ -17,6 +17,8 @@
 		6DAC698E2AD98539001C197E /* UserDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAC698D2AD98539001C197E /* UserDetailsView.swift */; };
 		6DAC69902AD9A544001C197E /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAC698F2AD9A544001C197E /* BlockView.swift */; };
 		6DADC9B42AD6574500483A86 /* SingleEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DADC9B32AD6574500483A86 /* SingleEventView.swift */; };
+		BA0D67342AD9D05200F77044 /* AllEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0D67332AD9D05200F77044 /* AllEvents.swift */; };
+		BA0D67362AD9D26000F77044 /* ViewEventsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0D67352AD9D26000F77044 /* ViewEventsListView.swift */; };
 		BA2570CE2AC7B846004E528A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2570CD2AC7B846004E528A /* User.swift */; };
 		BA2570D12AC89B4D004E528A /* UserAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2570D02AC89B4D004E528A /* UserAuthentication.swift */; };
 		BA2570D32AC8A58D004E528A /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2570D22AC8A58D004E528A /* SignUpView.swift */; };
@@ -79,6 +81,8 @@
 		6DAC698D2AD98539001C197E /* UserDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsView.swift; sourceTree = "<group>"; };
 		6DAC698F2AD9A544001C197E /* BlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
 		6DADC9B32AD6574500483A86 /* SingleEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleEventView.swift; sourceTree = "<group>"; };
+		BA0D67332AD9D05200F77044 /* AllEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllEvents.swift; sourceTree = "<group>"; };
+		BA0D67352AD9D26000F77044 /* ViewEventsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEventsListView.swift; sourceTree = "<group>"; };
 		BA2570CD2AC7B846004E528A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BA2570D02AC89B4D004E528A /* UserAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthentication.swift; sourceTree = "<group>"; };
 		BA2570D22AC8A58D004E528A /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				BA2570D02AC89B4D004E528A /* UserAuthentication.swift */,
+				BA0D67332AD9D05200F77044 /* AllEvents.swift */,
 				BA44F8C52AD9045000BB0CE7 /* EventMethods.swift */,
 				31562B9B2ACE4BDF002B3863 /* SelectPicture.swift */,
 				FBBBD55D2AD92FB900050C36 /* AllUsers.swift */,
@@ -227,6 +232,7 @@
 				BAFF1CD82AD2548E0010D8B3 /* LoginViews */,
 				BAFF1CD92AD254AB0010D8B3 /* HomeViews */,
 				FBD626FB2AD242B5005642A3 /* FriendListView.swift */,
+				BA0D67352AD9D26000F77044 /* ViewEventsListView.swift */,
 				FB742E142AD9425600BF6094 /* MyFriends.swift */,
 				6DAC698B2AD984B8001C197E /* OldBlockView.swift */,
 				6DAC698D2AD98539001C197E /* UserDetailsView.swift */,
@@ -376,6 +382,7 @@
 				BA8B74E32AC671E600BBE70B /* LoginSignUpView.swift in Sources */,
 				FBF11AB82AC8A8EF00FF39FC /* EventsView.swift in Sources */,
 				31562B9A2ACE4225002B3863 /* EditProfileView.swift in Sources */,
+				BA0D67342AD9D05200F77044 /* AllEvents.swift in Sources */,
 				31B877D22AD4D776004D7F2A /* ImagePicker.swift in Sources */,
 				FBF11ABC2AC8A95200FF39FC /* MessageView.swift in Sources */,
 				31562B9C2ACE4BDF002B3863 /* SelectPicture.swift in Sources */,
@@ -384,6 +391,7 @@
 				6DADC9B42AD6574500483A86 /* SingleEventView.swift in Sources */,
 				FBD626FC2AD242B5005642A3 /* FriendListView.swift in Sources */,
 				BA44F8C22AD8FEFD00BB0CE7 /* CreateEvent.swift in Sources */,
+				BA0D67362AD9D26000F77044 /* ViewEventsListView.swift in Sources */,
 				BA2570D32AC8A58D004E528A /* SignUpView.swift in Sources */,
 				FBBBD55E2AD92FB900050C36 /* AllUsers.swift in Sources */,
 				BA44F8C62AD9045100BB0CE7 /* EventMethods.swift in Sources */,

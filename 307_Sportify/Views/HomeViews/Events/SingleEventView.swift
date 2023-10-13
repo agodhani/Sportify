@@ -34,7 +34,8 @@ struct SingleEventView: View {
     
     // EVENT TODO how to get from outside
     //@Binding var eventID: String
-    @State var event: Event = Event(id: "1", eventName: "Test Event Name", sport: 0, date: Date(), location: "Test Location", numAttendees: 1, attendeeList: [User](), privateEvent: false, maxParticipants: 2, adminsList: Set<User>(), eventHostID: "2", code: "code", blackList: Set<User>(), requestList: [User](), description: "Test Description Hello") // delete this once figure out current user
+    @State var eventid: String // delete this once figure out current user
+    @State var eventm = EventMethods()
     //@State var event =
     
     //let testUser1 = User(userid: "1")
@@ -44,6 +45,13 @@ struct SingleEventView: View {
     //let testUser4 = User(userid: "4")
     
     var body: some View {
+        var event: Event
+        Task {
+            event = try await eventm.getEvent(eventID: self.eventid)
+        }
+        if(event ) {
+            
+        }
         //@State var currentUser = userAuth.currUser // uncomment
         @State var currentUser = User(id: "2", name: "test current user", email: "current@gmail.com", radius: 0, zipCode: "47906", sportsPreferences: [], privateAccount: false, profilePicture: "ERROR", age: 0, birthday: Date(), friendList: [], blockList: [], eventsAttending: [], eventsHosting: [])
         
@@ -54,7 +62,7 @@ struct SingleEventView: View {
         @State var dateStr = String(eventArr[0])
         @State var timeStr = String(eventArr[1])
         @State var eventLocation = event.location
-
+        
         //@State var dateStr = String(eventArr[0] + " at" + eventArr[1]) // TODO, this needs to be a date not string
         
         //event.location // TODO ???
@@ -86,7 +94,7 @@ struct SingleEventView: View {
                     .padding(.leading, 20)
                     
                     
-                    TextField(event.eventName, text: $event.eventName)
+                    Text(event.eventName)
                         .foregroundColor(.white)
                         .font(.system(size: 40, weight: .heavy, design: .default))
                         .multilineTextAlignment(.leading)
@@ -130,7 +138,7 @@ struct SingleEventView: View {
                         .frame(width: 391, height: 2)
                         .padding(1)
                     
-                    TextField(event.getDescription(), text: $event.description)
+                    Text(event.description)
                         .foregroundColor(.gray)
                         .font(.system(size: 15, weight: .heavy, design: .default))
                         .multilineTextAlignment(.leading)
@@ -358,5 +366,5 @@ struct SingleEventView: View {
 }
 
 #Preview {
-        SingleEventView()
+    SingleEventView(eventid: UUID().uuidString)
 }
