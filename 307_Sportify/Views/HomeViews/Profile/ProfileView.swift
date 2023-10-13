@@ -17,6 +17,7 @@ struct ProfileView: View{
     @State private var pView = false;
     @State private var friendsView = false;
     @State private var myFriends = false;
+    @State private var blockView = false;
     let db = Firestore.firestore()
    
     var body: some View {
@@ -157,7 +158,21 @@ struct ProfileView: View{
                     .frame(width: 100, height: 50)
                     .background(Color("SportGold"))
                     .cornerRadius(200)
+                    
                     Spacer()
+                    
+                    Button("Block Users"){
+                        blockView = true;
+                    }
+                    .foregroundColor(.black)
+                    .fontWeight(.heavy)
+                    .frame(width: 100, height: 50)
+                    .background(Color("SportGold"))
+                    .cornerRadius(200)
+                    
+                    Spacer()
+                    
+                    
                     Button("My Friends"){
                         myFriends = true;
                     }
@@ -189,6 +204,11 @@ struct ProfileView: View{
             if (myFriends) {
                 NavigationView {
                     MyFriends()
+                }
+            }
+            if (blockView) {
+                NavigationView {
+                    BlockView()
                 }
             }
         }
