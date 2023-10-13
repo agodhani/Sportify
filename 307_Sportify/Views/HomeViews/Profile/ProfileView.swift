@@ -11,7 +11,7 @@
 import SwiftUI
 import Firebase
 
-struct ProfileView: View {
+struct ProfileView: View{
     @EnvironmentObject var userAuth: UserAuthentication
     @State private var sOut = false;
     @State private var pView = false;

@@ -8,18 +8,21 @@
 import SwiftUI
 
 struct FriendListView: View {
+    @ObservedObject var otherUsers = AllUsers()
+    
     var body: some View {
-        List{
-            
+        NavigationView {
+            List(otherUsers.users) { users in
+                NavigationLink(destination: Text(users.name)){
+                    Text(users.name)
+                }
+            } .navigationBarTitle("Friends")
+                .onAppear(){
+                    otherUsers.getUsers()
+                }
         }
-        .navigationTitle("Friends")
-        .toolbar{
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Image("DefaultProfile")
-            }
         }
     }
-}
 
 #Preview {
     FriendListView()
