@@ -80,23 +80,6 @@ struct User: Identifiable, Codable, Hashable {
     var eventsAttending: Set<String>
     var eventsHosting: Set<String>
     
-    init(userid: String) { // test can delete later
-        self.id = userid
-        self.name = "test name"
-        self.email = "test@gmail.com"
-        self.radius = 1
-        self.zipCode = "47906"
-        self.sportsPreferences = [0, 1]
-        self.privateAccount = false;
-        self.profilePicture = "nothing"
-        self.age = 20
-        self.birthday = Date()
-        self.friendList = Set<String>()
-        self.blockList = Set<String>()
-        self.eventsAttending = Set<String>()
-        self.eventsHosting = Set<String>()
-    }
-    
     //?might not need this: let password: String
 /*
     init(id: String, name: String, email: String, password: String, location: CLLocation, radius: Int, sportsPreferences: Set<String>, provateAccount: Bool, profilePicture: Data, age: Int, birthday: Date, friendList: Set<String>, blockList: Set<String>, eventsAttending: Set<String>, eventsHosting: Set<String>) {

@@ -34,14 +34,14 @@ struct Event: Identifiable {
         self.date = Date()
         self.location = CLLocationCoordinate2D(latitude: 0, longitude: 0)
         self.numAttendees = 0
-        self.attendeeList = [User(userid: "0")]
+        self.attendeeList = []
         self.privateEvent = true
         self.maxParticipants = 2
         self.adminsList = Set<User>()
         self.eventHostID = hostID
         self.code = "123"
         self.blackList = Set<User>()
-        self.requestList = [User(userid: "1")]
+        self.requestList = []
         self.description = "This is an awesome event! You should join😎"
     }
     /*

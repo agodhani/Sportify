@@ -11,10 +11,9 @@ struct EventsView: View {
     
     @State var userAuth = UserAuthentication()
     // how to get the current user? TODO change this once figured out
-    @State var currentUser = User(userid: "54321")
 
     var body: some View {
-        
+        @State var currentUser = userAuth.currUser
         //@State var allEvents = userAuth.currUser?.getAllEvents() // TODO uncomment this THIS NEEDS TO BE A SET OF EVENTS NOT A SET OF STRINGS
         
         let testEvent = Event(hostID: "12345")
@@ -131,31 +130,33 @@ struct EventsView: View {
                                     
                                     
                                     // manage button TODO
-                                    if event.userIsEventHost(user: currentUser) {
-                                        Button("Manage") {
+                                    if(currentUser != nil){
+                                        if event.userIsEventHost(user: currentUser!) {
+                                            Button("Manage") {
                                             action: do {
                                                 // TODO SAME AS VIEW - will change inside of SingleEventView accordingly
                                                 
                                             }
-                                        }
-                                        .foregroundColor(.black)
-                                        .fontWeight(.heavy)
+                                            }
+                                            .foregroundColor(.black)
+                                            .fontWeight(.heavy)
                                             .frame(width: 75, height: 30)
                                             .background(Color("SportGold"))
                                             .cornerRadius(200)
                                             .font(.system(size: 13, weight: .heavy, design: .default))
-                                    } else {
-                                        Button("View") {
+                                        } else {
+                                            Button("View") {
                                             action: do {
                                                 // TODO SAME AS MANAGE - will change inside of SingleEventView accordingly
                                             }
-                                        }
-                                        .foregroundColor(.black)
-                                        .fontWeight(.heavy)
+                                            }
+                                            .foregroundColor(.black)
+                                            .fontWeight(.heavy)
                                             .frame(width: 75, height: 30)
                                             .background(Color("SportGold"))
                                             .cornerRadius(200)
                                             .font(.system(size: 13, weight: .heavy, design: .default))
+                                        }
                                     }
                                 }
                             }
