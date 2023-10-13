@@ -17,7 +17,7 @@ struct Event: Identifiable, Codable {
     var date: Date
     var location: String
     var numAttendees: Int
-    var attendeeList: [User]
+    var attendeeList: Array<User>
     var privateEvent: Bool
     var maxParticipants: Int
     var adminsList: Set<User>

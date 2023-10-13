@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EditEventView: View {
     @State var userAuth = UserAuthentication()
+    @State var eventsm = EventMethods()
  //   @State var event: Event = Event(hostID: "54321")
     @State var newDate: Date = Date()
     @State var newLocation: String = ""
@@ -19,6 +20,8 @@ struct EditEventView: View {
         @State var eventLocation = "1234 Temp Location, Lafayette, IN 94507"
         ZStack {
             Color.black.ignoresSafeArea()
+            //for testing purposes
+            var eventid = "0EA0ACAD-03B0-402B-860F-DE6E7D846A32"
             
             VStack(alignment: .trailing) {
 //                Toggle("Private Event", isOn: $newPrivate)
@@ -106,6 +109,9 @@ struct EditEventView: View {
                 
                 Button("Update Event Details") {
                     // TODO update events in firebase
+                    Task {
+                        try await eventsm.modifyEvent(eventID: eventid, eventName: "Change", date: newDate, location: newLocation, attendeeList: [], privateEvent: newPrivate, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "", code: "", blackList: Set<User>(), requestList: [], description: "Changing the description")
+                    }
                 }
                 .foregroundColor(.black)
                 .fontWeight(.heavy)

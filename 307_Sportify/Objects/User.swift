@@ -110,7 +110,13 @@ struct User: Identifiable, Codable, Hashable {
     }
  */
      
-    func joinEvent(event: Event) {
+    func joinEvent(eventID: String, user: User) {
+        let eventm = EventMethods()
+        Task {
+            var event = await eventm.getEvent(eventID: eventID)
+            let attendeeList = event.attendeeList //.append(user)
+            try await eventm.modifyEvent(eventID: eventID, eventName: "", date: event.date, location: "", attendeeList: attendeeList, privateEvent: event.privateEvent, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "", code: "", blackList: Set<User>(), requestList: [], description: "")
+        }
         
     }
     
