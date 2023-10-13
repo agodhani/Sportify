@@ -14,8 +14,8 @@ struct SignUpView: View {
     @State private var zipCode = "";
     @State private var SignUp = false
     @State private var sportView = false
-    @State private var sports 
-    = Sport.sportData()
+    @State private var sports = 0;
+    @State private var sportList = ["Tennis", "Table Tennis", "Volleyball", "Soccer", "Basketball", "Football", "Baseball", "Badminton", "Golf", "Cycling", "Running", "Hockey", "Spikeball", "Handball", "Lacrosse", "Squash"]
     @State private var selectedSports = Set<UUID>()
     @State private var isPrivate = false;
     @EnvironmentObject var userAuth: UserAuthentication
@@ -71,6 +71,7 @@ struct SignUpView: View {
                 .clipShape(Rectangle())
                 .cornerRadius(200)
                 .offset(CGSize(width: -100, height: 525))
+                /*
                 Button("Select Sport Preferences:") {
                     sportView = true;
                 }
@@ -79,11 +80,21 @@ struct SignUpView: View {
                 .clipShape(Rectangle())
                 .cornerRadius(10)
                 .offset(CGSize(width: 0, height: 575))
+                */
+                Text("Sport :")
+                    .foregroundColor(Color("SportGold"))
+                    .background(.black)
+                    .offset(CGSize(width: -77, height: 580))
+                    .font(.system(size: 20, weight: .regular, design: .default))
                 
-                
+                Picker(selection: $sports, label: Text("Sport")) {
+                    ForEach(sportList.indices) { index in
+                        Text(sportList[index])
+                    }
+                }.offset(CGSize(width: 0.0, height: 580))
                 Button("SIGN UP") {
                     Task {
-                        if try await userAuth.createUser(withEmail: email, password: password, fullname: fullName, privateAccount: isPrivate, zipCode: zipCode) {
+                        if try await userAuth.createUser(withEmail: email, password: password, fullname: fullName, privateAccount: isPrivate, zipCode: zipCode, sport: sports) {
                             SignUp = true;
                         }
                     }
