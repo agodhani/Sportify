@@ -92,13 +92,36 @@ struct EditEventView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 20)
                 
-                DatePicker("Please select a date", selection: $newDate)
+                DatePicker("New Date", selection: $newDate)
                     .foregroundColor(.white)
+                    .padding()
+                    .colorInvert()
+                
                 
                 
                 TextField("New Location", text: $newLocation)
+                    .padding()
+                    .background(Color.white.opacity(0.8))
+                    .frame(width: 300, height: 50)
+                    .clipShape(Rectangle())
+                    .offset(CGSize(width: 0, height: 50))
                 
                 TextField("New Number of People", value: $newNumPeople, formatter: NumberFormatter())
+                    .padding()
+                    .background(Color.white.opacity(0.8))
+                    .frame(width: 300, height: 50)
+                    .clipShape(Rectangle())
+                    .offset(CGSize(width: 0, height: 50))
+                
+                Button("Update Event Details") {
+                    // TODO update events in firebase
+                }
+                .foregroundColor(.black)
+                .fontWeight(.heavy)
+                .frame(width: 225, height: 50)
+                .background(Color("SportGold"))
+                .cornerRadius(200)
+                .offset(CGSize(width: 0, height: 100))
             }
         }
     }
