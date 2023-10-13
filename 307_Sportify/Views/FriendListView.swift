@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct FriendListView: View {
     @ObservedObject var otherUsers = AllUsers()
@@ -17,7 +18,7 @@ struct FriendListView: View {
                 NavigationLink(destination: DetailsView(person: users)){
                     Text(users.name)
                 }
-            } .navigationBarTitle("Friends")
+            } .navigationBarTitle("Potential Friends")
                 .onAppear(){
                     otherUsers.getUsers()
                 }
@@ -38,7 +39,12 @@ struct DetailsView: View {
             Text(person.name).font(.largeTitle)
             Button("Add Friend"){
                 currUser?.addFriend(name: person.name)
+                var userid = currUser?.id
+                let db = Firestore.firestore()
+                db.collection("Users").document(userid!)
+                    .updateData(["friendList": currUser?.friendList])
                 print("FRIEND ADDED")
+                
             }
         }
     }

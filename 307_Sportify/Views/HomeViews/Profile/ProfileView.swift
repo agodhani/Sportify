@@ -16,6 +16,7 @@ struct ProfileView: View{
     @State private var sOut = false;
     @State private var pView = false;
     @State private var friendsView = false;
+    @State private var myFriends = false;
     let db = Firestore.firestore()
    
     var body: some View {
@@ -147,15 +148,25 @@ struct ProfileView: View{
                 .cornerRadius(200)
                 //}
                 Spacer()
-                
+                HStack{
                     Button("Add Friends"){
                         friendsView = true
                     }
                     .foregroundColor(.black)
                     .fontWeight(.heavy)
-                    .frame(width: 225, height: 50)
+                    .frame(width: 100, height: 50)
                     .background(Color("SportGold"))
                     .cornerRadius(200)
+                    Spacer()
+                    Button("My Friends"){
+                        myFriends = true;
+                    }
+                    .foregroundColor(.black)
+                    .fontWeight(.heavy)
+                    .frame(width: 100, height: 50)
+                    .background(Color("SportGold"))
+                    .cornerRadius(200)
+                }
                 
                 
                 
@@ -173,6 +184,11 @@ struct ProfileView: View{
             if(friendsView) {
                 NavigationView {
                     FriendListView()
+                }
+            }
+            if (myFriends) {
+                NavigationView {
+                    MyFriends()
                 }
             }
         }
