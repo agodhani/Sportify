@@ -41,5 +41,4 @@ class AllUsers: ObservableObject {
                 }
             }
         }
-        // return self.other_users
     }
