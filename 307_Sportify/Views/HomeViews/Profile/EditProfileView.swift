@@ -125,22 +125,23 @@ struct EditProfileView: View {
                     metadata.contentType = "image/jpeg"
                     
                     var Url = ""
-                    
-                    storageProfilePicRef.putData(newPicData!, metadata: metadata, completion:
-                                                    { (StorageMetadata, error) in
-                        if error != nil {
-                            print(error?.localizedDescription as Any)
-                        }
-                        
-                        storageProfilePicRef.downloadURL(completion: { (url, error) in
-                            if let profilePicUrl = url?.absoluteString {
-                                print(profilePicUrl)
-                                Url = profilePicUrl
-                                //TODO: update user profile pic in firebase
-                                
+                    if(newPicData != nil) {
+                        storageProfilePicRef.putData(newPicData ?? Data.init(), metadata: metadata, completion:
+                                                        { (StorageMetadata, error) in
+                            if error != nil {
+                                print(error?.localizedDescription as Any)
                             }
+                            
+                            storageProfilePicRef.downloadURL(completion: { (url, error) in
+                                if let profilePicUrl = url?.absoluteString {
+                                    print(profilePicUrl)
+                                    Url = profilePicUrl
+                                    //TODO: update user profile pic in firebase
+                                    
+                                }
+                            })
                         })
-                    })
+                    }
                     if newUsername == "" {
                         newUsername = currentUser.name
                     }
