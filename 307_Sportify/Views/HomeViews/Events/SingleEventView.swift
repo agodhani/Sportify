@@ -37,6 +37,10 @@ struct SingleEventView: View {
     @State var event: Event = Event(id: "1", eventName: "Test Event Name", sport: 0, date: Date(), location: "Test Location", numAttendees: 1, attendeeList: [User](), privateEvent: false, maxParticipants: 2, adminsList: Set<User>(), eventHostID: "2", code: "code", blackList: Set<User>(), requestList: [User](), description: "Test Description Hello") // delete this once figure out current user
     //@State var event =
     
+    let db = Firestore.firestore()
+    let event_id = "0EA0ACAD-03B0-402B-860F-DE6E7D846A32"
+    
+    
     //let testUser1 = User(userid: "1")
     //let testUser2 = User(userid: "2")
     
@@ -227,6 +231,7 @@ struct SingleEventView: View {
                                                 action: do {
                                                     // TODO - ACCEPT USER
                                                     event.acceptUser(acceptUser: guest)
+                                                    db.collection("Events").document(event_id).updateData(["attendeeList": event.attendeeList])
                                                 }
                                             }
                                             .foregroundColor(.black)
@@ -240,6 +245,8 @@ struct SingleEventView: View {
                                                 action: do {
                                                     // TODO - REJECT USER
                                                     event.rejectUser(rejectUser: guest) // needs to be tested
+                                                    db.collection("Events").document(event_id).updateData(["attendeeList": event.attendeeList])
+                                                    
                                                 }
                                             }
                                             .foregroundColor(.black)
