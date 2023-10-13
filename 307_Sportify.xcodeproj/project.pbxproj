@@ -16,6 +16,8 @@
 		BA2570CE2AC7B846004E528A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2570CD2AC7B846004E528A /* User.swift */; };
 		BA2570D12AC89B4D004E528A /* UserAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2570D02AC89B4D004E528A /* UserAuthentication.swift */; };
 		BA2570D32AC8A58D004E528A /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2570D22AC8A58D004E528A /* SignUpView.swift */; };
+		BA44F8C22AD8FEFD00BB0CE7 /* CreateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA44F8C12AD8FEFD00BB0CE7 /* CreateEvent.swift */; };
+		BA44F8C62AD9045100BB0CE7 /* EventMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA44F8C52AD9045000BB0CE7 /* EventMethods.swift */; };
 		BA86EF7F2AD4B97600E37BF7 /* SportPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA86EF7E2AD4B97600E37BF7 /* SportPreferences.swift */; };
 		BA8B749B2AC6301400BBE70B /* _07_SportifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B749A2AC6301400BBE70B /* _07_SportifyApp.swift */; };
 		BA8B749F2AC6301600BBE70B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA8B749E2AC6301600BBE70B /* Assets.xcassets */; };
@@ -70,6 +72,8 @@
 		BA2570CD2AC7B846004E528A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BA2570D02AC89B4D004E528A /* UserAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthentication.swift; sourceTree = "<group>"; };
 		BA2570D22AC8A58D004E528A /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		BA44F8C12AD8FEFD00BB0CE7 /* CreateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEvent.swift; sourceTree = "<group>"; };
+		BA44F8C52AD9045000BB0CE7 /* EventMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMethods.swift; sourceTree = "<group>"; };
 		BA86EF7E2AD4B97600E37BF7 /* SportPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportPreferences.swift; sourceTree = "<group>"; };
 		BA8B74972AC6301400BBE70B /* 307_Sportify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 307_Sportify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA8B749A2AC6301400BBE70B /* _07_SportifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _07_SportifyApp.swift; sourceTree = "<group>"; };
@@ -140,9 +144,30 @@
 			isa = PBXGroup;
 			children = (
 				BA2570D02AC89B4D004E528A /* UserAuthentication.swift */,
+				BA44F8C52AD9045000BB0CE7 /* EventMethods.swift */,
 				31562B9B2ACE4BDF002B3863 /* SelectPicture.swift */,
 			);
 			path = Methods;
+			sourceTree = "<group>";
+		};
+		BA44F8C32AD8FF0800BB0CE7 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				FBF11AB72AC8A8EF00FF39FC /* EventsView.swift */,
+				BA44F8C12AD8FEFD00BB0CE7 /* CreateEvent.swift */,
+				6DADC9B32AD6574500483A86 /* SingleEventView.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		BA44F8C42AD8FF1E00BB0CE7 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				FBF11ABF2AC8A9A300FF39FC /* ProfileView.swift */,
+				31562B992ACE4225002B3863 /* EditProfileView.swift */,
+				31B877D12AD4D776004D7F2A /* ImagePicker.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		BA8B748E2AC6301400BBE70B = {
@@ -187,9 +212,6 @@
 			children = (
 				BAFF1CD82AD2548E0010D8B3 /* LoginViews */,
 				BAFF1CD92AD254AB0010D8B3 /* HomeViews */,
-				6D39AAB62AC73BFE00515C20 /* ForgotPasswordView.swift */,
-				31562B992ACE4225002B3863 /* EditProfileView.swift */,
-				31B877D12AD4D776004D7F2A /* ImagePicker.swift */,
 				FBD626FB2AD242B5005642A3 /* FriendListView.swift */,
 			);
 			path = Views;
@@ -211,6 +233,7 @@
 				BA8B74E52AC684AE00BBE70B /* LogInView.swift */,
 				BA2570D22AC8A58D004E528A /* SignUpView.swift */,
 				BA86EF7E2AD4B97600E37BF7 /* SportPreferences.swift */,
+				6D39AAB62AC73BFE00515C20 /* ForgotPasswordView.swift */,
 			);
 			path = LoginViews;
 			sourceTree = "<group>";
@@ -218,12 +241,11 @@
 		BAFF1CD92AD254AB0010D8B3 /* HomeViews */ = {
 			isa = PBXGroup;
 			children = (
-				FBF11AB72AC8A8EF00FF39FC /* EventsView.swift */,
-				6DADC9B32AD6574500483A86 /* SingleEventView.swift */,
+				BA44F8C32AD8FF0800BB0CE7 /* Events */,
 				FBF11AB92AC8A91900FF39FC /* HomeView.swift */,
+				BA44F8C42AD8FF1E00BB0CE7 /* Profile */,
 				FBF11ABB2AC8A95100FF39FC /* MessageView.swift */,
 				FBF11ABD2AC8A97E00FF39FC /* NotificationView.swift */,
-				FBF11ABF2AC8A9A300FF39FC /* ProfileView.swift */,
 				FBF11AC12AC8A9EC00FF39FC /* HomePageView.swift */,
 			);
 			path = HomeViews;
@@ -342,7 +364,9 @@
 				BA2570D12AC89B4D004E528A /* UserAuthentication.swift in Sources */,
 				6DADC9B42AD6574500483A86 /* SingleEventView.swift in Sources */,
 				FBD626FC2AD242B5005642A3 /* FriendListView.swift in Sources */,
+				BA44F8C22AD8FEFD00BB0CE7 /* CreateEvent.swift in Sources */,
 				BA2570D32AC8A58D004E528A /* SignUpView.swift in Sources */,
+				BA44F8C62AD9045100BB0CE7 /* EventMethods.swift in Sources */,
 				BA2570CE2AC7B846004E528A /* User.swift in Sources */,
 				BAFF1CDB2AD2854A0010D8B3 /* Sport.swift in Sources */,
 				FBF11ABA2AC8A91900FF39FC /* HomeView.swift in Sources */,

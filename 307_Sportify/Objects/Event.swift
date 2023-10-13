@@ -9,24 +9,25 @@ import Foundation
 import CoreLocation
 import SwiftUI
 
-struct Event: Identifiable {
-    let id: String
+struct Event: Identifiable, Codable {
+    var id: String
     var eventName: String
-    var sportsList = ["Tennis", "Table Tennis", "Volleyball", "Soccer", "Basketball", "Football", "Baseball", "Badminton", "Golf", "Cycling", "Running", "Hockey", "Spikeball", "Handball", "Lacrosse", "Squash"]
+    let sportsList = ["Tennis", "Table Tennis", "Volleyball", "Soccer", "Basketball", "Football", "Baseball", "Badminton", "Golf", "Cycling", "Running", "Hockey", "Spikeball", "Handball", "Lacrosse", "Squash"]
     var sport: Int
     var date: Date
-    var location: CLLocationCoordinate2D
+    var location: String
     var numAttendees: Int
     var attendeeList: [User]
     var privateEvent: Bool
     var maxParticipants: Int
     var adminsList: Set<User>
     var eventHostID: String // this will be the user ID
-    private var code: String
+    var code: String
     var blackList: Set<User>
     var requestList: [User]
     var description: String
-    
+   
+    /*
     init(hostID: String) { // created for test
         self.eventName = "test name"
         self.id = "12345"
@@ -44,25 +45,7 @@ struct Event: Identifiable {
         self.requestList = []
         self.description = "This is an awesome event! You should join😎"
     }
-    /*
-    init() { // THIS WAS CREATED AS A TEST FOR EVENT CREATION - Josh - can delete and replace later
-        self.eventName = "test name"
-        self.id = "12345"
-        self.sport = 0
-        self.date = Date()
-        self.location = CLLocationCoordinate2D(latitude: 0, longitude: 0)
-        self.numAttendees = 0
-        self.attendeeList = [User(id: "12345", name: "test user name", email: "user@test.com", radius: 1, zipCode: "47906", sportsPreferences: Set<String>(), privateAccount: true, profilePicture: String(), age: 20, birthday: Date(), friendList: Set<String>(), blockList: Set<String>(), eventsAttending: Set<String>(), eventsHosting: Set<String>())]
-        self.privateEvent = true
-        self.maxParticipants = 2
-        self.adminsList = Set<User>()
-        self.eventHostID = "11111"
-        self.code = "123"
-        self.blackList = Set<User>()
-        self.requestList = Set<User>()
-    }*/
-    
-
+     */
     
     /*mutating func kickAttendee(attendee: User) {
         self.attendeeList.remove(attendee)
@@ -77,7 +60,7 @@ struct Event: Identifiable {
         self.date = date
     }
     
-    mutating func setLocation(location: CLLocationCoordinate2D) {
+    mutating func setLocation(location: String) {
         self.location = location
     }
     
@@ -163,7 +146,7 @@ struct Event: Identifiable {
         return self.date
     }
     
-    func getLocation() -> CLLocationCoordinate2D {
+    func getLocation() -> String {
         return self.location
     }
     

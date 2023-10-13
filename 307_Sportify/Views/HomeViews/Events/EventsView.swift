@@ -11,16 +11,14 @@ struct EventsView: View {
     
     @State var userAuth = UserAuthentication()
     // how to get the current user? TODO change this once figured out
-
+    @State var createEvent = false
     var body: some View {
         @State var currentUser = userAuth.currUser
+        
         //@State var allEvents = userAuth.currUser?.getAllEvents() // TODO uncomment this THIS NEEDS TO BE A SET OF EVENTS NOT A SET OF STRINGS
         
-        let testEvent = Event(hostID: "12345")
-        let testEvent2 = Event(hostID: "11111")
-        let testEvent3 = Event(hostID: "54321")
         
-        let allEvents: [Event] = [testEvent, testEvent2, testEvent3] // TODO
+        //let allEvents: [Event] = [testEvent, testEvent2, testEvent3] // TODO
         
         ZStack (alignment: .top) {
             Color.black.ignoresSafeArea()
@@ -60,10 +58,19 @@ struct EventsView: View {
                 .frame(maxWidth: .infinity)
                 .edgesIgnoringSafeArea(.all)
                 
+                Button("Create Event") {
+                    createEvent = true
+                }.foregroundColor(.black)
+                    .fontWeight(.heavy)
+                    .frame(width: 225, height: 50)
+                    .background(Color("SportGold"))
+                    .cornerRadius(200)
+                    .offset(CGSize(width: 0, height: 0))
                 // Scroll View here TODO
                 ScrollView {
                     
                     VStack {
+                        /*
                         ForEach(allEvents, id: \.eventHostID) { event in
                                 
                             // label everything
@@ -160,6 +167,7 @@ struct EventsView: View {
                                     }
                                 }
                             }
+                         
                             
                             // bottom border
                             Rectangle()
@@ -167,6 +175,7 @@ struct EventsView: View {
                                 .frame(width: 450, height: 2)
                                 .padding(1)
                         }
+                         */
                     }
                 }
 
@@ -182,7 +191,11 @@ struct EventsView: View {
                 
 
             }
+            if(createEvent) {
+                CreateEvent()
+            }
         }
+        
         
         /*
         Color.black.ignoresSafeArea()

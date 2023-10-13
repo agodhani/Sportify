@@ -12,7 +12,7 @@ struct SingleEventView: View {
     // how to get the current user? TODO change this once figured out
     
     // EVENT TODO how to get from outside
-    @State var event: Event = Event(hostID: "54321") // delete this once figure out current user
+    //@State var event: Event = Event(hostID: "54321") // delete this once figure out current user
     // @EnvironmentObject var event: Event
     
     //let testUser1 = User(userid: "1")
@@ -23,15 +23,15 @@ struct SingleEventView: View {
     
     var body: some View {
         @State var currentUser = userAuth.currUser
-        @State var eventName = event.eventName
-        @State var eventDate = event.date.formatted()
+        //@State var eventName = event.eventName
+        //@State var eventDate = event.date.formatted()
         // split into day (0) and time (1)
-        let eventArr = eventDate.split(separator: ",", maxSplits: 2, omittingEmptySubsequences: true)
-        @State var dateStr = String(eventArr[0])
-        @State var timeStr = String(eventArr[1])
+        //let eventArr = eventDate.split(separator: ",", maxSplits: 2, omittingEmptySubsequences: true)
+        //@State var dateStr = String(eventArr[0])
+        //@State var timeStr = String(eventArr[1])
         //@State var dateStr = String(eventArr[0] + " at" + eventArr[1]) // TODO, this needs to be a date not string
         
-        @State var eventLocation = "1234 Temp Location, Lafayette, IN 94507"
+        //@State var eventLocation = "1234 Temp Location, Lafayette, IN 94507"
         //event.location // TODO ???
                 
         //let guestList: [User] = [testUser1, testUser2] // TODO set this to the actual guestList / attendee list from current event

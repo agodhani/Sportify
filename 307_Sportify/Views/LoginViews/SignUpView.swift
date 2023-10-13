@@ -14,7 +14,8 @@ struct SignUpView: View {
     @State private var zipCode = "";
     @State private var SignUp = false
     @State private var sportView = false
-    @State private var sports = Sport.sportData()
+    @State private var sports 
+    = Sport.sportData()
     @State private var selectedSports = Set<UUID>()
     @State private var isPrivate = false;
     @EnvironmentObject var userAuth: UserAuthentication
