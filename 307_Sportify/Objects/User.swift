@@ -76,6 +76,7 @@ struct User: Identifiable, Codable, Hashable {
     var age: Int
     var birthday: Date
     var friendList: Set<String>
+    var otherUsers: Set<String>
     var blockList: Set<String>
     var eventsAttending: Set<String>
     var eventsHosting: Set<String>
@@ -95,6 +96,7 @@ struct User: Identifiable, Codable, Hashable {
         self.blockList = Set<String>()
         self.eventsAttending = Set<String>()
         self.eventsHosting = Set<String>()
+        self.otherUsers = Set<String>()
     }
     
     //?might not need this: let password: String

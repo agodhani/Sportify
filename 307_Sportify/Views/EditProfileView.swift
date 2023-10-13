@@ -114,7 +114,7 @@ struct EditProfileView: View {
                     let db = Firestore.firestore()
                     var user_id = Auth.auth().currentUser?.uid
                     let currentUser = Auth.auth().currentUser
-                    
+               
                     let newPic = inputImage
                     let newPicData = newPic?.jpegData(compressionQuality: 0.4)
                     
@@ -143,8 +143,7 @@ struct EditProfileView: View {
                     
                     db.collection("Users").document(user_id!).updateData(["name": newUsername,
                                     "email": newEmail,
-                                    "zipCode": newLocation,
-                                    "profilePicture": profilePicUrl])
+                                    "zipCode": newLocation,])
                     //currentUser?.updateEmail(to: newEmail)
                     var user = userAuth.currUser
                     user?.name = newUsername
