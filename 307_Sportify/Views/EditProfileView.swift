@@ -112,9 +112,9 @@ struct EditProfileView: View {
                 Button("Update Profile") {
                     profile = true
                     let db = Firestore.firestore()
-                    var user_id = Auth.auth().currentUser?.uid
-                    let currentUser = Auth.auth().currentUser
-               
+                    let user_id = userAuth.currUser?.id
+                    let currentUser = userAuth.currUser!
+                    
                     let newPic = inputImage
                     let newPicData = newPic?.jpegData(compressionQuality: 0.4)
                     
@@ -124,7 +124,7 @@ struct EditProfileView: View {
                     let metadata = StorageMetadata()
                     metadata.contentType = "image/jpeg"
                     
-                    var profilePicUrl = ""
+                    var Url = ""
                     
                     storageProfilePicRef.putData(newPicData!, metadata: metadata, completion:
                                                     { (StorageMetadata, error) in
@@ -133,17 +133,30 @@ struct EditProfileView: View {
                         }
                         
                         storageProfilePicRef.downloadURL(completion: { (url, error) in
-                            if var profilePicUrl = url?.absoluteString {
+                            if let profilePicUrl = url?.absoluteString {
                                 print(profilePicUrl)
+                                Url = profilePicUrl
                                 //TODO: update user profile pic in firebase
                                 
                             }
                         })
                     })
-                    
+                    if newUsername == "" {
+                        newUsername = currentUser.name
+                    }
+                    if newEmail == "" {
+                        newEmail = currentUser.email
+                    }
+                    if newLocation == "" {
+                        newLocation = currentUser.zipCode
+                    }
+                    if Url == "" {
+                        Url = currentUser.profilePicture
+                    }
                     db.collection("Users").document(user_id!).updateData(["name": newUsername,
                                     "email": newEmail,
-                                    "zipCode": newLocation,])
+                                    "zipCode": newLocation,
+                                    "profilePicture": Url])
                     //currentUser?.updateEmail(to: newEmail)
                     var user = userAuth.currUser
                     user?.name = newUsername

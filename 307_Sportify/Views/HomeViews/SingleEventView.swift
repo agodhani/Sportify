@@ -10,20 +10,20 @@ import SwiftUI
 struct SingleEventView: View {
     @State var userAuth = UserAuthentication()
     // how to get the current user? TODO change this once figured out
-    @State var currentUser = User(userid: "54321") // for test 54321 = host - any other number = viewer
-
+    
     // EVENT TODO how to get from outside
     @State var event: Event = Event(hostID: "54321") // delete this once figure out current user
     // @EnvironmentObject var event: Event
+    @State private var goToEditEvent = false
     
-    let testUser1 = User(userid: "1")
-    let testUser2 = User(userid: "2")
+   // let testUser1 = User(from: "1" as! Decoder)
+    //let testUser2 = User(userid: "2")
     
-    let testUser3 = User(userid: "3")
-    let testUser4 = User(userid: "4")
+    //let testUser3 = User(userid: "3")
+    //let testUser4 = User(userid: "4")
     
     var body: some View {
-                
+        @State var currentUser = userAuth.currUser
         @State var eventName = event.eventName
         @State var eventDate = event.date.formatted()
         // split into day (0) and time (1)
@@ -34,7 +34,7 @@ struct SingleEventView: View {
         
         @State var eventLocation = "1234 Temp Location, Lafayette, IN 94507"
         //event.location // TODO ???
-                
+       /*
         let guestList: [User] = [testUser1, testUser2] // TODO set this to the actual guestList / attendee list from current event
         let testList: [User] = [testUser3, testUser4] // TODO this
         
@@ -238,6 +238,18 @@ struct SingleEventView: View {
                                     .padding(1)
                             } // end ForEach
                         }
+                        Spacer()
+                        Button("Edit Event") {
+                            goToEditEvent = true
+                        }
+                        .foregroundColor(.black)
+                        .fontWeight(.heavy)
+                            .frame(width: 200, height: 50)
+                            .background(Color("SportGold"))
+                            .cornerRadius(200)
+                            .font(.system(size: 15, weight: .heavy, design: .default))
+                            .padding()
+                        
                     } // end ScrollView
                     
             }  else {
@@ -319,7 +331,6 @@ struct SingleEventView: View {
                                 .frame(width: 391, height: 2)
                                 .padding(1)
                         }
-                        
                     } // end VStack
                 } // end ScrollView
                 
@@ -328,9 +339,17 @@ struct SingleEventView: View {
                 
             } // end VStack
         } // end ZStack
+        
         .onAppear(perform: {
             event.setRequestList(newList: testList) // delete this once real event works
         })
+        
+        if (goToEditEvent) {
+            NavigationView {
+                EditEventView()
+            }
+        }
+        */
     } // end View
 }
 

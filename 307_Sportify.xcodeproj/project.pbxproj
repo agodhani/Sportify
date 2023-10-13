@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31481E982AD8D82C0061CCD5 /* EditEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31481E972AD8D82C0061CCD5 /* EditEventView.swift */; };
 		31562B9A2ACE4225002B3863 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31562B992ACE4225002B3863 /* EditProfileView.swift */; };
 		31562B9C2ACE4BDF002B3863 /* SelectPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31562B9B2ACE4BDF002B3863 /* SelectPicture.swift */; };
 		31B877D22AD4D776004D7F2A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B877D12AD4D776004D7F2A /* ImagePicker.swift */; };
@@ -62,6 +63,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		31481E972AD8D82C0061CCD5 /* EditEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventView.swift; sourceTree = "<group>"; };
 		31562B992ACE4225002B3863 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		31562B9B2ACE4BDF002B3863 /* SelectPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPicture.swift; sourceTree = "<group>"; };
 		31B877D12AD4D776004D7F2A /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				BAFF1CD82AD2548E0010D8B3 /* LoginViews */,
 				BAFF1CD92AD254AB0010D8B3 /* HomeViews */,
 				6D39AAB62AC73BFE00515C20 /* ForgotPasswordView.swift */,
+				31481E972AD8D82C0061CCD5 /* EditEventView.swift */,
 				31562B992ACE4225002B3863 /* EditProfileView.swift */,
 				31B877D12AD4D776004D7F2A /* ImagePicker.swift */,
 				FBD626FB2AD242B5005642A3 /* FriendListView.swift */,
@@ -338,6 +341,7 @@
 				BA8B74E32AC671E600BBE70B /* LoginSignUpView.swift in Sources */,
 				FBF11AB82AC8A8EF00FF39FC /* EventsView.swift in Sources */,
 				31562B9A2ACE4225002B3863 /* EditProfileView.swift in Sources */,
+				31481E982AD8D82C0061CCD5 /* EditEventView.swift in Sources */,
 				31B877D22AD4D776004D7F2A /* ImagePicker.swift in Sources */,
 				FBF11ABC2AC8A95200FF39FC /* MessageView.swift in Sources */,
 				31562B9C2ACE4BDF002B3863 /* SelectPicture.swift in Sources */,
