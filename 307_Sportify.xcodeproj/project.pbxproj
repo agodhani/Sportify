@@ -13,8 +13,9 @@
 		31B877D22AD4D776004D7F2A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B877D12AD4D776004D7F2A /* ImagePicker.swift */; };
 		31CB2C532AC89E0600DF43A3 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CB2C522AC89E0600DF43A3 /* Event.swift */; };
 		6D39AAB72AC73BFE00515C20 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D39AAB62AC73BFE00515C20 /* ForgotPasswordView.swift */; };
-		6DAC698C2AD984B8001C197E /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAC698B2AD984B8001C197E /* BlockView.swift */; };
+		6DAC698C2AD984B8001C197E /* OldBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAC698B2AD984B8001C197E /* OldBlockView.swift */; };
 		6DAC698E2AD98539001C197E /* UserDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAC698D2AD98539001C197E /* UserDetailsView.swift */; };
+		6DAC69902AD9A544001C197E /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAC698F2AD9A544001C197E /* BlockView.swift */; };
 		6DADC9B42AD6574500483A86 /* SingleEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DADC9B32AD6574500483A86 /* SingleEventView.swift */; };
 		BA2570CE2AC7B846004E528A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2570CD2AC7B846004E528A /* User.swift */; };
 		BA2570D12AC89B4D004E528A /* UserAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2570D02AC89B4D004E528A /* UserAuthentication.swift */; };
@@ -74,8 +75,9 @@
 		31B877D12AD4D776004D7F2A /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		31CB2C522AC89E0600DF43A3 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		6D39AAB62AC73BFE00515C20 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
-		6DAC698B2AD984B8001C197E /* BlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
+		6DAC698B2AD984B8001C197E /* OldBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldBlockView.swift; sourceTree = "<group>"; };
 		6DAC698D2AD98539001C197E /* UserDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsView.swift; sourceTree = "<group>"; };
+		6DAC698F2AD9A544001C197E /* BlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
 		6DADC9B32AD6574500483A86 /* SingleEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleEventView.swift; sourceTree = "<group>"; };
 		BA2570CD2AC7B846004E528A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BA2570D02AC89B4D004E528A /* UserAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthentication.swift; sourceTree = "<group>"; };
@@ -226,7 +228,7 @@
 				BAFF1CD92AD254AB0010D8B3 /* HomeViews */,
 				FBD626FB2AD242B5005642A3 /* FriendListView.swift */,
 				FB742E142AD9425600BF6094 /* MyFriends.swift */,
-				6DAC698B2AD984B8001C197E /* BlockView.swift */,
+				6DAC698B2AD984B8001C197E /* OldBlockView.swift */,
 				6DAC698D2AD98539001C197E /* UserDetailsView.swift */,
 			);
 			path = Views;
@@ -262,6 +264,7 @@
 				FBF11ABB2AC8A95100FF39FC /* MessageView.swift */,
 				FBF11ABD2AC8A97E00FF39FC /* NotificationView.swift */,
 				FBF11AC12AC8A9EC00FF39FC /* HomePageView.swift */,
+				6DAC698F2AD9A544001C197E /* BlockView.swift */,
 			);
 			path = HomeViews;
 			sourceTree = "<group>";
@@ -386,11 +389,12 @@
 				BA44F8C62AD9045100BB0CE7 /* EventMethods.swift in Sources */,
 				BA2570CE2AC7B846004E528A /* User.swift in Sources */,
 				BAFF1CDB2AD2854A0010D8B3 /* Sport.swift in Sources */,
-				6DAC698C2AD984B8001C197E /* BlockView.swift in Sources */,
+				6DAC698C2AD984B8001C197E /* OldBlockView.swift in Sources */,
 				FBF11ABA2AC8A91900FF39FC /* HomeView.swift in Sources */,
 				6D39AAB72AC73BFE00515C20 /* ForgotPasswordView.swift in Sources */,
 				31854A142AD9332E007346F8 /* EditEventView.swift in Sources */,
 				BA86EF7F2AD4B97600E37BF7 /* SportPreferences.swift in Sources */,
+				6DAC69902AD9A544001C197E /* BlockView.swift in Sources */,
 				31CB2C532AC89E0600DF43A3 /* Event.swift in Sources */,
 				BA8B749B2AC6301400BBE70B /* _07_SportifyApp.swift in Sources */,
 				FBF11AC02AC8A9A300FF39FC /* ProfileView.swift in Sources */,

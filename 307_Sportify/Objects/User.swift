@@ -80,7 +80,7 @@ struct User: Identifiable, Codable, Hashable {
     var age: Int
     var birthday: Date
     var friendList: [String]
-    var blockList: Set<String>
+    var blockList: [String]
     var eventsAttending: Set<String>
     var eventsHosting: Set<String>
     
@@ -173,7 +173,7 @@ struct User: Identifiable, Codable, Hashable {
         return allEvents
     }
     
-    func getBlockedList() -> Set<String> {
+    func getBlockedList() -> [String] {
         return self.blockList
     }
     
@@ -194,20 +194,20 @@ struct User: Identifiable, Codable, Hashable {
     }
     
     mutating func blockUser(blockUserID: String) {
-        let ref: DatabaseReference! = Database.database().reference()
+        //let ref: DatabaseReference! = Database.database().reference()
         if (!blockList.contains(blockUserID)) {
-            blockList.insert(blockUserID)
+            blockList.append(blockUserID)
         }
-        ref.child("Users").child(self.id).setValue(["blockList": blockList]) // update DB
+        //ref.child("Users").child(self.id).setValue(["blockList": blockList]) // update DB
     }
     
     mutating func unblockUser(unblockUserID: String) {
-        let ref: DatabaseReference! = Database.database().reference()
+        //let ref: DatabaseReference! = Database.database().reference()
         
         if (blockList.contains(unblockUserID)) {
-            blockList.remove(unblockUserID)
+            blockList.remove(at: blockList.firstIndex(of: unblockUserID)!)
         }
-        ref.child("Users").child(self.id).setValue(["blockList": blockList]) // update DB
+        //ref.child("Users").child(self.id).setValue(["blockList": blockList]) // update DB
     }
     
     func isBlocked(userID: String) -> Bool {

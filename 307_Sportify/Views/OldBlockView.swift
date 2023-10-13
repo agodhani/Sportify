@@ -12,7 +12,7 @@ import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
 
-struct BlockView: View {
+struct OldBlockView: View {
     
     @State var userAuth = UserAuthentication()
     @State var ref: DatabaseReference! = Database.database().reference()
@@ -119,5 +119,5 @@ struct BlockView: View {
 
 
 #Preview {
-    BlockView()
+    OldBlockView()
 }
