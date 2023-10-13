@@ -8,6 +8,10 @@
 import Foundation
 import CoreLocation
 import UIKit
+import Firebase
+import FirebaseCore
+import FirebaseFirestore
+import FirebaseAuth
 
 // Extend CLLocation to allow encoding
 extension CLLocation: Encodable {
@@ -169,6 +173,10 @@ struct User: Identifiable, Codable, Hashable {
         return allEvents
     }
     
+    func getBlockedList() -> Set<String> {
+        return self.blockList
+    }
+    
     mutating func setUsername(name: String) {
         self.name = name
     }
@@ -177,14 +185,37 @@ struct User: Identifiable, Codable, Hashable {
         self.email = email
     }
     
-
-    
     mutating func setAge(age: Int) {
         self.age = age
     }
     
     mutating func setRadius(radius: Int) {
         self.radius = radius
+    }
+    
+    mutating func blockUser(blockUserID: String) {
+        let ref: DatabaseReference! = Database.database().reference()
+        if (!blockList.contains(blockUserID)) {
+            blockList.insert(blockUserID)
+        }
+        ref.child("Users").child(self.id).setValue(["blockList": blockList]) // update DB
+    }
+    
+    mutating func unblockUser(unblockUserID: String) {
+        let ref: DatabaseReference! = Database.database().reference()
+        
+        if (blockList.contains(unblockUserID)) {
+            blockList.remove(unblockUserID)
+        }
+        ref.child("Users").child(self.id).setValue(["blockList": blockList]) // update DB
+    }
+    
+    func isBlocked(userID: String) -> Bool {
+        if (blockList.contains(userID)) {
+            return true
+        }
+        return false
+        
     }
     
     //mutating func setProfilePic(picture: UIImage) {
