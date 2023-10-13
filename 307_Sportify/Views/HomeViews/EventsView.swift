@@ -21,7 +21,7 @@ struct EventsView: View {
         let testEvent2 = Event(hostID: "11111")
         let testEvent3 = Event(hostID: "54321")
         
-        let allEvents: [Event] = [testEvent, testEvent2, testEvent3]
+        let allEvents: [Event] = [testEvent, testEvent2, testEvent3] // TODO
         
         ZStack (alignment: .top) {
             Color.black.ignoresSafeArea()
@@ -33,7 +33,7 @@ struct EventsView: View {
                 
                 Text("MY EVENTS")
                     .foregroundColor(Color("SportGold"))
-                    .background(Color("Black"))
+                    .background(.black)
                     //.offset(CGSize(width: 0, height: -350))
                     .font(.system(size: 40, weight: .heavy, design: .default))
                 
@@ -93,9 +93,6 @@ struct EventsView: View {
                                             .padding(.leading, 20)
                                             .padding(.top, -10)
                                     }
-                                    
-                                    
- 
                                 }
                                 
                                 
@@ -137,7 +134,8 @@ struct EventsView: View {
                                     if event.userIsEventHost(user: currentUser) {
                                         Button("Manage") {
                                             action: do {
-                                                // TODO SAME AS MANAGE - will change inside of SingleEventView accordingly
+                                                // TODO SAME AS VIEW - will change inside of SingleEventView accordingly
+                                                
                                             }
                                         }
                                         .foregroundColor(.black)

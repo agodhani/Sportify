@@ -25,6 +25,7 @@ struct Event: Identifiable {
     private var code: String
     var blackList: Set<User>
     var requestList: [User]
+    var description: String
     
     init(hostID: String) { // created for test
         self.eventName = "test name"
@@ -41,6 +42,7 @@ struct Event: Identifiable {
         self.code = "123"
         self.blackList = Set<User>()
         self.requestList = [User(userid: "1")]
+        self.description = "This is an awesome event! You should join😎"
     }
     /*
     init() { // THIS WAS CREATED AS A TEST FOR EVENT CREATION - Josh - can delete and replace later
@@ -115,7 +117,43 @@ struct Event: Identifiable {
         self.requestList = newList
     }
     
+    mutating func removeUser(removeUser: User) {
+        var found = false;
+        for i in 1...attendeeList.endIndex {
+            if attendeeList[i].id == removeUser.id {
+                attendeeList.remove(at: i)
+                found = true;
+                print("User was removed")
+            }
+        }
+        
+        if !found {
+            print("User not found")
+        }
+    }
     
+    mutating func acceptUser(acceptUser: User) {
+        if (requestList.contains(acceptUser)) { // might not work, might need to copy removeUser logic^^^
+            let index = attendeeList.firstIndex(of: acceptUser)!
+            requestList.remove(at: index)
+            attendeeList.append(acceptUser)
+        } else {
+            print("User could not be added to attendee list")
+        }
+    }
+    
+    mutating func rejectUser(rejectUser: User) {
+        if (requestList.contains(rejectUser)) { // might not work, might need to copy removeUser logic^^^
+            let index = attendeeList.firstIndex(of: rejectUser)!
+            requestList.remove(at: index)
+        } else {
+            print("User could not be removed from request list")
+        }
+    }
+    
+    func getDescription() -> String {
+        return self.description
+    }
     
     func deleteEvent() { // TODO
         

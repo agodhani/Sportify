@@ -14,6 +14,7 @@ struct SingleEventView: View {
 
     // EVENT TODO how to get from outside
     @State var event: Event = Event(hostID: "54321") // delete this once figure out current user
+    // @EnvironmentObject var event: Event
     
     let testUser1 = User(userid: "1")
     let testUser2 = User(userid: "2")
@@ -39,7 +40,6 @@ struct SingleEventView: View {
         
         ZStack {
             Color.black.ignoresSafeArea()
-            
             
             VStack (alignment: .trailing) {
                 
@@ -108,6 +108,13 @@ struct SingleEventView: View {
                         .frame(width: 391, height: 2)
                         .padding(1)
                     
+                    TextField(event.getDescription(), text: $event.description)
+                        .foregroundColor(.gray)
+                        .font(.system(size: 15, weight: .heavy, design: .default))
+                        .multilineTextAlignment(.leading)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.leading, 20)
+                    
                     // Guest List
                     Text("Guest List")
                         .foregroundColor(.white)
@@ -140,7 +147,8 @@ struct SingleEventView: View {
                                         if event.userIsEventHost(user: currentUser) {
                                             Button("Remove") {
                                                 action: do {
-                                                    // TODO - KICK USER
+                                                    // TODO - REMOVE USER
+                                                    event.removeUser(removeUser: guest) // idk if this updates the UI properly in real life
                                                 }
                                             }
                                             .foregroundColor(.black)
@@ -193,10 +201,10 @@ struct SingleEventView: View {
                                     Spacer()
                                     VStack (alignment: .trailing) {
                                         HStack {
-                                             // BUTTON HERE if current user is host
                                             Button("Accept") {
                                                 action: do {
                                                     // TODO - ACCEPT USER
+                                                    event.acceptUser(acceptUser: guest)
                                                 }
                                             }
                                             .foregroundColor(.black)
@@ -209,6 +217,7 @@ struct SingleEventView: View {
                                             Button("Reject") {
                                                 action: do {
                                                     // TODO - REJECT USER
+                                                    event.rejectUser(rejectUser: guest) // needs to be tested
                                                 }
                                             }
                                             .foregroundColor(.black)
@@ -269,6 +278,13 @@ struct SingleEventView: View {
                     .fill(Color.white)
                     .frame(width: 391, height: 2)
                     .padding(1)
+                
+                Text(event.getDescription())
+                    .foregroundColor(.gray)
+                    .font(.system(size: 15, weight: .heavy, design: .default))
+                    .multilineTextAlignment(.leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading, 20)
                 
                 // Guest List
                 Text("Guest List")
