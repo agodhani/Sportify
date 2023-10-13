@@ -10,7 +10,7 @@ import SwiftUI
 struct CreateEvent: View {
     @State private var eName = "";
     @State private var sport = "";
-    @State private var maxParticipants = "0";
+    @State private var maxParticipants = "";
     @State private var description = "";
     @State private var location = "";
     @State private var isPrivate = false;
@@ -63,14 +63,8 @@ struct CreateEvent: View {
                 .offset(CGSize(width: 0, height: 25))
                 .keyboardType(.numberPad)
             
-            TextField("Zipcode", text: $location)
-                .padding()
-                .background(Color.white.opacity(0.8))
-                .frame(width: 300, height: 50)
-                .clipShape(Rectangle())
-                .offset(CGSize(width: 0, height: 100))
             
-            Toggle("Private Account", isOn: $isPrivate).foregroundColor(Color("SportGold"))
+            Toggle("Private Event", isOn: $isPrivate).foregroundColor(Color("SportGold"))
                 .frame(width: 300, height: 50)
                 .offset(CGSize(width: 0, height: 150))
             

@@ -27,15 +27,70 @@ class EventMethods: ObservableObject {
         
     }
     
-    func getEvent() {
+    func getEvent(eventID: Event.ID) async -> Event {
+        do{
+            let eventDocument = try await Firestore.firestore().collection("Events").document(eventID).getDocument()
+            let eventData = try eventDocument.data(as: Event.self)
+            print("Event Data retrival successful")
+            return eventData
+        } catch {
+            print("Event Data retrival failed - you suck!")
+            return Event(id: "", eventName: "", sport: 0, date: Date.now, location: "", numAttendees: 0, attendeeList: [], privateEvent: false, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "", code: "", blackList: Set<User>(), requestList: [], description: "")
+        }
+    }
+    
+    func modifyEvent(eventID: Event.ID, eventName: String, date: Date, location: String, attendeeList: [User], privateEvent: Bool, maxParticipants: Int, adminsList: Set<User>, eventHostID: String, code: String, blackList: Set<User>, requestList: [User], description: String) async {
+        var event = await self.getEvent(eventID: eventID)
+        if(eventName != "") {
+            event.eventName = eventName;
+        }
+        if(date != event.date) {
+            event.date = date
+        }
+        if(location != "") {
+            event.location = location
+        }
+        if(attendeeList != []) {
+            event.attendeeList = attendeeList;
+        }
+        if(privateEvent != event.privateEvent) {
+            event.privateEvent = privateEvent;
+        }
+        if(maxParticipants != 0) {
+            event.maxParticipants = maxParticipants
+        }
+        if(adminsList != Set<User>()) {
+            event.adminsList = adminsList
+        }
+        if(eventHostID != "") {
+            event.eventHostID = eventHostID
+        }
+        if(code != "") {
+            event.code = code
+        }
+        if(blackList != Set<User>()) {
+            event.blackList = blackList
+        }
+        if(requestList != []) {
+            event.requestList = requestList
+        }
+        if(description != "") {
+            event.description = description
+        }
+        do {
+            try await Firestore.firestore().collection("Events").document(event.id).updateData(["eventName": event.eventName, "date": event.date, "location": event.location, "attendeeList": event.attendeeList, "privateEvent":event.privateEvent, "maxParticipants":event.maxParticipants, "adminsList":event.adminsList, "eventHostID" : event.eventHostID, "code":event.code, "blackList": event.blackList, "requestList": event.requestList, "description":event.description ])
+        } catch {
+            print("your stuff is broken - cannot update event")
+        }
         
     }
     
-    func modifyEvent() {
-        
-    }
-    
-    func deleteEvent() {
-        
+    func deleteEvent(eventID: Event.ID) async {
+        do {
+            try await Firestore.firestore().collection("Events").document(eventID).delete()
+            print("your event was deleted loser")
+        } catch {
+            print("Cannot delete event - time to play!")
+        }
     }
 }
