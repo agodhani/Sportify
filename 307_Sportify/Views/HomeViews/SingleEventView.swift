@@ -349,7 +349,7 @@ struct SingleEventView: View {
                 EditEventView()
             }
         }
-        
+        */
     } // end View
 }
 
