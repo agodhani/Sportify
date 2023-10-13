@@ -4,17 +4,38 @@
 //
 //  Created by Joshua Tseng on 10/10/23.
 //
-
+import Foundation
 import SwiftUI
+import Firebase
+/*
+func getEvent(eventID: String) -> Event {
+    var db = Firestore.firestore()
+    
+    var eventList = [Event]()
+
+    db.collection("Events").addSnapshotListener {(querySnapshot, error) in
+        guard let documents = querySnapshot?.documents else {
+            print("no documents")
+        }
+        eventList = documents.map{(queryDocumentSnapshot) -> Event in
+            let data = queryDocumentSnapshot.data()
+            let tempID = data["id"] as? String ?? ""
+            
+            if (tempID == eventID) {
+                return data as Event
+            }
+        }
+    }
+}*/
 
 struct SingleEventView: View {
     @State var userAuth = UserAuthentication()
     // how to get the current user? TODO change this once figured out
     
     // EVENT TODO how to get from outside
-    //@Binding var event: Event
+    //@Binding var eventID: String
     @State var event: Event = Event(id: "1", eventName: "Test Event Name", sport: 0, date: Date(), location: "Test Location", numAttendees: 1, attendeeList: [User](), privateEvent: false, maxParticipants: 2, adminsList: Set<User>(), eventHostID: "2", code: "code", blackList: Set<User>(), requestList: [User](), description: "Test Description Hello") // delete this once figure out current user
-    // @EnvironmentObject var event: Event
+    //@State var event =
     
     //let testUser1 = User(userid: "1")
     //let testUser2 = User(userid: "2")
