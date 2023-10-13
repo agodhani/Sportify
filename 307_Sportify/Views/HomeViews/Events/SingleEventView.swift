@@ -38,6 +38,10 @@ struct SingleEventView: View {
     @State var eventm = EventMethods()
     //@State var event =
     
+    let db = Firestore.firestore()
+    let event_id = "0EA0ACAD-03B0-402B-860F-DE6E7D846A32"
+    
+    
     //let testUser1 = User(userid: "1")
     //let testUser2 = User(userid: "2")
     
@@ -235,6 +239,7 @@ struct SingleEventView: View {
                                                 action: do {
                                                     // TODO - ACCEPT USER
                                                     event.acceptUser(acceptUser: guest)
+                                                    db.collection("Events").document(event_id).updateData(["attendeeList": event.attendeeList])
                                                 }
                                             }
                                             .foregroundColor(.black)
@@ -248,6 +253,8 @@ struct SingleEventView: View {
                                                 action: do {
                                                     // TODO - REJECT USER
                                                     event.rejectUser(rejectUser: guest) // needs to be tested
+                                                    db.collection("Events").document(event_id).updateData(["attendeeList": event.attendeeList])
+                                                    
                                                 }
                                             }
                                             .foregroundColor(.black)
