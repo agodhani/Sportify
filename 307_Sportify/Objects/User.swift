@@ -75,7 +75,7 @@ struct User: Identifiable, Codable, Hashable {
     var profilePicture: String
     var age: Int
     var birthday: Date
-    var friendList: Set<String>
+    var friendList: [String]
     var blockList: Set<String>
     var eventsAttending: Set<String>
     var eventsHosting: Set<String>
@@ -116,6 +116,10 @@ struct User: Identifiable, Codable, Hashable {
     
     func hostEvent() {
         
+    }
+    
+    mutating func addFriend(name: String) {
+        friendList.append(name)
     }
     
     mutating func removeEventAttending(event: Event) {

@@ -148,7 +148,7 @@ struct ProfileView: View{
                 //}
                 Spacer()
                 
-                    Button("Friends"){
+                    Button("Add Friends"){
                         friendsView = true
                     }
                     .foregroundColor(.black)
