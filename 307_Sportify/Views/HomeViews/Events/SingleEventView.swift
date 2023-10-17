@@ -7,26 +7,89 @@
 import Foundation
 import SwiftUI
 import Firebase
-/*
+
 func getEvent(eventID: String) -> Event {
     var db = Firestore.firestore()
+    var ref = Database.database().reference()
     
-    var eventList = [Event]()
+    // Error event shows if the event is not found in the database
+    var event = Event(id: "error", eventName: "error", sport: 0, date: Date.now, location: "error", numAttendees: 0, attendeeList: Array<User>(), privateEvent: false, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "error", code: "error", blackList: Set<User>(), requestList: [], description: "error")
+    
+    /*let docRef = db.collection("Events").document(eventID)
+    docRef.getDocument(as: Event.self) { result in
+        
+        switch result {
+            
+        case.success:
+            
+            
+        case.failure(let error):
+            print("Error in accessing eventID: " + eventID)
+            
+        }
+        
+    }*/
+    
+    ref.child("Events").child(eventID).observeSingleEvent(of: .value, with: { snapshot in
+        
+        
 
-    db.collection("Events").addSnapshotListener {(querySnapshot, error) in
+        let data = snapshot.value as? Event
+        
+        let id = data?.id
+        let description = data?.description
+        let eventHostID = data?.eventHostID
+        let eventName = data?.eventName
+        let location = data?.location
+        let maxParticipants = data?.maxParticipants
+        let numAttendees = data?.numAttendees
+        let privateEvent = data?.privateEvent
+        let requestList = data?.requestList
+        let sport = data?.sport
+        let adminsList = data?.adminsList
+        let attendeeList = data?.attendeeList
+        let blackList = data?.blackList
+        let code = data?.code
+        let date = data?.date
+        event = Event(id: id!, eventName: eventName!, sport: sport!, date: date!, location: location!, numAttendees: numAttendees!, attendeeList: attendeeList!, privateEvent: privateEvent ?? false, maxParticipants: maxParticipants!, adminsList: adminsList!, eventHostID: eventHostID!, code: code!, blackList: blackList!, requestList: requestList!, description: description!)
+        
+    })
+    return event
+}
+    /*db.collection("Events").addSnapshotListener {(querySnapshot, error) in
         guard let documents = querySnapshot?.documents else {
             print("no documents")
-        }
-        eventList = documents.map{(queryDocumentSnapshot) -> Event in
-            let data = queryDocumentSnapshot.data()
-            let tempID = data["id"] as? String ?? ""
+            return
+        }*/
+        //eventList = documents.map{(queryDocumentSnapshot) -> Event in
+            /*
+            for event in eventList {
+                
+                let data = queryDocumentSnapshot.data()
+                let tempID = data["id"] as? String ?? ""
+                
+                if (tempID == eventID) {
+                    let description = data["description"]
+                    let eventHostID = data["eventHostID"]
+                    let eventName = data["eventName"]
+                    let id = data["id"]
+                    let location = data["location"]
+                    let maxParticipants = data["maxParticipants"]
+                    let numAttendees = data["numAttendees"]
+                    let privateEvent = data["privateEvent"]
+                    let requestList = data["requestList"]
+                    let sport = data["sport"]
+                    let adminsList = data["adminsList"]
+                    let attendeeList = data["attendeeList"]
+                    let blackList = data["blackList"]
+                    let code = data["code"]
+                    let date = data["date"]
+                    let event = Event(id: id as! String, eventName: eventName as! String, sport: sport as! Int, date: date as! Date, location: location as! String, numAttendees: numAttendees as! Int, attendeeList: attendeeList as! Array<User>, privateEvent: (privateEvent != nil), maxParticipants: maxParticipants as! Int, adminsList: adminsList as! Set<User>, eventHostID: eventHostID as! String, code: code as! String, blackList: blackList as! Set<User>, requestList: requestList as! [User], description: description as! String)
+                    return event
+            }*/
             
-            if (tempID == eventID) {
-                return data as Event
-            }
-        }
-    }
-}*/
+
+
 
 struct SingleEventView: View {
     @State var userAuth = UserAuthentication()
@@ -40,7 +103,7 @@ struct SingleEventView: View {
 
     
     let db = Firestore.firestore()
-    let event_id = "0EA0ACAD-03B0-402B-860F-DE6E7D846A32"
+    let event_id = "005861C7-AB71-48EF-B17A-515E88AA0D4B"
     
     
     //let testUser1 = User(userid: "1")
@@ -50,7 +113,8 @@ struct SingleEventView: View {
     //let testUser4 = User(userid: "4")
     
     var body: some View {
-        var event = Event(id: "", eventName: "", sport: 0, date: Date.now, location: "", numAttendees: 0, attendeeList: Array<User>(), privateEvent: false, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "", code: "", blackList: Set<User>(), requestList: [], description: "")
+        @State var event = getEvent(eventID: event_id)
+        //var event = Event(id: "", eventName: "", sport: 0, date: Date.now, location: "", numAttendees: 0, attendeeList: Array<User>(), privateEvent: false, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "", code: "", blackList: Set<User>(), requestList: [], description: "")
             //@State var currentUser = userAuth.currUser // uncomment
             @State var currentUser = User(id: "2", name: "test current user", email: "current@gmail.com", radius: 0, zipCode: "47906", sportsPreferences: [], privateAccount: false, profilePicture: "ERROR", age: 0, birthday: Date(), friendList: [], blockList: [], eventsAttending: [], eventsHosting: [])
             
