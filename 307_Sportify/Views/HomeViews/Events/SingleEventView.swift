@@ -7,7 +7,7 @@
 import Foundation
 import SwiftUI
 import Firebase
-
+/*
 func getEvent(eventID: String) -> Event {
     var db = Firestore.firestore()
     var ref = Database.database().reference()
@@ -15,24 +15,23 @@ func getEvent(eventID: String) -> Event {
     // Error event shows if the event is not found in the database
     var event = Event(id: "error", eventName: "error", sport: 0, date: Date.now, location: "error", numAttendees: 0, attendeeList: Array<User>(), privateEvent: false, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "error", code: "error", blackList: Set<User>(), requestList: [], description: "error")
     
-    /*let docRef = db.collection("Events").document(eventID)
+    let docRef = db.collection("Events").document(eventID)
+    
     docRef.getDocument(as: Event.self) { result in
         
         switch result {
-            
-        case.success:
-            
+        case.success(let copy):
+            event = copy
             
         case.failure(let error):
-            print("Error in accessing eventID: " + eventID)
-            
+            print("Error retrieving eventID: \(error)")
+            event = Event(id: "error2", eventName: "error2", sport: 0, date: Date.now, location: "error", numAttendees: 0, attendeeList: Array<User>(), privateEvent: false, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "error", code: "error", blackList: Set<User>(), requestList: [], description: "error")
         }
-        
-    }*/
+    }
     
-    ref.child("Events").child(eventID).observeSingleEvent(of: .value, with: { snapshot in
-        
-        
+    
+    
+    /*ref.child("Events").child(eventID).observeSingleEvent(of: .value, with: { snapshot in
 
         let data = snapshot.value as? Event
         
@@ -53,9 +52,9 @@ func getEvent(eventID: String) -> Event {
         let date = data?.date
         event = Event(id: id!, eventName: eventName!, sport: sport!, date: date!, location: location!, numAttendees: numAttendees!, attendeeList: attendeeList!, privateEvent: privateEvent ?? false, maxParticipants: maxParticipants!, adminsList: adminsList!, eventHostID: eventHostID!, code: code!, blackList: blackList!, requestList: requestList!, description: description!)
         
-    })
+    })*/
     return event
-}
+}*/
     /*db.collection("Events").addSnapshotListener {(querySnapshot, error) in
         guard let documents = querySnapshot?.documents else {
             print("no documents")
@@ -97,13 +96,12 @@ struct SingleEventView: View {
     
     // EVENT TODO how to get from outside
     //@Binding var eventID: String
-    @State var eventid: String // delete this once figure out current user
+    @State var eventid: String = "005861C7-AB71-48EF-B17A-515E88AA0D4B" // delete this once figure out current user
     @State var eventm = EventMethods()
-    //@State var event =
 
     
     let db = Firestore.firestore()
-    let event_id = "005861C7-AB71-48EF-B17A-515E88AA0D4B"
+    //let event_id =
     
     
     //let testUser1 = User(userid: "1")
@@ -113,7 +111,10 @@ struct SingleEventView: View {
     //let testUser4 = User(userid: "4")
     
     var body: some View {
-        @State var event = getEvent(eventID: event_id)
+        @State var event = Event(id: "error2", eventName: "error2", sport: 0, date: Date.now, location: "error", numAttendees: 0, attendeeList: Array<User>(), privateEvent: false, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "error", code: "error", blackList: Set<User>(), requestList: [], description: "error")
+        //onAppear(perform: event = await eventm.getEvent(eventID: eventid))
+                    
+        
         //var event = Event(id: "", eventName: "", sport: 0, date: Date.now, location: "", numAttendees: 0, attendeeList: Array<User>(), privateEvent: false, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "", code: "", blackList: Set<User>(), requestList: [], description: "")
             //@State var currentUser = userAuth.currUser // uncomment
             @State var currentUser = User(id: "2", name: "test current user", email: "current@gmail.com", radius: 0, zipCode: "47906", sportsPreferences: [], privateAccount: false, profilePicture: "ERROR", age: 0, birthday: Date(), friendList: [], blockList: [], eventsAttending: [], eventsHosting: [])
@@ -121,7 +122,7 @@ struct SingleEventView: View {
             @State var eventName = event.eventName
             @State var eventDate = event.date.formatted()
             // split into day (0) and time (1)
-            let eventArr = eventDate.split(separator: ",", maxSplits: 2, omittingEmptySubsequences: true)
+        var eventArr = eventDate.split(separator: ",", maxSplits: 2, omittingEmptySubsequences: true)
             @State var dateStr = String(eventArr[0])
             @State var timeStr = String(eventArr[1])
             @State var eventLocation = event.location
@@ -298,7 +299,7 @@ struct SingleEventView: View {
                                                 action: do {
                                                     // TODO - ACCEPT USER
                                                     event.acceptUser(acceptUser: guest)
-                                                    db.collection("Events").document(event_id).updateData(["attendeeList": event.attendeeList])
+                                                    db.collection("Events").document(eventid).updateData(["attendeeList": event.attendeeList])
                                                 }
                                                 }
                                                 .foregroundColor(.black)
@@ -312,7 +313,7 @@ struct SingleEventView: View {
                                                 action: do {
                                                     // TODO - REJECT USER
                                                     event.rejectUser(rejectUser: guest) // needs to be tested
-                                                    db.collection("Events").document(event_id).updateData(["attendeeList": event.attendeeList])
+                                                    db.collection("Events").document(eventid).updateData(["attendeeList": event.attendeeList])
                                                     
                                                 }
                                                 }
@@ -420,11 +421,21 @@ struct SingleEventView: View {
                         } // end ScrollView
                         
                     } // end else
-                    
-                    
                 } // end VStack
             } // end ZStack
-         
+        /*
+            .onAppear(perform: {
+                do {
+                    event = await eventm.getEvent(eventID: eventid)
+                    eventName = event.eventName
+                    eventDate = event.date.formatted()
+                    // split into day (0) and time (1)
+                    eventArr = eventDate.split(separator: ",", maxSplits: 2, omittingEmptySubsequences: true)
+                    dateStr = String(eventArr[0])
+                    timeStr = String(eventArr[1])
+                    eventLocation = event.location
+                }
+            })*/
     } // end View
 }
 
