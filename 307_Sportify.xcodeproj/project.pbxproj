@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		31562B9A2ACE4225002B3863 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31562B992ACE4225002B3863 /* EditProfileView.swift */; };
 		31562B9C2ACE4BDF002B3863 /* SelectPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31562B9B2ACE4BDF002B3863 /* SelectPicture.swift */; };
+		3174F1622AE08D6300C2C49D /* FlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3174F1612AE08D6300C2C49D /* FlowViewController.swift */; };
+		3174F1642AE08D9800C2C49D /* LoginSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3174F1632AE08D9800C2C49D /* LoginSignUpViewController.swift */; };
+		3174F1662AE0949D00C2C49D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3174F1652AE0949D00C2C49D /* Extensions.swift */; };
 		31854A142AD9332E007346F8 /* EditEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31854A132AD9332E007346F8 /* EditEventView.swift */; };
 		31854A162AD9E66F007346F8 /* JoinEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31854A152AD9E66F007346F8 /* JoinEvent.swift */; };
 		31854A182AD9ED4F007346F8 /* UserMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31854A172AD9ED4F007346F8 /* UserMethods.swift */; };
@@ -75,6 +78,9 @@
 /* Begin PBXFileReference section */
 		31562B992ACE4225002B3863 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		31562B9B2ACE4BDF002B3863 /* SelectPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPicture.swift; sourceTree = "<group>"; };
+		3174F1612AE08D6300C2C49D /* FlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowViewController.swift; sourceTree = "<group>"; };
+		3174F1632AE08D9800C2C49D /* LoginSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignUpViewController.swift; sourceTree = "<group>"; };
+		3174F1652AE0949D00C2C49D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		31854A132AD9332E007346F8 /* EditEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventView.swift; sourceTree = "<group>"; };
 		31854A152AD9E66F007346F8 /* JoinEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinEvent.swift; sourceTree = "<group>"; };
 		31854A172AD9ED4F007346F8 /* UserMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMethods.swift; sourceTree = "<group>"; };
@@ -150,6 +156,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3174F15E2AE084AB00C2C49D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3174F1612AE08D6300C2C49D /* FlowViewController.swift */,
+				3174F1632AE08D9800C2C49D /* LoginSignUpViewController.swift */,
+				3174F1652AE0949D00C2C49D /* Extensions.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		BA2570CC2AC7B831004E528A /* Objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +230,7 @@
 		BA8B74992AC6301400BBE70B /* 307_Sportify */ = {
 			isa = PBXGroup;
 			children = (
+				3174F15E2AE084AB00C2C49D /* Controllers */,
 				BA8B74E42AC679AF00BBE70B /* App */,
 				BA2570CF2AC89B2C004E528A /* Methods */,
 				BA8B74E12AC671A900BBE70B /* Views */,
@@ -400,7 +417,10 @@
 				BA0D67362AD9D26000F77044 /* ViewEventsListView.swift in Sources */,
 				BA2570D32AC8A58D004E528A /* SignUpView.swift in Sources */,
 				FBBBD55E2AD92FB900050C36 /* AllUsers.swift in Sources */,
+				3174F1622AE08D6300C2C49D /* FlowViewController.swift in Sources */,
+				3174F1642AE08D9800C2C49D /* LoginSignUpViewController.swift in Sources */,
 				BA44F8C62AD9045100BB0CE7 /* EventMethods.swift in Sources */,
+				3174F1662AE0949D00C2C49D /* Extensions.swift in Sources */,
 				BA2570CE2AC7B846004E528A /* User.swift in Sources */,
 				BAFF1CDB2AD2854A0010D8B3 /* Sport.swift in Sources */,
 				6DAC698C2AD984B8001C197E /* OldBlockView.swift in Sources */,

@@ -8,17 +8,17 @@
 import SwiftUI
 import UIKit
 
-class ViewController: UIViewController {
-    
-    @IBAction func buttonAction(_ sender: UIButton) {
-        let overLayer = OverLayerPopUp()
-        overLayer.appear(sender: self)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-}
+//class ViewController: UIViewController {
+//    
+//    @IBAction func buttonAction(_ sender: UIButton) {
+//        let overLayer = OverLayerPopUp()
+//        overLayer.appear(sender: self)
+//    }
+//    
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//    }
+//}
 
 class OverLayerPopUp: UIViewController {
     
@@ -82,7 +82,7 @@ struct ForgotPasswordView: View {
     @State private var email = "";
     @EnvironmentObject var userAuth: UserAuthentication
     @State var popUp: OverLayerPopUp = OverLayerPopUp()
-    @State var uiController: ViewController = ViewController()
+//    @State var uiController: ViewController = ViewController()
     @State private var test = "";
     @State var statusText = "Input your associated account email"
     
