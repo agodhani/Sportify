@@ -98,7 +98,6 @@ struct SingleEventView: View {
     //@Binding var eventID: String
     @State var eventid: String = "005861C7-AB71-48EF-B17A-515E88AA0D4B" // delete this once figure out current user
     @State var eventm = EventMethods()
-
     
     let db = Firestore.firestore()
     //let event_id =
@@ -111,29 +110,27 @@ struct SingleEventView: View {
     //let testUser4 = User(userid: "4")
     
     var body: some View {
-        @State var event = Event(id: "error2", eventName: "error2", sport: 0, date: Date.now, location: "error", numAttendees: 0, attendeeList: Array<User>(), privateEvent: false, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "error", code: "error", blackList: Set<User>(), requestList: [], description: "error")
+        var event = Event(id: "error2", eventName: "error2", sport: 0, date: Date.now, location: "error", numAttendees: 0, attendeeList: Array<User>(), privateEvent: false, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "error", code: "error", blackList: Set<User>(), requestList: [], description: "error")
         //onAppear(perform: event = await eventm.getEvent(eventID: eventid))
-                    
         
         //var event = Event(id: "", eventName: "", sport: 0, date: Date.now, location: "", numAttendees: 0, attendeeList: Array<User>(), privateEvent: false, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "", code: "", blackList: Set<User>(), requestList: [], description: "")
             //@State var currentUser = userAuth.currUser // uncomment
             @State var currentUser = User(id: "2", name: "test current user", email: "current@gmail.com", radius: 0, zipCode: "47906", sportsPreferences: [], privateAccount: false, profilePicture: "ERROR", age: 0, birthday: Date(), friendList: [], blockList: [], eventsAttending: [], eventsHosting: [])
             
-            @State var eventName = event.eventName
-            @State var eventDate = event.date.formatted()
+            var eventName = event.eventName
+            var eventDate = event.date.formatted()
             // split into day (0) and time (1)
         var eventArr = eventDate.split(separator: ",", maxSplits: 2, omittingEmptySubsequences: true)
             @State var dateStr = String(eventArr[0])
-            @State var timeStr = String(eventArr[1])
-            @State var eventLocation = event.location
-            
+        @State var timeStr = String(eventArr[1])
+        @State var eventLocation = event.location
             //@State var dateStr = String(eventArr[0] + " at" + eventArr[1]) // TODO, this needs to be a date not string
             
             //event.location // TODO ???
             
             //let guestList: [User] = [testUser1, testUser2] // TODO set this to the actual guestList / attendee list from current event
             //let testList: [User] = [testUser3, testUser4] // TODO this
-            
+        
             ZStack {
                 Color.black.ignoresSafeArea()
                 
@@ -165,6 +162,18 @@ struct SingleEventView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.leading, 20)
                             .padding(.top, -15)
+                            .onAppear { // TODO this doesn't work for some reason
+                                Task (priority: .userInitiated) {
+                                    event = await eventm.getEvent(eventID: eventid)
+                                    eventName = event.eventName
+                                    eventDate = event.date.formatted()
+                                    // split into day (0) and time (1)
+                                    eventArr = eventDate.split(separator: ",", maxSplits: 2, omittingEmptySubsequences: true)
+                                    dateStr = String(eventArr[0])
+                                    timeStr = String(eventArr[1])
+                                    eventLocation = event.location
+                                }
+                            }
                         
                         HStack {
                             TextField(dateStr, text: $dateStr) // TODO need to be able to update this
@@ -346,6 +355,19 @@ struct SingleEventView: View {
                             .multilineTextAlignment(.leading)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.leading, 20)
+                            .onAppear { // TODO this doesn't work for some reason
+                                Task (priority: .userInitiated) {
+                                    let eventx = await eventm.getEvent(eventID: eventid)
+                                    print("Test: \(eventx.eventName)")
+                                    eventName = eventx.eventName
+                                    eventDate = eventx.date.formatted()
+                                    // split into day (0) and time (1)
+                                    eventArr = eventDate.split(separator: ",", maxSplits: 2, omittingEmptySubsequences: true)
+                                    dateStr = String(eventArr[0])
+                                    timeStr = String(eventArr[1])
+                                    eventLocation = eventx.location
+                                }
+                            }
                         
                         Text(event.eventName)
                             .foregroundColor(.white)

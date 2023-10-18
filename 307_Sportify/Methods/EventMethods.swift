@@ -34,7 +34,6 @@ class EventMethods: ObservableObject {
         } catch {
             print("Event Creation Failed")
         }
-        
     }
     
     func getEvent(eventID: Event.ID) async -> Event {
@@ -47,6 +46,25 @@ class EventMethods: ObservableObject {
         } catch {
             print("Event Data retrival failed - you suck!")
             return Event(id: "", eventName: "", sport: 0, date: Date.now, location: "", numAttendees: 0, attendeeList: Array<User>(), privateEvent: false, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "", code: "", blackList: Set<User>(), requestList: [], description: "")
+        }
+    }
+    
+    func getAllEvents() async {
+        var eventArr: [Event]
+        
+        do {
+            let eventDocuments = Firestore.firestore().collection("Event").getDocuments() {(querySnapshot, err) in
+                if let err = err {
+                    print("Error getting event documents: \(err)")
+                } else {
+                    for event in querySnapshot!.documents {
+                        // TODO
+                    }
+                }
+            }
+            
+        } catch {
+            print("Event Data retrival failed")
         }
     }
     
