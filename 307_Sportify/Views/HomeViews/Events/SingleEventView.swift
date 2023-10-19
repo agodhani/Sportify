@@ -110,7 +110,7 @@ struct SingleEventView: View {
     //let testUser4 = User(userid: "4")
     
     var body: some View {
-        var event = Event(id: "error2", eventName: "error2", sport: 0, date: Date.now, location: "error", numAttendees: 0, attendeeList: Array<User>(), privateEvent: false, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "error", code: "error", blackList: Set<User>(), requestList: [], description: "error")
+        var event = Event(id: "error id", eventName: "error name", sport: 0, date: Date.now, location: "error location", numAttendees: 0, attendeeList: Array<User>(), privateEvent: false, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "2", code: "code", blackList: Set<User>(), requestList: [], description: "error description")
         //onAppear(perform: event = await eventm.getEvent(eventID: eventid))
         
         //var event = Event(id: "", eventName: "", sport: 0, date: Date.now, location: "", numAttendees: 0, attendeeList: Array<User>(), privateEvent: false, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "", code: "", blackList: Set<User>(), requestList: [], description: "")
@@ -124,6 +124,7 @@ struct SingleEventView: View {
             @State var dateStr = String(eventArr[0])
         @State var timeStr = String(eventArr[1])
         @State var eventLocation = event.location
+        @State var eventCode = event.code
             //@State var dateStr = String(eventArr[0] + " at" + eventArr[1]) // TODO, this needs to be a date not string
             
             //event.location // TODO ???
@@ -172,6 +173,7 @@ struct SingleEventView: View {
                                     dateStr = String(eventArr[0])
                                     timeStr = String(eventArr[1])
                                     eventLocation = event.location
+                                    eventCode = event.code
                                 }
                             }
                         
@@ -217,6 +219,23 @@ struct SingleEventView: View {
                             .multilineTextAlignment(.leading)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.leading, 20)
+                        
+                        HStack { // TODO must update code in the database
+                            Text("Code:")
+                                .foregroundColor(.gray)
+                                .font(.system(size: 15, weight: .heavy, design: .default))
+                                .multilineTextAlignment(.leading)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.leading, 20)
+                            
+                            SecureField("Code", text: $eventCode)
+                                .foregroundColor(.gray)
+                                .font(.system(size: 15, weight: .heavy, design: .default))
+                                .multilineTextAlignment(.leading)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.leading, -130)
+                        }
+
                         
                         // Guest List
                         Text("Guest List")
@@ -366,6 +385,7 @@ struct SingleEventView: View {
                                     dateStr = String(eventArr[0])
                                     timeStr = String(eventArr[1])
                                     eventLocation = eventx.location
+                                    eventCode = event.code
                                 }
                             }
                         
@@ -456,6 +476,7 @@ struct SingleEventView: View {
                     dateStr = String(eventArr[0])
                     timeStr = String(eventArr[1])
                     eventLocation = event.location
+                    eventCode = event.code
                 }
             })*/
     } // end View
