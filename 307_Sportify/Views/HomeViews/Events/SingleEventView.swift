@@ -125,6 +125,11 @@ struct SingleEventView: View {
         @State var timeStr = String(eventArr[1])
         @State var eventLocation = event.location
         @State var eventCode = event.code
+        @State var codeShowing = false
+        @State var showingImage = "eye.slash"
+        @State var hiddenOpacity = 1.0
+        @State var revealOpacity = 0.0
+        @State var typingCode = eventCode
             //@State var dateStr = String(eventArr[0] + " at" + eventArr[1]) // TODO, this needs to be a date not string
             
             //event.location // TODO ???
@@ -221,6 +226,20 @@ struct SingleEventView: View {
                             .padding(.leading, 20)
                         
                         HStack { // TODO must update code in the database
+                            
+                            Button {
+                                codeShowing = !codeShowing
+                                if codeShowing {
+                                    showingImage = "eye"
+                                } else {
+                                    showingImage = "eye.slash"
+                                }
+                            } label: {
+                                Image(systemName: "\(showingImage)")
+                            }
+                            .padding(.trailing, -30)
+                            .controlSize(.mini)
+                            
                             Text("Code:")
                                 .foregroundColor(.gray)
                                 .font(.system(size: 15, weight: .heavy, design: .default))
@@ -228,12 +247,65 @@ struct SingleEventView: View {
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.leading, 20)
                             
-                            SecureField("Code", text: $eventCode)
-                                .foregroundColor(.gray)
-                                .font(.system(size: 15, weight: .heavy, design: .default))
-                                .multilineTextAlignment(.leading)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(.leading, -130)
+                            Group {
+                                if (!codeShowing) {
+                                    SecureField("Code", text: $eventCode)
+                                        .autocapitalization(.none)
+                                        .opacity(1.0)
+                                } else {
+                                    TextField ("Code", text: $eventCode)
+                                        .autocapitalization(.none)
+                                        .opacity(1.0)
+                                }
+                            }
+                            .foregroundColor(.gray)
+                            .font(.system(size: 15, weight: .heavy, design: .default))
+                            .multilineTextAlignment(.leading)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.leading, -130)
+                            
+                            
+                            /*
+                            ZStack {
+                                SecureField("Code", text: $typingCode)
+                                    .foregroundColor(.gray)
+                                    .font(.system(size: 15, weight: .heavy, design: .default))
+                                    .multilineTextAlignment(.leading)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding(.leading, -130)
+                                    .opacity(hiddenOpacity)
+                                    .onAppear {
+                                        Task {
+                                            if codeShowing {
+                                                hiddenOpacity = 0.0
+                                            } else {
+                                                hiddenOpacity = 1.0
+                                            }
+                                        }
+                                    }
+                                
+                                TextField("Code", text: $typingCode)
+                                    .foregroundColor(.gray)
+                                    .font(.system(size: 15, weight: .heavy, design: .default))
+                                    .multilineTextAlignment(.leading)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding(.leading, -130)
+                                    .opacity(revealOpacity)
+                                    .onAppear {
+                                        Task {
+                                            if codeShowing {
+                                                revealOpacity = 1.0
+                                            } else {
+                                                revealOpacity = 0.0
+                                            }
+                                        }
+                                    }
+                                Button("Save") {
+                                    event.code = typingCode
+                                }
+                                .padding(.leading, -180)
+                                .controlSize(.mini)
+                            }*/
                         }
 
                         
