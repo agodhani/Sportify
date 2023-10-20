@@ -134,6 +134,12 @@ struct Event: Identifiable, Codable {
         }
     }
     
+    mutating func updateCode(code: String) {
+        self.code = code
+        // TODO update database
+
+    }
+    
     func getDescription() -> String {
         return self.description
     }

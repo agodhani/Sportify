@@ -148,12 +148,16 @@ struct SingleEventView: View {
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.leading, -120)
                                 .textInputAutocapitalization(.never)
-                                .focused($isFocused) // <-- add here
+                                .focused($isFocused)
+                                .onSubmit {
+                                    // TODO update the database completely
+                                    event.updateCode(code: eventCode)
+                                }
                             
-                            Button("Save") {
+                            /*Button("Save") {
                                 
                             }
-                            .padding(.leading, -250)
+                            .padding(.leading, -250)*/
 
                             
                             /*Group {
@@ -463,6 +467,6 @@ struct SingleEventView: View {
 }
 
 #Preview {
-    SingleEventView(eventid: UUID().uuidString) // UUID().uuidString
+    SingleEventView(eventid: "005861C7-AB71-48EF-B17A-515E88AA0D4B") // UUID().uuidString
     // "005861C7-AB71-48EF-B17A-515E88AA0D4B"
 }
