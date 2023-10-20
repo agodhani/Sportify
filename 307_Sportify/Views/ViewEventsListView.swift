@@ -13,23 +13,25 @@ struct ViewEventsListView: View {
 
     
     var body: some View {
-        NavigationView {
-            List(allEvents.events) { event in
-                NavigationLink(destination: SingleEventView(eventid: event.id)) {
-                    Text(event.name)
-                }
-                
+        ZStack {
+            
+            NavigationView {
+                List(allEvents.events) { event in
+                    NavigationLink(destination: SingleEventView(eventid: event.id)) {
+                        Text(event.name)
+                    }
+                    
                 }
             } .navigationBarTitle("All Events")
                 .onAppear(){
                     allEvents.getEvents()
                 }
-                
         }
     }
+}
 
 #Preview {
-    FriendListView()
+    ViewEventsListView()
 }
 /*
  struct EventDetailsView: View {

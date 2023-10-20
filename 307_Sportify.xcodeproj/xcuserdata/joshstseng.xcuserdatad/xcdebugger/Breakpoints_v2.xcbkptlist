@@ -22,7 +22,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "D3611096-4FD5-4F8B-A7F5-6203281B9076"
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "307_Sportify/Methods/EventMethods.swift"
@@ -69,134 +69,8 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6EDBC6CE-14EC-428C-BA0A-4294C79E6AE4"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "307_Sportify/Methods/EventMethods.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "getEvent(eventID:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "6EDBC6CE-14EC-428C-BA0A-4294C79E6AE4 - 61c9947577578fed"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for _07_Sportify.EventMethods.getEvent(eventID: Swift.String) async -&gt; _07_Sportify.Event"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/SportifyPlZDontBreakDev/307_Sportify/Methods/EventMethods.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "41"
-                  endingLineNumber = "41"
-                  offsetFromSymbolStart = "92">
-               </Location>
-               <Location
-                  uuid = "6EDBC6CE-14EC-428C-BA0A-4294C79E6AE4 - 49dd20cb4ecdfcf7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for _07_Sportify.EventMethods.getEvent(eventID: Swift.String) async -&gt; _07_Sportify.Event"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/SportifyPlZDontBreakDev/307_Sportify/Methods/EventMethods.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "41"
-                  endingLineNumber = "41"
-                  offsetFromSymbolStart = "52">
-               </Location>
-               <Location
-                  uuid = "6EDBC6CE-14EC-428C-BA0A-4294C79E6AE4 - f57fe199ed7143ef"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for _07_Sportify.EventMethods.getEvent(eventID: Swift.String) async -&gt; _07_Sportify.Event"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/SportifyPlZDontBreakDev/307_Sportify/Methods/EventMethods.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "41"
-                  endingLineNumber = "41"
-                  offsetFromSymbolStart = "80">
-               </Location>
-               <Location
-                  uuid = "6EDBC6CE-14EC-428C-BA0A-4294C79E6AE4 - 3eb4d7eb901de5d0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(4) suspend resume partial function for _07_Sportify.EventMethods.getEvent(eventID: Swift.String) async -&gt; _07_Sportify.Event"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/SportifyPlZDontBreakDev/307_Sportify/Methods/EventMethods.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "41"
-                  endingLineNumber = "41"
-                  offsetFromSymbolStart = "68">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C63972F8-60F1-43F8-B038-17841C617511"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "307_Sportify/Methods/EventMethods.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "getEvent(eventID:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "86D13BC6-76F8-4D25-969F-3885777C230C"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "307_Sportify/Methods/EventMethods.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "getEvent(eventID:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "EFFC3A17-5554-4DAA-9BD1-880F02E4645F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "307_Sportify/Methods/EventMethods.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "getEvent(eventID:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "E11F74E4-FBAD-4471-A356-6BB2EBDA0F09"
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "307_Sportify/Methods/EventMethods.swift"
@@ -211,214 +85,63 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1EAB591B-65F2-4223-9069-A905DD7BE6B8"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "307_Sportify/Views/HomeViews/Events/SingleEventView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "unknown"
-            landmarkType = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B9EB9EDF-0516-4164-8D9B-3A072B3EE4DA"
+            uuid = "EFD8EA4A-0022-4929-9B2D-AC8A5691E61F"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "307_Sportify/Views/HomeViews/Events/SingleEventView.swift"
+            filePath = "307_Sportify/Views/ViewEventsListView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "SingleEventView"
-            landmarkType = "14">
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E614A7F9-55CE-43EC-BE72-55BDFE42416A"
-            shouldBeEnabled = "Yes"
+            uuid = "3A51D0F9-5DED-4242-AAAF-2F3A4D59FA3B"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "307_Sportify/Views/HomeViews/Events/SingleEventView.swift"
+            filePath = "307_Sportify/Views/ViewEventsListView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "SingleEventView"
-            landmarkType = "14">
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "body"
+            landmarkType = "24">
             <Locations>
                <Location
-                  uuid = "E614A7F9-55CE-43EC-BE72-55BDFE42416A - d328e5561a36cf5f"
+                  uuid = "3A51D0F9-5DED-4242-AAAF-2F3A4D59FA3B - a2f56bdc186e3c11"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "_07_Sportify.SingleEventView.init() -&gt; _07_Sportify.SingleEventView"
+                  symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onAppear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.ZStack&lt;&lt;&lt;opaque return type of SwiftUI.View.onAppear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0&gt;, SwiftUI.List&lt;Swift.Never, SwiftUI.ForEach&lt;Swift.Array&lt;_07_Sportify.EventHighLevel&gt;, Swift.String, SwiftUI.NavigationLink&lt;SwiftUI.Text, _07_Sportify.SingleEventView&gt;&gt;&gt;)&gt; in _07_Sportify.ViewEventsListView.body.getter : some"
                   moduleName = "307_Sportify"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/SportifyPlZDontBreakDev/307_Sportify/Views/HomeViews/Events/SingleEventView.swift"
+                  urlString = "file:///Users/joshstseng/XCODE%20projects/SportifyPlZDontBreakDev/307_Sportify/Views/ViewEventsListView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "107"
-                  endingLineNumber = "107"
-                  offsetFromSymbolStart = "1020">
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "64">
                </Location>
                <Location
-                  uuid = "E614A7F9-55CE-43EC-BE72-55BDFE42416A - 1c6199c653500af8"
+                  uuid = "3A51D0F9-5DED-4242-AAAF-2F3A4D59FA3B - 7a9b80cb846dc443"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "_07_Sportify.SingleEventView.init(event: _07_Sportify.Event, userAuth: _07_Sportify.UserAuthentication, editingMode: Swift.Bool, eventid: Swift.String, eventm: _07_Sportify.EventMethods, eventCode: Swift.String) -&gt; _07_Sportify.SingleEventView"
+                  symbolName = "closure #1 () -&gt; SwiftUI.Text in closure #1 (_07_Sportify.EventHighLevel) -&gt; SwiftUI.NavigationLink&lt;SwiftUI.Text, _07_Sportify.SingleEventView&gt; in closure #1 () -&gt; SwiftUI.List&lt;Swift.Never, SwiftUI.ForEach&lt;Swift.Array&lt;_07_Sportify.EventHighLevel&gt;, Swift.String, SwiftUI.NavigationLink&lt;SwiftUI.Text, _07_Sportify.SingleEventView&gt;&gt;&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onAppear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0 in _07_Sportify.ViewEventsListView.body.getter : some"
                   moduleName = "307_Sportify"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/SportifyPlZDontBreakDev/307_Sportify/Views/HomeViews/Events/SingleEventView.swift"
+                  urlString = "file:///Users/joshstseng/XCODE%20projects/SportifyPlZDontBreakDev/307_Sportify/Views/ViewEventsListView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "107"
-                  endingLineNumber = "107"
-                  offsetFromSymbolStart = "412">
-               </Location>
-               <Location
-                  uuid = "E614A7F9-55CE-43EC-BE72-55BDFE42416A - 205b92ba37eafbdd"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "property wrapper backing initializer of _07_Sportify.SingleEventView.eventCode : Swift.String"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/SportifyPlZDontBreakDev/307_Sportify/Views/HomeViews/Events/SingleEventView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "36">
-               </Location>
-               <Location
-                  uuid = "E614A7F9-55CE-43EC-BE72-55BDFE42416A - be280a64974ff137"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "_07_Sportify.SingleEventView.eventCode.getter : Swift.String"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/SportifyPlZDontBreakDev/307_Sportify/Views/HomeViews/Events/SingleEventView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "20">
-               </Location>
-               <Location
-                  uuid = "E614A7F9-55CE-43EC-BE72-55BDFE42416A - d70fb472dc64f358"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "_07_Sportify.SingleEventView.eventCode.setter : Swift.String"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/SportifyPlZDontBreakDev/307_Sportify/Views/HomeViews/Events/SingleEventView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "107"
-                  endingLineNumber = "107"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "E614A7F9-55CE-43EC-BE72-55BDFE42416A - 81953e884dbc9769"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "_07_Sportify.SingleEventView.eventCode.modify : Swift.String"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/SportifyPlZDontBreakDev/307_Sportify/Views/HomeViews/Events/SingleEventView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "107"
-                  endingLineNumber = "107"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "E614A7F9-55CE-43EC-BE72-55BDFE42416A - f7a2ed522b64dc36"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "_07_Sportify.SingleEventView.eventCode.modify : Swift.String with unmangled suffix &quot;.resume.0&quot;"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/SportifyPlZDontBreakDev/%3Ccompiler-generated%3E"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "48">
-               </Location>
-               <Location
-                  uuid = "E614A7F9-55CE-43EC-BE72-55BDFE42416A - 45dac703f93fe04b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "_07_Sportify.SingleEventView.$eventCode.getter : SwiftUI.Binding&lt;Swift.String&gt;"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/SportifyPlZDontBreakDev/307_Sportify/Views/HomeViews/Events/SingleEventView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "20">
-               </Location>
-               <Location
-                  uuid = "E614A7F9-55CE-43EC-BE72-55BDFE42416A - 409beb2dc98a63f4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "default argument 6 of _07_Sportify.SingleEventView.init(event: _07_Sportify.Event, userAuth: _07_Sportify.UserAuthentication, editingMode: Swift.Bool, eventName: Swift.String, eventid: Swift.String, eventm: _07_Sportify.EventMethods, eventCode: Swift.String) -&gt; _07_Sportify.SingleEventView"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/SportifyPlZDontBreakDev/307_Sportify/Views/HomeViews/Events/SingleEventView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "24">
-               </Location>
-               <Location
-                  uuid = "E614A7F9-55CE-43EC-BE72-55BDFE42416A - 45dac703f93fd210"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "_07_Sportify.SingleEventView.$eventCode.getter : SwiftUI.Binding&lt;Swift.String&gt;"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/SportifyPlZDontBreakDev/307_Sportify/Views/HomeViews/Events/SingleEventView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "107"
-                  endingLineNumber = "107"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "E614A7F9-55CE-43EC-BE72-55BDFE42416A - d5b4accd3e852402"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "default argument 6 of _07_Sportify.SingleEventView.init(event: _07_Sportify.Event, userAuth: _07_Sportify.UserAuthentication, editingMode: Swift.Bool, eventName: Swift.String, eventid: Swift.String, eventm: _07_Sportify.EventMethods, eventCode: Swift.String, eventDate: Swift.String, eventArr: Swift.Array&lt;Swift.Substring&gt;, dateStr: Swift.String, timeStr: Swift.String) -&gt; _07_Sportify.SingleEventView"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/SportifyPlZDontBreakDev/307_Sportify/Views/HomeViews/Events/SingleEventView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "24">
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "88">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -426,17 +149,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1ACB52F7-AA9F-4BB9-B488-091553C88662"
+            uuid = "B589CC9A-7D52-4B61-BF61-F0EB8AE6DB39"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "307_Sportify/Views/HomeViews/Events/SingleEventView.swift"
+            filePath = "307_Sportify/Methods/EventMethods.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "546"
-            endingLineNumber = "546"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "getEvent(eventID:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
