@@ -91,45 +91,39 @@ func getEvent(eventID: String) -> Event {
 
 
 struct SingleEventView: View {
+    
+    @State var event = Event(id: "error id", eventName: "error name", sport: 0, date: Date.now, location: "error location", numAttendees: 0, attendeeList: Array<User>(), privateEvent: false, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "2", code: "code", blackList: Set<User>(), requestList: [], description: "error description")
+    
     @State var userAuth = UserAuthentication()
+    @State var editingMode = false
+    @State var eventName = ""
+
     // how to get the current user? TODO change this once figured out
     
     // EVENT TODO how to get from outside
     //@Binding var eventID: String
     @State var eventid: String = "005861C7-AB71-48EF-B17A-515E88AA0D4B" // delete this once figure out current user
     @State var eventm = EventMethods()
+    @State var eventCode = ""
+    @State var eventDate: String = ""
+    @State var eventArr: [String.SubSequence] = []
+    //eventDate.split(separator: ",", maxSplits: 2, omittingEmptySubsequences: true)
+    @State var dateStr: String = ""
+    @State var timeStr: String = ""
+    @State var eventLocation: String = ""
     
     let db = Firestore.firestore()
-    //let event_id =
-    
-    
-    //let testUser1 = User(userid: "1")
-    //let testUser2 = User(userid: "2")
-    
-    //let testUser3 = User(userid: "3")
-    //let testUser4 = User(userid: "4")
     
     var body: some View {
-        var event = Event(id: "error id", eventName: "error name", sport: 0, date: Date.now, location: "error location", numAttendees: 0, attendeeList: Array<User>(), privateEvent: false, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "2", code: "code", blackList: Set<User>(), requestList: [], description: "error description")
-        //onAppear(perform: event = await eventm.getEvent(eventID: eventid))
-        
-        //var event = Event(id: "", eventName: "", sport: 0, date: Date.now, location: "", numAttendees: 0, attendeeList: Array<User>(), privateEvent: false, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "", code: "", blackList: Set<User>(), requestList: [], description: "")
-            //@State var currentUser = userAuth.currUser // uncomment
-            @State var currentUser = User(id: "2", name: "test current user", email: "current@gmail.com", radius: 0, zipCode: "47906", sportsPreferences: [], privateAccount: false, profilePicture: "ERROR", age: 0, birthday: Date(), friendList: [], blockList: [], eventsAttending: [], eventsHosting: [])
+
+        @State var currentUser = User(id: "tWqBAVZ9uFgyusKjyIFZGuyNZqb2", name: "test current user", email: "current@gmail.com", radius: 0, zipCode: "47906", sportsPreferences: [], privateAccount: false, profilePicture: "ERROR", age: 0, birthday: Date(), friendList: [], blockList: [], eventsAttending: [], eventsHosting: [])
             
-            var eventName = event.eventName
-            var eventDate = event.date.formatted()
-            // split into day (0) and time (1)
-        var eventArr = eventDate.split(separator: ",", maxSplits: 2, omittingEmptySubsequences: true)
-            @State var dateStr = String(eventArr[0])
-        @State var timeStr = String(eventArr[1])
-        @State var eventLocation = event.location
-        @State var eventCode = event.code
+        @FocusState var isFocused: Bool
         @State var codeShowing = false
         @State var showingImage = "eye.slash"
         @State var hiddenOpacity = 1.0
         @State var revealOpacity = 0.0
-        @State var typingCode = eventCode
+        
             //@State var dateStr = String(eventArr[0] + " at" + eventArr[1]) // TODO, this needs to be a date not string
             
             //event.location // TODO ???
@@ -168,19 +162,6 @@ struct SingleEventView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.leading, 20)
                             .padding(.top, -15)
-                            .onAppear { // TODO this doesn't work for some reason
-                                Task (priority: .userInitiated) {
-                                    event = await eventm.getEvent(eventID: eventid)
-                                    eventName = event.eventName
-                                    eventDate = event.date.formatted()
-                                    // split into day (0) and time (1)
-                                    eventArr = eventDate.split(separator: ",", maxSplits: 2, omittingEmptySubsequences: true)
-                                    dateStr = String(eventArr[0])
-                                    timeStr = String(eventArr[1])
-                                    eventLocation = event.location
-                                    eventCode = event.code
-                                }
-                            }
                         
                         HStack {
                             TextField(dateStr, text: $dateStr) // TODO need to be able to update this
@@ -247,7 +228,22 @@ struct SingleEventView: View {
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.leading, 20)
                             
-                            Group {
+                            TextField("Code", text: $eventCode)
+                                .foregroundColor(.gray)
+                                .font(.system(size: 15, weight: .heavy, design: .default))
+                                .multilineTextAlignment(.leading)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.leading, -120)
+                                .textInputAutocapitalization(.never)
+                                .focused($isFocused) // <-- add here
+                            
+                            Button("Save") {
+                                
+                            }
+                            .padding(.leading, -250)
+
+                            
+                            /*Group {
                                 if (!codeShowing) {
                                     SecureField("Code", text: $eventCode)
                                         .autocapitalization(.none)
@@ -262,7 +258,7 @@ struct SingleEventView: View {
                             .font(.system(size: 15, weight: .heavy, design: .default))
                             .multilineTextAlignment(.leading)
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.leading, -130)
+                            .padding(.leading, -130)*/
                             
                             
                             /*
@@ -536,7 +532,20 @@ struct SingleEventView: View {
                         
                     } // end else
                 } // end VStack
-            } // end ZStack
+            }
+            .onAppear { // TODO this doesn't work for some reason
+                Task (priority: .userInitiated) {
+                    event = await eventm.getEvent(eventID: eventid)
+                    eventName = event.eventName
+                    eventDate = event.date.formatted()
+                    // split into day (0) and time (1)
+                    eventArr = eventDate.split(separator: ",", maxSplits: 2, omittingEmptySubsequences: true)
+                    dateStr = String(eventArr[0])
+                    timeStr = String(eventArr[1])
+                    eventLocation = event.location
+                    eventCode = event.code
+                }
+            }// end ZStack
         /*
             .onAppear(perform: {
                 do {

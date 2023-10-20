@@ -102,6 +102,7 @@ struct ForgotPasswordView: View {
                     .background(Color.white.opacity(0.8))
                     .frame(width: 300, height: 50)
                     .clipShape(Rectangle())
+                    .textInputAutocapitalization(.never)
                 
                 // submit button
                 Button("Submit") {
