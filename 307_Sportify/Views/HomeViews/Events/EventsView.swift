@@ -32,6 +32,16 @@ struct EventsView: View {
         ZStack (alignment: .top) {
             Color.black.ignoresSafeArea()
             
+            Button("Create Event") {
+                createEvent = true
+            }.foregroundColor(.black)
+                .font(.system(size: 15, weight: .heavy, design: .default))
+                .frame(width: 110, height: 30)
+                .background(Color("SportGold"))
+                .cornerRadius(200)
+                .offset(CGSize(width: 125, height: -30))
+                .controlSize(.mini)
+            
             VStack (alignment: .center) {
                 
                 /*Text(currentUser.id) // trying to see the currentUser ID
@@ -39,7 +49,7 @@ struct EventsView: View {
                 
                 Text("MY EVENTS")
                     .foregroundColor(Color("SportGold"))
-                    .background(.black)
+                    .background(.clear)
                     //.offset(CGSize(width: 0, height: -350))
                     .font(.system(size: 40, weight: .heavy, design: .default))
                     .onAppear {
@@ -88,19 +98,8 @@ struct EventsView: View {
                 .background(Color.sportGold).frame(width: 500)
                 .frame(maxWidth: .infinity)
                 .edgesIgnoringSafeArea(.all)
-                
-                // Add the Create Event Button - Josh
-                // Add Edit Event Button - Josh
+                                
                 /*
-                Button("Create Event") {
-                    createEvent = true
-                }.foregroundColor(.black)
-                    .fontWeight(.heavy)
-                    .frame(width: 225, height: 50)
-                    .background(Color("SportGold"))
-                    .cornerRadius(200)
-                    .offset(CGSize(width: 0, height: 0))
-                
                 Button("Edit Event") {
                     editEvent = true
                 }.foregroundColor(.black)
