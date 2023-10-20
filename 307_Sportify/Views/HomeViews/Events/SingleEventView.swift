@@ -15,8 +15,8 @@ struct SingleEventView: View {
     @State var userAuth = UserAuthentication()
 
     @State var eventName = ""
-    //@State var eventid: String // parameter - REAL - uncomment
-    @State var eventid: String = "005861C7-AB71-48EF-B17A-515E88AA0D4B" // REAL - comment
+    @State var eventid: String // parameter - REAL - uncomment
+    //@State var eventid: String = "005861C7-AB71-48EF-B17A-515E88AA0D4B" // REAL - comment
     @State var eventm = EventMethods()
     @State var eventCode = ""
     @State var eventDate: String = ""
@@ -41,9 +41,6 @@ struct SingleEventView: View {
         
             ZStack {
                 Color.black.ignoresSafeArea()
-                
-                Text("Text here to run .onAppear()")
-                    .hidden()
 
                 
                 VStack (alignment: .trailing) {
@@ -153,72 +150,6 @@ struct SingleEventView: View {
                                     // TODO update the database completely
                                     event.updateCode(code: eventCode)
                                 }
-                            
-                            /*Button("Save") {
-                                
-                            }
-                            .padding(.leading, -250)*/
-
-                            
-                            /*Group {
-                                if (!codeShowing) {
-                                    SecureField("Code", text: $eventCode)
-                                        .autocapitalization(.none)
-                                        .opacity(1.0)
-                                } else {
-                                    TextField ("Code", text: $eventCode)
-                                        .autocapitalization(.none)
-                                        .opacity(1.0)
-                                }
-                            }
-                            .foregroundColor(.gray)
-                            .font(.system(size: 15, weight: .heavy, design: .default))
-                            .multilineTextAlignment(.leading)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.leading, -130)*/
-                            
-                            
-                            /*
-                            ZStack {
-                                SecureField("Code", text: $typingCode)
-                                    .foregroundColor(.gray)
-                                    .font(.system(size: 15, weight: .heavy, design: .default))
-                                    .multilineTextAlignment(.leading)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .padding(.leading, -130)
-                                    .opacity(hiddenOpacity)
-                                    .onAppear {
-                                        Task {
-                                            if codeShowing {
-                                                hiddenOpacity = 0.0
-                                            } else {
-                                                hiddenOpacity = 1.0
-                                            }
-                                        }
-                                    }
-                                
-                                TextField("Code", text: $typingCode)
-                                    .foregroundColor(.gray)
-                                    .font(.system(size: 15, weight: .heavy, design: .default))
-                                    .multilineTextAlignment(.leading)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .padding(.leading, -130)
-                                    .opacity(revealOpacity)
-                                    .onAppear {
-                                        Task {
-                                            if codeShowing {
-                                                revealOpacity = 1.0
-                                            } else {
-                                                revealOpacity = 0.0
-                                            }
-                                        }
-                                    }
-                                Button("Save") {
-                                    event.code = typingCode
-                                }
-                                .padding(.leading, -180)
-                                .controlSize(.mini)
-                            }*/
                         }
 
                         

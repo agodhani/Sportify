@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreLocation
+import Firebase
 import SwiftUI
 
 struct Event: Identifiable, Codable {
@@ -137,7 +138,9 @@ struct Event: Identifiable, Codable {
     mutating func updateCode(code: String) {
         self.code = code
         // TODO update database
-
+        let db = Firestore.firestore()
+        db.collection("Events").document(self.id).updateData(["code": self.code])
+        print("\(eventName) code updated: \(code)")
     }
     
     func getDescription() -> String {
