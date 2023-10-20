@@ -81,8 +81,8 @@ struct User: Identifiable, Codable, Hashable {
     var birthday: Date
     var friendList: [String]
     var blockList: [String]
-    var eventsAttending: Set<String>
-    var eventsHosting: Set<String>
+    var eventsAttending: [String]
+    var eventsHosting: [String]
     
     //?might not need this: let password: String
 /*
@@ -132,8 +132,10 @@ struct User: Identifiable, Codable, Hashable {
         friendList.append(name)
     }
     
-    mutating func removeEventAttending(event: Event) {
-        self.eventsAttending.remove(event.id)
+    mutating func removeEventAttending(eventID: String) { // TODO update db
+        if eventsAttending.contains(eventID) {
+            eventsAttending.remove(at: eventsAttending.firstIndex(of: eventID)!)
+        }
     }
     
     func sendInvite() {
@@ -160,16 +162,18 @@ struct User: Identifiable, Codable, Hashable {
         return self.radius
     }
     
-    func getEventsHosting() -> Set<String> {
+    func getEventsHosting() -> [String] {
         return self.eventsHosting
     }
 
-    func getEventsAttending() -> Set<String> {
+    func getEventsAttending() -> [String] {
         return self.eventsAttending;
     }
 
-    func getAllEvents() -> Set<String> {
-        let allEvents = self.eventsAttending.union(self.eventsHosting)
+    func getAllEvents() -> [String] { // returns all the IDs of events part of 
+        //let allEvents = self.eventsAttending.append(contentsOf: self.eventsHosting)
+        var allEvents = eventsAttending
+        allEvents.append(contentsOf: eventsHosting)
         return allEvents
     }
     

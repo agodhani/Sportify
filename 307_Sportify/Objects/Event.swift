@@ -10,7 +10,7 @@ import CoreLocation
 import Firebase
 import SwiftUI
 
-struct Event: Identifiable, Codable {
+struct Event: Identifiable, Codable, Hashable {
     var id: String
     var eventName: String
     let sportsList = ["Tennis", "Table Tennis", "Volleyball", "Soccer", "Basketball", "Football", "Baseball", "Badminton", "Golf", "Cycling", "Running", "Hockey", "Spikeball", "Handball", "Lacrosse", "Squash"]

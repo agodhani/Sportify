@@ -24,7 +24,7 @@ class EventMethods: ObservableObject {
             let event = Event(id: UUID().uuidString, eventName: eventName, sport: sport, date: Date.now, location: location, numAttendees: 1, attendeeList: Array<User>(), privateEvent: privateEvent, maxParticipants: maxParticipants, adminsList: Set<User>(), eventHostID: id, code: "monkeys", blackList: Set<User>(), requestList: [], description: description)
             let userAuth = UserAuthentication()
             var user = userAuth.currUser
-            user?.eventsHosting.insert(event.id)
+            user?.eventsHosting.append(event.id)
             //need to call modify user to insert here
             let encodedEvent = try Firestore.Encoder().encode(event)
             try await Firestore.firestore().collection("Events").document(event.id).setData(encodedEvent)

@@ -15,12 +15,18 @@ struct EventsView: View {
     @State var createEvent = false
     @State var editEvent = false
     @State var viewEvent = false
+    @State var viewSingleEvent = false
+    @State var allEvents: [String] = [String]()
+    @State var allEventsAsEvents: [Event] = [Event]()
+    @State var singleEventViewID: String = ""
+
     var body: some View {
-        @State var currentUser = userAuth.currUser
         
-        //@State var allEvents = userAuth.currUser?.getAllEvents() // TODO uncomment this THIS NEEDS TO BE A SET OF EVENTS NOT A SET OF STRINGS
-        
-        
+        // TODO HERE??? for some reason currentUser keeps becoming NIL - after this figured out, unwrap everything labeled unwrap
+        //var currentUser = userAuth.currUser
+        @State var currentUser = User(id: "tWqBAVZ9uFgyusKjyIFZGuyNZqb2", name: "test current user", email: "current@gmail.com", radius: 0, zipCode: "47906", sportsPreferences: [], privateAccount: false, profilePicture: "ERROR", age: 0, birthday: Date(), friendList: [], blockList: [], eventsAttending: ["005861C7-AB71-48EF-B17A-515E88AA0D4B"], eventsHosting: []) // REAL - comment
+
+
         //let allEvents: [Event] = [testEvent, testEvent2, testEvent3] // TODO
         
         ZStack (alignment: .top) {
@@ -36,6 +42,28 @@ struct EventsView: View {
                     .background(.black)
                     //.offset(CGSize(width: 0, height: -350))
                     .font(.system(size: 40, weight: .heavy, design: .default))
+                    .onAppear {
+                        Task (priority: .userInitiated) {
+                            if currentUser != nil {
+                                allEvents = currentUser.getAllEvents() // unwrap
+                                for event in allEvents {
+                                    await allEventsAsEvents.append(eventsm.getEvent(eventID: event))
+                                }
+                                print("Loaded: \(allEventsAsEvents)")
+                            } else {
+                                while (currentUser == nil) {
+                                    currentUser = userAuth.currUser!
+                                    print("trying to get current user...")
+                                }
+                                allEvents = currentUser.getAllEvents() // unwrap
+                                for event in allEvents {
+                                    await allEventsAsEvents.append(eventsm.getEvent(eventID: event))
+                                }
+                                print("Loaded: \(allEventsAsEvents)")
+                            }
+
+                        }
+                    }
                 
                 Rectangle()
                     .fill(Color.white)
@@ -61,6 +89,9 @@ struct EventsView: View {
                 .frame(maxWidth: .infinity)
                 .edgesIgnoringSafeArea(.all)
                 
+                // Add the Create Event Button - Josh
+                // Add Edit Event Button - Josh
+                /*
                 Button("Create Event") {
                     createEvent = true
                 }.foregroundColor(.black)
@@ -98,14 +129,15 @@ struct EventsView: View {
                     .frame(width: 225, height: 50)
                     .background(Color("SportGold"))
                     .cornerRadius(200)
-                    .offset(CGSize(width: 0, height: 0))
+                    .offset(CGSize(width: 0, height: 0))*/
+                
                 // Scroll View here TODO
                 ScrollView {
                     
                     VStack {
-                        /*
-                        ForEach(allEvents, id: \.eventHostID) { event in
-                                
+                        
+                        ForEach(allEventsAsEvents, id: \.self) { event in
+                                                            
                             // label everything
                             
                             HStack (alignment: .firstTextBaseline, spacing: 18) {
@@ -122,7 +154,7 @@ struct EventsView: View {
                                     // Capacity
                                     let eventAttendees = event.numAttendees
                                     let eventMaxParticipants = event.maxParticipants
-                                    let eventCapacity = String(eventAttendees) + "/" + String(eventMaxParticipants)
+                                    let eventCapacity = "\(eventAttendees) / \(eventMaxParticipants)"
                                     
                                     // private / public
                                     if event.privateEvent {
@@ -133,7 +165,6 @@ struct EventsView: View {
                                             .padding(.top, -10)
                                     }
                                 }
-                                
                                 
                                 // Sport
                                 let eventSport = event.sport // this is an int
@@ -170,12 +201,12 @@ struct EventsView: View {
                                     
                                     
                                     // manage button TODO
-                                    if(currentUser != nil){
-                                        if event.userIsEventHost(user: currentUser!) {
+                                    if(userAuth.currUser != nil){
+                                        if event.userIsEventHost(user: userAuth.currUser!) {
                                             Button("Manage") {
                                             action: do {
-                                                // TODO SAME AS VIEW - will change inside of SingleEventView accordingly
-                                                
+                                                singleEventViewID = event.id
+                                                viewSingleEvent = true
                                             }
                                             }
                                             .foregroundColor(.black)
@@ -187,7 +218,8 @@ struct EventsView: View {
                                         } else {
                                             Button("View") {
                                             action: do {
-                                                // TODO SAME AS MANAGE - will change inside of SingleEventView accordingly
+                                                singleEventViewID = event.id
+                                                viewSingleEvent = true
                                             }
                                             }
                                             .foregroundColor(.black)
@@ -208,9 +240,10 @@ struct EventsView: View {
                                 .frame(width: 450, height: 2)
                                 .padding(1)
                         }
-                         */
+                         
                     }
                 }
+
 
                 
             /*
@@ -232,6 +265,9 @@ struct EventsView: View {
             }
             if(viewEvent) {
                 ViewEventsListView()
+            }
+            if(viewSingleEvent) {
+                SingleEventView(eventid: singleEventViewID)
             }
         }
         
