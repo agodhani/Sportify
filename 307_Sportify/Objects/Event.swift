@@ -53,6 +53,18 @@ struct Event: Identifiable, Codable, Hashable {
         self.blackList.insert(attendee)
     }*/
     
+    mutating func generateRandomCode(length: Int) -> String { // returns a random generated 10 character alphanumeric code
+        
+        // generate random code
+        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let newCode = String ((0..<length).map{_ in letters.randomElement()!})
+        self.code = newCode
+        
+        // update database
+        self.updateCode(code: newCode)
+        return newCode
+    }
+    
     mutating func setSport(sport: Int) {
         self.sport = sport
     }

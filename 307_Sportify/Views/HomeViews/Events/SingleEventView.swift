@@ -10,13 +10,14 @@ import Firebase
 
 struct SingleEventView: View {
     
+    // this should show if the event didn't load properly
     @State var event = Event(id: "error id", eventName: "error name", sport: 0, date: Date.now, location: "error location", numAttendees: 0, attendeeList: Array<User>(), privateEvent: false, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "2", code: "code", blackList: Set<User>(), requestList: [], description: "error description")
     
     @State var userAuth = UserAuthentication()
 
     @State var eventName = ""
     @State var eventid: String // parameter - REAL - uncomment
-    //@State var eventid: String = "005861C7-AB71-48EF-B17A-515E88AA0D4B" // REAL - comment
+    //@State var eventid: String = "005861C7-AB71-48EF-B17A-515E88AA0D4B" // REAL - comment out
     @State var eventm = EventMethods()
     @State var eventCode = ""
     @State var eventDate: String = ""
@@ -25,20 +26,20 @@ struct SingleEventView: View {
     @State var dateStr: String = ""
     @State var timeStr: String = ""
     @State var eventLocation: String = ""
+    @State var codeShowing = false
+    @FocusState var isFocused: Bool
+    @State var showingImage = "eye.slash"
+    @State var secureOpacity = 1.0
+    @State var revealOpacity = 0.0
     
     let db = Firestore.firestore()
     
     var body: some View {
-        
+                
         //let currentUser = userAuth.currUser // REAL - uncomment
         @State var currentUser = User(id: "tWqBAVZ9uFgyusKjyIFZGuyNZqb2", name: "test current user", email: "current@gmail.com", radius: 0, zipCode: "47906", sportsPreferences: [], privateAccount: false, profilePicture: "ERROR", age: 0, birthday: Date(), friendList: [], blockList: [], eventsAttending: [], eventsHosting: []) // REAL - comment
             
-        @FocusState var isFocused: Bool
-        @State var codeShowing = false
-        @State var showingImage = "eye.slash"
-        @State var hiddenOpacity = 1.0
-        @State var revealOpacity = 0.0
-        
+
             ZStack {
                 Color.black.ignoresSafeArea()
 
@@ -116,14 +117,33 @@ struct SingleEventView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.leading, 20)
                         
-                        HStack { // TODO must update code in the database
+                        HStack {
+                            
+                            Button ("Random\nCode") {
+                                event.code = event.generateRandomCode(length: 10)
+                                eventCode = event.code
+                            }
+                            .controlSize(.mini)
+                            .foregroundColor(.black)
+                            .font(.system(size: 12, weight: .heavy, design: .default))
+                            .multilineTextAlignment(.center)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .frame(width: 70, height: 30)
+                            .background(Color("SportGold"))
+                            .cornerRadius(200)
+                            .padding(.leading, 20)
+
                             
                             Button {
                                 codeShowing = !codeShowing
                                 if codeShowing {
                                     showingImage = "eye"
+                                    revealOpacity = 1.0
+                                    secureOpacity = 0.0
                                 } else {
                                     showingImage = "eye.slash"
+                                    revealOpacity = 0.0
+                                    secureOpacity = 1.0
                                 }
                             } label: {
                                 Image(systemName: "\(showingImage)")
@@ -138,18 +158,39 @@ struct SingleEventView: View {
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.leading, 20)
                             
-                            TextField("Code", text: $eventCode)
-                                .foregroundColor(.gray)
-                                .font(.system(size: 15, weight: .heavy, design: .default))
-                                .multilineTextAlignment(.leading)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(.leading, -120)
-                                .textInputAutocapitalization(.never)
-                                .focused($isFocused)
-                                .onSubmit {
-                                    // TODO update the database completely
-                                    event.updateCode(code: eventCode)
-                                }
+                            ZStack {
+                                TextField("Code", text: $eventCode)
+                                    .foregroundColor(.gray)
+                                    .font(.system(size: 15, weight: .heavy, design: .default))
+                                    .multilineTextAlignment(.leading)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .textInputAutocapitalization(.never)
+                                    .focused($isFocused)
+                                    .onSubmit {
+                                        // TODO update the database completely
+                                        event.updateCode(code: eventCode)
+                                    }
+                                    .opacity(revealOpacity)
+
+                                
+                                SecureField("Code", text: $eventCode)
+                                    .foregroundColor(.gray)
+                                    .font(.system(size: 15, weight: .heavy, design: .default))
+                                    .multilineTextAlignment(.leading)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .textInputAutocapitalization(.never)
+                                    .focused($isFocused)
+                                    .onSubmit {
+                                        // TODO update the database completely
+                                        event.updateCode(code: eventCode)
+                                    }
+                                    .opacity(secureOpacity)
+                            }
+                            .padding(.leading, -80)
+
+
+                            
+                            
                         }
 
                         
