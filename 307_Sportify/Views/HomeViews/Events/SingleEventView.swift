@@ -20,7 +20,8 @@ struct SingleEventView: View {
     //@State var eventid: String = "005861C7-AB71-48EF-B17A-515E88AA0D4B" // REAL - comment out
     @State var eventm = EventMethods()
     @State var eventCode = ""
-    @State var eventDate: String = ""
+    @State var eventDate: Date = Date()
+    @State var eventDateString: String = ""
     @State var eventArr: [String.SubSequence] = []
     //eventDate.split(separator: ",", maxSplits: 2, omittingEmptySubsequences: true)
     @State var dateStr: String = ""
@@ -31,6 +32,8 @@ struct SingleEventView: View {
     @State var showingImage = "eye.slash"
     @State var secureOpacity = 1.0
     @State var revealOpacity = 0.0
+    @State var newDate: Date = Date()
+    @State var eventDescription: String = ""
     
     let db = Firestore.firestore()
     
@@ -38,15 +41,13 @@ struct SingleEventView: View {
                 
         //let currentUser = userAuth.currUser // REAL - uncomment
         @State var currentUser = User(id: "tWqBAVZ9uFgyusKjyIFZGuyNZqb2", name: "test current user", email: "current@gmail.com", radius: 0, zipCode: "47906", sportsPreferences: [], privateAccount: false, profilePicture: "ERROR", age: 0, birthday: Date(), friendList: [], blockList: [], eventsAttending: [], eventsHosting: []) // REAL - comment
-            
+        
 
             ZStack {
                 Color.black.ignoresSafeArea()
 
-                
                 VStack (alignment: .trailing) {
                         
-                    
                     // HOST VIEW
                     if event.userIsEventHost(user: currentUser) { // REAL - unwrap
                         
@@ -66,15 +67,20 @@ struct SingleEventView: View {
                         .padding(.leading, 20)
                         
                         
-                        Text(event.eventName)
+                        TextField("Event Name", text: $eventName)
                             .foregroundColor(.white)
                             .font(.system(size: 40, weight: .heavy, design: .default))
                             .multilineTextAlignment(.leading)
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .frame(maxWidth: UIScreen.main.bounds.width, alignment: .leading)
                             .padding(.leading, 20)
                             .padding(.top, -15)
+                            .onSubmit {
+                                event.eventName = event.setEventName(newName: eventName)
+                            }
+
                         
-                        HStack {
+                        // OLD date formatted
+                        /*HStack {
                             TextField(dateStr, text: $dateStr) // TODO need to be able to update this
                                 .foregroundColor(.white)
                                 .font(.system(size: 20, weight: .heavy, design: .default))
@@ -94,7 +100,18 @@ struct SingleEventView: View {
                                 .multilineTextAlignment(.leading)
                             //.frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.leading, -40)
-                        }
+                        }*/
+                        
+                        // new date - using Date Picker for the host
+                        DatePicker("New Date", selection: $eventDate)
+                            .foregroundColor(.white)
+                            .colorInvert()
+                            .padding(.trailing, 165)
+                            .padding(.vertical, -50)
+                            .onChange(of: eventDate) {
+                                event.setDate(date: eventDate)
+                            }
+
                         
                         // Address / location
                         // TODO
@@ -110,15 +127,18 @@ struct SingleEventView: View {
                             .frame(width: 391, height: 2)
                             .padding(1)
                         
-                        Text(event.description)
+                        TextField(eventDescription, text: $eventDescription)
                             .foregroundColor(.gray)
                             .font(.system(size: 15, weight: .heavy, design: .default))
                             .multilineTextAlignment(.leading)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.leading, 20)
+                            .padding(.vertical, 10)
+                            .onSubmit {
+                                eventDescription = event.setDescription(newDescription: eventDescription)
+                            }
                         
                         HStack {
-                            
                             Button ("Random\nCode") {
                                 event.code = event.generateRandomCode(length: 10)
                                 eventCode = event.code
@@ -181,14 +201,11 @@ struct SingleEventView: View {
                                     .textInputAutocapitalization(.never)
                                     .focused($isFocused)
                                     .onSubmit {
-                                        // TODO update the database completely
                                         event.updateCode(code: eventCode)
                                     }
                                     .opacity(secureOpacity)
                             }
                             .padding(.leading, -80)
-
-
                             
                             
                         }
@@ -367,6 +384,8 @@ struct SingleEventView: View {
                             .multilineTextAlignment(.leading)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.leading, 20)
+                            .padding(.vertical, 10)
+                            
                         
                         // Guest List
                         Text("Guest List")
@@ -412,13 +431,15 @@ struct SingleEventView: View {
                 Task (priority: .userInitiated) {
                     event = await eventm.getEvent(eventID: eventid)
                     eventName = event.eventName
-                    eventDate = event.date.formatted()
+                    eventDateString = event.date.formatted()
                     // split into day (0) and time (1)
-                    eventArr = eventDate.split(separator: ",", maxSplits: 2, omittingEmptySubsequences: true)
+                    eventArr = eventDateString.split(separator: ",", maxSplits: 2, omittingEmptySubsequences: true)
                     dateStr = String(eventArr[0])
                     timeStr = String(eventArr[1])
                     eventLocation = event.location
                     eventCode = event.code
+                    eventDate = event.date
+                    eventDescription = event.description
                 }
             } // end ZStack
         /*

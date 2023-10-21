@@ -121,7 +121,6 @@ struct User: Identifiable, Codable, Hashable {
             let attendeeList = event.attendeeList //.append(user)
             try await eventm.modifyEvent(eventID: eventID, eventName: "", date: event.date, location: "", attendeeList: attendeeList, privateEvent: event.privateEvent, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "", code: "", blackList: Set<User>(), requestList: [], description: "")
         }
-        
     }
     
     func hostEvent() {

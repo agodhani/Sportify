@@ -65,12 +65,50 @@ struct Event: Identifiable, Codable, Hashable {
         return newCode
     }
     
-    mutating func setSport(sport: Int) {
-        self.sport = sport
+    // sets the new name, adjusts DB, and also returns the new name
+    mutating func setEventName(newName: String) -> String {
+        self.eventName = newName
+        
+        // update DB
+        let db = Firestore.firestore()
+        db.collection("Events").document(self.id).updateData(["eventName": newName])
+        print("Event name updated: \(eventName)")
+        return self.eventName
+    }
+    
+    mutating func setDescription(newDescription: String) -> String {
+        self.description = newDescription
+        
+        // update DB
+        let db = Firestore.firestore()
+        db.collection("Events").document(self.id).updateData(["description": newDescription])
+        print("Event description updated: \(self.description)")
+        return self.description
     }
     
     mutating func setDate(date: Date) {
         self.date = date
+        
+        // update DB
+        let db = Firestore.firestore()
+        db.collection("Events").document(self.id).updateData(["date": date])
+        print("Date updated for \(self.eventName): \(self.date)")
+    }
+        
+    mutating func setSport(sport: Int) {
+        self.sport = sport
+    }
+    
+    mutating func setPrivate(priv: Bool) {
+        self.privateEvent = priv
+        
+        let db = Firestore.firestore()
+        db.collection("Events").document(self.id).updateData(["privateEvent": priv])
+        if (priv) {
+            print("Event is now private")
+        } else {
+            print("Event is now public")
+        }
     }
     
     mutating func setLocation(location: String) {
@@ -95,10 +133,6 @@ struct Event: Identifiable, Codable, Hashable {
     
     mutating func setAttendeeList(newAttendeeList: [User]) {
         self.attendeeList = newAttendeeList
-    }
-    
-    mutating func setPrivate(priv: Bool) {
-        self.privateEvent = priv
     }
     
     mutating func addAdmin(admin: User) {
@@ -149,7 +183,6 @@ struct Event: Identifiable, Codable, Hashable {
     
     mutating func updateCode(code: String) {
         self.code = code
-        // TODO update database
         let db = Firestore.firestore()
         db.collection("Events").document(self.id).updateData(["code": self.code])
         print("\(eventName) code updated: \(code)")
