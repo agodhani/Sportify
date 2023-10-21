@@ -34,6 +34,7 @@ struct SingleEventView: View {
     @State var revealOpacity = 0.0
     @State var newDate: Date = Date()
     @State var eventDescription: String = ""
+    @State var maxParticipants: Int = 0
     
     let db = Firestore.firestore()
     
@@ -114,13 +115,15 @@ struct SingleEventView: View {
 
                         
                         // Address / location
-                        // TODO
                         TextField(eventLocation, text: $eventLocation) // need to be able to update this
                             .foregroundColor(.gray)
                             .font(.system(size: 15, weight: .heavy, design: .default))
                             .multilineTextAlignment(.leading)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.leading, 20)
+                            .onSubmit {
+                                eventLocation = event.setLocation(location: eventLocation)
+                            }
                         
                         Rectangle()
                             .fill(Color.white)
@@ -137,6 +140,32 @@ struct SingleEventView: View {
                             .onSubmit {
                                 eventDescription = event.setDescription(newDescription: eventDescription)
                             }
+                        
+                        HStack {
+                            Text("Capacity: \(event.getNumAttendees()) /")
+                                .foregroundColor(.white)
+                                .font(.system(size: 15, weight: .heavy, design: .default))
+                                .multilineTextAlignment(.leading)
+                                .frame(alignment: .leading)
+                                .padding(.bottom, 10)
+                                .padding(.leading, 20)
+                            
+                            Picker("Max Capacity", selection: $maxParticipants) {
+                                ForEach(1...100, id: \.self) { number in
+                                    Text("\(number)")
+                                }
+                            }
+                            .onChange(of: maxParticipants) {
+                                maxParticipants = event.setMaxParticipants(num: maxParticipants)
+                            }
+                            .foregroundColor(.white)
+                            .padding(.leading, -15)
+                            .padding(.bottom, 10)
+                            
+                            
+                            Spacer()
+                        }
+
                         
                         HStack {
                             Button ("Random\nCode") {
@@ -440,6 +469,7 @@ struct SingleEventView: View {
                     eventCode = event.code
                     eventDate = event.date
                     eventDescription = event.description
+                    maxParticipants = event.maxParticipants
                 }
             } // end ZStack
         /*

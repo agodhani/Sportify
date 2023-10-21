@@ -111,8 +111,24 @@ struct Event: Identifiable, Codable, Hashable {
         }
     }
     
-    mutating func setLocation(location: String) {
+    mutating func setLocation(location: String) -> String {
         self.location = location
+        
+        // update DB
+        let db = Firestore.firestore()
+        db.collection("Events").document(self.id).updateData(["location": self.location])
+        print("Location updated for \(self.eventName): \(self.location)")
+        return self.location
+    }
+    
+    mutating func setMaxParticipants(num: Int) -> Int {
+        self.maxParticipants = num
+        
+        // update DB
+        let db = Firestore.firestore()
+        db.collection("Events").document(self.id).updateData(["maxParticipants": self.maxParticipants])
+        print("Max Participants updated for \(self.eventName): \(self.maxParticipants)")
+        return self.maxParticipants
     }
     
     mutating func setNumAttendees(num: Int) {
@@ -123,9 +139,6 @@ struct Event: Identifiable, Codable, Hashable {
         self.attendeeList.append(attendee)
     }
     
-    mutating func setMaxParticipants(num: Int) {
-        self.maxParticipants = num
-    }
     
     mutating func setAdminList() {
         
