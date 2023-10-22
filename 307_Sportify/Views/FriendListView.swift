@@ -10,24 +10,46 @@ import Firebase
 
 struct FriendListView: View {
     @ObservedObject var otherUsers = AllUsers()
-    
+    @State var locationFilter: Bool
+    @State var userAuth = UserAuthentication()
+    @State var profView = false;
+
     
     var body: some View {
-        NavigationView {
-            List(otherUsers.users) { users in
-                NavigationLink(destination: DetailsView(person: users)){
-                    Text(users.name)
-                }
-            } .navigationBarTitle("Potential Friends")
-                .onAppear(){
-                    otherUsers.getUsers()
-                }
-        }
+        let user = userAuth.currUser
+        VStack{
+            NavigationView {
+                List(otherUsers.users) { users in
+                    if(locationFilter) {
+                        if(user?.zipCode == users.zipCode) {
+                            NavigationLink(destination: DetailsView(person: users)) {
+                                Text(users.name)
+                            }
+                        }
+                    } else {
+                        NavigationLink(destination: DetailsView(person: users)) {
+                            Text(users.name)
+                        }
+                    }
+                } .navigationBarTitle("Potential Friends")
+                    .onAppear() {
+                        otherUsers.getUsers()
+                    }
+            }
+            Spacer()
+            Toggle("Location Filter", isOn: $locationFilter).foregroundColor(Color("SportGold"))
+                .frame(width: 300, height: 50)
+            Button("Back") {
+                profView = true
+                print("clicked")
+            }
+            .frame(width: 300, height: 50)
         }
     }
+}
 
 #Preview {
-    FriendListView()
+    FriendListView(locationFilter: true)
 }
 
 struct DetailsView: View {

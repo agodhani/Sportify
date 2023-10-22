@@ -198,7 +198,7 @@ struct ProfileView: View{
             }
             if(friendsView) {
                 NavigationView {
-                    FriendListView()
+                    FriendListView(locationFilter: false)
                 }
             }
             if (myFriends) {
