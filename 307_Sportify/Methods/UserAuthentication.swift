@@ -8,6 +8,7 @@
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
+import MessageUI
 
 class UserAuthentication: ObservableObject {
     //? means could be null or declare some value
@@ -95,7 +96,5 @@ class UserAuthentication: ObservableObject {
             throw EmailError.invalidEmail
         }
         
-
-                
     }
 }
