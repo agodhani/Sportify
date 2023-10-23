@@ -53,7 +53,7 @@ class EventMethods: ObservableObject {
         var eventArr: [Event]
         
         do {
-            let eventDocuments = Firestore.firestore().collection("Event").getDocuments() {(querySnapshot, err) in
+            let eventDocuments = Firestore.firestore().collection("Events").getDocuments() {(querySnapshot, err) in
                 if let err = err {
                     print("Error getting event documents: \(err)")
                 } else {

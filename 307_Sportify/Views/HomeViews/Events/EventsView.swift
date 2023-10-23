@@ -177,10 +177,11 @@ struct EventsView: View {
                                 
                                 // Location TODO - int? string?
                                 let eventLocation = event.location // zip code ? TODO
-                                Text("""
+                                /*Text("""
                                  Temp
                                  Location
-                                 """)
+                                 """)*/
+                                Text(eventLocation)
                                 .foregroundColor(.white)
                                 .font(.system(size: 17, weight: .heavy, design: .default))
                                 .multilineTextAlignment(.center)
