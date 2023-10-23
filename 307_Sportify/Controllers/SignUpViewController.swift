@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import SwiftUI
 
 class SignUpViewController: UIViewController {
 
+    @State var isPrivate = false
+    @State private var sportList = ["Tennis", "Table Tennis", "Volleyball", "Soccer", "Basketball", "Football", "Baseball", "Badminton", "Golf", "Cycling", "Running", "Hockey", "Spikeball", "Handball", "Lacrosse", "Squash"]
+    
     // Might be too long to fit, use a scroll view
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -54,6 +58,72 @@ class SignUpViewController: UIViewController {
         return field
     }()
     
+    // Password txt field
+    private let passwordField: UITextField = {
+        let field = UITextField()
+        field.autocapitalizationType = .none
+        field.autocorrectionType = .no
+        field.returnKeyType = .continue
+        field.layer.cornerRadius = 15
+        field.placeholder = "Password"
+        field.backgroundColor = .lightGray
+        field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 7, height: 0))
+        field.leftViewMode = .always
+        field.backgroundColor = .lightGray
+        field.isSecureTextEntry = true
+        return field
+    }()
+
+    // Zipcode txt field
+    private let zipcodeField: UITextField = {
+        let field = UITextField()
+        field.autocapitalizationType = .none
+        field.autocorrectionType = .no
+        field.returnKeyType = .continue
+        field.layer.cornerRadius = 15
+        field.placeholder = "Zipcode"
+        field.backgroundColor = .lightGray
+        field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 7, height: 0))
+        field.leftViewMode = .always
+        field.backgroundColor = .lightGray
+        field.isSecureTextEntry = true
+        return field
+    }()
+    
+    // Private account label
+    private let privateLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Private Account"
+        label.textColor = .sportGold
+        label.font = .systemFont(ofSize: 18)
+        return label
+    }()
+    
+    // Private account slider
+    private let isPrivateSlider: UISwitch = {
+        let toggle = UISwitch()
+        return toggle
+    }()
+    
+    // Update profile pic button
+    private let profilePic: UIButton = {
+        let button = UIButton()
+        button.setTitle("Upload Profile Picture", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .medium)
+        button.backgroundColor = .black
+        button.setTitleColor(.systemBlue, for: .normal)
+        button.layer.cornerRadius = 15
+        button.layer.masksToBounds = true
+        return button
+    }()
+    
+    // Sport picker
+    private var sportPicker: UIPickerView = {
+        let picker = UIPickerView()
+        
+        return picker
+    }()
+    
     // Sign up button
     private let signupButton: UIButton = {
         let button = UIButton()
@@ -76,6 +146,11 @@ class SignUpViewController: UIViewController {
         scrollView.addSubview(emailField)
         scrollView.addSubview(nameField)
         scrollView.addSubview(signupButton)
+        scrollView.addSubview(passwordField)
+        scrollView.addSubview(zipcodeField)
+        scrollView.addSubview(isPrivateSlider)
+        scrollView.addSubview(privateLabel)
+        scrollView.addSubview(profilePic)
     }
     
     // Organize view
@@ -95,8 +170,28 @@ class SignUpViewController: UIViewController {
                                   y: emailField.bottom + 15,
                                   width: size,
                                   height: 50)
+        passwordField.frame = CGRect(x: 45,
+                                    y: nameField.bottom + 15,
+                                    width: size,
+                                    height: 50)
+        zipcodeField.frame = CGRect(x: 45,
+                                    y: passwordField.bottom + 15,
+                                    width: size,
+                                    height: 50)
+        privateLabel.frame = CGRect(x: 50,
+                                   y: zipcodeField.bottom + 5,
+                                   width: size,
+                                   height: 50)
+        isPrivateSlider.frame = CGRect(x:298,
+                                       y: zipcodeField.bottom + 15,
+                                       width: 1,
+                                       height: 1)
+        profilePic.frame = CGRect(x: 47,
+                                  y: privateLabel.bottom - 5,
+                                  width: size / 1.65,
+                                  height: 30)
         signupButton.frame = CGRect(x: 90,
-                                    y: logoView.bottom + 205,
+                                    y: logoView.bottom + 355,
                                     width: 225,
                                     height: 50)
     }
