@@ -205,8 +205,15 @@ struct Event: Identifiable, Codable, Hashable {
         return self.description
     }
     
-    func deleteEvent() { // TODO
-        
+    func deleteEvent() {
+        let db = Firestore.firestore()
+        db.collection("Events").document(self.id).delete() { err in
+            if let err = err {
+                print("Error removing: \(self.eventName) with ID \(self.id)")
+            } else {
+                print("Event successfully removed")
+            }
+        }
     }
     
     func getDate() -> Date {

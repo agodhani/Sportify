@@ -39,6 +39,7 @@ struct SingleEventView: View {
     @State var errorOpacity = 0.0
     
     @State var deletePrompt = false;
+    @State var eventsView = false;
 
     let db = Firestore.firestore()
     
@@ -114,30 +115,6 @@ struct SingleEventView: View {
                                     event.eventName = event.setEventName(newName: eventName)
                                 }
                             }
-
-                        
-                        // OLD date formatted
-                        /*HStack {
-                            TextField(dateStr, text: $dateStr) // TODO need to be able to update this
-                                .foregroundColor(.white)
-                                .font(.system(size: 20, weight: .heavy, design: .default))
-                                .multilineTextAlignment(.leading)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(.leading, 20)
-                            
-                            Text("at")
-                                .foregroundColor(.white)
-                                .font(.system(size: 20, weight: .heavy, design: .default))
-                            //.frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(.leading, -55)
-                            
-                            TextField(timeStr, text: $timeStr) // need to be able to update this
-                                .foregroundColor(.white)
-                                .font(.system(size: 20, weight: .heavy, design: .default))
-                                .multilineTextAlignment(.leading)
-                            //.frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(.leading, -40)
-                        }*/
                         
                         // new date - using Date Picker for the host
                         DatePicker("New Date", selection: $eventDate)
@@ -531,9 +508,11 @@ struct SingleEventView: View {
 
                     
                     Button("Yes") {
-                        // TODO delete event
-                        
+                        event.deleteEvent()
                         deletePrompt = false;
+                        
+                        // navigate back to the EventsView
+                        eventsView = true;
                     }
                     .foregroundColor(.black)
                     .font(.system(size: 20, weight: .heavy, design: .default))
@@ -555,6 +534,9 @@ struct SingleEventView: View {
                     .cornerRadius(200)
                     .offset(CGSize(width: 50, height: -75))
                 }
+                if (eventsView) {
+                    EventsView()
+                }
             }
             .onAppear {
                 Task (priority: .userInitiated) {
@@ -571,6 +553,7 @@ struct SingleEventView: View {
                     eventDescription = event.description
                     maxParticipants = event.maxParticipants
                 }
+
             } // end ZStack
         /*
             .onAppear(perform: {
