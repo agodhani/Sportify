@@ -37,6 +37,8 @@ struct SingleEventView: View {
     @State var maxParticipants: Int = 0
     @State var errorMessage = "Event detail cannot be left empty!"
     @State var errorOpacity = 0.0
+    
+    @State var deletePrompt = false;
 
     let db = Firestore.firestore()
     
@@ -57,6 +59,21 @@ struct SingleEventView: View {
                     .padding(.leading, 20)
                     .opacity(errorOpacity)
                     .offset(CGSize(width: 0.0, height: -315))
+                
+                if event.userIsEventHost(user: currentUser) { // REAL - unwrap
+                    Button("Delete\nEvent") {
+                        deletePrompt = true;
+                    }
+                    .controlSize(.mini)
+                    .foregroundColor(.black)
+                    .font(.system(size: 10, weight: .heavy, design: .default))
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .frame(width: 60, height: 30)
+                    .background(.red)
+                    .cornerRadius(200)
+                    .offset(CGSize(width: 120, height: -375))
+                }
 
                 VStack (alignment: .trailing) {
 
@@ -498,6 +515,46 @@ struct SingleEventView: View {
                         
                     } // end else
                 } // end VStack
+                
+                if deletePrompt {
+                    
+                     Rectangle()
+                        .fill(Color.gray)
+                        .frame(width: 350, height: 150)
+                        .cornerRadius(50)
+                        .offset(CGSize(width: 0, height: -100))
+                    
+                    Text("Are you sure you want to delete \n\(eventName)?")
+                        .multilineTextAlignment(.leading)
+                        .foregroundColor(.white)
+                        .offset(CGSize(width: 0, height: -125))
+
+                    
+                    Button("Yes") {
+                        // TODO delete event
+                        
+                        deletePrompt = false;
+                    }
+                    .foregroundColor(.black)
+                    .font(.system(size: 20, weight: .heavy, design: .default))
+                    .multilineTextAlignment(.center)
+                    .frame(width: 60, height: 30)
+                    .background(.red)
+                    .cornerRadius(200)
+                    .offset(CGSize(width: -50, height: -75))
+
+                    
+                    Button("No") {
+                        deletePrompt = false;
+                    }
+                    .foregroundColor(.black)
+                    .font(.system(size: 20, weight: .heavy, design: .default))
+                    .multilineTextAlignment(.center)
+                    .frame(width: 60, height: 30)
+                    .background(.green)
+                    .cornerRadius(200)
+                    .offset(CGSize(width: 50, height: -75))
+                }
             }
             .onAppear {
                 Task (priority: .userInitiated) {
