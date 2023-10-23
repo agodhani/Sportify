@@ -35,7 +35,9 @@ struct SingleEventView: View {
     @State var newDate: Date = Date()
     @State var eventDescription: String = ""
     @State var maxParticipants: Int = 0
-    
+    @State var errorMessage = "Event detail cannot be left empty!"
+    @State var errorOpacity = 0.0
+
     let db = Firestore.firestore()
     
     var body: some View {
@@ -46,8 +48,18 @@ struct SingleEventView: View {
 
             ZStack {
                 Color.black.ignoresSafeArea()
+                
+                Text(errorMessage)
+                    .foregroundColor(.red)
+                    .font(.system(size: 15, weight: .heavy, design: .default))
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(.leading, 20)
+                    .opacity(errorOpacity)
+                    .offset(CGSize(width: 0.0, height: -315))
 
                 VStack (alignment: .trailing) {
+
                         
                     // HOST VIEW
                     if event.userIsEventHost(user: currentUser) { // REAL - unwrap
@@ -76,7 +88,14 @@ struct SingleEventView: View {
                             .padding(.leading, 20)
                             .padding(.top, -15)
                             .onSubmit {
-                                event.eventName = event.setEventName(newName: eventName)
+                                if (eventName == "") {
+                                    errorOpacity = 1.0
+                                    Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
+                                        errorOpacity = 0.0;
+                                    }
+                                } else {
+                                    event.eventName = event.setEventName(newName: eventName)
+                                }
                             }
 
                         
@@ -122,7 +141,14 @@ struct SingleEventView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.leading, 20)
                             .onSubmit {
-                                eventLocation = event.setLocation(location: eventLocation)
+                                if (eventLocation == "") {
+                                    errorOpacity = 1.0
+                                    Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
+                                        errorOpacity = 0.0;
+                                    }
+                                } else {
+                                    eventLocation = event.setLocation(location: eventLocation)
+                                }
                             }
                         
                         Rectangle()
@@ -138,7 +164,14 @@ struct SingleEventView: View {
                             .padding(.leading, 20)
                             .padding(.vertical, 10)
                             .onSubmit {
-                                eventDescription = event.setDescription(newDescription: eventDescription)
+                                if (eventDescription == "") {
+                                    errorOpacity = 1.0
+                                    Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
+                                        errorOpacity = 0.0;
+                                    }
+                                } else {
+                                    eventDescription = event.setDescription(newDescription: eventDescription)
+                                }
                             }
                         
                         HStack {
@@ -216,8 +249,14 @@ struct SingleEventView: View {
                                     .textInputAutocapitalization(.never)
                                     .focused($isFocused)
                                     .onSubmit {
-                                        // TODO update the database completely
-                                        event.updateCode(code: eventCode)
+                                        if (eventCode == "") {
+                                            errorOpacity = 1.0
+                                            Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
+                                                errorOpacity = 0.0;
+                                            }
+                                        } else {
+                                            event.updateCode(code: eventCode)
+                                        }
                                     }
                                     .opacity(revealOpacity)
 
@@ -230,13 +269,17 @@ struct SingleEventView: View {
                                     .textInputAutocapitalization(.never)
                                     .focused($isFocused)
                                     .onSubmit {
-                                        event.updateCode(code: eventCode)
-                                    }
+                                        if (eventCode == "") {
+                                            errorOpacity = 1.0
+                                            Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
+                                                errorOpacity = 0.0;
+                                            }
+                                        } else {
+                                            event.updateCode(code: eventCode)
+                                        }                                    }
                                     .opacity(secureOpacity)
                             }
                             .padding(.leading, -80)
-                            
-                            
                         }
 
                         
