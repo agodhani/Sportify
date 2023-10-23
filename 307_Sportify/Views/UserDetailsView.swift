@@ -8,6 +8,10 @@
 import SwiftUI
 import Firebase
 
+class userDetailsControl: UIViewController {
+    
+}
+
 struct UserDetailsView: View {
     //@Binding var userID: String // passed in when profile is clicked on
     @State var userID = "1"// testing

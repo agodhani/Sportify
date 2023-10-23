@@ -12,10 +12,12 @@ import Firebase
 struct Person: Identifiable {
     var id: String
     var name: String
+    var zipCode: String
     
-    init(id: String, name: String){
+    init(id: String, name: String, zipCode: String){
         self.id = id
         self.name = name
+        self.zipCode =  zipCode
     }
 }
 
@@ -36,8 +38,9 @@ class AllUsers: ObservableObject {
                     let data = queryDocumentSnapshot.data()
                     let name = data["name"] as? String ?? ""
                     let id = data["id"] as? String ?? ""
-                    print(Person(id: id, name: name))
-                    return Person(id: id, name: name)
+                    let zipCode = data["zipCode"] as? String ?? ""
+                print(Person(id: id, name: name, zipCode: zipCode))
+                return Person(id: id, name: name, zipCode: zipCode)
                 }
             }
         }

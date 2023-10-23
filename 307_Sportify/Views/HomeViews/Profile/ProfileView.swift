@@ -11,6 +11,10 @@
 import SwiftUI
 import Firebase
 
+class profileControl:UIViewController {
+    
+}
+
 struct ProfileView: View{
     @EnvironmentObject var userAuth: UserAuthentication
     @State private var sOut = false;
@@ -18,6 +22,7 @@ struct ProfileView: View{
     @State private var friendsView = false;
     @State private var myFriends = false;
     @State private var blockView = false;
+    @State private var suggestion = false;
     let db = Firestore.firestore()
    
     var body: some View {
@@ -52,15 +57,15 @@ struct ProfileView: View{
                     Spacer()
                     Spacer()
                 }
-              /*  if (user != nil){
-                    HStack{
-                        Text("Username:")
-                            .foregroundColor(Color("SportGold"))
-                        Text(user.fullName)
-                            .foregroundColor(Color("SportGold"))
-                        Spacer()
-                    }
-                }*/
+                /*  if (user != nil){
+                 HStack{
+                 Text("Username:")
+                 .foregroundColor(Color("SportGold"))
+                 Text(user.fullName)
+                 .foregroundColor(Color("SportGold"))
+                 Spacer()
+                 }
+                 }*/
                 HStack{
                     Spacer()
                 }
@@ -181,15 +186,23 @@ struct ProfileView: View{
                     .frame(width: 100, height: 50)
                     .background(Color("SportGold"))
                     .cornerRadius(200)
+                    
+                    Spacer()
+                    Button("Suggestion"){
+                        suggestion = true;
+                    }
+                    .foregroundColor(.black)
+                    .fontWeight(.heavy)
+                    .frame(width: 100, height: 50)
+                    .background(Color("SportGold"))
+                    .cornerRadius(200)
                 }
-                
-                
                 
             }
             if(sOut) {
-              NavigationView {
-                   LoginSignUpView()
-               }
+                NavigationView {
+                    LoginSignUpView()
+                }
             }
             if(pView) {
                 NavigationView {
@@ -198,7 +211,7 @@ struct ProfileView: View{
             }
             if(friendsView) {
                 NavigationView {
-                    FriendListView()
+                    FriendListView(locationFilter: false)
                 }
             }
             if (myFriends) {
@@ -209,6 +222,11 @@ struct ProfileView: View{
             if (blockView) {
                 NavigationView {
                     BlockView()
+                }
+            }
+            if (suggestion) {
+                NavigationView {
+                    SuggestionView()
                 }
             }
         }

@@ -65,6 +65,7 @@
 		BA8B74E32AC671E600BBE70B /* LoginSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B74E22AC671E600BBE70B /* LoginSignUpView.swift */; };
 		BA8B74E62AC684AE00BBE70B /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B74E52AC684AE00BBE70B /* LogInView.swift */; };
 		BAFF1CDB2AD2854A0010D8B3 /* Sport.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFF1CDA2AD2854A0010D8B3 /* Sport.swift */; };
+		FB69A3762AE5CCE20090667C /* SuggestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB69A3752AE5CCE20090667C /* SuggestionView.swift */; };
 		FB742E152AD9425600BF6094 /* MyFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB742E142AD9425600BF6094 /* MyFriends.swift */; };
 		FBBBD55E2AD92FB900050C36 /* AllUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBBD55D2AD92FB900050C36 /* AllUsers.swift */; };
 		FBD626FC2AD242B5005642A3 /* FriendListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD626FB2AD242B5005642A3 /* FriendListView.swift */; };
@@ -109,6 +110,7 @@
 		BA8B74E22AC671E600BBE70B /* LoginSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignUpView.swift; sourceTree = "<group>"; };
 		BA8B74E52AC684AE00BBE70B /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		BAFF1CDA2AD2854A0010D8B3 /* Sport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sport.swift; sourceTree = "<group>"; };
+		FB69A3752AE5CCE20090667C /* SuggestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionView.swift; sourceTree = "<group>"; };
 		FB742E142AD9425600BF6094 /* MyFriends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriends.swift; sourceTree = "<group>"; };
 		FBBBD55D2AD92FB900050C36 /* AllUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllUsers.swift; sourceTree = "<group>"; };
 		FBD626FB2AD242B5005642A3 /* FriendListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListView.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 				FB742E142AD9425600BF6094 /* MyFriends.swift */,
 				6DAC698B2AD984B8001C197E /* OldBlockView.swift */,
 				6DAC698D2AD98539001C197E /* UserDetailsView.swift */,
+				FB69A3752AE5CCE20090667C /* SuggestionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				FBF11AC22AC8A9EC00FF39FC /* HomePageView.swift in Sources */,
 				FBF11ABE2AC8A97E00FF39FC /* NotificationView.swift in Sources */,
 				FB742E152AD9425600BF6094 /* MyFriends.swift in Sources */,
+				FB69A3762AE5CCE20090667C /* SuggestionView.swift in Sources */,
 				310A6C422AE45A720089E1A5 /* SignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

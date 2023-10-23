@@ -8,6 +8,10 @@
 import SwiftUI
 import Firebase
 
+class blockController: UIViewController {
+    
+}
+
 struct BlockView: View {
     @ObservedObject var otherUsers = AllUsers()
     

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State private var suggestion = false
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
@@ -15,7 +16,8 @@ struct HomeView: View {
                 Image("SportifyLogoOriginal")
                     .foregroundColor(.sportGold)
                     .font(.system(size: 100.0))
-            }
+        }
+        
     }
 }
 
