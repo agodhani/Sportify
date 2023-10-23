@@ -8,6 +8,10 @@
 import SwiftUI
 import Firebase
 
+class friendsController: UIViewController {
+    
+}
+
 struct MyFriends: View {
     @EnvironmentObject var userAuth: UserAuthentication
     var body: some View {

@@ -8,6 +8,10 @@
 import SwiftUI
 import Firebase
 
+class friendController: UIViewController {
+    
+}
+
 struct FriendListView: View {
     @ObservedObject var otherUsers = AllUsers()
     @State var locationFilter: Bool

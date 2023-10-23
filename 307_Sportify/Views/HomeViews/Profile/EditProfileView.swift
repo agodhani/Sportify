@@ -28,6 +28,9 @@ extension Image {
             }
     }
 }
+class editControl: UIViewController {
+    
+}
 
 struct EditProfileView: View {
     @EnvironmentObject var userAuth: UserAuthentication
