@@ -301,7 +301,6 @@ struct SingleEventView: View {
                                     .frame(width: 391, height: 2)
                                     .padding(1)
                                 
-                                // TODO make sure this is the actual guestList once figure out real currentEvent / user
                                 ForEach(attendeeListAsUsers, id: \.id) { guest in
                                                                         
                                     HStack (alignment: .firstTextBaseline) {
@@ -357,7 +356,6 @@ struct SingleEventView: View {
                                     .frame(width: 391, height: 2)
                                     .padding(1)
                                 
-                                // TODO make sure this is the actual guestList once figure out real currentEvent / user
                                 ForEach(requestListAsUsers, id: \.id) { guest in
                                     
                                     HStack (alignment: .firstTextBaseline) {
@@ -372,7 +370,6 @@ struct SingleEventView: View {
                                             HStack {
                                                 Button("Accept") {
                                                 action: do {
-                                                    // TODO - ACCEPT USER
                                                     event.acceptUser(acceptUser: guest.id)
                                                 }
                                                 }
@@ -385,7 +382,6 @@ struct SingleEventView: View {
                                                 
                                                 Button("Reject") {
                                                 action: do {
-                                                    // TODO - REJECT USER
                                                     event.rejectUser(rejectUser: guest.id)
                                                 }
                                                 }
@@ -435,7 +431,6 @@ struct SingleEventView: View {
                             .padding(.leading, 20)
                         
                         // Address / location
-                        // TODO
                         Text(eventLocation)
                             .foregroundColor(.gray)
                             .font(.system(size: 15, weight: .heavy, design: .default))

@@ -160,13 +160,14 @@ struct Event: Identifiable, Codable, Hashable {
         self.requestList = newList
     }
     
-    // TODO JOSH JOSH JOSH JOSH TODO
     mutating func removeUser(removeUser: User) {
         var found = false;
         for i in 1...attendeeList.endIndex {
             if attendeeList[i] == removeUser.id {
+                let db = Firestore.firestore()
                 attendeeList.remove(at: i)
                 found = true;
+                db.collection("Events").document(self.id).updateData(["attendeeList": attendeeList])
                 print("User was removed")
             }
         }
