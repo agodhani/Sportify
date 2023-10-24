@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// Make syntax more readable
 extension UIView {
     
     public var width: CGFloat {
@@ -35,8 +36,25 @@ extension UIView {
     }
 }
 
+// Create sport gold color
 extension UIColor {
     public var sportGold: UIColor {
         return UIColor(named: "SportGold")!
+    }
+}
+
+// Extension for sport picler
+extension SignUpViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return sportList.count
+    }
+    
+    private func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> String? {
+        return sportList[row]
     }
 }

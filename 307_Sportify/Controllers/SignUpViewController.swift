@@ -9,9 +9,9 @@ import UIKit
 import SwiftUI
 
 class SignUpViewController: UIViewController {
-
+    
     @State var isPrivate = false
-    @State private var sportList = ["Tennis", "Table Tennis", "Volleyball", "Soccer", "Basketball", "Football", "Baseball", "Badminton", "Golf", "Cycling", "Running", "Hockey", "Spikeball", "Handball", "Lacrosse", "Squash"]
+    @State var sportList = ["Tennis", "Table Tennis", "Volleyball", "Soccer", "Basketball", "Football", "Baseball", "Badminton", "Golf", "Cycling", "Running", "Hockey", "Spikeball", "Handball", "Lacrosse", "Squash"]
     
     // Might be too long to fit, use a scroll view
     private let scrollView: UIScrollView = {
@@ -73,7 +73,7 @@ class SignUpViewController: UIViewController {
         field.isSecureTextEntry = true
         return field
     }()
-
+    
     // Zipcode txt field
     private let zipcodeField: UITextField = {
         let field = UITextField()
@@ -117,10 +117,20 @@ class SignUpViewController: UIViewController {
         return button
     }()
     
+    // Sports label
+    private let sportsLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Sports:"
+        label.textColor = .sportGold
+        label.font = .systemFont(ofSize: 18)
+        return label
+    }()
+    
     // Sport picker
     private var sportPicker: UIPickerView = {
         let picker = UIPickerView()
-        
+       // picker.dataSource = sportList
+        //picker.backgroundColor = .white
         return picker
     }()
     
@@ -128,14 +138,14 @@ class SignUpViewController: UIViewController {
     private let signupButton: UIButton = {
         let button = UIButton()
         button.setTitle("SIGN UP", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
-        button.backgroundColor = .gray
+        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
+        button.backgroundColor = .sportGold
         button.setTitleColor(.black, for: .normal)
         button.layer.cornerRadius = 15
         button.layer.masksToBounds = true
         return button
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
@@ -151,6 +161,8 @@ class SignUpViewController: UIViewController {
         scrollView.addSubview(isPrivateSlider)
         scrollView.addSubview(privateLabel)
         scrollView.addSubview(profilePic)
+        scrollView.addSubview(sportsLabel)
+        scrollView.addSubview(sportPicker)
     }
     
     // Organize view
@@ -167,21 +179,21 @@ class SignUpViewController: UIViewController {
                                   width: size,
                                   height: 50)
         nameField.frame = CGRect(x: 45,
-                                  y: emailField.bottom + 15,
-                                  width: size,
-                                  height: 50)
+                                 y: emailField.bottom + 15,
+                                 width: size,
+                                 height: 50)
         passwordField.frame = CGRect(x: 45,
-                                    y: nameField.bottom + 15,
-                                    width: size,
-                                    height: 50)
+                                     y: nameField.bottom + 15,
+                                     width: size,
+                                     height: 50)
         zipcodeField.frame = CGRect(x: 45,
                                     y: passwordField.bottom + 15,
                                     width: size,
                                     height: 50)
         privateLabel.frame = CGRect(x: 50,
-                                   y: zipcodeField.bottom + 5,
-                                   width: size,
-                                   height: 50)
+                                    y: zipcodeField.bottom + 5,
+                                    width: size,
+                                    height: 50)
         isPrivateSlider.frame = CGRect(x:298,
                                        y: zipcodeField.bottom + 15,
                                        width: 1,
@@ -190,6 +202,14 @@ class SignUpViewController: UIViewController {
                                   y: privateLabel.bottom - 5,
                                   width: size / 1.65,
                                   height: 30)
+        sportsLabel.frame = CGRect(x: 50,
+                                   y: profilePic.bottom - 3,
+                                   width: size,
+                                   height: 50)
+        sportPicker.frame = CGRect(x:100,
+                                   y: profilePic.bottom + 15,
+                                   width: 50,
+                                   height: 50)
         signupButton.frame = CGRect(x: 90,
                                     y: logoView.bottom + 355,
                                     width: 225,
@@ -200,7 +220,7 @@ class SignUpViewController: UIViewController {
         let vc = SignUpViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
-
+    
 }
 
 #Preview {
