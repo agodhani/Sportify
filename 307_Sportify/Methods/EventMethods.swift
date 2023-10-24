@@ -13,7 +13,7 @@ class EventMethods: ObservableObject {
     @Published var thisEvent: Event!
     
     init (){
-        thisEvent = Event(id: "", eventName: "", sport: 0, date: Date.now, location: "", numAttendees: 0, attendeeList: Array<User>(), privateEvent: false, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "", code: "", blackList: Set<User>(), requestList: [], description: "")
+        thisEvent = Event(id: "", eventName: "", sport: 0, date: Date.now, location: "", numAttendees: 0, attendeeList: Array<String>(), privateEvent: false, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "", code: "", blackList: Set<User>(), requestList: [String](), description: "")
     }
     init(eventID: String) async {
         thisEvent = await getEvent(eventID: eventID)
@@ -21,7 +21,7 @@ class EventMethods: ObservableObject {
     
     func createEvent(eventName: String, sport: Int, maxParticipants: Int, description: String, location: String, privateEvent: Bool, id: String) async throws {
         do {
-            let event = Event(id: UUID().uuidString, eventName: eventName, sport: sport, date: Date.now, location: location, numAttendees: 1, attendeeList: Array<User>(), privateEvent: privateEvent, maxParticipants: maxParticipants, adminsList: Set<User>(), eventHostID: id, code: "monkeys", blackList: Set<User>(), requestList: [], description: description)
+            let event = Event(id: UUID().uuidString, eventName: eventName, sport: sport, date: Date.now, location: location, numAttendees: 1, attendeeList: Array<String>(), privateEvent: privateEvent, maxParticipants: maxParticipants, adminsList: Set<User>(), eventHostID: id, code: "monkeys", blackList: Set<User>(), requestList: [], description: description)
             let userAuth = UserAuthentication()
             var user = userAuth.currUser
             user?.eventsHosting.append(event.id)
@@ -45,7 +45,7 @@ class EventMethods: ObservableObject {
             return eventData
         } catch {
             print("Event Data retrival failed - you suck!")
-            return Event(id: "", eventName: "", sport: 0, date: Date.now, location: "", numAttendees: 0, attendeeList: Array<User>(), privateEvent: false, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "", code: "", blackList: Set<User>(), requestList: [], description: "")
+            return Event(id: "", eventName: "", sport: 0, date: Date.now, location: "", numAttendees: 0, attendeeList: Array<String>(), privateEvent: false, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "", code: "", blackList: Set<User>(), requestList: [], description: "")
         }
     }
     
@@ -68,7 +68,7 @@ class EventMethods: ObservableObject {
         }
     }
     
-    func modifyEvent(eventID: Event.ID, eventName: String, date: Date, location: String, attendeeList: Array<User>, privateEvent: Bool, maxParticipants: Int, adminsList: Set<User>, eventHostID: String, code: String, blackList: Set<User>, requestList: [User], description: String) async throws {
+    func modifyEvent(eventID: Event.ID, eventName: String, date: Date, location: String, attendeeList: Array<String>, privateEvent: Bool, maxParticipants: Int, adminsList: Set<User>, eventHostID: String, code: String, blackList: Set<User>, requestList: [String], description: String) async throws {
         
         do {
             let event = try await self.getEvent(eventID: eventID)
@@ -81,7 +81,7 @@ class EventMethods: ObservableObject {
             if(location != "") {
                 try await Firestore.firestore().collection("Events").document(event.id).updateData(["location": location])
             }
-            if(attendeeList != Array<User>()) {
+            if(attendeeList != Array<String>()) {
                 try await Firestore.firestore().collection("Events").document(event.id).updateData(["attendeeList": attendeeList])
             }
             if(privateEvent != event.privateEvent) {
@@ -124,4 +124,7 @@ class EventMethods: ObservableObject {
             print("Cannot delete event - time to play!")
         }
     }
+    
+    
+    
 }

@@ -18,14 +18,14 @@ struct Event: Identifiable, Codable, Hashable {
     var date: Date
     var location: String
     var numAttendees: Int
-    var attendeeList: Array<User>
+    var attendeeList: [String]
     var privateEvent: Bool
     var maxParticipants: Int
     var adminsList: Set<User>
     var eventHostID: String // this will be the user ID
     var code: String
     var blackList: Set<User>
-    var requestList: [User]
+    var requestList: [String]
     var description: String
    
     /*
@@ -130,13 +130,13 @@ struct Event: Identifiable, Codable, Hashable {
         print("Max Participants updated for \(self.eventName): \(self.maxParticipants)")
         return self.maxParticipants
     }
-    
+        
     mutating func setNumAttendees(num: Int) {
         self.numAttendees = num
     }
     
-    mutating func addAttendee(attendee: User) {
-        self.attendeeList.append(attendee)
+    mutating func addAttendee(attendeeID: String) {
+        self.attendeeList.append(attendeeID)
     }
     
     
@@ -144,7 +144,7 @@ struct Event: Identifiable, Codable, Hashable {
         
     }
     
-    mutating func setAttendeeList(newAttendeeList: [User]) {
+    mutating func setAttendeeList(newAttendeeList: [String]) {
         self.attendeeList = newAttendeeList
     }
     
@@ -156,14 +156,15 @@ struct Event: Identifiable, Codable, Hashable {
         self.eventHostID = host.id
     }
     
-    mutating func setRequestList(newList: [User]) {
+    mutating func setRequestList(newList: [String]) {
         self.requestList = newList
     }
     
+    // TODO JOSH JOSH JOSH JOSH TODO
     mutating func removeUser(removeUser: User) {
         var found = false;
         for i in 1...attendeeList.endIndex {
-            if attendeeList[i].id == removeUser.id {
+            if attendeeList[i] == removeUser.id {
                 attendeeList.remove(at: i)
                 found = true;
                 print("User was removed")
@@ -175,20 +176,25 @@ struct Event: Identifiable, Codable, Hashable {
         }
     }
     
-    mutating func acceptUser(acceptUser: User) {
-        if (requestList.contains(acceptUser)) { // might not work, might need to copy removeUser logic^^^
+    mutating func acceptUser(acceptUser: String) {
+        if (requestList.contains(acceptUser)) {
             let index = attendeeList.firstIndex(of: acceptUser)!
+            let db = Firestore.firestore()
             requestList.remove(at: index)
             attendeeList.append(acceptUser)
+            db.collection("Events").document(self.id).updateData(["attendeeList": attendeeList])
         } else {
             print("User could not be added to attendee list")
         }
     }
     
-    mutating func rejectUser(rejectUser: User) {
-        if (requestList.contains(rejectUser)) { // might not work, might need to copy removeUser logic^^^
+    mutating func rejectUser(rejectUser: String) {
+        if (requestList.contains(rejectUser)) {
             let index = attendeeList.firstIndex(of: rejectUser)!
+            let db = Firestore.firestore()
             requestList.remove(at: index)
+            db.collection("Events").document(self.id).updateData(["requestList": requestList])
+
         } else {
             print("User could not be removed from request list")
         }
@@ -257,6 +263,44 @@ struct Event: Identifiable, Codable, Hashable {
         } else {
             return .green
         }
+    }
+    
+    func userIsAttending(userID: String) -> Bool {
+        if (attendeeList.contains(userID)) {
+            return true
+        }
+        return false
+    }
+    
+    func attendeeListAsUsers() async -> [User] {
+        var userList = [User]()
+        let db = Firestore.firestore()
+        
+        for attendeeID in attendeeList {
+            var userData = try? await db.collection("Users").document(attendeeID).getDocument()
+            do {
+                var user = try userData!.data(as: User.self)
+                userList.append(user)
+            } catch {
+                print("Error getting attendee as User!")
+            }
+        }
+        return userList
+    }
+    func requestListAsUsers() async -> [User] {
+        var userList = [User]()
+        let db = Firestore.firestore()
+        
+        for requestID in requestList {
+            var userData = try? await db.collection("Users").document(requestID).getDocument()
+            do {
+                var user = try userData!.data(as: User.self)
+                userList.append(user)
+            } catch {
+                print("Error getting attendee as User!")
+            }
+        }
+        return userList
     }
     
 }

@@ -119,7 +119,7 @@ struct User: Identifiable, Codable, Hashable {
         Task {
             var event = try await eventm.getEvent(eventID: eventID)
             let attendeeList = event.attendeeList //.append(user)
-            try await eventm.modifyEvent(eventID: eventID, eventName: "", date: event.date, location: "", attendeeList: attendeeList, privateEvent: event.privateEvent, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "", code: "", blackList: Set<User>(), requestList: [], description: "")
+            try await eventm.modifyEvent(eventID: eventID, eventName: "", date: event.date, location: "", attendeeList: [String](), privateEvent: event.privateEvent, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "", code: "", blackList: Set<User>(), requestList: [String](), description: "")
         }
     }
     

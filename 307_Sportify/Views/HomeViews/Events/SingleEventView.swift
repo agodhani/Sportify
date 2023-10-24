@@ -11,9 +11,11 @@ import Firebase
 struct SingleEventView: View {
     
     // this should show if the event didn't load properly
-    @State var event = Event(id: "error id", eventName: "error name", sport: 0, date: Date.now, location: "error location", numAttendees: 0, attendeeList: Array<User>(), privateEvent: false, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "2", code: "code", blackList: Set<User>(), requestList: [], description: "error description")
+    @State var event = Event(id: "error id", eventName: "error name", sport: 0, date: Date.now, location: "error location", numAttendees: 0, attendeeList: Array<String>(), privateEvent: false, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "2", code: "code", blackList: Set<User>(), requestList: [], description: "error description")
     
     @State var userAuth = UserAuthentication()
+    @State var userM = UserMethods()
+    @State var allUsers = AllUsers()
 
     @State var eventName = ""
     @State var eventid: String // parameter - REAL - uncomment
@@ -40,6 +42,8 @@ struct SingleEventView: View {
     
     @State var deletePrompt = false;
     @State var eventsView = false;
+    @State var attendeeListAsUsers = [User]()
+    @State var requestListAsUsers = [User]()
 
     let db = Firestore.firestore()
     
@@ -74,6 +78,10 @@ struct SingleEventView: View {
                     .background(.red)
                     .cornerRadius(200)
                     .offset(CGSize(width: 120, height: -375))
+                } else { // not the event host - will be a join / leave button
+                    
+                    
+                    
                 }
 
                 VStack (alignment: .trailing) {
@@ -294,8 +302,8 @@ struct SingleEventView: View {
                                     .padding(1)
                                 
                                 // TODO make sure this is the actual guestList once figure out real currentEvent / user
-                                ForEach(event.attendeeList, id: \.id) { guest in
-                                    
+                                ForEach(attendeeListAsUsers, id: \.id) { guest in
+                                                                        
                                     HStack (alignment: .firstTextBaseline) {
                                         let name = guest.name
                                         Text(name)
@@ -309,8 +317,7 @@ struct SingleEventView: View {
                                             if event.userIsEventHost(user: currentUser) { // REAL - unwrap
                                                 Button("Remove") {
                                                 action: do {
-                                                    // TODO - REMOVE USER
-                                                    event.removeUser(removeUser: guest) // idk if this updates the UI properly in real life
+                                                    event.removeUser(removeUser: guest)
                                                 }
                                                 }
                                                 .foregroundColor(.black)
@@ -351,7 +358,7 @@ struct SingleEventView: View {
                                     .padding(1)
                                 
                                 // TODO make sure this is the actual guestList once figure out real currentEvent / user
-                                ForEach(event.requestList, id: \.id) { guest in
+                                ForEach(requestListAsUsers, id: \.id) { guest in
                                     
                                     HStack (alignment: .firstTextBaseline) {
                                         let name = guest.name
@@ -366,8 +373,7 @@ struct SingleEventView: View {
                                                 Button("Accept") {
                                                 action: do {
                                                     // TODO - ACCEPT USER
-                                                    event.acceptUser(acceptUser: guest)
-                                                    db.collection("Events").document(eventid).updateData(["attendeeList": event.attendeeList])
+                                                    event.acceptUser(acceptUser: guest.id)
                                                 }
                                                 }
                                                 .foregroundColor(.black)
@@ -380,9 +386,7 @@ struct SingleEventView: View {
                                                 Button("Reject") {
                                                 action: do {
                                                     // TODO - REJECT USER
-                                                    event.rejectUser(rejectUser: guest) // needs to be tested
-                                                    db.collection("Events").document(eventid).updateData(["attendeeList": event.attendeeList])
-                                                    
+                                                    event.rejectUser(rejectUser: guest.id)
                                                 }
                                                 }
                                                 .foregroundColor(.black)
@@ -469,8 +473,7 @@ struct SingleEventView: View {
                                     .frame(width: 391, height: 2)
                                     .padding(1)
                                 
-                                // TODO make sure this is the actual guestList once figure out real currentEvent / user
-                                ForEach(event.attendeeList, id: \.id) { guest in
+                                ForEach(attendeeListAsUsers, id: \.id) { guest in
                                     
                                     HStack (alignment: .firstTextBaseline) {
                                         let name = guest.name
@@ -552,6 +555,8 @@ struct SingleEventView: View {
                     eventDate = event.date
                     eventDescription = event.description
                     maxParticipants = event.maxParticipants
+                    attendeeListAsUsers = await event.attendeeListAsUsers()
+                    requestListAsUsers = await event.requestListAsUsers()
                 }
 
             } // end ZStack
