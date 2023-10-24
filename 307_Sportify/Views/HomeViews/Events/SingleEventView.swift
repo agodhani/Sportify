@@ -68,6 +68,7 @@ struct SingleEventView: View {
                 if event.userIsEventHost(user: currentUser) { // REAL - unwrap
                     Button("Delete\nEvent") {
                         deletePrompt = true;
+                        // TODO update all the users too
                     }
                     .controlSize(.mini)
                     .foregroundColor(.black)
@@ -84,6 +85,10 @@ struct SingleEventView: View {
                         
                         Button("Leave") {
                             // TODO
+                            // update user
+                            // update DB user
+                            // update event
+                            // update DB event
                         }
                         .controlSize(.mini)
                         .foregroundColor(Color("SportsGold"))
@@ -98,6 +103,10 @@ struct SingleEventView: View {
                     } else { // user is not attending - show join button
                         Button("Join") {
                             // TODO
+                            // update user
+                            // update DB user
+                            // update event
+                            // update DB event
                         }
                         .controlSize(.mini)
                         .foregroundColor(Color("SportsGold"))

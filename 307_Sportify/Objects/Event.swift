@@ -130,6 +130,32 @@ struct Event: Identifiable, Codable, Hashable {
         print("Max Participants updated for \(self.eventName): \(self.maxParticipants)")
         return self.maxParticipants
     }
+    
+    mutating func kickAttendee(userID: String) async {
+        let db = Firestore.firestore()
+        
+        if attendeeList.contains(userID) {
+            do {
+                attendeeList.remove(at: attendeeList.firstIndex(of: userID)!)
+                try await db.collection("Events").document(self.id).updateData(["attendeeList": self.attendeeList])
+                print("Attendee list updated for \(self.attendeeList): \(self.attendeeList)")
+                
+                let userM = UserMethods()
+                var user = await userM.getUser(user_id: userID)
+                // TODO here - finish this - josh
+                // user.leave event
+                //db.collection("Users").document(userID).updateData(["eventsAttending" : ])
+                
+            } catch {
+                
+            }
+
+            
+        } else {
+            print("The given user id: \(userID) is not in the attendee list")
+        }
+        
+    }
         
     mutating func setNumAttendees(num: Int) {
         self.numAttendees = num

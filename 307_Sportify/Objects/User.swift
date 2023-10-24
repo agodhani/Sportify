@@ -123,6 +123,10 @@ struct User: Identifiable, Codable, Hashable {
         }
     }
     
+    func leaveEvent() {
+        
+    }
+    
     func hostEvent() {
         
     }
@@ -141,9 +145,7 @@ struct User: Identifiable, Codable, Hashable {
         
     }
     
-    func leaveEvent() {
-    }
-    
+
     func getUsername() -> String {
         return self.name
     }
