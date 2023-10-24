@@ -288,6 +288,7 @@ struct Event: Identifiable, Codable, Hashable {
         }
         return userList
     }
+    
     func requestListAsUsers() async -> [User] {
         var userList = [User]()
         let db = Firestore.firestore()

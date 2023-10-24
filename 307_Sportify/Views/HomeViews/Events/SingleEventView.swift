@@ -80,6 +80,35 @@ struct SingleEventView: View {
                     .offset(CGSize(width: 120, height: -375))
                 } else { // not the event host - will be a join / leave button
                     
+                    if (event.userIsAttending(userID: currentUser.id)) { // user is attending - show leave button
+                        
+                        Button("Leave") {
+                            // TODO
+                        }
+                        .controlSize(.mini)
+                        .foregroundColor(Color("SportsGold"))
+                        .font(.system(size: 10, weight: .heavy, design: .default))
+                        .multilineTextAlignment(.center)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .frame(width: 60, height: 30)
+                        .background(.red)
+                        .cornerRadius(200)
+                        .offset(CGSize(width: 120, height: -375))
+                        
+                    } else { // user is not attending - show join button
+                        Button("Join") {
+                            // TODO
+                        }
+                        .controlSize(.mini)
+                        .foregroundColor(Color("SportsGold"))
+                        .font(.system(size: 10, weight: .heavy, design: .default))
+                        .multilineTextAlignment(.center)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .frame(width: 60, height: 30)
+                        .background(.red)
+                        .cornerRadius(200)
+                        .offset(CGSize(width: 120, height: -375))
+                    }
                     
                     
                 }
