@@ -98,7 +98,7 @@ class ForgotPasswordViewController: UIViewController {
                                     height: 50)
     }
     
-    // TODO
+    // TODO - apply this to the submitButton
     @objc private func tappedSubmit() async {
         let email = emailField.text!
         do {
