@@ -21,7 +21,7 @@ class SignUpViewController: UIViewController {
     }()
     
     // Logo
-    private let logoView: UIImageView = {
+    private var logoView: UIImageView = {
         let logoView = UIImageView()
         logoView.image = UIImage(named: "SportifyLogoOriginal")
         logoView.contentMode = .scaleAspectFit
@@ -40,6 +40,7 @@ class SignUpViewController: UIViewController {
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 7, height: 0))
         field.leftViewMode = .always
         field.backgroundColor = .lightGray
+        field.tintColor = .black
         return field
     }()
     
@@ -55,6 +56,7 @@ class SignUpViewController: UIViewController {
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 7, height: 0))
         field.leftViewMode = .always
         field.backgroundColor = .lightGray
+        field.tintColor = .black
         return field
     }()
     
@@ -71,6 +73,7 @@ class SignUpViewController: UIViewController {
         field.leftViewMode = .always
         field.backgroundColor = .lightGray
         field.isSecureTextEntry = true
+        field.tintColor = .black
         return field
     }()
     
@@ -86,7 +89,7 @@ class SignUpViewController: UIViewController {
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 7, height: 0))
         field.leftViewMode = .always
         field.backgroundColor = .lightGray
-        field.isSecureTextEntry = true
+        field.tintColor = .black
         return field
     }()
     
@@ -106,7 +109,7 @@ class SignUpViewController: UIViewController {
     }()
     
     // Update profile pic button
-    private let profilePic: UIButton = {
+    private let profilePicButton: UIButton = {
         let button = UIButton()
         button.setTitle("Upload Profile Picture", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .medium)
@@ -150,6 +153,10 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black
         
+        signupButton.addTarget(self, action: #selector(tappedSignup), for: .touchUpInside)
+        
+        profilePicButton.addTarget(self, action: #selector(tappedProfilePic), for: .touchUpInside)
+        
         // Add subviews to view
         view.addSubview(scrollView)
         scrollView.addSubview(logoView)
@@ -160,7 +167,7 @@ class SignUpViewController: UIViewController {
         scrollView.addSubview(zipcodeField)
         scrollView.addSubview(isPrivateSlider)
         scrollView.addSubview(privateLabel)
-        scrollView.addSubview(profilePic)
+        scrollView.addSubview(profilePicButton)
         scrollView.addSubview(sportsLabel)
         scrollView.addSubview(sportPicker)
     }
@@ -198,16 +205,16 @@ class SignUpViewController: UIViewController {
                                        y: zipcodeField.bottom + 15,
                                        width: 1,
                                        height: 1)
-        profilePic.frame = CGRect(x: 47,
+        profilePicButton.frame = CGRect(x: 47,
                                   y: privateLabel.bottom - 5,
                                   width: size / 1.65,
                                   height: 30)
         sportsLabel.frame = CGRect(x: 50,
-                                   y: profilePic.bottom - 3,
+                                   y: profilePicButton.bottom - 3,
                                    width: size,
                                    height: 50)
         sportPicker.frame = CGRect(x:100,
-                                   y: profilePic.bottom + 15,
+                                   y: profilePicButton.bottom + 15,
                                    width: 50,
                                    height: 50)
         signupButton.frame = CGRect(x: 90,
@@ -216,11 +223,60 @@ class SignUpViewController: UIViewController {
                                     height: 50)
     }
     
-    @objc private func tappedLogIn() {
-        let vc = SignUpViewController()
-        navigationController?.pushViewController(vc, animated: true)
+    @objc private func tappedSignup() {
+        //let vc =
+        //navigationController?.pushViewController(vc, animated: true)
     }
     
+    @objc private func tappedProfilePic() {
+        presentPhotoPicker()
+    }
+    
+}
+
+extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        
+        guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
+            return
+        }
+        
+        let picView: UIImageView = {
+            let picView = UIImageView()
+            picView.image = selectedImage
+            picView.contentMode = .scaleAspectFit
+            picView.layer.masksToBounds = true
+            picView.layer.cornerRadius = picView.width / 2
+            picView.layer.borderWidth = 2
+            picView.layer.borderColor = UIColor.lightGray.cgColor
+            picView.frame = CGRect(x: 10,
+                                   y: 10,
+                                   width: scrollView.width/2,
+                                   height: scrollView.width/2)
+            return picView
+        }()
+        
+        self.logoView = picView
+        
+//        self.logoView.image = selectedImage
+//        self.logoView.layer.masksToBounds = true
+//        self.logoView.layer.cornerRadius = logoView.width / 2
+//        self.logoView.layer.borderWidth = 2
+//        self.logoView.layer.borderColor = UIColor.lightGray.cgColor
+    }
+    
+    func presentPhotoPicker() {
+        let vc = UIImagePickerController()
+        vc.sourceType = .photoLibrary
+        vc.delegate = self
+        vc.allowsEditing = true
+        present(vc, animated: true)
+    }
 }
 
 #Preview {

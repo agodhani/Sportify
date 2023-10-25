@@ -160,12 +160,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3137F3C42AE89668000E5460 /* Login_Signup */ = {
+			isa = PBXGroup;
+			children = (
+				3174F1632AE08D9800C2C49D /* LoginSignUpViewController.swift */,
+				310A6C412AE45A720089E1A5 /* SignUpViewController.swift */,
+			);
+			path = Login_Signup;
+			sourceTree = "<group>";
+		};
 		3174F15E2AE084AB00C2C49D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				3174F1612AE08D6300C2C49D /* FlowViewController.swift */,
-				3174F1632AE08D9800C2C49D /* LoginSignUpViewController.swift */,
-				310A6C412AE45A720089E1A5 /* SignUpViewController.swift */,
+				3137F3C42AE89668000E5460 /* Login_Signup */,
 				3174F1652AE0949D00C2C49D /* Extensions.swift */,
 			);
 			path = Controllers;
