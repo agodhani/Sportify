@@ -6,3 +6,12 @@
 //
 
 import Foundation
+import UIKit
+import SwiftUI
+
+class ForgotPasswordViewController: UIViewController {
+    
+     
+    
+    
+}
