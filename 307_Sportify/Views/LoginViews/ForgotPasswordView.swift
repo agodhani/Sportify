@@ -10,7 +10,6 @@ import UIKit
 
 struct ForgotPasswordView: View {
     
-    
     @State private var email = "";
     @EnvironmentObject var userAuth: UserAuthentication
     @State private var test = "";
