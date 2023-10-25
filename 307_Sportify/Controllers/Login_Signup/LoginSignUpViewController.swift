@@ -46,6 +46,8 @@ class LoginSignUpViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black
         
+        signupButton.addTarget(self, action: #selector(tappedSignUp), for: .touchUpInside)
+        
         // Add subviews to view
         view.addSubview(logoView)
         view.addSubview(loginButton)
@@ -70,7 +72,7 @@ class LoginSignUpViewController: UIViewController {
                                   height: 50)
     }
     
-    @objc private func tappedLogIn() {
+    @objc private func tappedSignUp() {
         let vc = SignUpViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
