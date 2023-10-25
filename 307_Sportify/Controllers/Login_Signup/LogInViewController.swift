@@ -63,15 +63,28 @@ class LogInViewController: UIViewController {
         return button
     }()
     
+    // Login button
+    private let forgotPasswordButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Forgot Password", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
+        button.setTitleColor(.sportGold, for: .normal)
+        button.layer.cornerRadius = 15
+        button.layer.masksToBounds = true
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
         loginButton.addTarget(self, action: #selector(tappedLogIn), for: .touchUpInside)
+        forgotPasswordButton.addTarget(self, action: #selector(tappedForgotPassword), for: .touchUpInside)
         //add subviews
         view.addSubview(logoView)
         view.addSubview(emailField)
         view.addSubview(passwordField)
         view.addSubview(loginButton)
+        view.addSubview(forgotPasswordButton)
         
     }
     
@@ -94,10 +107,18 @@ class LogInViewController: UIViewController {
                                    y: logoView.bottom + 125,
                                   width: 225,
                                   height: 50)
+        forgotPasswordButton.frame = CGRect(x: 90,
+                                           y: logoView.bottom + 200,
+                                          width: 225,
+                                          height: 50)
+    }
+    
+    @objc private func tappedForgotPassword() {
+        let vc = ForgotPasswordViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc private func tappedLogIn() {
-        
         guard let email = emailField.text, let password = passwordField.text,
               !email.isEmpty, !password.isEmpty else {
             print("email is empty, password is empty")

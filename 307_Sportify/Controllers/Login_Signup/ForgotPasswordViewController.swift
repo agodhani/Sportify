@@ -11,7 +11,7 @@ import SwiftUI
 
 class ForgotPasswordViewController: UIViewController {
     
-    @EnvironmentObject var userAuth: UserAuthentication
+    @State var userAuth = UserAuthentication()
     
     // Logo
     private var logoView: UIImageView = {
@@ -28,6 +28,7 @@ class ForgotPasswordViewController: UIViewController {
         statusText.backgroundColor = .clear
         statusText.textAlignment = .center
         statusText.font = .systemFont(ofSize: 18, weight: .medium)
+        statusText.isEditable = false
         return statusText
     }()
     
@@ -61,6 +62,7 @@ class ForgotPasswordViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black
         
+        submitButton.addTarget(self, action: #selector(tappedSubmit), for: .touchUpInside)
         // Add subviews to view
         view.addSubview(logoView)
         view.addSubview(statusText)
@@ -99,15 +101,20 @@ class ForgotPasswordViewController: UIViewController {
     }
     
     // TODO
-    @objc private func tappedSubmit() async {
+    @objc private func tappedSubmit() {
         let email = emailField.text!
-        do {
-           try await userAuth.forgotPasswordEmail(email: email)
-            statusText.text = "Email sent! Check your inbox for email"
-        } catch {
-            statusText.text = "Provided email was not found"
-            print("Could not send email to \(email)")
+        Task {
+            let attempt = try await userAuth.forgotPasswordEmail(email: email)
+            if attempt {
+                statusText.text = "Email sent! Check your inbox for email"
+            } else {
+                statusText.text = "Provided email was not found. \nPlease Try Again"
+                print("Could not send email to \(email)")
+            }
+            
         }
+            
+
     }
     
     

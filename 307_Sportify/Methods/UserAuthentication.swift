@@ -84,17 +84,20 @@ class UserAuthentication: ObservableObject {
         case otherError
     }
     
-    func forgotPasswordEmail(email: String) async throws {
+    func forgotPasswordEmail(email: String) async throws -> Bool {
         
         do {
             
             try await Auth.auth().sendPasswordReset(withEmail: email)
             print("Sending forgot password email was successful")
+            return true
             
         } catch {
             print("Sending forgot password email was unsuccessful")
+            return false
             throw EmailError.invalidEmail
         }
+        return false
         
     }
 }
