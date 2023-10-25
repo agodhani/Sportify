@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 class LoginSignUpViewController: UIViewController {
-    
+    @EnvironmentObject var userAuth: UserAuthentication
     // Logo
     private let logoView: UIImageView = {
         let logoView = UIImageView()
@@ -47,7 +47,8 @@ class LoginSignUpViewController: UIViewController {
         view.backgroundColor = .black
         
         signupButton.addTarget(self, action: #selector(tappedSignUp), for: .touchUpInside)
-        
+        loginButton.addTarget(self, action: #selector(tappedLogIn), for: .touchUpInside)
+
         // Add subviews to view
         view.addSubview(logoView)
         view.addSubview(loginButton)
@@ -74,6 +75,11 @@ class LoginSignUpViewController: UIViewController {
     
     @objc private func tappedSignUp() {
         let vc = SignUpViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc private func tappedLogIn() {
+        let vc = LogInViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
 

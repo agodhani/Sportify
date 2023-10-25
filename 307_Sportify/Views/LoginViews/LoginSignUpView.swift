@@ -7,7 +7,19 @@
 
 import SwiftUI
 
-
+struct TestViewController: UIViewControllerRepresentable {
+    typealias UIViewControllerType = LoginSignUpViewController
+    
+    func makeUIViewController(context: Context) -> LoginSignUpViewController {
+        let vc = LoginSignUpViewController()
+        // Do some configurations here if needed.
+        return vc
+    }
+    
+    func updateUIViewController(_ uiViewController: LoginSignUpViewController, context: Context) {
+        // Updates the state of the specified view controller with new information from SwiftUI.
+    }
+}
     
 struct LoginSignUpView: View {
     @EnvironmentObject var userAuth: UserAuthentication

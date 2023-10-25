@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 class SignUpViewController: UIViewController {
-    
+    @State var userAuth = UserAuthentication()
     @State var isPrivate = false
     @State var sportList = ["Tennis", "Table Tennis", "Volleyball", "Soccer", "Basketball", "Football", "Baseball", "Badminton", "Golf", "Cycling", "Running", "Hockey", "Spikeball", "Handball", "Lacrosse", "Squash"]
     
@@ -223,7 +223,18 @@ class SignUpViewController: UIViewController {
                                     height: 50)
     }
     
+    //sign in button clicked
     @objc private func tappedSignup() {
+        guard let email = emailField.text, let password = passwordField.text, let fullName = nameField.text, let zipCode = zipcodeField.text,
+              !email.isEmpty, !password.isEmpty,!zipCode.isEmpty, !fullName.isEmpty else {
+            print("email is empty, password is empty")
+                  return
+              }
+        Task {
+            if try await userAuth.createUser(withEmail: email, password: password, fullname: fullName, privateAccount: isPrivateSlider.isOn, zipCode: zipCode, sport: 0) {
+                print("new user created")
+            }
+        }
         //let vc =
         //navigationController?.pushViewController(vc, animated: true)
     }

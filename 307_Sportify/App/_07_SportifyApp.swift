@@ -33,9 +33,7 @@ struct YourApp: App {
               if(userAuth.userSession != nil) {
                   HomePageView()
               } else {
-                  LoginSignUpView()
-                      .environmentObject(userAuth)
-                  
+                  TestViewController()
               }
           }
       }
