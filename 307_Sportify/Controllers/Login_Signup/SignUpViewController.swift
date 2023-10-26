@@ -20,6 +20,18 @@ class SignUpViewController: UIViewController {
         return scrollView
     }()
     
+    // Back button
+    private let backButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Back", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .medium)
+        button.backgroundColor = .black
+        button.setTitleColor(.sportGold, for: .normal)
+        button.layer.cornerRadius = 15
+        button.layer.masksToBounds = true
+        return button
+    }()
+    
     // Logo
     private var logoView: UIImageView = {
         let logoView = UIImageView()
@@ -151,17 +163,15 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .black
         
-        // Back button
-        let backButton = UIBarButtonItem(title: "Back",
-                                         style: .done,
-                                         target: self,
-                                         action:
-                                          #selector(backButtonTapped))
-        backButton.tintColor = .sportGold
-        navigationItem.backBarButtonItem = backButton
+        let text = UILabel()
+        text.text = "Create Account"
+        text.textColor = .sportGold
+        title = text.text
         
+        // Functionality for the buttons
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         
         signupButton.addTarget(self, action: #selector(tappedSignup), for: .touchUpInside)
         
@@ -169,6 +179,7 @@ class SignUpViewController: UIViewController {
         
         // Add subviews to view
         view.addSubview(scrollView)
+        scrollView.addSubview(backButton)
         scrollView.addSubview(logoView)
         scrollView.addSubview(emailField)
         scrollView.addSubview(nameField)
@@ -187,6 +198,10 @@ class SignUpViewController: UIViewController {
         super.viewDidLayoutSubviews()
         scrollView.frame = view.bounds
         let size = scrollView.width / 1.3
+        backButton.frame = CGRect(x: 15,
+                                  y: 20,
+                                  width: 70,
+                                  height: 30)
         logoView.frame = CGRect(x: (scrollView.width - size) / 2 - 3,
                                 y: 10,
                                 width: size,
@@ -235,8 +250,7 @@ class SignUpViewController: UIViewController {
     
     // Back button clicked
     @objc private func backButtonTapped() {
-        let vc = LoginSignUpViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     // Sign in button clicked
@@ -244,15 +258,13 @@ class SignUpViewController: UIViewController {
         guard let email = emailField.text, let password = passwordField.text, let fullName = nameField.text, let zipCode = zipcodeField.text,
               !email.isEmpty, !password.isEmpty,!zipCode.isEmpty, !fullName.isEmpty else {
             print("email is empty, password is empty")
-                  return
-              }
+            return
+        }
         Task {
             if try await userAuth.createUser(withEmail: email, password: password, fullname: fullName, privateAccount: isPrivateSlider.isOn, zipCode: zipCode, sport: 0) {
                 print("new user created")
             }
         }
-        //let vc =
-        //navigationController?.pushViewController(vc, animated: true)
     }
     
     // Upload Profile Picture clicked
@@ -273,9 +285,7 @@ extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationCon
         guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
             return
         }
-        
-        let size = scrollView.width / 3
-        
+                
         self.logoView.image = selectedImage
         self.logoView.layer.masksToBounds = true
         logoView.contentMode = .scaleAspectFit

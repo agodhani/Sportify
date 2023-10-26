@@ -13,6 +13,7 @@
 		3174F1622AE08D6300C2C49D /* FlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3174F1612AE08D6300C2C49D /* FlowViewController.swift */; };
 		3174F1642AE08D9800C2C49D /* LoginSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3174F1632AE08D9800C2C49D /* LoginSignUpViewController.swift */; };
 		3174F1662AE0949D00C2C49D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3174F1652AE0949D00C2C49D /* Extensions.swift */; };
+		3180B1152AEB0B0F009A45D0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3180B1142AEB0B0F009A45D0 /* ProfileViewController.swift */; };
 		31854A142AD9332E007346F8 /* EditEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31854A132AD9332E007346F8 /* EditEventView.swift */; };
 		31854A162AD9E66F007346F8 /* JoinEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31854A152AD9E66F007346F8 /* JoinEvent.swift */; };
 		31854A182AD9ED4F007346F8 /* UserMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31854A172AD9ED4F007346F8 /* UserMethods.swift */; };
@@ -87,6 +88,7 @@
 		3174F1612AE08D6300C2C49D /* FlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowViewController.swift; sourceTree = "<group>"; };
 		3174F1632AE08D9800C2C49D /* LoginSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignUpViewController.swift; sourceTree = "<group>"; };
 		3174F1652AE0949D00C2C49D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		3180B1142AEB0B0F009A45D0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		31854A132AD9332E007346F8 /* EditEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventView.swift; sourceTree = "<group>"; };
 		31854A152AD9E66F007346F8 /* JoinEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinEvent.swift; sourceTree = "<group>"; };
 		31854A172AD9ED4F007346F8 /* UserMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMethods.swift; sourceTree = "<group>"; };
@@ -180,11 +182,20 @@
 		3174F15E2AE084AB00C2C49D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3180B1132AEB0AEB009A45D0 /* Profile */,
 				3174F1612AE08D6300C2C49D /* FlowViewController.swift */,
 				3137F3C42AE89668000E5460 /* Login_Signup */,
 				3174F1652AE0949D00C2C49D /* Extensions.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		3180B1132AEB0AEB009A45D0 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				3180B1142AEB0B0F009A45D0 /* ProfileViewController.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		BA2570CC2AC7B831004E528A /* Objects */ = {
@@ -461,6 +472,7 @@
 				BA8B749B2AC6301400BBE70B /* _07_SportifyApp.swift in Sources */,
 				FBF11AC02AC8A9A300FF39FC /* ProfileView.swift in Sources */,
 				FBF11AC22AC8A9EC00FF39FC /* HomePageView.swift in Sources */,
+				3180B1152AEB0B0F009A45D0 /* ProfileViewController.swift in Sources */,
 				FBF11ABE2AC8A97E00FF39FC /* NotificationView.swift in Sources */,
 				FB742E152AD9425600BF6094 /* MyFriends.swift in Sources */,
 				FB69A3762AE5CCE20090667C /* SuggestionView.swift in Sources */,
