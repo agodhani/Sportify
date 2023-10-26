@@ -151,7 +151,17 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
+        view.backgroundColor = .white
+        
+        // Back button
+        let backButton = UIBarButtonItem(title: "Back",
+                                         style: .done,
+                                         target: self,
+                                         action:
+                                          #selector(backButtonTapped))
+        backButton.tintColor = .sportGold
+        navigationItem.backBarButtonItem = backButton
+        
         
         signupButton.addTarget(self, action: #selector(tappedSignup), for: .touchUpInside)
         
@@ -177,7 +187,7 @@ class SignUpViewController: UIViewController {
         super.viewDidLayoutSubviews()
         scrollView.frame = view.bounds
         let size = scrollView.width / 1.3
-        logoView.frame = CGRect(x: (scrollView.width - size) / 2,
+        logoView.frame = CGRect(x: (scrollView.width - size) / 2 - 3,
                                 y: 10,
                                 width: size,
                                 height: size)
@@ -223,7 +233,13 @@ class SignUpViewController: UIViewController {
                                     height: 50)
     }
     
-    //sign in button clicked
+    // Back button clicked
+    @objc private func backButtonTapped() {
+        let vc = LoginSignUpViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    // Sign in button clicked
     @objc private func tappedSignup() {
         guard let email = emailField.text, let password = passwordField.text, let fullName = nameField.text, let zipCode = zipcodeField.text,
               !email.isEmpty, !password.isEmpty,!zipCode.isEmpty, !fullName.isEmpty else {
@@ -239,6 +255,7 @@ class SignUpViewController: UIViewController {
         //navigationController?.pushViewController(vc, animated: true)
     }
     
+    // Upload Profile Picture clicked
     @objc private func tappedProfilePic() {
         presentPhotoPicker()
     }
@@ -257,28 +274,19 @@ extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationCon
             return
         }
         
-        let picView: UIImageView = {
-            let picView = UIImageView()
-            picView.image = selectedImage
-            picView.contentMode = .scaleAspectFit
-            picView.layer.masksToBounds = true
-            picView.layer.cornerRadius = picView.width / 2
-            picView.layer.borderWidth = 2
-            picView.layer.borderColor = UIColor.lightGray.cgColor
-            picView.frame = CGRect(x: 10,
-                                   y: 10,
-                                   width: scrollView.width/2,
-                                   height: scrollView.width/2)
-            return picView
-        }()
+        let size = scrollView.width / 3
         
-        self.logoView = picView
-        
-//        self.logoView.image = selectedImage
-//        self.logoView.layer.masksToBounds = true
-//        self.logoView.layer.cornerRadius = logoView.width / 2
-//        self.logoView.layer.borderWidth = 2
-//        self.logoView.layer.borderColor = UIColor.lightGray.cgColor
+        self.logoView.image = selectedImage
+        self.logoView.layer.masksToBounds = true
+        logoView.contentMode = .scaleAspectFit
+
+        self.logoView.layer.cornerRadius = logoView.width / 4
+        self.logoView.layer.borderWidth = 2
+        self.logoView.layer.borderColor = UIColor.lightGray.cgColor
+        self.logoView.frame = CGRect(x: 120,
+                                     y: 70,
+                                     width: scrollView.width/2.5,
+                                     height: scrollView.width/2.5)
     }
     
     func presentPhotoPicker() {
