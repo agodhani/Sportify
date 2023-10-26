@@ -70,6 +70,7 @@
 		FB69A3762AE5CCE20090667C /* SuggestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB69A3752AE5CCE20090667C /* SuggestionView.swift */; };
 		FB742E152AD9425600BF6094 /* MyFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB742E142AD9425600BF6094 /* MyFriends.swift */; };
 		FBBBD55E2AD92FB900050C36 /* AllUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBBD55D2AD92FB900050C36 /* AllUsers.swift */; };
+		FBCFFDAD2AEADA8900525D61 /* SuggestionViewMail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCFFDAC2AEADA8900525D61 /* SuggestionViewMail.swift */; };
 		FBD626FC2AD242B5005642A3 /* FriendListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD626FB2AD242B5005642A3 /* FriendListView.swift */; };
 		FBF11AB82AC8A8EF00FF39FC /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF11AB72AC8A8EF00FF39FC /* EventsView.swift */; };
 		FBF11ABA2AC8A91900FF39FC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF11AB92AC8A91900FF39FC /* HomeView.swift */; };
@@ -117,6 +118,7 @@
 		FB69A3752AE5CCE20090667C /* SuggestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionView.swift; sourceTree = "<group>"; };
 		FB742E142AD9425600BF6094 /* MyFriends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriends.swift; sourceTree = "<group>"; };
 		FBBBD55D2AD92FB900050C36 /* AllUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllUsers.swift; sourceTree = "<group>"; };
+		FBCFFDAC2AEADA8900525D61 /* SuggestionViewMail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionViewMail.swift; sourceTree = "<group>"; };
 		FBD626FB2AD242B5005642A3 /* FriendListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListView.swift; sourceTree = "<group>"; };
 		FBF11AB72AC8A8EF00FF39FC /* EventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
 		FBF11AB92AC8A91900FF39FC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 				6DAC698B2AD984B8001C197E /* OldBlockView.swift */,
 				6DAC698D2AD98539001C197E /* UserDetailsView.swift */,
 				FB69A3752AE5CCE20090667C /* SuggestionView.swift */,
+				FBCFFDAC2AEADA8900525D61 /* SuggestionViewMail.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				BA2570D32AC8A58D004E528A /* SignUpView.swift in Sources */,
 				FBBBD55E2AD92FB900050C36 /* AllUsers.swift in Sources */,
 				3174F1622AE08D6300C2C49D /* FlowViewController.swift in Sources */,
+				FBCFFDAD2AEADA8900525D61 /* SuggestionViewMail.swift in Sources */,
 				3174F1642AE08D9800C2C49D /* LoginSignUpViewController.swift in Sources */,
 				BA44F8C62AD9045100BB0CE7 /* EventMethods.swift in Sources */,
 				3174F1662AE0949D00C2C49D /* Extensions.swift in Sources */,
