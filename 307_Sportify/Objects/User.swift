@@ -83,6 +83,7 @@ struct User: Identifiable, Codable, Hashable {
     var blockList: [String]
     var eventsAttending: [String]
     var eventsHosting: [String]
+    var suggestions: [String]
     
     //?might not need this: let password: String
 /*
@@ -133,6 +134,10 @@ struct User: Identifiable, Codable, Hashable {
     
     mutating func addFriend(name: String) {
         friendList.append(name)
+    }
+    
+    mutating func newSuggestion(suggestion: String){
+        suggestions.append(suggestion)
     }
     
     mutating func removeEventAttending(eventID: String) { // TODO update db

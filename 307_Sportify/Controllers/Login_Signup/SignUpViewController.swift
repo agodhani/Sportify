@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 class SignUpViewController: UIViewController {
-    
+    @State var userAuth = UserAuthentication()
     @State var isPrivate = false
     @State var sportList = ["Tennis", "Table Tennis", "Volleyball", "Soccer", "Basketball", "Football", "Baseball", "Badminton", "Golf", "Cycling", "Running", "Hockey", "Spikeball", "Handball", "Lacrosse", "Squash"]
     
@@ -18,6 +18,18 @@ class SignUpViewController: UIViewController {
         let scrollView = UIScrollView()
         scrollView.clipsToBounds = true
         return scrollView
+    }()
+    
+    // Back button
+    private let backButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Back", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .medium)
+        button.backgroundColor = .black
+        button.setTitleColor(.sportGold, for: .normal)
+        button.layer.cornerRadius = 15
+        button.layer.masksToBounds = true
+        return button
     }()
     
     // Logo
@@ -153,12 +165,21 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black
         
+        let text = UILabel()
+        text.text = "Create Account"
+        text.textColor = .sportGold
+        title = text.text
+        
+        // Functionality for the buttons
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        
         signupButton.addTarget(self, action: #selector(tappedSignup), for: .touchUpInside)
         
         profilePicButton.addTarget(self, action: #selector(tappedProfilePic), for: .touchUpInside)
         
         // Add subviews to view
         view.addSubview(scrollView)
+        scrollView.addSubview(backButton)
         scrollView.addSubview(logoView)
         scrollView.addSubview(emailField)
         scrollView.addSubview(nameField)
@@ -177,7 +198,11 @@ class SignUpViewController: UIViewController {
         super.viewDidLayoutSubviews()
         scrollView.frame = view.bounds
         let size = scrollView.width / 1.3
-        logoView.frame = CGRect(x: (scrollView.width - size) / 2,
+        backButton.frame = CGRect(x: 15,
+                                  y: 20,
+                                  width: 70,
+                                  height: 30)
+        logoView.frame = CGRect(x: (scrollView.width - size) / 2 - 3,
                                 y: 10,
                                 width: size,
                                 height: size)
@@ -223,11 +248,26 @@ class SignUpViewController: UIViewController {
                                     height: 50)
     }
     
-    @objc private func tappedSignup() {
-        //let vc =
-        //navigationController?.pushViewController(vc, animated: true)
+    // Back button clicked
+    @objc private func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
     }
     
+    // Sign in button clicked
+    @objc private func tappedSignup() {
+        guard let email = emailField.text, let password = passwordField.text, let fullName = nameField.text, let zipCode = zipcodeField.text,
+              !email.isEmpty, !password.isEmpty,!zipCode.isEmpty, !fullName.isEmpty else {
+            print("email is empty, password is empty")
+            return
+        }
+        Task {
+            if try await userAuth.createUser(withEmail: email, password: password, fullname: fullName, privateAccount: isPrivateSlider.isOn, zipCode: zipCode, sport: 0) {
+                print("new user created")
+            }
+        }
+    }
+    
+    // Upload Profile Picture clicked
     @objc private func tappedProfilePic() {
         presentPhotoPicker()
     }
@@ -245,29 +285,18 @@ extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationCon
         guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
             return
         }
-        
-        let picView: UIImageView = {
-            let picView = UIImageView()
-            picView.image = selectedImage
-            picView.contentMode = .scaleAspectFit
-            picView.layer.masksToBounds = true
-            picView.layer.cornerRadius = picView.width / 2
-            picView.layer.borderWidth = 2
-            picView.layer.borderColor = UIColor.lightGray.cgColor
-            picView.frame = CGRect(x: 10,
-                                   y: 10,
-                                   width: scrollView.width/2,
-                                   height: scrollView.width/2)
-            return picView
-        }()
-        
-        self.logoView = picView
-        
-//        self.logoView.image = selectedImage
-//        self.logoView.layer.masksToBounds = true
-//        self.logoView.layer.cornerRadius = logoView.width / 2
-//        self.logoView.layer.borderWidth = 2
-//        self.logoView.layer.borderColor = UIColor.lightGray.cgColor
+                
+        self.logoView.image = selectedImage
+        self.logoView.layer.masksToBounds = true
+        logoView.contentMode = .scaleAspectFit
+
+        self.logoView.layer.cornerRadius = logoView.width / 4
+        self.logoView.layer.borderWidth = 2
+        self.logoView.layer.borderColor = UIColor.lightGray.cgColor
+        self.logoView.frame = CGRect(x: 120,
+                                     y: 70,
+                                     width: scrollView.width/2.5,
+                                     height: scrollView.width/2.5)
     }
     
     func presentPhotoPicker() {

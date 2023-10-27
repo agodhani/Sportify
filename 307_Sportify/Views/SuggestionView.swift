@@ -9,6 +9,7 @@
 import SwiftUI
 import UIKit
 import MessageUI
+import Firebase
 
 //class ViewController: UIViewController {
 //
@@ -87,6 +88,8 @@ struct SuggestionView: View {
     @State var statusText = "Input your suggestions for Sportify Improvements!"
     
     var body: some View {
+        var currUser = userAuth.currUser
+        var userid = currUser?.id
         
         ZStack {
             
@@ -106,19 +109,9 @@ struct SuggestionView: View {
                 
                 // submit button
                 Button("Submit") {
-                    
-                    action: do {
-                        
-                        Task {
-                            //popUp.appear(sender: uiController)
-                            do {
-                                try await userAuth.forgotPasswordEmail(email: suggestion)
-                                statusText = "Email sent! Check your inbox for email"
-                            } catch {
-                                statusText = "Provided email was not found"
-                            }
-                        }
-                    }
+                    currUser?.newSuggestion(suggestion: suggestion)
+                    let db = Firestore.firestore()
+                    db.collection("Users").document(userid!).updateData(["suggestions": currUser?.suggestions])
                 }
                 .foregroundColor(.black)
                 .fontWeight(.heavy)

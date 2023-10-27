@@ -43,7 +43,7 @@ extension UIColor {
     }
 }
 
-// Extension for sport picler
+// Extension for sport picker
 extension SignUpViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {

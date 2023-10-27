@@ -40,7 +40,7 @@ class UserAuthentication: ObservableObject {
         do {
             let result = try await Auth.auth().createUser(withEmail: email, password: password)
             self.userSession = result.user
-            let user = User(id: result.user.uid, name: fullname, email: email, radius: 1, zipCode: zipCode, sportsPreferences: [sport], privateAccount: privateAccount, profilePicture: String(), age: 20, birthday: Date(), friendList: [String](), blockList: [String](), eventsAttending: [String](), eventsHosting: [String]())
+            let user = User(id: result.user.uid, name: fullname, email: email, radius: 1, zipCode: zipCode, sportsPreferences: [sport], privateAccount: privateAccount, profilePicture: String(), age: 20, birthday: Date(), friendList: [String](), blockList: [String](), eventsAttending: [String](), eventsHosting: [String](), suggestions: [String]())
             //encode takes the "codable" protocal (in User), and encodes it as raw Data but as the User struct
             let encodedUser  = try Firestore.Encoder().encode(user)
             //adds to the collecton of Users, and adds the User data
@@ -84,17 +84,20 @@ class UserAuthentication: ObservableObject {
         case otherError
     }
     
-    func forgotPasswordEmail(email: String) async throws {
+    func forgotPasswordEmail(email: String) async throws -> Bool {
         
         do {
             
             try await Auth.auth().sendPasswordReset(withEmail: email)
             print("Sending forgot password email was successful")
+            return true
             
         } catch {
             print("Sending forgot password email was unsuccessful")
+            return false
             throw EmailError.invalidEmail
         }
+        return false
         
     }
 }
