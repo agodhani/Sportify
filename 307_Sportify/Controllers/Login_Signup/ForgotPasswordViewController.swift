@@ -68,8 +68,6 @@ class ForgotPasswordViewController: UIViewController {
         view.addSubview(statusText)
         view.addSubview(emailField)
         view.addSubview(submitButton)
-        // TODO add functions to submitButton
-
     }
     
     // Organize view
@@ -84,7 +82,7 @@ class ForgotPasswordViewController: UIViewController {
                                 height: size)
         
         statusText.frame = CGRect(x: (view.width - size) / 2,
-                                  y: 300,
+                                  y: 290,
                                   width: size,
                                   height: size)
         
