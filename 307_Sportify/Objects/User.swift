@@ -178,8 +178,8 @@ struct User: Identifiable, Codable, Hashable {
 
     func getAllEvents() -> [String] { // returns all the IDs of events part of 
         //let allEvents = self.eventsAttending.append(contentsOf: self.eventsHosting)
-        var allEvents = eventsAttending
-        allEvents.append(contentsOf: eventsHosting)
+        var allEvents = eventsHosting
+        allEvents.append(contentsOf: eventsAttending)
         return allEvents
     }
     

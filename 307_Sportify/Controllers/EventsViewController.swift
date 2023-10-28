@@ -91,29 +91,18 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return button
     }()
     
-    
-    // TODO or delete
-    private let scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.clipsToBounds = true
-        return scrollView
-    }()
-    
     private let tableView = UITableView()
     var allEvents = [String]() // IDs
     var allEventsAsEvents = [Event]() // Events
     
     
     override func viewDidLoad() {
-        //var currentUser = userAuth.currUser! // uncomment
-        var currentUser = User(id: "1", name: "test", email: "testEmail", radius: 1, zipCode: "", sportsPreferences: [0], privateAccount: true, profilePicture: "1", age: 1, birthday: Date(), friendList: [], blockList: [], eventsAttending: [], eventsHosting: [], suggestions: [])
         super.viewDidLoad()
+        //let currentUser = userAuth.currUser! // REAL uncomment
+        var currentUser = User(id: "1", name: "test", email: "testEmail", radius: 1, zipCode: "", sportsPreferences: [0], privateAccount: true, profilePicture: "1", age: 1, birthday: Date(), friendList: [], blockList: [], eventsAttending: [], eventsHosting: [], suggestions: []) // REAL comment
         view.backgroundColor = .black
         
-        // TODO
-        // all event IDs the user is hosting or going to
         allEvents = currentUser.getAllEvents()
-        
         Task {
             for eventID in allEvents {
                 await allEventsAsEvents.append(eventsm.getEvent(eventID: eventID))
@@ -127,9 +116,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         view.addSubview(sportText)
         view.addSubview(locationText)
         view.addSubview(dateText)
-        
-        view.addSubview(scrollView)
-        
+                
         view.addSubview(tableView)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")// TODO custom if want
         tableView.delegate = self
@@ -184,7 +171,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return allEvents.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
