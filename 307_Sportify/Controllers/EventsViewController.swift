@@ -12,7 +12,7 @@ import SwiftUI
 class EventsViewController: UIViewController {
     
     @State var userAuth = UserAuthentication()
-    //@State var currentUser = userAuth.currUser
+    @State var eventsm = EventMethods()
     
     // TODO JOSH
     // BUTTON - CREATE EVENT
@@ -36,16 +36,68 @@ class EventsViewController: UIViewController {
         return text
     }()
     
+    private var eventsText: UITextView = { // TODO don't forget to add capacity
+        let text = UITextView()
+        text.text = "Event"
+        text.textColor = .white
+        text.backgroundColor = .sportGold
+        text.textAlignment = .center
+        text.font = .systemFont(ofSize: 20, weight: .heavy)
+        return text
+    }()
     
+    private var sportText: UITextView = {
+        let text = UITextView()
+        text.text = "Sport"
+        text.textColor = .white
+        text.backgroundColor = .clear
+        text.textAlignment = .center
+        text.font = .systemFont(ofSize: 20, weight: .heavy)
+        return text
+    }()
     
+    private var locationText: UITextView = {
+        let text = UITextView()
+        text.text = "Location"
+        text.textColor = .white
+        text.backgroundColor = .clear
+        text.textAlignment = .center
+        text.font = .systemFont(ofSize: 20, weight: .heavy)
+        return text
+    }()
+    
+    private var dateText: UITextView = {
+        let text = UITextView()
+        text.text = "Date"
+        text.textColor = .white
+        text.backgroundColor = .clear
+        text.textAlignment = .center
+        text.font = .systemFont(ofSize: 20, weight: .heavy)
+        return text
+    }()
+    
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.clipsToBounds = true
+        return scrollView
+    }()
     
     
     override func viewDidLoad() {
+        @State var currentUser = userAuth.currUser
         super.viewDidLoad()
         view.backgroundColor = .black
         
         // Add subviews
         view.addSubview(myEventsText)
+        view.addSubview(eventsText)
+        view.addSubview(sportText)
+        view.addSubview(locationText)
+        view.addSubview(dateText)
+        
+        view.addSubview(scrollView)
+        
+        
     }
     
     // Organize view
@@ -58,6 +110,23 @@ class EventsViewController: UIViewController {
                                     y: 50,
                                     width: size,
                                     height: size)
+        eventsText.frame = CGRect(x: -450,
+                                  y: 120,
+                                  width: 1000,
+                                  height: 50)
+        sportText.frame = CGRect(x: -25,
+                                y: 120,
+                                width: size,
+                                height: 50)
+        locationText.frame = CGRect(x: 85,
+                                y: 120,
+                                width: size,
+                                height: 50)
+        dateText.frame = CGRect(x: 190,
+                                y: 120,
+                                width: size,
+                                height: 50)
+        
         
     }
 }

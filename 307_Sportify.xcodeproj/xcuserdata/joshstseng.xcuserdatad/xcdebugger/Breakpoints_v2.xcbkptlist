@@ -533,7 +533,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "36"
             endingLineNumber = "36"
-            landmarkName = "emailField"
+            landmarkName = "logoView"
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
