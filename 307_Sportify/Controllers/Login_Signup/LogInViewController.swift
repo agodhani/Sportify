@@ -128,6 +128,8 @@ class LogInViewController: UIViewController {
             if(try await userAuth.signIn(withEmail: email, password: password)) {
                 print("log in success")
                 //TODO link to new homepage
+                let vc = EventsViewController()
+                navigationController?.pushViewController(vc, animated: true)
             } else {
                 print("log in failed")
             }

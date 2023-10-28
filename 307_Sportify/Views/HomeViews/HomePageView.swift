@@ -29,6 +29,11 @@ struct HomePageView: View {
                         Image(systemName: "house.circle")
                         Text("Home")
                     }
+                MessageViewControllerRepresentable()
+                    .tabItem() {
+                        Image(systemName: "plus.message.fill")
+                        Text("Messages")
+                    }
                 MessageView()
                     .tabItem(){
                         Image(systemName: "plus.message.fill")
