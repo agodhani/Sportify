@@ -192,8 +192,8 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @objc private func tappedCreateEvent() { // TODO CreateEventViewController()
         print("tappedCreateEvent")
-        //let vc = CreateEventViewController()
-        //navigationController?.pushViewController(vc, animated: true)
+        let vc = CreateEventViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 }
