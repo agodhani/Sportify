@@ -26,6 +26,8 @@
 		6DAC69902AD9A544001C197E /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAC698F2AD9A544001C197E /* BlockView.swift */; };
 		6DADC9B42AD6574500483A86 /* SingleEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DADC9B32AD6574500483A86 /* SingleEventView.swift */; };
 		6DDAB0D92AEBF6B100235EE0 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDAB0D82AEBF6B100235EE0 /* EventsViewController.swift */; };
+		BA0714EB2AEC9A75003BD4C4 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0714EA2AEC9A75003BD4C4 /* NotificationViewController.swift */; };
+		BA0714ED2AEC9D2B003BD4C4 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0714EC2AEC9D2B003BD4C4 /* MessageViewController.swift */; };
 		BA0D67342AD9D05200F77044 /* AllEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0D67332AD9D05200F77044 /* AllEvents.swift */; };
 		BA0D67362AD9D26000F77044 /* ViewEventsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0D67352AD9D26000F77044 /* ViewEventsListView.swift */; };
 		BA2570CE2AC7B846004E528A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2570CD2AC7B846004E528A /* User.swift */; };
@@ -102,6 +104,8 @@
 		6DAC698F2AD9A544001C197E /* BlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
 		6DADC9B32AD6574500483A86 /* SingleEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleEventView.swift; sourceTree = "<group>"; };
 		6DDAB0D82AEBF6B100235EE0 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		BA0714EA2AEC9A75003BD4C4 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		BA0714EC2AEC9D2B003BD4C4 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		BA0D67332AD9D05200F77044 /* AllEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllEvents.swift; sourceTree = "<group>"; };
 		BA0D67352AD9D26000F77044 /* ViewEventsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEventsListView.swift; sourceTree = "<group>"; };
 		BA2570CD2AC7B846004E528A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -188,6 +192,8 @@
 				3174F1612AE08D6300C2C49D /* FlowViewController.swift */,
 				3137F3C42AE89668000E5460 /* Login_Signup */,
 				3174F1652AE0949D00C2C49D /* Extensions.swift */,
+				BA0714EC2AEC9D2B003BD4C4 /* MessageViewController.swift */,
+				BA0714EA2AEC9A75003BD4C4 /* NotificationViewController.swift */,
 				6DDAB0D82AEBF6B100235EE0 /* EventsViewController.swift */,
 			);
 			path = Controllers;
@@ -441,6 +447,7 @@
 				6DAC698E2AD98539001C197E /* UserDetailsView.swift in Sources */,
 				BA8B74E32AC671E600BBE70B /* LoginSignUpView.swift in Sources */,
 				FBF11AB82AC8A8EF00FF39FC /* EventsView.swift in Sources */,
+				BA0714EB2AEC9A75003BD4C4 /* NotificationViewController.swift in Sources */,
 				31562B9A2ACE4225002B3863 /* EditProfileView.swift in Sources */,
 				BA0D67342AD9D05200F77044 /* AllEvents.swift in Sources */,
 				31B877D22AD4D776004D7F2A /* ImagePicker.swift in Sources */,
@@ -456,6 +463,7 @@
 				FBBBD55E2AD92FB900050C36 /* AllUsers.swift in Sources */,
 				3174F1622AE08D6300C2C49D /* FlowViewController.swift in Sources */,
 				FBCFFDAD2AEADA8900525D61 /* SuggestionViewMail.swift in Sources */,
+				BA0714ED2AEC9D2B003BD4C4 /* MessageViewController.swift in Sources */,
 				3174F1642AE08D9800C2C49D /* LoginSignUpViewController.swift in Sources */,
 				BA44F8C62AD9045100BB0CE7 /* EventMethods.swift in Sources */,
 				3174F1662AE0949D00C2C49D /* Extensions.swift in Sources */,
