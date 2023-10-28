@@ -1,0 +1,942 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "78F2DAE7-FED2-4081-8573-FBC8D91DE5D4"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F6AAFDEA-184A-4D6B-B9FD-8A8712CEBEEC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Views/HomeViews/Profile/EditProfileView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9ADACF8E-C195-43AF-8CA6-FBD72B85403E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Views/HomeViews/Profile/EditProfileView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CA0EBA4F-F38C-4183-8FF1-868C29C825A8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Views/HomeViews/Profile/EditProfileView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8FEC43A5-4CE0-41AE-AC4F-FA9CB2FC7D48"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Views/HomeViews/Profile/EditProfileView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6E1B1C7B-86AB-4C2B-9096-F6DE59B43AC4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Views/HomeViews/Profile/EditProfileView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7994F6CA-8752-456F-B9D8-FE117AEBCE31"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Views/HomeViews/Profile/EditProfileView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CA294135-9235-49E7-AD00-D36C9A959806"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Views/ViewEventsListView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "CA294135-9235-49E7-AD00-D36C9A959806 - 1ca5bce421cb811f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.List&lt;Swift.Never, SwiftUI.ForEach&lt;Swift.Array&lt;_07_Sportify.EventHighLevel&gt;, Swift.String, SwiftUI.NavigationLink&lt;SwiftUI.Text, _07_Sportify.SingleEventView&gt;&gt;&gt; in _07_Sportify.ViewEventsListView.body.getter : some"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/307_Sportify/Views/ViewEventsListView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "106">
+               </Location>
+               <Location
+                  uuid = "CA294135-9235-49E7-AD00-D36C9A959806 - d9fccaf94c13752a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (_07_Sportify.EventHighLevel) -&gt; SwiftUI.NavigationLink&lt;SwiftUI.Text, _07_Sportify.SingleEventView&gt; in closure #1 () -&gt; SwiftUI.List&lt;Swift.Never, SwiftUI.ForEach&lt;Swift.Array&lt;_07_Sportify.EventHighLevel&gt;, Swift.String, SwiftUI.NavigationLink&lt;SwiftUI.Text, _07_Sportify.SingleEventView&gt;&gt;&gt; in _07_Sportify.ViewEventsListView.body.getter : some"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/307_Sportify/Views/ViewEventsListView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "191">
+               </Location>
+               <Location
+                  uuid = "CA294135-9235-49E7-AD00-D36C9A959806 - 94b75ead69bf312c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.Text in closure #1 (_07_Sportify.EventHighLevel) -&gt; SwiftUI.NavigationLink&lt;SwiftUI.Text, _07_Sportify.SingleEventView&gt; in closure #1 () -&gt; SwiftUI.List&lt;Swift.Never, SwiftUI.ForEach&lt;Swift.Array&lt;_07_Sportify.EventHighLevel&gt;, Swift.String, SwiftUI.NavigationLink&lt;SwiftUI.Text, _07_Sportify.SingleEventView&gt;&gt;&gt; in _07_Sportify.ViewEventsListView.body.getter : some"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/307_Sportify/Views/ViewEventsListView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "94">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0B0588CF-660A-40EB-BB29-4D00E9DD4587"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Views/HomeViews/Profile/ProfileView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "71F9D8CA-18AF-4E0C-BA8C-B40057F61D48"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Views/FriendListView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "71F9D8CA-18AF-4E0C-BA8C-B40057F61D48 - 5f4c2bbf89a2996c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onAppear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0 in _07_Sportify.FriendListView.body.getter : some"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/307_Sportify/Views/FriendListView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "300">
+               </Location>
+               <Location
+                  uuid = "71F9D8CA-18AF-4E0C-BA8C-B40057F61D48 - 32bef941ad614a12"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (_07_Sportify.Person) -&gt; SwiftUI._ConditionalContent&lt;Swift.Optional&lt;SwiftUI.NavigationLink&lt;SwiftUI.Text, _07_Sportify.DetailsView&gt;&gt;, SwiftUI.NavigationLink&lt;SwiftUI.Text, _07_Sportify.DetailsView&gt;&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onAppear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0 in _07_Sportify.FriendListView.body.getter : some"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/307_Sportify/Views/FriendListView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "448">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5AFF8997-E8F7-46C6-9E8C-B1E1CEBFED58"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Views/FriendListView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A7D67007-C4D8-467E-9E8C-A4BEA500403A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Views/FriendListView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "FriendListView"
+            landmarkType = "14">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1C71A6E3-53D7-48EE-B0C0-CCFCD5EB8C53"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Views/FriendListView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8C1699B7-C440-42D3-8899-687216AFB29D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Views/FriendListView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "14D9EFAE-C2FB-4306-B911-638DCFA2771A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Views/HomeViews/Profile/ProfileView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "14D9EFAE-C2FB-4306-B911-638DCFA2771A - 18e18a3a498e8c44"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.ignoresSafeArea(_: SwiftUI.SafeAreaRegions, edges: SwiftUI.Edge.Set) -&gt; some&gt;&gt;.0, SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Spacer, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, SwiftUI.Spacer)&gt;&gt;, Swift.Optional&lt;SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Text, SwiftUI.Text, SwiftUI.Spacer)&gt;&gt;&gt;, SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Spacer, SwiftUI.Spacer, SwiftUI.Spacer, SwiftUI.Spacer)&gt;&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, Swift.Optional&lt;SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Text, SwiftUI.Text, SwiftUI.Spacer)&gt;&gt;&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Text, SwiftUI.Text, SwiftUI.Spacer)&gt;&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, &lt;&lt;opaque return type of SwiftUI.View.cornerRadius(_: CoreGraphics.CGFloat, antialiased: Swift.Bool) -&gt; some&gt;&gt;.0, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, &lt;&lt;opaque return type of SwiftUI.View.cornerRadius(_: CoreGraphics.CGFloat, antialiased: Swift.Bool) -&gt; some&gt;&gt;.0, SwiftUI.Spacer, SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.cornerRadius(_: CoreGraphics.CGFloat, antialiased: Swift.Bool) -&gt; some&gt;&gt;.0, SwiftUI.Spacer, &lt;&lt;opaque return type of SwiftUI.View.cornerRadius(_: CoreGraphics.CGFloat, antialiased: Swift.Bool) -&gt; some&gt;&gt;.0, SwiftUI.Spacer, &lt;&lt;opaque return type of SwiftUI.View.cornerRadius(_: CoreGraphics.CGFloat, antialiased: Swift.Bool) -&gt; some&gt;&gt;.0)&gt;&gt;)&gt;&gt;, Swift.Optional&lt;SwiftUI.NavigationView&lt;_07_Sportify.LoginSignUpView&gt;&gt;, Swift.Optional&lt;SwiftUI.NavigationView&lt;_07_Sportify.EditProfileView&gt;&gt;, Swift.Optional&lt;SwiftUI.NavigationView&lt;_07_Sportify.FriendListView&gt;&gt;, Swift.Optional&lt;SwiftUI.NavigationView&lt;_07_Sportify.MyFriends&gt;&gt;, Swift.Optional&lt;SwiftUI.NavigationView&lt;_07_Sportify.BlockView&gt;&gt;)&gt; in _07_Sportify.ProfileView.body.getter : some"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/307_Sportify/Views/HomeViews/Profile/ProfileView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "200"
+                  endingLineNumber = "200"
+                  offsetFromSymbolStart = "3351">
+               </Location>
+               <Location
+                  uuid = "14D9EFAE-C2FB-4306-B911-638DCFA2771A - 8365aadc7a4c4b8c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 () -&gt; _07_Sportify.FriendListView in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.ignoresSafeArea(_: SwiftUI.SafeAreaRegions, edges: SwiftUI.Edge.Set) -&gt; some&gt;&gt;.0, SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Spacer, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, SwiftUI.Spacer)&gt;&gt;, Swift.Optional&lt;SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Text, SwiftUI.Text, SwiftUI.Spacer)&gt;&gt;&gt;, SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Spacer, SwiftUI.Spacer, SwiftUI.Spacer, SwiftUI.Spacer)&gt;&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, Swift.Optional&lt;SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Text, SwiftUI.Text, SwiftUI.Spacer)&gt;&gt;&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Text, SwiftUI.Text, SwiftUI.Spacer)&gt;&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, &lt;&lt;opaque return type of SwiftUI.View.cornerRadius(_: CoreGraphics.CGFloat, antialiased: Swift.Bool) -&gt; some&gt;&gt;.0, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, SwiftUI.HStack&lt;SwiftUI.Spacer&gt;, &lt;&lt;opaque return type of SwiftUI.View.cornerRadius(_: CoreGraphics.CGFloat, antialiased: Swift.Bool) -&gt; some&gt;&gt;.0, SwiftUI.Spacer, SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.cornerRadius(_: CoreGraphics.CGFloat, antialiased: Swift.Bool) -&gt; some&gt;&gt;.0, SwiftUI.Spacer, &lt;&lt;opaque return type of SwiftUI.View.cornerRadius(_: CoreGraphics.CGFloat, antialiased: Swift.Bool) -&gt; some&gt;&gt;.0, SwiftUI.Spacer, &lt;&lt;opaque return type of SwiftUI.View.cornerRadius(_: CoreGraphics.CGFloat, antialiased: Swift.Bool) -&gt; some&gt;&gt;.0)&gt;&gt;)&gt;&gt;, Swift.Optional&lt;SwiftUI.NavigationView&lt;_07_Sportify.LoginSignUpView&gt;&gt;, Swift.Optional&lt;SwiftUI.NavigationView&lt;_07_Sportify.EditProfileView&gt;&gt;, Swift.Optional&lt;SwiftUI.NavigationView&lt;_07_Sportify.FriendListView&gt;&gt;, Swift.Optional&lt;SwiftUI.NavigationView&lt;_07_Sportify.MyFriends&gt;&gt;, Swift.Optional&lt;SwiftUI.NavigationView&lt;_07_Sportify.BlockView&gt;&gt;)&gt; in _07_Sportify.ProfileView.body.getter : some"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/307_Sportify/Views/HomeViews/Profile/ProfileView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "201"
+                  endingLineNumber = "201"
+                  offsetFromSymbolStart = "34">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "13C100BB-7813-4BB0-A7DD-BDB7FB4B0C0F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Methods/AllEvents.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "init(id:name:location:sport:maxParticipants:eventHost:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "46471E34-FD36-446B-85CA-57A4959836A7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Methods/AllEvents.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "getEvents()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F650F1D3-6600-42DC-B7C6-02A7479031F9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Methods/AllEvents.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "getEvents()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4FA0EE19-5B28-4FD2-A6FF-FA53E0752159"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Methods/AllEvents.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "getEvents()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6D9E47E1-DA82-4BFD-8503-880E1B6E13B2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Controllers/Login_Signup/LogInViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "tappedLogIn()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6D9E47E1-DA82-4BFD-8503-880E1B6E13B2 - 503ef00369b48834"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_07_Sportify.LogInViewController.tappedLogIn() -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/307_Sportify/Controllers/Login_Signup/LogInViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "122"
+                  endingLineNumber = "122"
+                  offsetFromSymbolStart = "662">
+               </Location>
+               <Location
+                  uuid = "6D9E47E1-DA82-4BFD-8503-880E1B6E13B2 - 503ef00369b48834"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_07_Sportify.LogInViewController.tappedLogIn() -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/307_Sportify/Controllers/Login_Signup/LogInViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "122"
+                  endingLineNumber = "122"
+                  offsetFromSymbolStart = "79">
+               </Location>
+               <Location
+                  uuid = "6D9E47E1-DA82-4BFD-8503-880E1B6E13B2 - 503ef00369b48834"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_07_Sportify.LogInViewController.tappedLogIn() -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/307_Sportify/Controllers/Login_Signup/LogInViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "122"
+                  endingLineNumber = "122"
+                  offsetFromSymbolStart = "330">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2858A704-A7C7-4EED-9818-A37DF8A11058"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Controllers/Login_Signup/LogInViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "LogInViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "2858A704-A7C7-4EED-9818-A37DF8A11058 - edfc1ba4d171f87d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "property wrapper backing initializer of _07_Sportify.LogInViewController.userAuth : _07_Sportify.UserAuthentication"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/307_Sportify/Controllers/Login_Signup/LogInViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "2858A704-A7C7-4EED-9818-A37DF8A11058 - 608915d2bffab542"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_07_Sportify.LogInViewController.userAuth.getter : _07_Sportify.UserAuthentication"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/307_Sportify/Controllers/Login_Signup/LogInViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "21">
+               </Location>
+               <Location
+                  uuid = "2858A704-A7C7-4EED-9818-A37DF8A11058 - 2b981869548c80da"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_07_Sportify.LogInViewController.userAuth.setter : _07_Sportify.UserAuthentication"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/307_Sportify/Controllers/Login_Signup/LogInViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "2858A704-A7C7-4EED-9818-A37DF8A11058 - 2c86c5b542bac9e9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_07_Sportify.LogInViewController.userAuth.modify : _07_Sportify.UserAuthentication"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/307_Sportify/Controllers/Login_Signup/LogInViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "2858A704-A7C7-4EED-9818-A37DF8A11058 - e58a8171f1603d20"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_07_Sportify.LogInViewController.userAuth.modify : _07_Sportify.UserAuthentication with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/%3Ccompiler-generated%3E"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "57">
+               </Location>
+               <Location
+                  uuid = "2858A704-A7C7-4EED-9818-A37DF8A11058 - 219757cee18e3c07"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_07_Sportify.LogInViewController.$userAuth.getter : SwiftUI.Binding&lt;_07_Sportify.UserAuthentication&gt;"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/307_Sportify/Controllers/Login_Signup/LogInViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "0">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9B28F430-1FDE-4437-9B9F-F8600EE475CD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Controllers/Login_Signup/LogInViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "LogInViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F5026BF4-E532-4C12-8546-7D5600CC7D36"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Methods/UserAuthentication.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "forgotPasswordEmail(email:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E2C029FC-F2BC-4B0D-9ADE-CBF1FF1ECB04"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Methods/UserAuthentication.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "signIn(withEmail:password:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E2C029FC-F2BC-4B0D-9ADE-CBF1FF1ECB04 - 8a23e3c84fd7e408"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for _07_Sportify.UserAuthentication.signIn(withEmail: Swift.String, password: Swift.String) async throws -&gt; Swift.Bool"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/307_Sportify/Methods/UserAuthentication.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "160">
+               </Location>
+               <Location
+                  uuid = "E2C029FC-F2BC-4B0D-9ADE-CBF1FF1ECB04 - 9e0357f0952b2f34"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for _07_Sportify.UserAuthentication.signIn(withEmail: Swift.String, password: Swift.String) async throws -&gt; Swift.Bool"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/307_Sportify/Methods/UserAuthentication.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "57">
+               </Location>
+               <Location
+                  uuid = "E2C029FC-F2BC-4B0D-9ADE-CBF1FF1ECB04 - 407274dcf10ca00a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for _07_Sportify.UserAuthentication.signIn(withEmail: Swift.String, password: Swift.String) async throws -&gt; Swift.Bool"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/307_Sportify/Methods/UserAuthentication.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "34">
+               </Location>
+               <Location
+                  uuid = "E2C029FC-F2BC-4B0D-9ADE-CBF1FF1ECB04 - b1ec1a7fc2768e0f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for _07_Sportify.UserAuthentication.signIn(withEmail: Swift.String, password: Swift.String) async throws -&gt; Swift.Bool"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/307_Sportify/Methods/UserAuthentication.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "76">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8B88FE9F-E3C3-463F-83C2-D0A089F30754"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Methods/UserAuthentication.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "signIn(withEmail:password:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5556FB5A-0AE3-404E-894D-9245917F3A5E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Methods/UserAuthentication.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "getCurrUser()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5556FB5A-0AE3-404E-894D-9245917F3A5E - b54fc85a2c066644"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for _07_Sportify.UserAuthentication.getCurrUser() async -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/307_Sportify/Methods/UserAuthentication.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
+                  offsetFromSymbolStart = "351">
+               </Location>
+               <Location
+                  uuid = "5556FB5A-0AE3-404E-894D-9245917F3A5E - 87f25ab0edc1bd6a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for _07_Sportify.UserAuthentication.getCurrUser() async -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/307_Sportify/Methods/UserAuthentication.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
+                  offsetFromSymbolStart = "57">
+               </Location>
+               <Location
+                  uuid = "5556FB5A-0AE3-404E-894D-9245917F3A5E - cea8fc303d8a5a4e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for _07_Sportify.UserAuthentication.getCurrUser() async -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/307_Sportify/Methods/UserAuthentication.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
+                  offsetFromSymbolStart = "112">
+               </Location>
+               <Location
+                  uuid = "5556FB5A-0AE3-404E-894D-9245917F3A5E - 20779fb02f7b453"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for _07_Sportify.UserAuthentication.getCurrUser() async -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/307_Sportify/Methods/UserAuthentication.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
+                  offsetFromSymbolStart = "117">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9F7D351E-AE7D-4F97-9C16-6C01F759C6F0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Methods/UserAuthentication.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "getCurrUser()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9F7D351E-AE7D-4F97-9C16-6C01F759C6F0 - cea8fc303d8a5a00"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for _07_Sportify.UserAuthentication.getCurrUser() async -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/307_Sportify/Methods/UserAuthentication.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "63"
+                  endingLineNumber = "63"
+                  offsetFromSymbolStart = "231">
+               </Location>
+               <Location
+                  uuid = "9F7D351E-AE7D-4F97-9C16-6C01F759C6F0 - 20779fb02f7b41d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for _07_Sportify.UserAuthentication.getCurrUser() async -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/307_Sportify/Methods/UserAuthentication.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "63"
+                  endingLineNumber = "63"
+                  offsetFromSymbolStart = "248">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "71154ED9-5FAF-4116-8661-AF867AF1006A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Methods/UserAuthentication.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "getCurrUser()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "71154ED9-5FAF-4116-8661-AF867AF1006A - cea8fc303d8a5ac2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for _07_Sportify.UserAuthentication.getCurrUser() async -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/307_Sportify/Methods/UserAuthentication.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "1205">
+               </Location>
+               <Location
+                  uuid = "71154ED9-5FAF-4116-8661-AF867AF1006A - 20779fb02f7b4df"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for _07_Sportify.UserAuthentication.getCurrUser() async -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/307_Sportify/Methods/UserAuthentication.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "1230">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9B4FD5BC-A09F-4209-8DE4-3975A7A334D3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Methods/UserAuthentication.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "getCurrUser()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9B4FD5BC-A09F-4209-8DE4-3975A7A334D3 - cea8fc303d8a5b65"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for _07_Sportify.UserAuthentication.getCurrUser() async -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/307_Sportify/Methods/UserAuthentication.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "572">
+               </Location>
+               <Location
+                  uuid = "9B4FD5BC-A09F-4209-8DE4-3975A7A334D3 - 20779fb02f7b578"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for _07_Sportify.UserAuthentication.getCurrUser() async -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akshay/Desktop/XCode%20Experiments/307_Sportify/307_Sportify/Methods/UserAuthentication.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "594">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "781960ED-4998-46BA-9747-894C6D0A18ED"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Controllers/Login_Signup/LogInViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "tappedLogIn()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

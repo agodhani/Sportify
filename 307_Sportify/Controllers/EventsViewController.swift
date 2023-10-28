@@ -9,6 +9,20 @@ import Foundation
 import UIKit
 import SwiftUI
 
+struct EventsViewControllerRepresentable: UIViewControllerRepresentable {
+    typealias UIViewControllerType = EventsViewController
+    
+    func makeUIViewController(context: Context) -> EventsViewController {
+        let vc = EventsViewController()
+        // Do some configurations here if needed.
+        return vc
+    }
+    
+    func updateUIViewController(_ uiViewController: EventsViewController, context: Context) {
+        // Updates the state of the specified view controller with new information from SwiftUI.
+    }
+}
+
 class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @State var userAuth = UserAuthentication()

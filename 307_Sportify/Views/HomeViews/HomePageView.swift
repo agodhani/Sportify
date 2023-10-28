@@ -14,12 +14,12 @@ struct HomePageView: View {
         let user = userAuth.currUser
         NavigationView {
             TabView {
-                EventsView()
+                EventsViewControllerRepresentable()
                     .tabItem(){
                         Image(systemName:"calendar.badge.clock")
                         Text("My Events")
                     }
-                NotificationView()
+                NotificationViewControllerRepresentable()
                     .tabItem(){
                         Image(systemName: "bell.badge")
                         Text("Notifications")
@@ -31,11 +31,6 @@ struct HomePageView: View {
                     }
                 MessageViewControllerRepresentable()
                     .tabItem() {
-                        Image(systemName: "plus.message.fill")
-                        Text("Messages")
-                    }
-                MessageView()
-                    .tabItem(){
                         Image(systemName: "plus.message.fill")
                         Text("Messages")
                     }
