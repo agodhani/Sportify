@@ -9,22 +9,14 @@ import Foundation
 import UIKit
 import SwiftUI
 
-class EventsViewController: UIViewController {
+class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @State var userAuth = UserAuthentication()
     @State var eventsm = EventMethods()
     //@State var currentUser = User(id: "error ID", name: "error name", email: "error email", radius: 1, zipCode: "", sportsPreferences: [0], privateAccount: true, profilePicture: "1", age: 1, birthday: Date(), friendList: [], blockList: [], eventsAttending: ["005861C7-AB71-48EF-B17A-515E88AA0D4B"], eventsHosting: [], suggestions: [])
-    @IBOutlet weak var table: UITableView!
-    @State var allEvents: [String] = [String]()
-    @State var allEventsAsEvents: [Event] = [Event]()
     
-    // TODO JOSH
-    // BUTTON - CREATE EVENT
-    
-    // TODO - in original Text(MY EVENTS) - line 55 in EventsView
-    // I do .onAppear for allEvents - do this here
-    
-    class CustomTableViewCell: UITableViewCell {
+        
+    class CustomTableViewCell: UITableViewCell { // TODO later
         // TODO
         @IBOutlet weak var eventName: UILabel!
         @IBOutlet weak var sport: UILabel!
@@ -107,23 +99,26 @@ class EventsViewController: UIViewController {
         return scrollView
     }()
     
-    private let tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-
-        return tableView
-    }()
-    
-    private let aCellIdentifier = "someIdentifier"
-
-    
+    private let tableView = UITableView()
+    var allEvents = [String]() // IDs
+    var allEventsAsEvents = [Event]() // Events
     
     
     override func viewDidLoad() {
-        //currentUser = userAuth.currUser! // uncomment
+        //var currentUser = userAuth.currUser! // uncomment
         var currentUser = User(id: "1", name: "test", email: "testEmail", radius: 1, zipCode: "", sportsPreferences: [0], privateAccount: true, profilePicture: "1", age: 1, birthday: Date(), friendList: [], blockList: [], eventsAttending: [], eventsHosting: [], suggestions: [])
         super.viewDidLoad()
         view.backgroundColor = .black
+        
+        // TODO
+        // all event IDs the user is hosting or going to
+        allEvents = currentUser.getAllEvents()
+        
+        Task {
+            for eventID in allEvents {
+                await allEventsAsEvents.append(eventsm.getEvent(eventID: eventID))
+            }
+        }
         
         // Add subviews
         view.addSubview(createEventButton)
@@ -136,18 +131,11 @@ class EventsViewController: UIViewController {
         view.addSubview(scrollView)
         
         view.addSubview(tableView)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: aCellIdentifier)
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let event = allEventsAsEvents[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: aCellIdentifier, for: indexPath)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")// TODO custom if want
+        tableView.delegate = self
+        tableView.dataSource = self
         
-        var listContentConfiguration = cell.defaultContentConfiguration()
-        listContentConfiguration.text = event.eventName
-        return cell
     }
-    
     
     // Organize view
     override func viewDidLayoutSubviews() {
@@ -188,6 +176,29 @@ class EventsViewController: UIViewController {
                                 width: size,
                                 height: 50)
         
+        tableView.frame = CGRect(x: 0,
+                                 y: 200, // was 50
+                                 width: view.width,
+                                 height: view.height)
+        
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = allEventsAsEvents[indexPath.row].eventName
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) { // TODO SingleEventViewController
+        tableView.deselectRow(at: indexPath, animated: true)
+        print("cell tapped")
+        // TODO push a navigationview controller - uncomment once
+        //let vc = SingleEventViewController(allEvents[indexPath.row]) // SingleEventVC for the index
+        //navigationController?.pushViewController(vc, animated: true)
     }
     
 
