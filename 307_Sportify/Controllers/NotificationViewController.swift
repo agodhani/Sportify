@@ -8,6 +8,20 @@
 import UIKit
 import SwiftUI
 
+struct NotificationViewControllerRepresentable: UIViewControllerRepresentable {
+    typealias UIViewControllerType = NotificationViewController
+    
+    func makeUIViewController(context: Context) -> NotificationViewController {
+        let vc = NotificationViewController()
+        // Do some configurations here if needed.
+        return vc
+    }
+    
+    func updateUIViewController(_ uiViewController: NotificationViewController, context: Context) {
+        // Updates the state of the specified view controller with new information from SwiftUI.
+    }
+}
+
 class NotificationViewController: UIViewController {
     
     private let logoView: UIImageView = {
