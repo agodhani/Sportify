@@ -165,11 +165,6 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black
         
-        let text = UILabel()
-        text.text = "Create Account"
-        text.textColor = .sportGold
-        title = text.text
-        
         // Functionality for the buttons
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         
