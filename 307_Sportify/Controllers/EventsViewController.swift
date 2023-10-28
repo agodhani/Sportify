@@ -13,7 +13,10 @@ class EventsViewController: UIViewController, UITableViewDataSource {
     
     @State var userAuth = UserAuthentication()
     @State var eventsm = EventMethods()
+    @State var currentUser = User(id: "error ID", name: "error name", email: "error email", radius: 1, zipCode: "", sportsPreferences: [0], privateAccount: true, profilePicture: "1", age: 1, birthday: Date(), friendList: [], blockList: [], eventsAttending: [], eventsHosting: [], suggestions: [])
     @IBOutlet weak var table: UITableView!
+    @State var allEvents: [String] = [String]()
+    @State var allEventsAsEvents: [Event] = [Event]()
     
     // TODO JOSH
     // BUTTON - CREATE EVENT
@@ -23,6 +26,8 @@ class EventsViewController: UIViewController, UITableViewDataSource {
     
     class CustomTableViewCell: UITableViewCell {
         // TODO
+        @IBOutlet weak var eventName: UILabel!
+        @IBOutlet weak var sport: UILabel!
     }
     
     private var myEventsText: UITextView = {
@@ -94,15 +99,44 @@ class EventsViewController: UIViewController, UITableViewDataSource {
         return button
     }()
     
+    
+    // TODO or delete
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.clipsToBounds = true
         return scrollView
     }()
     
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        //tableView.register(CustomTableViewCell.self, forCellReuseIdentifier:  )
+
+        return tableView
+    }()
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        allEvents = currentUser.getAllEvents()
+        Task {
+            for event in allEvents {
+                await allEventsAsEvents.append(eventsm.getEvent(eventID: event))
+            }
+        }
+        return allEvents.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let event = allEventsAsEvents[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        // TODO set the cell stuff
+        return cell
+    }
+    
+    
+    
     
     override func viewDidLoad() {
-        @State var currentUser = userAuth.currUser
+        //currentUser = userAuth.currUser! // uncomment
         //var currentUser = User(id: "1", name: "test", email: "testEmail", radius: 1, zipCode: "", sportsPreferences: [0], privateAccount: true, profilePicture: "1", age: 1, birthday: Date(), friendList: [], blockList: [], eventsAttending: [], eventsHosting: [], suggestions: [])
         super.viewDidLoad()
         view.backgroundColor = .black
@@ -116,20 +150,10 @@ class EventsViewController: UIViewController, UITableViewDataSource {
         view.addSubview(dateText)
         
         view.addSubview(scrollView)
+        view.addSubview(tableView)
         
         
-    }
-    
-    // TODO
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
-    }
-    
-    // TODO
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
-        // set the stuff
-        return cell
+        
     }
     
     
