@@ -195,7 +195,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let vc = CreateEventViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
-    
 }
 
 #Preview {

@@ -11,6 +11,7 @@ import UIKit
 class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     let sportList = Sport.sportData()
+    let numberList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
     
     private var newEventText: UITextView = {
         let text = UITextView()
@@ -64,9 +65,18 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
         return field
     }()
     
+    // sport tag = 1
     private var sportPicker: UIPickerView = {
         let picker = UIPickerView()
         //picker.backgroundColor = .gray
+        picker.tag = 1
+        return picker
+    }()
+    
+    // number tag = 2
+    private var numberPicker: UIPickerView = {
+        let picker = UIPickerView()
+        picker.tag = 2
         return picker
     }()
     
@@ -75,12 +85,23 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return sportList.count
+        if (pickerView.tag == 1) {
+            return sportList.count
+        } else {
+            return numberList.count
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let item = sportList[row].name
-        return item
+        
+        if (pickerView.tag == 1) {
+            let item = sportList[row].name
+            return item
+        } else {
+            let item = numberList[row]
+            let itemString = String(item)
+            return itemString
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
@@ -113,10 +134,18 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
         view.addSubview(locationField)
         
         view.addSubview(sportText)
+        
+        sportPicker.tag = 1
         sportPicker.delegate = self as UIPickerViewDelegate
         sportPicker.dataSource = self as UIPickerViewDataSource
         view.addSubview(sportPicker)
         sportPicker.center = self.view.center
+        
+        numberPicker.tag = 2
+        numberPicker.delegate = self as UIPickerViewDelegate
+        numberPicker.dataSource = self as UIPickerViewDataSource
+        view.addSubview(numberPicker)
+        numberPicker.center = self.view.center
         
     }
     
@@ -153,6 +182,11 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
         
         sportPicker.frame = CGRect(x: (view.width - size) / 2,
                                     y: 420,
+                                    width: size,
+                                    height: 100)
+        
+        numberPicker.frame = CGRect(x: (view.width - size) / 2,
+                                    y: 500,
                                     width: size,
                                     height: 100)
         
