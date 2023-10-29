@@ -36,6 +36,23 @@ class EventMethods: ObservableObject {
         }
     }
     
+    func createEvent(eventName: String, sport: Int, maxParticipants: Int, description: String, location: String, privateEvent: Bool, id: String, code: String) async throws {
+        do {
+            let event = Event(id: UUID().uuidString, eventName: eventName, sport: sport, date: Date.now, location: location, numAttendees: 1, attendeeList: Array<String>(), privateEvent: privateEvent, maxParticipants: maxParticipants, adminsList: Set<User>(), eventHostID: id, code: code, blackList: Set<User>(), requestList: [], description: description)
+            let userAuth = UserAuthentication()
+            var user = userAuth.currUser
+            user?.eventsHosting.append(event.id)
+            //need to call modify user to insert here
+            let encodedEvent = try Firestore.Encoder().encode(event)
+            try await Firestore.firestore().collection("Events").document(event.id).setData(encodedEvent)
+            print("Go check Firebase to see if the Event was created")
+            
+            
+        } catch {
+            print("Event Creation Failed")
+        }
+    }
+    
     func getEvent(eventID: Event.ID) async -> Event {
         do{
             let eventDocument = try await Firestore.firestore().collection("Events").document(eventID).getDocument()

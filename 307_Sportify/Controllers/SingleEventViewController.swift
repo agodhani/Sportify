@@ -106,3 +106,7 @@ class SingleEventViewController: UIViewController {
                                     height: size)
     }
 }
+
+#Preview {
+    SingleEventViewController()
+}

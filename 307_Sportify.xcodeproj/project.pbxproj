@@ -23,6 +23,7 @@
 		6D00BB912AE957A700E22816 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D00BB902AE957A700E22816 /* ForgotPasswordViewController.swift */; };
 		6D0A7F2E2AED7D1900824FC0 /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0A7F2D2AED7D1900824FC0 /* CreateEventViewController.swift */; };
 		6D39AAB72AC73BFE00515C20 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D39AAB62AC73BFE00515C20 /* ForgotPasswordView.swift */; };
+		6DAB93B72AEF11B30006BB47 /* EditEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAB93B62AEF11B30006BB47 /* EditEventViewController.swift */; };
 		6DAC698C2AD984B8001C197E /* OldBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAC698B2AD984B8001C197E /* OldBlockView.swift */; };
 		6DAC698E2AD98539001C197E /* UserDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAC698D2AD98539001C197E /* UserDetailsView.swift */; };
 		6DAC69902AD9A544001C197E /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAC698F2AD9A544001C197E /* BlockView.swift */; };
@@ -105,6 +106,7 @@
 		6D00BB902AE957A700E22816 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		6D0A7F2D2AED7D1900824FC0 /* CreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 		6D39AAB62AC73BFE00515C20 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		6DAB93B62AEF11B30006BB47 /* EditEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewController.swift; sourceTree = "<group>"; };
 		6DAC698B2AD984B8001C197E /* OldBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldBlockView.swift; sourceTree = "<group>"; };
 		6DAC698D2AD98539001C197E /* UserDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsView.swift; sourceTree = "<group>"; };
 		6DAC698F2AD9A544001C197E /* BlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 			children = (
 				3180B1142AEB0B0F009A45D0 /* ProfileViewController.swift */,
 				319514AB2AED7B0E00BCE814 /* EditProfileViewController.swift */,
+				6DAB93B62AEF11B30006BB47 /* EditEventViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -471,6 +474,7 @@
 				6DADC9B42AD6574500483A86 /* SingleEventView.swift in Sources */,
 				FBD626FC2AD242B5005642A3 /* FriendListView.swift in Sources */,
 				BA44F8C22AD8FEFD00BB0CE7 /* CreateEvent.swift in Sources */,
+				6DAB93B72AEF11B30006BB47 /* EditEventViewController.swift in Sources */,
 				BA0D67362AD9D26000F77044 /* ViewEventsListView.swift in Sources */,
 				BA2570D32AC8A58D004E528A /* SignUpView.swift in Sources */,
 				FBBBD55E2AD92FB900050C36 /* AllUsers.swift in Sources */,

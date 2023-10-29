@@ -21,9 +21,7 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
     var eventNameFilled = false
     var descriptionFilled = false
     var locationFilled = false
-    
-    // TODO make the code field
-    
+        
     private var newEventText: UITextView = {
         let text = UITextView()
         text.text = "New Event"
@@ -83,6 +81,21 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
         field.returnKeyType = .continue
         field.layer.cornerRadius = 15
         field.placeholder = "Location"
+        field.backgroundColor = .lightGray
+        field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 7, height: 0))
+        field.leftViewMode = .always
+        field.backgroundColor = .lightGray
+        field.tintColor = .black
+        return field
+    }()
+    
+    private var codeField: UITextField = {
+        let field = UITextField()
+        field.autocapitalizationType = .none
+        field.autocorrectionType = .no
+        field.returnKeyType = .continue
+        field.layer.cornerRadius = 15
+        field.placeholder = "Join Code"
         field.backgroundColor = .lightGray
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 7, height: 0))
         field.leftViewMode = .always
@@ -257,6 +270,7 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
         view.addSubview(eventNameField)
         view.addSubview(descriptionField)
         view.addSubview(locationField)
+        view.addSubview(codeField)
         
         view.addSubview(sportText)
         sportPicker.tag = 1
@@ -309,39 +323,44 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
                                     width: size,
                                     height: 50)
         
+        codeField.frame = CGRect(x: (view.width - size) / 2,
+                                    y: 400,
+                                    width: size,
+                                    height: 50)
+        
         sportText.frame = CGRect(x: -15,
-                                  y: 380,
+                                  y: 460,
                                   width: 180,
                                   height: 50)
         
         sportPicker.frame = CGRect(x: -15,
-                                    y: 415,
+                                    y: 475,
                                     width: 180,
                                     height: 100)
         
         participantsText.frame = CGRect(x: 180,
-                                    y: 380,
+                                    y: 460,
                                     width: 200,
                                     height: 100)
         
         numberPicker.frame = CGRect(x: 200,
-                                    y: 415,
+                                    y: 475,
                                     width: 180,
                                     height: 100)
         
         
         privateText.frame = CGRect(x: 20,
-                                    y: 550,
+                                    y: 610,
                                     width: 150,
                                     height: 100)
         
         isPrivateSlider.frame = CGRect(x: 175,
-                                       y: 555,
+                                       y: 615,
                                        width: 150,
                                        height: 100)
         
         createEventButton.frame = CGRect(x: (view.width - 180) / 2,
-                                         y: 650,
+                                         y: 680,
                                          width: 180,
                                          height: 60)
     }
@@ -351,7 +370,7 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
             
             if (allFieldsFilled) {
                 
-                try await eventsm.createEvent(eventName: eventNameField.text ?? "", sport: selectedSport ?? 0, maxParticipants: selectedNumber ?? 0, description: descriptionField.text ?? "", location: locationField.text ?? "", privateEvent: isPrivateSlider.isOn, id: userAuth.currUser?.id ?? "nouid")
+                try await eventsm.createEvent(eventName: eventNameField.text ?? "", sport: selectedSport ?? 0, maxParticipants: selectedNumber ?? 0, description: descriptionField.text ?? "", location: locationField.text ?? "", privateEvent: isPrivateSlider.isOn, id: userAuth.currUser?.id ?? "nouid", code: codeField.text ?? "") // TODO create with code?
                 
                 let alertController = UIAlertController(title: "Event Created", message: "Your event was successfully created!", preferredStyle: .alert)
                 
