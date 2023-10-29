@@ -59,10 +59,17 @@ class HomeEventsViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedEvent = allEvents.events[indexPath.row]
-        let vc = SingleEventViewController()
-        vc.event = selectedEvent
-        navigationController?.pushViewController(vc, animated: true)
+        if searching {
+            let selectedEvent = allEvents.filteredEvents[indexPath.row]
+            let vc = SingleEventViewController()
+            vc.event = selectedEvent
+            navigationController?.pushViewController(vc, animated: true)
+        } else {
+            let selectedEvent = allEvents.events[indexPath.row]
+            let vc = SingleEventViewController()
+            vc.event = selectedEvent
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     
@@ -136,9 +143,19 @@ class HomeEventsViewController: UIViewController, UITableViewDataSource, UITable
         } else {
             searching = true
         }
-        allEvents.filteredEvents = allEvents.events.filter({event in event.name.lowercased()
-            .contains(searchText.lowercased())})
-        eventsDidUpdate()
+        if(filterLocationSlider.isOn) {
+            allEvents.filteredEvents = allEvents.events.filter({event in event.location.lowercased()
+                .contains(searchText.lowercased())})
+            eventsDidUpdate()
+        } else if(filterHostSlider.isOn) {
+            allEvents.filteredEvents = allEvents.events.filter({event in event.eventHost.lowercased()
+                .contains(searchText.lowercased())})
+            eventsDidUpdate()
+        } else {
+            allEvents.filteredEvents = allEvents.events.filter({event in event.name.lowercased()
+                .contains(searchText.lowercased())})
+            eventsDidUpdate()
+        }
     }
     
     private let table: UITableView = {
