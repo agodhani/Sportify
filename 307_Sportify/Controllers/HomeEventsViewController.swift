@@ -24,20 +24,21 @@ struct HomeEventsViewControllerRepresentable: UIViewControllerRepresentable {
         // Updates the state of the specified view controller with new information from SwiftUI.
     }
 }
+protocol AllEventsDelegate: AnyObject {
+    func eventsDidUpdate()
+}
 
-
-class HomeEventsViewController: UIViewController, UITableViewDataSource {
+class HomeEventsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AllEventsDelegate {
     @ObservedObject var allEvents = AllEvents()
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(getEvs.shared.events)
-        let eventz = getEvs.shared.events
+        let eventz = allEvents.events
         let counter = eventz.count
         return counter
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let eventz = getEvs.shared.events
+        let eventz = allEvents.events
         cell.textLabel?.text = eventz[indexPath.row].name
         return cell
     }
@@ -52,7 +53,7 @@ class HomeEventsViewController: UIViewController, UITableViewDataSource {
         attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: 1, range: NSRange.init(location: 0, length: attributedString.length))
         attributedString.addAttribute(NSAttributedString.Key.underlineColor, value: UIColor(white: 1, alpha: 1), range: NSRange.init(location: 0, length: attributedString.length))
         text.attributedText = attributedString
-        
+        text.isEditable = false;
         text.textColor = .sportGold
         text.backgroundColor = .clear
         text.textAlignment = .center
@@ -67,13 +68,21 @@ class HomeEventsViewController: UIViewController, UITableViewDataSource {
         return table
     }()
     
+    func eventsDidUpdate() {
+            DispatchQueue.main.async {
+                self.table.reloadData()
+            }
+        }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         allEvents.getEvents()
         view.addSubview(myEventsText)
         table.dataSource = self
+        table.delegate = self
+        allEvents.delegate = self
         view.addSubview(table)
+        
     }
     
     

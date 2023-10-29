@@ -31,10 +31,12 @@ class getEvs {
     var events = [EventHighLevel]()
 }
 
+
 class AllEvents: ObservableObject {
     
     //@Published var users = [Users]()
     private var db = Firestore.firestore()
+    weak var delegate: AllEventsDelegate?
     @Published var events = [EventHighLevel]()
     @Published var filteredEvents: [EventHighLevel] = []
     func getEvents(){
@@ -54,6 +56,7 @@ class AllEvents: ObservableObject {
                     let eventHost = data["eventHostID"] as? String ?? ""
                 print(EventHighLevel(id: id, name: name, location: location, sport: sport, maxParticipants: maxParticipants, eventHost: eventHost))
                 getEvs.shared.events.append(EventHighLevel(id: id, name: name, location: location, sport: sport, maxParticipants: maxParticipants, eventHost: eventHost))
+                self.delegate?.eventsDidUpdate()
                 return EventHighLevel(id: id, name: name, location: location, sport: sport, maxParticipants: maxParticipants, eventHost: eventHost)
                 }
             }
