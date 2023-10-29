@@ -146,6 +146,9 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         view.frame = view.bounds
         
         createEventButton.addTarget(self, action: #selector(tappedCreateEvent), for: .touchUpInside)
+        createEventButton.addTarget(self, action: #selector(buttonTouchDown), for: .touchDown) // When clicked or touched down
+        createEventButton.addTarget(self, action: #selector(buttonTouchUp), for: .touchUpInside) // When clicked or touched up inside
+        createEventButton.addTarget(self, action: #selector(buttonTouchUp), for: .touchUpOutside) // When clicked or touched up outside'
         
         createEventButton.frame = CGRect(x: 250,
                                         y: 40,
@@ -207,6 +210,14 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @objc private func tappedCreateEvent() { // TODO CreateEventViewController()
         let vc = CreateEventViewController()
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc private func buttonTouchDown() {
+        createEventButton.backgroundColor = .darkGray
+    }
+
+    @objc private func buttonTouchUp() {
+        createEventButton.backgroundColor = .sportGold
     }
 }
 

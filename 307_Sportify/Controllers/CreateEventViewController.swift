@@ -276,6 +276,9 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
         view.addSubview(isPrivateSlider)
         
         createEventButton.addTarget(self, action: #selector(createEventButtonTapped), for: .touchUpInside)
+        createEventButton.addTarget(self, action: #selector(buttonTouchDown), for: .touchDown) // When clicked or touched down
+        createEventButton.addTarget(self, action: #selector(buttonTouchUp), for: .touchUpInside) // When clicked or touched up inside
+        createEventButton.addTarget(self, action: #selector(buttonTouchUp), for: .touchUpOutside) // When clicked or touched up outside'
         view.addSubview(createEventButton)
         
     }
@@ -371,6 +374,14 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
             }
 
         }
+    }
+    
+    @objc private func buttonTouchDown() {
+        createEventButton.backgroundColor = .darkGray
+    }
+
+    @objc private func buttonTouchUp() {
+        createEventButton.backgroundColor = .sportGold
     }
     
 }
