@@ -25,6 +25,11 @@ struct EventHighLevel: Identifiable {
         self.eventHost = eventHost
     }
 }
+class getEvs {
+    static let shared = getEvs()
+    
+    var events = [EventHighLevel]()
+}
 
 class AllEvents: ObservableObject {
     
@@ -48,6 +53,7 @@ class AllEvents: ObservableObject {
                     let maxParticipants = data["maxParticipants"] as? Int ?? 0
                     let eventHost = data["eventHostID"] as? String ?? ""
                 print(EventHighLevel(id: id, name: name, location: location, sport: sport, maxParticipants: maxParticipants, eventHost: eventHost))
+                getEvs.shared.events.append(EventHighLevel(id: id, name: name, location: location, sport: sport, maxParticipants: maxParticipants, eventHost: eventHost))
                 return EventHighLevel(id: id, name: name, location: location, sport: sport, maxParticipants: maxParticipants, eventHost: eventHost)
                 }
             }

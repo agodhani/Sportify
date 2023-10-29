@@ -24,6 +24,11 @@ struct HomePageView: View {
                         Image(systemName: "bell.badge")
                         Text("Notifications")
                     }
+                HomeEventsViewControllerRepresentable()
+                    .tabItem(){
+                        Image(systemName: "house.circle")
+                        Text("Testing Home")
+                    }
                 ViewEventsListView()
                     .tabItem(){
                         Image(systemName: "house.circle")
