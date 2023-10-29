@@ -7,6 +7,21 @@
 
 import UIKit
 import SwiftUI
+struct ProfileViewControllerRepresentable: UIViewControllerRepresentable {
+    typealias UIViewControllerType = ProfileViewController
+    @ObservedObject var allEvents = AllEvents()
+    
+    func makeUIViewController(context: Context) -> ProfileViewController {
+        let vc = ProfileViewController()
+        // Do some configurations here if needed.
+        
+        return vc
+    }
+    
+    func updateUIViewController(_ uiViewController: ProfileViewController, context: Context) {
+        // Updates the state of the specified view controller with new information from SwiftUI.
+    }
+}
 
 class ProfileViewController: UIViewController {
 

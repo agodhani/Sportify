@@ -17,17 +17,17 @@ struct HomePageView: View {
                 EventsViewControllerRepresentable()
                     .tabItem(){
                         Image(systemName:"calendar.badge.clock")
-                        Text("My Events")
+                        Text("VC My Events")
                     }
                 NotificationViewControllerRepresentable()
                     .tabItem(){
                         Image(systemName: "bell.badge")
-                        Text("Notifications")
+                        Text("VC Notifications")
                     }
                 HomeEventsViewControllerRepresentable()
                     .tabItem(){
                         Image(systemName: "house.circle")
-                        Text("Testing Home")
+                        Text("VC Home")
                     }
                 ViewEventsListView()
                     .tabItem(){
@@ -37,7 +37,12 @@ struct HomePageView: View {
                 MessageViewControllerRepresentable()
                     .tabItem() {
                         Image(systemName: "plus.message.fill")
-                        Text("Messages")
+                        Text("VC Messages")
+                    }
+                ProfileViewControllerRepresentable()
+                    .tabItem() {
+                        Image(systemName: "person")
+                        Text("VC Profile")
                     }
                 ProfileView().environmentObject(userAuth)
                     .tabItem(){
