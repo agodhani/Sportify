@@ -197,6 +197,16 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
         return button
     }()
     
+    private let datePicker: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        if #available(iOS 14, *) {
+            datePicker.preferredDatePickerStyle = .compact
+        }
+        datePicker.tintColor = .sportGold
+        datePicker.backgroundColor = .clear
+        return datePicker
+    }()
+    
     func textFieldDidBeginEditing (_ textField: UITextField) {
         if (textField == eventNameField) {
             if (eventNameField.text != "") {
@@ -295,6 +305,8 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
         createEventButton.addTarget(self, action: #selector(buttonTouchUp), for: .touchUpOutside) // When clicked or touched up outside'
         view.addSubview(createEventButton)
         
+        view.addSubview(datePicker)
+        
     }
     
     // Organize view
@@ -348,19 +360,23 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
                                     width: 180,
                                     height: 100)
         
+        datePicker.frame = CGRect(x: -20,
+                                  y: 450,
+                                  width: size,
+                                  height: size)
         
         privateText.frame = CGRect(x: 20,
-                                    y: 610,
+                                    y: 675,
                                     width: 150,
                                     height: 100)
         
         isPrivateSlider.frame = CGRect(x: 175,
-                                       y: 615,
+                                       y: 680,
                                        width: 150,
                                        height: 100)
         
         createEventButton.frame = CGRect(x: (view.width - 180) / 2,
-                                         y: 680,
+                                         y: 750,
                                          width: 180,
                                          height: 60)
     }
@@ -370,7 +386,7 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
             
             if (allFieldsFilled) {
                 
-                try await eventsm.createEvent(eventName: eventNameField.text ?? "", sport: selectedSport ?? 0, maxParticipants: selectedNumber ?? 0, description: descriptionField.text ?? "", location: locationField.text ?? "", privateEvent: isPrivateSlider.isOn, id: userAuth.currUser?.id ?? "nouid", code: codeField.text ?? "")
+                try await eventsm.createEvent(eventName: eventNameField.text ?? "", sport: selectedSport ?? 0, maxParticipants: selectedNumber ?? 0, description: descriptionField.text ?? "", location: locationField.text ?? "", privateEvent: isPrivateSlider.isOn, id: userAuth.currUser?.id ?? "nouid", code: codeField.text ?? "", date: datePicker.date)
                 
                 let alertController = UIAlertController(title: "Event Created", message: "Your event was successfully created!", preferredStyle: .alert)
                 

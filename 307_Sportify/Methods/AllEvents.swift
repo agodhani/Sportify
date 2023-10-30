@@ -20,7 +20,9 @@ struct EventHighLevel: Identifiable {
     var privateEvent: Bool
     var date: Date
     var requestList: [String]
-    init(id: String, name: String, location: String, sport: Int, maxParticipants: Int, eventHost: String, attendeeList: [String], privateEvent: Bool, date: Date, requestList: [String]){
+    var description: String
+    var code: String
+    init(id: String, name: String, location: String, sport: Int, maxParticipants: Int, eventHost: String, attendeeList: [String], privateEvent: Bool, date: Date, requestList: [String], description: String, code: String){
         self.id = id
         self.name = name
         self.location = location
@@ -31,6 +33,8 @@ struct EventHighLevel: Identifiable {
         self.privateEvent = privateEvent
         self.date = date
         self.requestList = requestList
+        self.description = description
+        self.code = code
     }
     
     func attendeeListAsUsers() async -> [User] {
@@ -106,10 +110,12 @@ class AllEvents: ObservableObject {
                     let privateEvent = data["privateEvent"] as? Bool ?? false
                     let date = data["date"] as? Date ?? Date()
                     let requestList = data["requestList"] as? [String] ?? [String]()
-                print(EventHighLevel(id: id, name: name, location: location, sport: sport, maxParticipants: maxParticipants, eventHost: eventHost, attendeeList: attendeeList, privateEvent: privateEvent, date: date, requestList: requestList))
-                getEvs.shared.events.append(EventHighLevel(id: id, name: name, location: location, sport: sport, maxParticipants: maxParticipants, eventHost: eventHost, attendeeList: attendeeList, privateEvent: privateEvent, date: date, requestList: requestList))
+                    let description = data["description"] as? String ?? ""
+                    let code = data["code"] as? String ?? ""
+                print(EventHighLevel(id: id, name: name, location: location, sport: sport, maxParticipants: maxParticipants, eventHost: eventHost, attendeeList: attendeeList, privateEvent: privateEvent, date: date, requestList: requestList, description: description, code: code))
+                getEvs.shared.events.append(EventHighLevel(id: id, name: name, location: location, sport: sport, maxParticipants: maxParticipants, eventHost: eventHost, attendeeList: attendeeList, privateEvent: privateEvent, date: date, requestList: requestList, description: description, code: code))
                 self.delegate?.eventsDidUpdate()
-                return EventHighLevel(id: id, name: name, location: location, sport: sport, maxParticipants: maxParticipants, eventHost: eventHost, attendeeList: attendeeList, privateEvent: privateEvent, date: date, requestList: requestList)
+                return EventHighLevel(id: id, name: name, location: location, sport: sport, maxParticipants: maxParticipants, eventHost: eventHost, attendeeList: attendeeList, privateEvent: privateEvent, date: date, requestList: requestList, description: description, code: code)
                 }
             }
         }

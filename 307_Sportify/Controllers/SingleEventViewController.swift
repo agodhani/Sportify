@@ -266,8 +266,9 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         
     }
     
-    @objc private func tappedEditEventButton() { // TODO EditEventView()
+    @objc private func tappedEditEventButton() { // TODO EditEventViewController()
         let vc = EditEventViewController()
+        vc.event = event
         navigationController?.pushViewController(vc, animated: true)
     }
 
