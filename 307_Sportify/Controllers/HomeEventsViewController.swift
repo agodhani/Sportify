@@ -11,12 +11,17 @@ import SwiftUI
 struct HomeEventsViewControllerRepresentable: UIViewControllerRepresentable {
     typealias UIViewControllerType = HomeEventsViewController
     @ObservedObject var allEvents = AllEvents()
+    var userAuth: UserAuthentication
+    
+    init(userAuth: UserAuthentication) {
+        self.userAuth = userAuth
+    }
     
     func makeUIViewController(context: Context) -> HomeEventsViewController {
         allEvents.getEvents()
         let vc = HomeEventsViewController()
         // Do some configurations here if needed.
-        
+        vc.userAuth = userAuth
         return vc
     }
     
@@ -29,7 +34,7 @@ protocol AllEventsDelegate: AnyObject {
 }
 
 class HomeEventsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AllEventsDelegate, UISearchBarDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
-    
+    var userAuth : UserAuthentication?
     @ObservedObject var allEvents = AllEvents()
     private var searching = false;
     private var filterSports = false;
@@ -69,11 +74,13 @@ class HomeEventsViewController: UIViewController, UITableViewDataSource, UITable
         if searching || filterSports || filterMaxParticipants {
             let selectedEvent = allEvents.filteredEvents[indexPath.row]
             let vc = SingleEventViewController()
+            vc.userAuth = self.userAuth
             vc.event = selectedEvent
             navigationController?.pushViewController(vc, animated: true)
         } else {
             let selectedEvent = allEvents.events[indexPath.row]
             let vc = SingleEventViewController()
+            vc.userAuth = self.userAuth
             vc.event = selectedEvent
             navigationController?.pushViewController(vc, animated: true)
         }

@@ -12,8 +12,7 @@ import Firebase
 
 class SingleEventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var userAuth = UserAuthentication()
-    
+    var userAuth : UserAuthentication?
     var event: EventHighLevel?
     private var sportList = ["Tennis", "Table Tennis", "Volleyball", "Soccer", "Basketball", "Football", "Baseball", "Badminton", "Golf", "Cycling", "Running", "Hockey", "Spikeball", "Handball", "Lacrosse", "Squash", "Error"]
     var isPrivate = false;
@@ -152,11 +151,15 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewDidLoad()
         
         Task {
+            var user = await userAuth?.getCurrUser()
             attendeeListAsUsers = await event?.attendeeListAsUsers() ?? [User]()
             requestListAsUsers = await event?.requestListAsUsers() ?? [User]()
         }
+            
         
-        let currUserID = userAuth.currUser?.id ?? ""
+        
+        
+        let currUserID = userAuth?.currUser?.id ?? ""
         if (event?.userIsAttending(userID: currUserID) ?? false) {
             // join button
             joinLeaveButton.setTitle("Join", for: .normal)
@@ -272,7 +275,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @objc private func tappedJoinLeaveButton() {
-        let currUserID = userAuth.currUser?.id ?? ""
+        let currUserID = userAuth?.currUser?.id ?? ""
         if (event?.userIsAttending(userID: currUserID) ?? false) {
             // TODO LEAVE - HERE
             // update user
@@ -286,7 +289,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             // update DB user
             // update event
             // update DB event
-            let currUser = userAuth.currUser
+            let currUser = userAuth?.currUser
             event?.joinEvent(name: currUser?.name ?? "")
             let db = Firestore.firestore()
             let id = (event?.id)!

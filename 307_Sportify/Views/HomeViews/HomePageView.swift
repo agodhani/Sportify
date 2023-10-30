@@ -24,7 +24,7 @@ struct HomePageView: View {
                         Image(systemName: "bell.badge")
                         Text("VC Notifications")
                     }
-                HomeEventsViewControllerRepresentable()
+                HomeEventsViewControllerRepresentable(userAuth: userAuth)
                     .tabItem(){
                         Image(systemName: "house.circle")
                         Text("VC Home")
