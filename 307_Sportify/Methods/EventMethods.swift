@@ -133,6 +133,13 @@ class EventMethods: ObservableObject {
         
     }
     
+    func generateRandomCode(length: Int) -> String {
+        // generate random code
+        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let newCode = String ((0..<length).map{_ in letters.randomElement()!})
+        return newCode
+    }
+    
     func deleteEvent(eventID: Event.ID) async {
         do {
             try await Firestore.firestore().collection("Events").document(eventID).delete()

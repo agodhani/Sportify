@@ -11,7 +11,7 @@ import UIKit
 class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
     var event: EventHighLevel?
-        
+    
     // TODO - BACK BUTTON
     
     let sportList = Sport.sportData()
@@ -25,7 +25,7 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     var eventNameFilled = true
     var descriptionFilled = true
     var locationFilled = true
-        
+    
     private var editEventText: UITextView = {
         let text = UITextView()
         text.text = "Edit Event"
@@ -105,7 +105,20 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         field.leftViewMode = .always
         field.backgroundColor = .lightGray
         field.tintColor = .black
+        field.isSecureTextEntry = true
         return field
+    }()
+    
+    private var randomButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "questionmark.square.fill"), for: .normal)
+        return button
+    }()
+    
+    private var revealButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+        return button
     }()
     
     private var participantsText: UITextView = {
@@ -118,6 +131,7 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         text.isEditable = false
         return text
     }()
+    
     // sport tag = 1
     private var sportPicker: UIPickerView = {
         let picker = UIPickerView()
@@ -312,10 +326,16 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         saveButton.addTarget(self, action: #selector(buttonTouchDown), for: .touchDown) // When clicked or touched down
         saveButton.addTarget(self, action: #selector(buttonTouchUp), for: .touchUpInside) // When clicked or touched up inside
-        saveButton.addTarget(self, action: #selector(buttonTouchUp), for: .touchUpOutside) // When clicked or touched up outside'
+        saveButton.addTarget(self, action: #selector(buttonTouchUp), for: .touchUpOutside) // When clicked or touched up outside
         view.addSubview(saveButton)
         
         view.addSubview(datePicker)
+        
+        revealButton.addTarget(self, action: #selector(revealButtonTapped), for: .touchUpInside)
+        view.addSubview(revealButton)
+        
+        randomButton.addTarget(self, action: #selector(randomButtonTapped), for: .touchUpInside)
+        view.addSubview(randomButton)
         
     }
     
@@ -348,6 +368,16 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         codeField.frame = CGRect(x: (view.width - size) / 2,
                                     y: 400,
                                     width: size,
+                                    height: 50)
+        
+        revealButton.frame = CGRect(x: -10,
+                                    y: 400,
+                                    width: 50,
+                                    height: 50)
+        
+        randomButton.frame = CGRect(x: 350,
+                                    y: 400,
+                                    width: 50,
                                     height: 50)
         
         sportText.frame = CGRect(x: -15,
@@ -420,12 +450,28 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         }
     }
     
+    @objc private func revealButtonTapped() {
+        codeField.isSecureTextEntry = !codeField.isSecureTextEntry
+        if (codeField.isSecureTextEntry) {
+            // if hidden
+            revealButton.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+            
+        } else {
+            // if not hidden
+            revealButton.setImage(UIImage(systemName: "eye"), for: .normal)
+        }
+    }
+    
     @objc private func buttonTouchDown() {
         saveButton.backgroundColor = .darkGray
     }
 
     @objc private func buttonTouchUp() {
         saveButton.backgroundColor = .sportGold
+    }
+    
+    @objc private func randomButtonTapped() {
+        codeField.text = event?.generateRandomCode(length: 10)
     }
     
     

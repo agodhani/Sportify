@@ -101,7 +101,20 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
         field.leftViewMode = .always
         field.backgroundColor = .lightGray
         field.tintColor = .black
+        field.isSecureTextEntry = true
         return field
+    }()
+    
+    private var randomButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "questionmark.square.fill"), for: .normal)
+        return button
+    }()
+    
+    private var revealButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+        return button
     }()
     
     private var participantsText: UITextView = {
@@ -307,6 +320,12 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
         
         view.addSubview(datePicker)
         
+        revealButton.addTarget(self, action: #selector(revealButtonTapped), for: .touchUpInside)
+        view.addSubview(revealButton)
+        
+        randomButton.addTarget(self, action: #selector(randomButtonTapped), for: .touchUpInside)
+        view.addSubview(randomButton)
+        
     }
     
     // Organize view
@@ -338,6 +357,16 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
         codeField.frame = CGRect(x: (view.width - size) / 2,
                                     y: 400,
                                     width: size,
+                                    height: 50)
+        
+        revealButton.frame = CGRect(x: -10,
+                                    y: 400,
+                                    width: 50,
+                                    height: 50)
+        
+        randomButton.frame = CGRect(x: 350,
+                                    y: 400,
+                                    width: 50,
                                     height: 50)
         
         sportText.frame = CGRect(x: -15,
@@ -416,6 +445,22 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
 
     @objc private func buttonTouchUp() {
         createEventButton.backgroundColor = .sportGold
+    }
+    
+    @objc private func revealButtonTapped() {
+        codeField.isSecureTextEntry = !codeField.isSecureTextEntry
+        if (codeField.isSecureTextEntry) {
+            // if hidden
+            revealButton.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+        
+        } else {
+            // if not hidden
+            revealButton.setImage(UIImage(systemName: "eye"), for: .normal)
+        }
+    }
+    
+    @objc private func randomButtonTapped() {
+        codeField.text = eventsm.generateRandomCode(length: 10)
     }
     
 }
