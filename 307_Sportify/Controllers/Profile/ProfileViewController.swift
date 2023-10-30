@@ -7,6 +7,8 @@
 
 import UIKit
 import SwiftUI
+import Firebase
+
 struct ProfileViewControllerRepresentable: UIViewControllerRepresentable {
     typealias UIViewControllerType = ProfileViewController
     @ObservedObject var allEvents = AllEvents()
@@ -25,8 +27,14 @@ struct ProfileViewControllerRepresentable: UIViewControllerRepresentable {
 
 class ProfileViewController: UIViewController {
 
-    
     @State var userAuth = UserAuthentication()
+    let db = Firestore.firestore()
+    
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.clipsToBounds = true
+        return scrollView
+    }()
     
     // Profile picture
     private var picView: UIImageView = {
@@ -40,17 +48,29 @@ class ProfileViewController: UIViewController {
         return picView
     }()
     
-    // Name
+    // Name label
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Name:"
         label.textColor = .sportGold
         label.font = .systemFont(ofSize: 18)
+        label.layer.borderWidth = 2
+        label.layer.borderColor = UIColor.lightGray.cgColor
         return label
     }()
-    // TODO: get user's name form db
     
-    // Location
+    // User name
+    private func userName(user: User) -> UILabel {
+        let label = UILabel()
+        label.text = user.name
+        label.textColor = .sportGold
+        label.font = .systemFont(ofSize: 18)
+        label.layer.borderWidth = 2
+        label.layer.borderColor = UIColor.lightGray.cgColor
+        return label
+    }
+    
+    // Location label
     private let locLabel: UILabel = {
         let label = UILabel()
         label.text = "Location:"
@@ -58,9 +78,19 @@ class ProfileViewController: UIViewController {
         label.font = .systemFont(ofSize: 18)
         return label
     }()
-    // TODO: get location from db
     
-    // Sports preferences
+    // User location
+    private func userLocation(user: User) -> UILabel {
+        let label = UILabel()
+        label.text = user.zipCode
+        label.textColor = .sportGold
+        label.font = .systemFont(ofSize: 18)
+        label.layer.borderWidth = 2
+        label.layer.borderColor = UIColor.lightGray.cgColor
+        return label
+    }
+    
+    // Sports preferences label
     private let sportsLabel: UILabel = {
         let label = UILabel()
         label.text = "Sports Preferences:"
@@ -68,7 +98,18 @@ class ProfileViewController: UIViewController {
         label.font = .systemFont(ofSize: 18)
         return label
     }()
-    // TODO: get sports preferences from db
+    
+    //TODO
+    // User's sports preferences
+    private func userSports(user: User) -> UILabel {
+        let label = UILabel()
+        //label.text = user.sportsPreferences
+        label.textColor = .sportGold
+        label.font = .systemFont(ofSize: 18)
+        label.layer.borderWidth = 2
+        label.layer.borderColor = UIColor.lightGray.cgColor
+        return label
+    }
     
     // Edit Profile button
     private let editProfileButton: UIButton = {
@@ -85,7 +126,7 @@ class ProfileViewController: UIViewController {
     // Sign out button
     private let signOutButton: UIButton = {
         let button = UIButton()
-        button.setTitle("SIGN OUT", for: .normal)
+        button.setTitle("Sign Out", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
         button.backgroundColor = .sportGold
         button.setTitleColor(.black, for: .normal)
@@ -144,34 +185,119 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let user = userAuth.currUser!
         view.backgroundColor = .white
         
+        // Get user's info
+        let name = userName(user:user)
+        let location = userLocation(user: user)
+        let sportsPreferences = userSports(user: user)
+        
+        // Functionality for the buttons
+        editProfileButton.addTarget(self, action: #selector(editProfileTapped), for: .touchUpInside)
+        
+        addFirendsButton.addTarget(self, action: #selector(addFriendsTapped), for: .touchUpInside)
+        
+        myFriendsButton.addTarget(self, action: #selector(myFriendsTapped), for: .touchUpInside)
+        
+        blockUsersButton.addTarget(self, action: #selector(blockUsersTapped), for: .touchUpInside)
+        
+        suggestionsButton.addTarget(self, action: #selector(suggestionsTapped), for: .touchUpInside)
+        
+        signOutButton.addTarget(self, action: #selector(signOutTapped), for: .touchUpInside)
+        
         // Add subviews to view
-        view.addSubview(picView)
-        view.addSubview(nameLabel)
-        view.addSubview(locLabel)
-        view.addSubview(sportsLabel)
-        view.addSubview(editProfileButton)
-        view.addSubview(signOutButton)
-        view.addSubview(addFirendsButton)
-        view.addSubview(blockUsersButton)
-        view.addSubview(myFriendsButton)
-        view.addSubview(suggestionsButton)
+        view.addSubview(scrollView)
+        scrollView.addSubview(picView)
+        scrollView.addSubview(nameLabel)
+        scrollView.addSubview(name)
+        scrollView.addSubview(locLabel)
+        scrollView.addSubview(location)
+        scrollView.addSubview(sportsLabel)
+        scrollView.addSubview(sportsPreferences)
+        scrollView.addSubview(editProfileButton)
+        scrollView.addSubview(addFirendsButton)
+        scrollView.addSubview(myFriendsButton)
+        scrollView.addSubview(blockUsersButton)
+        scrollView.addSubview(suggestionsButton)
+        scrollView.addSubview(signOutButton)
     }
     
     // Organize view
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        let size = view.width / 1.3
+        scrollView.frame = view.bounds
+        let size = scrollView.width / 1.3
         picView.frame = CGRect(x: 120,
                                y: 70,
-                               width: view.width/2.5,
-                               height: view.width/2.5)
-        nameLabel.frame = CGRect(x: 120,
-                                 y: 70,
-                                 width: view.width/2.5,
-                                 height: view.width/2.5)
+                               width: scrollView.width / 2.5,
+                               height: scrollView.width / 2.5)
+        nameLabel.frame = CGRect(x: 40,
+                                 y: picView.bottom + 20,
+                                 width: 53,
+                                 height: 20)
+        locLabel.frame = CGRect(x: 40,
+                                y: nameLabel.bottom + 20,
+                                 width: 74,
+                                 height: 20)
+        sportsLabel.frame = CGRect(x: 40,
+                                y: locLabel.bottom + 20,
+                                 width: 159,
+                                 height: 20)
+        editProfileButton.frame = CGRect(x: 90,
+                                    y: sportsLabel.bottom + 60,
+                                    width: 225,
+                                    height: 50)
+        addFirendsButton.frame = CGRect(x: 90,
+                                        y: editProfileButton.bottom + 30,
+                                        width: 225,
+                                        height: 50)
+        myFriendsButton.frame = CGRect(x: 90,
+                                        y: addFirendsButton.bottom + 30,
+                                        width: 225,
+                                        height: 50)
+        blockUsersButton.frame = CGRect(x: 90,
+                                        y: myFriendsButton.bottom + 30,
+                                        width: 225,
+                                        height: 50)
+        suggestionsButton.frame = CGRect(x: 90,
+                                        y:blockUsersButton.bottom + 30,
+                                        width: 225,
+                                        height: 50)
+        signOutButton.frame = CGRect(x: 90,
+                                    y: suggestionsButton.bottom + 30,
+                                    width: 225,
+                                    height: 50)
+    }
+    
+    // Edit profile clicked
+    @objc private func editProfileTapped() {
+        // Try to do uinavigation controller
+    }
+    
+    // Add friends clicked
+    @objc private func addFriendsTapped() {
+        
+    }
+    
+    // My friends clicked
+    @objc private func myFriendsTapped() {
+        
+    }
+    
+    // Block users clicked
+    @objc private func blockUsersTapped() {
+        
+    }
+    
+    // Suggestions clicked
+    @objc private func suggestionsTapped() {
+        
+    }
+    
+    // sign out clicked
+    @objc private func signOutTapped() {
+        
     }
 }
 
