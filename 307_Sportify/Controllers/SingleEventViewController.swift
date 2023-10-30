@@ -199,6 +199,10 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         
         joinLeaveButton.addTarget(self, action: #selector(tappedJoinLeaveButton), for: .touchUpInside)
         editEventButton.addTarget(self, action: #selector(tappedEditEventButton), for: .touchUpInside)
+        
+        editEventButton.addTarget(self, action: #selector(buttonTouchDown), for: .touchDown) // When clicked or touched down
+        editEventButton.addTarget(self, action: #selector(buttonTouchUp), for: .touchUpInside) // When clicked or touched up inside
+        editEventButton.addTarget(self, action: #selector(buttonTouchUp), for: .touchUpOutside) // When clicked or touched up outside'
 
         
         eventNameText.frame = CGRect(x: 0,
@@ -241,8 +245,8 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                                        y: 750,
                                        width: 80,
                                        height: 45)
-        editEventButton.frame = CGRect(x: 50,
-                                       y: 50,
+        editEventButton.frame = CGRect(x: 100,
+                                       y: 150,
                                        width: 110,
                                        height: 45)
         
@@ -293,6 +297,14 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             cell.textLabel?.text = requestListAsUsers[indexPath.row].name
         }
         return cell
+    }
+    
+    @objc private func buttonTouchDown() {
+        editEventButton.backgroundColor = .darkGray
+    }
+
+    @objc private func buttonTouchUp() {
+        editEventButton.backgroundColor = .sportGold
     }
 }
 
