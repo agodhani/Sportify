@@ -75,6 +75,7 @@ struct EventHighLevel: Identifiable {
         }
         return false
     }
+    
     mutating func joinEvent(name: String){
         self.attendeeList.append(name)
     }
@@ -119,7 +120,8 @@ class AllEvents: ObservableObject {
                     let eventHost = data["eventHostID"] as? String ?? ""
                     let attendeeList = data["attendeeList"] as? [String] ?? [String]()
                     let privateEvent = data["privateEvent"] as? Bool ?? false
-                    let date = data["date"] as? Date ?? Date()
+                    let tsdate = data["date"] as? Timestamp ?? Timestamp()
+                    let date = tsdate.dateValue() // time stamp as date
                     let requestList = data["requestList"] as? [String] ?? [String]()
                     let description = data["description"] as? String ?? ""
                     let code = data["code"] as? String ?? ""

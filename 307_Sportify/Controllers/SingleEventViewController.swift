@@ -26,8 +26,18 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         text.textColor = .sportGold
         text.backgroundColor = .clear
         text.textAlignment = .center
-        text.font = .systemFont(ofSize: 30, weight: .bold)
+        text.font = .systemFont(ofSize: 50, weight: .bold)
         text.toggleUnderline(true)
+        return text
+    }()
+    
+    private var descriptionText: UITextView = {
+        let text = UITextView()
+        text.isEditable = false;
+        text.textColor = .white
+        text.backgroundColor = .clear
+        text.textAlignment = .center
+        text.font = .systemFont(ofSize: 20, weight: .regular)
         return text
     }()
     
@@ -159,6 +169,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         
         
         view.addSubview(eventNameText)
+        view.addSubview(descriptionText)
         view.addSubview(hostNameText)
         view.addSubview(locationNameText)
         view.addSubview(sportNameText)
@@ -173,6 +184,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         
         
         eventNameText.text = event?.name ?? "Error"
+        descriptionText.text = event?.description ?? "Error description"
         hostNameText.text = event?.eventHost ?? "Event Host Error"
         locationNameText.text = event?.location ?? "Location Error"
         sportNameText.text = sportList[event?.sport ?? 16]
@@ -205,10 +217,16 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         editEventButton.addTarget(self, action: #selector(buttonTouchUp), for: .touchUpOutside) // When clicked or touched up outside'
 
         
-        eventNameText.frame = CGRect(x: 0,
-                                    y: 100,
+        eventNameText.frame = CGRect(x: -80,
+                                    y: 75,
                                     width: size,
                                     height: size)
+        
+        descriptionText.frame = CGRect(x: -80,
+                                    y: 75,
+                                    width: size,
+                                    height: size)
+        
         hostNameText.frame = CGRect(x: 0,
                                     y: 150,
                                     width: size,
