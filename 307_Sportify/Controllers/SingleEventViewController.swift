@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 // TODO make this look nice
 
@@ -118,6 +119,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         button.layer.masksToBounds = true
         button.titleLabel?.lineBreakMode = .byWordWrapping
         button.titleLabel?.textAlignment = .center
+        button.setTitle("Join Event", for: .normal)
         return button
     }()
     
@@ -262,6 +264,12 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             // update DB user
             // update event
             // update DB event
+            let currUser = userAuth.currUser
+            event?.joinEvent(name: currUser?.name ?? "")
+            let db = Firestore.firestore()
+            let id = (event?.id)!
+            db.collection("Events").document(id).updateData(["attendeeList":event?.attendeeList])
+            print("EVENT JOINED")
         }
         
     }

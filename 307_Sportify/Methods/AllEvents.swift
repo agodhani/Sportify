@@ -75,6 +75,9 @@ struct EventHighLevel: Identifiable {
         }
         return false
     }
+    mutating func joinEvent(name: String){
+        self.attendeeList.append(name)
+    }
     
 }
 class getEvs {
