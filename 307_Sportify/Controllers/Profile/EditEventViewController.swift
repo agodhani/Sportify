@@ -399,16 +399,13 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
                 
                 try await eventsm.modifyEvent(eventID: event?.id ?? "", eventName: eventNameField.text ?? "", date: datePicker.date, location: locationField.text ?? "", attendeeList: event?.attendeeList ?? [String](), privateEvent: isPrivateSlider.isOn, maxParticipants: selectedNumber ?? 25, adminsList: Set<User>(), eventHostID: event?.eventHost ?? "nouid", code: codeField.text ?? "", blackList: Set<User>(), requestList: event?.requestList ?? [String](), description: descriptionField.text ?? "")
                 
-                let alertController = UIAlertController(title: "Event Modified", message: "Your event was successfully created!", preferredStyle: .alert)
+                navigationController?.popViewController(animated: true)
+
+                let alertController = UIAlertController(title: "Event Modified", message: "Your event was successfully modified!", preferredStyle: .alert)
                 
                 let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                 alertController.addAction(okAction)
                 present(alertController, animated: true, completion: nil)
-                
-                // TODO or make this go back to single event view?
-                let vc = EventsViewController()
-                navigationController?.pushViewController(vc, animated: true)
-                
                 
             } else {
                 // Fields aren't filled, show a popup (alert)

@@ -388,14 +388,13 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 
                 try await eventsm.createEvent(eventName: eventNameField.text ?? "", sport: selectedSport ?? 0, maxParticipants: selectedNumber ?? 0, description: descriptionField.text ?? "", location: locationField.text ?? "", privateEvent: isPrivateSlider.isOn, id: userAuth.currUser?.id ?? "nouid", code: codeField.text ?? "", date: datePicker.date)
                 
+                navigationController?.popViewController(animated: true)
+                
                 let alertController = UIAlertController(title: "Event Created", message: "Your event was successfully created!", preferredStyle: .alert)
                 
                 let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                 alertController.addAction(okAction)
                 present(alertController, animated: true, completion: nil)
-                
-                let vc = EventsViewController()
-                navigationController?.pushViewController(vc, animated: true)
                 
                 
             } else {
