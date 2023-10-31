@@ -167,7 +167,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         
         
         let currUserID = userAuth?.currUser?.id ?? ""
-        if (event?.userIsAttending(userID: currUserID) ?? false) {
+        if (event?.userIsAttending(userID: currUserID) == false) {
             // join button
             joinLeaveButton.setTitle("Join", for: .normal)
             joinLeaveButton.backgroundColor = .green
@@ -175,6 +175,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             // leave button
             joinLeaveButton.setTitle("Leave", for: .normal)
             joinLeaveButton.backgroundColor = .red
+            print("HERE")
         }
         
         
@@ -283,25 +284,24 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
     
     @objc private func tappedJoinLeaveButton() {
         let currUserID = userAuth?.currUser?.id ?? ""
-        if (event?.userIsAttending(userID: currUserID) ?? false) {
+        if (event?.userIsAttending(userID: currUserID) == false) {
+            // TODO JOIN - HERE
+            // update user
+            // update DB user
+            // update event
+            // update DB event
+            event?.joinEvent(id: currUserID)
+            let db = Firestore.firestore()
+            let id = (event?.id)!
+            db.collection("Events").document(id).updateData(["attendeeList":event?.attendeeList])
+            print("EVENT JOINED")
+        } else {
             // TODO LEAVE - HERE
             // update user
             // update DB user
             // update event
             // update DB event
             
-        } else {
-            // TODO JOIN - HERE
-            // update user
-            // update DB user
-            // update event
-            // update DB event
-            let currUser = userAuth?.currUser
-            event?.joinEvent(name: currUser?.name ?? "")
-            let db = Firestore.firestore()
-            let id = (event?.id)!
-            db.collection("Events").document(id).updateData(["attendeeList":event?.attendeeList])
-            print("EVENT JOINED")
         }
         
     }

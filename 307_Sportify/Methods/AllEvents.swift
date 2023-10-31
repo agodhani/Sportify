@@ -76,8 +76,8 @@ struct EventHighLevel: Identifiable {
         return false
     }
     
-    mutating func joinEvent(name: String){
-        self.attendeeList.append(name)
+    mutating func joinEvent(id: String){
+        self.attendeeList.append(id)
     }
     
     mutating func generateRandomCode(length: Int) -> String {
