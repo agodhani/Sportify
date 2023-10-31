@@ -163,8 +163,9 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             var user = await userAuth?.getCurrUser()
             self.attendeeListAsUsers = await event?.attendeeListAsUsers() ?? [User]()
             self.requestListAsUsers = await event?.requestListAsUsers() ?? [User]()
+            self.attendeeTableView.reloadData()
+            self.requestTableView.reloadData()
         }
-            
         
         
         
@@ -340,6 +341,46 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // TODO
+        // indexPath.row = index of the array
+        let alertController = UIAlertController(title: "Alert", message: "Choose an action:", preferredStyle: .alert)
+        
+        if (tableView.tag == 1) {
+            // attenedeeList clicked
+            // OPTIONS: Kick + Cancel
+            
+            let kickAction = UIAlertAction(title: "Kick", style: .destructive) { _ in
+                // TODO ANDREW - put the kicking function here
+            }
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+                print("User cancelled")
+            }
+            alertController.addAction(kickAction)
+            alertController.addAction(cancelAction)
+            
+            
+        } else {
+            // requestList clicked
+            // OPTIONS: Accept + Reject
+            
+            let acceptAction = UIAlertAction(title: "Accept", style: .default) { _ in
+                // TODO ANDREW - put the kicking function here
+            }
+            
+            let rejectAction = UIAlertAction(title: "Reject", style: .destructive) { _ in
+                // TODO ANDREW - put the kicking function here
+            }
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+                print("User cancelled")
+            }
+            alertController.addAction(acceptAction)
+            alertController.addAction(rejectAction)
+            alertController.addAction(cancelAction)
+            
+        }
+        present(alertController, animated: true, completion: nil)
+        
     }
     
     @objc private func buttonTouchDown() {
