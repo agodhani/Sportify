@@ -27,6 +27,8 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @State var userAuth = UserAuthentication()
     @State var eventsm = EventMethods()
+    
+    
     //@State var currentUser = User(id: "error ID", name: "error name", email: "error email", radius: 1, zipCode: "", sportsPreferences: [0], privateAccount: true, profilePicture: "1", age: 1, birthday: Date(), friendList: [], blockList: [], eventsAttending: ["005861C7-AB71-48EF-B17A-515E88AA0D4B"], eventsHosting: [], suggestions: [])
     
         
@@ -105,22 +107,31 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return button
     }()
     
-    private let tableView = UITableView()
+    private let tableView: UITableView = {
+        let table = UITableView()
+        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        return table
+    }()
+    
     var allEvents = [String]() // IDs
     var allEventsAsEvents = [Event]() // Events
+    var allEv = AllEvents()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //let currentUser = userAuth.currUser! // REAL uncomment
-        var currentUser = User(id: "1", name: "test", email: "testEmail", radius: 1, zipCode: "", sportsPreferences: [0], privateAccount: true, profilePicture: "1", age: 1, birthday: Date(), friendList: [], blockList: [], eventsAttending: [], eventsHosting: [], suggestions: []) // REAL comment
+        //var currentUser = User(id: "1", name: "test", email: "testEmail", radius: 1, zipCode: "", sportsPreferences: [0], privateAccount: true, profilePicture: "1", age: 1, birthday: Date(), friendList: [], blockList: [], eventsAttending: [], eventsHosting: [], suggestions: []) // REAL comment
         view.backgroundColor = .black
         
-        allEvents = currentUser.getAllEvents()
         Task {
+            await userAuth.getCurrUser()
+            let currentUser = userAuth.currUser // REAL uncomment
+            allEvents = currentUser?.getAllEvents() ?? [String]()
+            
             for eventID in allEvents {
                 await allEventsAsEvents.append(eventsm.getEvent(eventID: eventID))
             }
+            self.tableView.reloadData()
         }
         
         // Add subviews
@@ -130,11 +141,13 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         view.addSubview(sportText)
         view.addSubview(locationText)
         view.addSubview(dateText)
-                
-        view.addSubview(tableView)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")// TODO custom if want
+        
         tableView.delegate = self
         tableView.dataSource = self
+        view.addSubview(tableView)
+        
+        allEv.getEvents()
+
         
     }
     
@@ -198,11 +211,12 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) { // TODO SingleEventViewController
-        tableView.deselectRow(at: indexPath, animated: true)
-        print("cell tapped")
-        // TODO push a navigationview controller - uncomment once
-        //let vc = SingleEventViewController(allEvents[indexPath.row]) // SingleEventVC for the index
-        //navigationController?.pushViewController(vc, animated: true)
+        
+        let selectedEvent = allEv.events[indexPath.row]
+        let vc = SingleEventViewController() // SingleEventVC for the index
+        vc.userAuth = self.userAuth
+        vc.event = selectedEvent
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 
