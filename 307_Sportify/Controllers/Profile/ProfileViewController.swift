@@ -185,7 +185,10 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let user = userAuth.currUser!
+        guard let user = userAuth.currUser else {
+            print("userAuth.currUser failed! User is null")
+            return
+        }
         view.backgroundColor = .white
         
         // Get user's info
