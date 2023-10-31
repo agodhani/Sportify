@@ -305,11 +305,14 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             print("EVENT JOINED")
         } else {
             // TODO LEAVE - HERE
-            // update user
-            // update DB user
-            // update event
-            // update DB event
-            
+            //Remove User from Attendee List
+            if let index = event?.attendeeList.firstIndex(of: currUserID) {
+                event?.attendeeList.remove(at: index)
+            }
+            let db = Firestore.firestore()
+            let id = (event?.id)!
+            db.collection("Events").document(id).updateData(["attendeeList":event?.attendeeList])
+            print("EVENT LEFT")
         }
         
     }
