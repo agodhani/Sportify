@@ -156,8 +156,9 @@ class SignUpViewController: UIViewController {
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
         button.backgroundColor = .sportGold
         button.setTitleColor(.black, for: .normal)
-        button.layer.cornerRadius = 15
+        button.layer.cornerRadius = 25
         button.layer.masksToBounds = true
+        button.titleLabel?.textAlignment = .center
         return button
     }()
     
@@ -250,7 +251,7 @@ class SignUpViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    // Sign in button clicked
+    // Sign up button clicked
     @objc private func tappedSignup() {
         guard let email = emailField.text, let password = passwordField.text, let fullName = nameField.text, let zipCode = zipcodeField.text,
               !email.isEmpty, !password.isEmpty,!zipCode.isEmpty, !fullName.isEmpty else {

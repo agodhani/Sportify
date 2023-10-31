@@ -25,26 +25,88 @@ class EditProfileViewController: UIViewController {
     }()
     
     // New username field
+    private let usernameField: UITextField = {
+        let field = UITextField()
+        field.autocapitalizationType = .none
+        field.autocorrectionType = .no
+        field.returnKeyType = .continue
+        field.layer.cornerRadius = 15
+        field.placeholder = "New Username"
+        field.backgroundColor = .lightGray
+        field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 7, height: 0))
+        field.leftViewMode = .always
+        field.backgroundColor = .lightGray
+        field.isSecureTextEntry = true
+        field.tintColor = .black
+        return field
+    }()
     
     // New email field
+    private let emailField: UITextField = {
+        let field = UITextField()
+        field.autocapitalizationType = .none
+        field.autocorrectionType = .no
+        field.returnKeyType = .continue
+        field.layer.cornerRadius = 15
+        field.placeholder = "New Email"
+        field.backgroundColor = .lightGray
+        field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 7, height: 0))
+        field.leftViewMode = .always
+        field.backgroundColor = .lightGray
+        field.isSecureTextEntry = true
+        field.tintColor = .black
+        return field
+    }()
     
     // New location field
+    private let zipcodeField: UITextField = {
+        let field = UITextField()
+        field.autocapitalizationType = .none
+        field.autocorrectionType = .no
+        field.returnKeyType = .continue
+        field.layer.cornerRadius = 15
+        field.placeholder = "New Zipcode"
+        field.backgroundColor = .lightGray
+        field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 7, height: 0))
+        field.leftViewMode = .always
+        field.backgroundColor = .lightGray
+        field.isSecureTextEntry = true
+        field.tintColor = .black
+        return field
+    }()
     
     // IF TIME ALLOWS: New sports preferences picker
     
     // Update profile button
-    
+    private let updateProfileButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Update Profile", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
+        button.backgroundColor = .sportGold
+        button.setTitleColor(.black, for: .normal)
+        button.layer.cornerRadius = 25
+        button.layer.masksToBounds = true
+        button.titleLabel?.textAlignment = .center
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         
+        // Functionality for tapping profile pic and update profile button
         picView.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(profilePicTapped))
         picView.addGestureRecognizer(tap)
+        
+        updateProfileButton.addTarget(self, action: #selector(updateProfileTapped), for: .touchUpInside)
 
         // Add subviews to view
         view.addSubview(picView)
+        view.addSubview(usernameField)
+        view.addSubview(emailField)
+        view.addSubview(zipcodeField)
+        view.addSubview(updateProfileButton)
     }
     
     @objc func profilePicTapped() {
@@ -60,6 +122,10 @@ class EditProfileViewController: UIViewController {
                                      y: 70,
                                      width: view.width/2.5,
                                      height: view.width/2.5)
+    }
+    
+    @objc private func updateProfileTapped() {
+        
     }
 }
 

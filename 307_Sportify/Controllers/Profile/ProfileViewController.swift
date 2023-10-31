@@ -185,21 +185,34 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        var user: User? = nil
+        
+//        DispatchQueue.global().async {
+            Task {
+                //let result = await userAuth.getCurrUser()
+                user = userAuth.currUser!
+                if user == nil{
+                    print("user is nil")
+                }
+                print("userauth.curruser")
+            }
+        
+  //      }
 //        guard let user = userAuth.currUser else {
-//            print("userAuth.currUser failed! User is null")
+//            print("userAuth.currUser failed!")
 //            return
 //        }
         
         // fake user for testing
-        let user = User(id: "", name: "", email: "", radius: 0, zipCode: "", sportsPreferences: Set<Int>(), privateAccount: false, profilePicture: "", age: 0, birthday: Date.now, friendList: Array<String>(), blockList: Array<String>(), eventsAttending: [String](), eventsHosting: [String](), suggestions: [String]())
-        
+//        let user = User(id: "", name: "", email: "", radius: 0, zipCode: "", sportsPreferences: Set<Int>(), privateAccount: false, profilePicture: "", age: 0, birthday: Date.now, friendList: Array<String>(), blockList: Array<String>(), eventsAttending: [String](), eventsHosting: [String](), suggestions: [String]())
+//        
         
         view.backgroundColor = .white
         
         // Get user's info
-        let name = userName(user:user)
-        let location = userLocation(user: user)
-        let sportsPreferences = userSports(user: user)
+        let name = userName(user:user!)
+        let location = userLocation(user: user!)
+        let sportsPreferences = userSports(user: user!)
         
         // Functionality for the buttons
         editProfileButton.addTarget(self, action: #selector(editProfileTapped), for: .touchUpInside)
