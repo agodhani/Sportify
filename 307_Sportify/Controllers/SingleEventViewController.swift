@@ -105,6 +105,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
     private let attendeeTableView: UITableView = {
         let tableView = UITableView()
         tableView.tag = 1
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return tableView
     }()
     
@@ -116,6 +117,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
     private let requestTableView: UITableView = {
         let tableView = UITableView()
         tableView.tag = 2
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return tableView
     }()
     
@@ -149,6 +151,11 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        attendeeTableView.delegate = self
+        attendeeTableView.dataSource = self
+        requestTableView.delegate = self
+        requestTableView.dataSource = self
         
         Task {
             var user = await userAuth?.getCurrUser()
@@ -307,7 +314,11 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return 25
+        if (tableView.tag == 1) {
+            return attendeeListAsUsers.count
+        } else {
+            return requestListAsUsers.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

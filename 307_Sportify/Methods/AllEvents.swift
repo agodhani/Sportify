@@ -40,11 +40,11 @@ struct EventHighLevel: Identifiable {
     func attendeeListAsUsers() async -> [User] {
         var userList = [User]()
         let db = Firestore.firestore()
+        let userm = UserMethods()
         
         for attendeeID in attendeeList {
-            var userData = try? await db.collection("Users").document(attendeeID).getDocument()
             do {
-                var user = try userData!.data(as: User.self)
+                let user = await userm.getUser(user_id: attendeeID)
                 userList.append(user)
             } catch {
                 print("Error getting attendee as User!")
