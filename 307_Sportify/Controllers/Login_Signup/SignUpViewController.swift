@@ -188,6 +188,8 @@ class SignUpViewController: UIViewController {
         scrollView.addSubview(sportPicker)
     }
     
+    
+    
     // Organize view
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()

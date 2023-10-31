@@ -39,13 +39,12 @@ class EditProfileViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        // Add subviews to view
-        view.addSubview(picView)
-        
         picView.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(profilePicTapped))
         picView.addGestureRecognizer(tap)
 
+        // Add subviews to view
+        view.addSubview(picView)
     }
     
     @objc func profilePicTapped() {

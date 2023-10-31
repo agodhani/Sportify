@@ -185,10 +185,15 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let user = userAuth.currUser else {
-            print("userAuth.currUser failed! User is null")
-            return
-        }
+//        guard let user = userAuth.currUser else {
+//            print("userAuth.currUser failed! User is null")
+//            return
+//        }
+        
+        // fake user for testing
+        let user = User(id: "", name: "", email: "", radius: 0, zipCode: "", sportsPreferences: Set<Int>(), privateAccount: false, profilePicture: "", age: 0, birthday: Date.now, friendList: Array<String>(), blockList: Array<String>(), eventsAttending: [String](), eventsHosting: [String](), suggestions: [String]())
+        
+        
         view.backgroundColor = .white
         
         // Get user's info
@@ -230,6 +235,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         scrollView.frame = view.bounds
+        scrollView.isScrollEnabled = true
         let size = scrollView.width / 1.3
         picView.frame = CGRect(x: 120,
                                y: 70,
@@ -276,6 +282,10 @@ class ProfileViewController: UIViewController {
     // Edit profile clicked
     @objc private func editProfileTapped() {
         // Try to do uinavigation controller
+        let vc = EditProfileViewController()
+        let nav = UINavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true)
     }
     
     // Add friends clicked
@@ -298,7 +308,7 @@ class ProfileViewController: UIViewController {
         
     }
     
-    // sign out clicked
+    // Sign out clicked
     @objc private func signOutTapped() {
         
     }
