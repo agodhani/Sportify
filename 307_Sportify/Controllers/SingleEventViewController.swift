@@ -152,15 +152,17 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        attendeeTableView.tag = 1
         attendeeTableView.delegate = self
         attendeeTableView.dataSource = self
+        requestTableView.tag = 2
         requestTableView.delegate = self
         requestTableView.dataSource = self
         
         Task {
             var user = await userAuth?.getCurrUser()
-            attendeeListAsUsers = await event?.attendeeListAsUsers() ?? [User]()
-            requestListAsUsers = await event?.requestListAsUsers() ?? [User]()
+            self.attendeeListAsUsers = await event?.attendeeListAsUsers() ?? [User]()
+            self.requestListAsUsers = await event?.requestListAsUsers() ?? [User]()
         }
             
         
@@ -209,6 +211,11 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             privateEventText.text = "Public Event"
             privateEventText.textColor = .green
         }
+        
+        self.attendeeTableView.reloadData()
+        self.requestTableView.reloadData()
+
+
         
         
     }
@@ -329,6 +336,10 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             cell.textLabel?.text = requestListAsUsers[indexPath.row].name
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // TODO
     }
     
     @objc private func buttonTouchDown() {
