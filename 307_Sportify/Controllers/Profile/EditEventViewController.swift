@@ -225,6 +225,17 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         return datePicker
     }()
     
+    private let deleteButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Delete", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 15, weight: .bold)
+        button.backgroundColor = .red
+        button.setTitleColor(.black, for: .normal)
+        button.layer.cornerRadius = 15
+        button.layer.masksToBounds = true
+        return button
+    }()
+    
     func textFieldDidBeginEditing (_ textField: UITextField) {
         if (textField == eventNameField) {
             if (eventNameField.text != "") {
@@ -337,6 +348,9 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         randomButton.addTarget(self, action: #selector(randomButtonTapped), for: .touchUpInside)
         view.addSubview(randomButton)
         
+        deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
+        view.addSubview(deleteButton)
+        
     }
     
     // Organize view
@@ -420,6 +434,11 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
                                          y: 750,
                                          width: 180,
                                          height: 60)
+        
+        deleteButton.frame = CGRect(x: 300,
+                                         y: 100,
+                                         width: 60,
+                                         height: 30)
     }
     
     @objc private func saveButtonTapped() {
@@ -472,6 +491,29 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     @objc private func randomButtonTapped() {
         codeField.text = event?.generateRandomCode(length: 10)
+    }
+    
+    @objc private func deleteButtonTapped() {
+        
+        let alertController = UIAlertController(title: "Delete Event", message: "Are you sure you want to delete this event?", preferredStyle: .alert)
+        let deleteAction = UIAlertAction(title: "Delete", style:.destructive) { _ in
+            Task {
+                await self.eventsm.deleteEvent(eventID: self.event?.id ?? "")
+            }
+            
+            self.navigationController?.popViewController(animated: true)
+            self.navigationController?.popViewController(animated: true)
+            let alertC2 = UIAlertController(title: "Delete Event", message: "Your event was successfully deleted", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertC2.addAction(okAction)
+            self.present(alertC2, animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            print("User cancelled")
+        }
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
     }
     
     
