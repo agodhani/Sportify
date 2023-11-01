@@ -11,8 +11,9 @@ import SwiftUI
 
 struct EventsViewControllerRepresentable: UIViewControllerRepresentable {
     typealias UIViewControllerType = EventsViewController
-    
+    @ObservedObject var allEvents = AllEvents()
     func makeUIViewController(context: Context) -> EventsViewController {
+        allEvents.getEvents()
         let vc = EventsViewController()
         // Do some configurations here if needed.
         return vc
@@ -146,6 +147,12 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.dataSource = self
         view.addSubview(tableView)
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
     
     // Organize view
     override func viewDidLayoutSubviews() {
@@ -199,18 +206,20 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allEvents.count
+        allEv.filteredEvents = allEv.events.filter({event in event.attendeeList.contains(userAuth.currUser?.id ?? "")})
+        return allEv.filteredEvents.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = allEventsAsEvents[indexPath.row].eventName
+        allEv.filteredEvents = allEv.events.filter({event in event.attendeeList.contains(userAuth.currUser?.id ?? "")})
+        cell.textLabel?.text = allEv.filteredEvents[indexPath.row].name
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) { // TODO SingleEventViewController
         
-        let selectedEvent = allEv.events[indexPath.row]
+        let selectedEvent = allEv.filteredEvents[indexPath.row]
         let vc = SingleEventViewController() // SingleEventVC for the index
         vc.userAuth = self.userAuth
         vc.event = selectedEvent
