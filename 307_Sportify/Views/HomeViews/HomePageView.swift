@@ -39,7 +39,7 @@ struct HomePageView: View {
                         Image(systemName: "plus.message.fill")
                         Text("VC Messages")
                     }
-                ProfileViewControllerRepresentable()
+                ProfileViewControllerRepresentable(userAuth: userAuth)
                     .tabItem() {
                         Image(systemName: "person")
                         Text("VC Profile")

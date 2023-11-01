@@ -12,11 +12,16 @@ import Firebase
 struct ProfileViewControllerRepresentable: UIViewControllerRepresentable {
     typealias UIViewControllerType = ProfileViewController
     @ObservedObject var allEvents = AllEvents()
+    var userAuth: UserAuthentication
+    
+    init(userAuth: UserAuthentication) {
+        self.userAuth = userAuth
+    }
     
     func makeUIViewController(context: Context) -> ProfileViewController {
         let vc = ProfileViewController()
         // Do some configurations here if needed.
-        
+        vc.userAuth = userAuth
         return vc
     }
     
@@ -27,12 +32,16 @@ struct ProfileViewControllerRepresentable: UIViewControllerRepresentable {
 
 class ProfileViewController: UIViewController {
 
-    @State var userAuth = UserAuthentication()
+    var userAuth = UserAuthentication()
     let db = Firestore.firestore()
+    var name = UILabel()
+    var location = UILabel()
+    var sportsPreferences = UILabel()
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.clipsToBounds = true
+        scrollView.isScrollEnabled = true
         return scrollView
     }()
     
@@ -54,8 +63,6 @@ class ProfileViewController: UIViewController {
         label.text = "Name:"
         label.textColor = .sportGold
         label.font = .systemFont(ofSize: 18)
-        label.layer.borderWidth = 2
-        label.layer.borderColor = UIColor.lightGray.cgColor
         return label
     }()
     
@@ -65,8 +72,6 @@ class ProfileViewController: UIViewController {
         label.text = user.name
         label.textColor = .sportGold
         label.font = .systemFont(ofSize: 18)
-        label.layer.borderWidth = 2
-        label.layer.borderColor = UIColor.lightGray.cgColor
         return label
     }
     
@@ -85,8 +90,6 @@ class ProfileViewController: UIViewController {
         label.text = user.zipCode
         label.textColor = .sportGold
         label.font = .systemFont(ofSize: 18)
-        label.layer.borderWidth = 2
-        label.layer.borderColor = UIColor.lightGray.cgColor
         return label
     }
     
@@ -185,34 +188,17 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var user: User? = nil
+        guard let user = userAuth.currUser else {
+            print("userAuth.currUser failed!")
+            return
+        }
         
-//        DispatchQueue.global().async {
-            Task {
-                //let result = await userAuth.getCurrUser()
-                user = userAuth.currUser!
-                if user == nil{
-                    print("user is nil")
-                }
-                print("userauth.curruser")
-            }
+        view.backgroundColor = .black
         
-  //      }
-//        guard let user = userAuth.currUser else {
-//            print("userAuth.currUser failed!")
-//            return
-//        }
-        
-        // fake user for testing
-//        let user = User(id: "", name: "", email: "", radius: 0, zipCode: "", sportsPreferences: Set<Int>(), privateAccount: false, profilePicture: "", age: 0, birthday: Date.now, friendList: Array<String>(), blockList: Array<String>(), eventsAttending: [String](), eventsHosting: [String](), suggestions: [String]())
-//        
-        
-        view.backgroundColor = .white
-        
-        // Get user's info
-        let name = userName(user:user!)
-        let location = userLocation(user: user!)
-        let sportsPreferences = userSports(user: user!)
+        // Get user's info as labels
+        name = userName(user:user)
+        location = userLocation(user: user)
+        sportsPreferences = userSports(user: user)
         
         // Functionality for the buttons
         editProfileButton.addTarget(self, action: #selector(editProfileTapped), for: .touchUpInside)
@@ -228,6 +214,7 @@ class ProfileViewController: UIViewController {
         signOutButton.addTarget(self, action: #selector(signOutTapped), for: .touchUpInside)
         
         // Add subviews to view
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 50)
         view.addSubview(scrollView)
         scrollView.addSubview(picView)
         scrollView.addSubview(nameLabel)
@@ -248,17 +235,24 @@ class ProfileViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         scrollView.frame = view.bounds
-        scrollView.isScrollEnabled = true
-        let size = scrollView.width / 1.3
+        //let size = scrollView.width / 1.3
         picView.frame = CGRect(x: 120,
-                               y: 70,
+                               y: 30,
                                width: scrollView.width / 2.5,
                                height: scrollView.width / 2.5)
         nameLabel.frame = CGRect(x: 40,
                                  y: picView.bottom + 20,
                                  width: 53,
                                  height: 20)
+        name.frame = CGRect(x: nameLabel.right + 5,
+                                 y: picView.bottom + 20,
+                            width: scrollView.width,
+                                 height: 20)
         locLabel.frame = CGRect(x: 40,
+                                y: nameLabel.bottom + 20,
+                                 width: 74,
+                                 height: 20)
+        location.frame = CGRect(x: locLabel.right + 5,
                                 y: nameLabel.bottom + 20,
                                  width: 74,
                                  height: 20)
@@ -298,6 +292,7 @@ class ProfileViewController: UIViewController {
         let vc = EditProfileViewController()
         let nav = UINavigationController(rootViewController: vc)
         nav.modalPresentationStyle = .fullScreen
+        
         present(nav, animated: true)
     }
     

@@ -7,18 +7,22 @@
 
 import UIKit
 import SwiftUI
+import Firebase
 
 class EditProfileViewController: UIViewController {
     
     @State var userAuth = UserAuthentication()
+    private var newUsername = ""
+    private var newEmail = ""
+    private var newZipcode = ""
     
     // Profile picture
     private var picView: UIImageView = {
         let picView = UIImageView()
         picView.image = UIImage(systemName: "person")
-        picView.layer.masksToBounds = true
+        picView.tintColor = .sportGold
         picView.contentMode = .scaleAspectFit
-        //picView.layer.cornerRadius = picView.width / 10
+        picView.layer.masksToBounds = true
         picView.layer.borderWidth = 2
         picView.layer.borderColor = UIColor.lightGray.cgColor
         return picView
@@ -36,7 +40,6 @@ class EditProfileViewController: UIViewController {
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 7, height: 0))
         field.leftViewMode = .always
         field.backgroundColor = .lightGray
-        field.isSecureTextEntry = true
         field.tintColor = .black
         return field
     }()
@@ -53,7 +56,6 @@ class EditProfileViewController: UIViewController {
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 7, height: 0))
         field.leftViewMode = .always
         field.backgroundColor = .lightGray
-        field.isSecureTextEntry = true
         field.tintColor = .black
         return field
     }()
@@ -70,7 +72,6 @@ class EditProfileViewController: UIViewController {
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 7, height: 0))
         field.leftViewMode = .always
         field.backgroundColor = .lightGray
-        field.isSecureTextEntry = true
         field.tintColor = .black
         return field
     }()
@@ -92,7 +93,12 @@ class EditProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .black
+        title = "Edit Profile"
+        let appearence = UINavigationBarAppearance()
+        appearence.titleTextAttributes = [.foregroundColor: UIColor.sportGold]
+        navigationItem.standardAppearance = appearence
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: self, action: #selector(backButtonTapped))
         
         // Functionality for tapping profile pic and update profile button
         picView.isUserInteractionEnabled = true
@@ -109,23 +115,69 @@ class EditProfileViewController: UIViewController {
         view.addSubview(updateProfileButton)
     }
     
-    @objc func profilePicTapped() {
-        
-    }
-    
     // Organize view
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         let size = view.width / 1.3
         picView.frame = CGRect(x: 120,
-                                     y: 70,
+                                     y: 100,
                                      width: view.width/2.5,
                                      height: view.width/2.5)
+        picView.layer.cornerRadius = picView.width / 2
+        usernameField.frame = CGRect(x: 45,
+                                 y: picView.bottom + 35,
+                                 width: size,
+                                 height: 50)
+        emailField.frame = CGRect(x: 45,
+                                 y: usernameField.bottom + 15,
+                                 width: size,
+                                 height: 50)
+        zipcodeField.frame = CGRect(x: 45,
+                                 y: emailField.bottom + 15,
+                                 width: size,
+                                 height: 50)
+        updateProfileButton.frame = CGRect(x: 90,
+                                        y: zipcodeField.bottom + 50,
+                                        width: 225,
+                                        height: 50)
+    }
+    
+    @objc private func backButtonTapped() {
+        self.navigationController?.dismiss(animated: true)
+    }
+    
+    @objc func profilePicTapped() {
+        presentPhotoPicker()
     }
     
     @objc private func updateProfileTapped() {
+        let db = Firestore.firestore()
+        let user_id = userAuth.currUser?.id
+        let currentUser = userAuth.currUser
         
+        // Update variables
+        if usernameField.hasText {
+            newUsername = usernameField.text!
+        } else {
+            newUsername = currentUser!.name
+        }
+        
+        if emailField.hasText {
+            newEmail = emailField.text!
+        } else {
+            newEmail = currentUser!.email
+        }
+        
+        if zipcodeField.hasText {
+            newZipcode = zipcodeField.text!
+        } else {
+            newZipcode = currentUser!.zipCode
+        }
+        
+        // Update db
+        db.collection("Users").document(user_id!).updateData(["name": newUsername, "email": newEmail, "zipCode": newZipcode])
+        self.navigationController?.dismiss(animated: true)
     }
 }
 
@@ -140,6 +192,7 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
         guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
             return
         }
+        self.picView.image = selectedImage
     }
     
     func presentPhotoPicker() {
