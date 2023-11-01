@@ -292,6 +292,13 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         
     }
     
+    private func showAlert(message: String) {
+        let alertController = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
     @objc private func tappedJoinLeaveButton() {
         var currUserID = userAuth?.currUser?.id ?? ""
         var currUser = userAuth?.currUser
@@ -301,12 +308,67 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             // update DB user
             // update event
             // update DB event
-            event?.joinEvent(id: currUserID)
-            let db = Firestore.firestore()
-            let id = (event?.id)!
-            db.collection("Events").document(id).updateData(["attendeeList":event?.attendeeList])
-            print("EVENT JOINED")
-            currUser?.joinEvent(eventID: event?.id ?? "")
+            
+            if (event?.privateEvent ?? false) {
+                // if it's a private event - prompt for join code
+                
+                let alertController = UIAlertController(title: "Join Event", message: "Enter Event Code:", preferredStyle: .alert)
+                alertController.addTextField { textField in
+                    textField.placeholder = "Event Code"
+                }
+                
+                let joinAction = UIAlertAction(title: "Join", style: .default) { [weak self] _ in
+                    
+                    guard let eventCode = alertController.textFields?.first?.text, !eventCode.isEmpty else {
+                        // Show an error message if the text field is empty
+                        self?.showAlert(message: "Please enter the event code.")
+                        return
+                    }
+                    
+                    // Check if the entered event code matches the event's code
+                    if eventCode == self?.event?.code {
+                        // Event code is correct, join the event
+                        self?.event?.joinEvent(id: currUserID)
+                        let db = Firestore.firestore()
+                        let id = (self?.event?.id)!
+                        db.collection("Events").document(id).updateData(["attendeeList":self?.event?.attendeeList ?? []])
+                        print("EVENT JOINED")
+                        currUser?.joinEvent(eventID: self?.event?.id ?? "")
+                        
+                        let joinedAlertController = UIAlertController(title: "Success", message: "You've successfully joined the event.", preferredStyle: .alert)
+                        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        joinedAlertController.addAction(okAction)
+                        self?.present(joinedAlertController, animated: true, completion: nil)
+                        
+                    } else {
+                        // Event code is incorrect, show an error message
+                        self?.showAlert(message: "Incorrect event code. Please try again.")
+                    }
+                }
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+                    print("Join canceled")
+                }
+                
+                alertController.addAction(joinAction)
+                alertController.addAction(cancelAction)
+                present(alertController, animated: true, completion: nil)
+                
+            } else {
+                // not a private event - join the event
+                self.event?.joinEvent(id: currUserID)
+                let db = Firestore.firestore()
+                let id = (self.event?.id)!
+                db.collection("Events").document(id).updateData(["attendeeList":self.event?.attendeeList ?? []])
+                print("EVENT JOINED")
+                currUser?.joinEvent(eventID: self.event?.id ?? "")
+                
+                let joinedAlertController = UIAlertController(title: "Success", message: "You've successfully joined the event.", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                joinedAlertController.addAction(okAction)
+                present(joinedAlertController, animated: true, completion: nil)
+                
+            }
             
             
         } else {
@@ -317,9 +379,15 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             }
             let db = Firestore.firestore()
             let id = (event?.id)!
-            db.collection("Events").document(id).updateData(["attendeeList":event?.attendeeList])
+            db.collection("Events").document(id).updateData(["attendeeList":event?.attendeeList ?? []])
             print("EVENT LEFT")
             currUser?.leaveEvent(eventID: event?.id ?? "")
+            
+            let leaveAlertController = UIAlertController(title: "Success", message: "You've successfully left the event.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            leaveAlertController.addAction(okAction)
+            present(leaveAlertController, animated: true, completion: nil)
+            
         }
         
     }
