@@ -319,6 +319,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             let id = (event?.id)!
             db.collection("Events").document(id).updateData(["attendeeList":event?.attendeeList])
             print("EVENT LEFT")
+            currUser?.leaveEvent(eventID: event?.id ?? "")
         }
         
     }

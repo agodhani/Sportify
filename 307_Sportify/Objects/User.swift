@@ -121,7 +121,12 @@ struct User: Identifiable, Codable, Hashable {
         db.collection("Users").document(id).updateData(["eventsAttending":eventsAttending])
     }
     
-    func leaveEvent() {
+    mutating func leaveEvent(eventID: String) {
+        if let index = eventsAttending.firstIndex(of: eventID) {
+            eventsAttending.remove(at: index)
+        }
+        let db = Firestore.firestore()
+        db.collection("Users").document(id).updateData(["eventsAttending":eventsAttending])
         
     }
     
