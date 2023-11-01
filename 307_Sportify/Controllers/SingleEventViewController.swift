@@ -147,6 +147,16 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         button.backgroundColor = .sportGold
         return button
     }()
+    
+    func updateLists() {
+        Task {
+            var user = await userAuth?.getCurrUser()
+            self.attendeeListAsUsers = await event?.attendeeListAsUsers() ?? [User]()
+            self.requestListAsUsers = await event?.requestListAsUsers() ?? [User]()
+            self.attendeeTableView.reloadData()
+            self.requestTableView.reloadData()
+        }
+    }
         
     
     override func viewDidLoad() {
@@ -166,6 +176,8 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             self.attendeeTableView.reloadData()
             self.requestTableView.reloadData()
         }
+        
+        updateLists()
         
         
         
@@ -353,6 +365,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                 alertController.addAction(joinAction)
                 alertController.addAction(cancelAction)
                 present(alertController, animated: true, completion: nil)
+                updateLists()
                 
             } else {
                 // not a private event - join the event
@@ -367,7 +380,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                 let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                 joinedAlertController.addAction(okAction)
                 present(joinedAlertController, animated: true, completion: nil)
-                
+                updateLists()
             }
             
             
@@ -387,6 +400,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             leaveAlertController.addAction(okAction)
             present(leaveAlertController, animated: true, completion: nil)
+            updateLists()
             
         }
         
