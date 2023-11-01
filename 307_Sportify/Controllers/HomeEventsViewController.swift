@@ -119,10 +119,34 @@ class HomeEventsViewController: UIViewController, UITableViewDataSource, UITable
         if sender.isOn {
             searchBar.placeholder = "Location"
             filterHostSlider.isOn = false;
-        } else if(filterHostSlider.isOn == false && searchBar.placeholder == "Location") {
+            filterDateSwitch.isOn = false;
+        } else if(filterHostSlider.isOn == false && filterDateSwitch.isOn == false && searchBar.placeholder == "Location") {
             searchBar.placeholder = "Event Name"
         }
     }
+    
+    //filtering date
+    private let dateLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Date"
+        label.textColor = .sportGold
+        label.font = .systemFont(ofSize: 18)
+        return label
+    }()
+    private let filterDateSwitch: UISwitch = {
+        let toggle = UISwitch()
+        return toggle
+    }()
+    @objc func switchDateSliderChanged(_ sender: UISwitch) {
+        if sender.isOn {
+            searchBar.placeholder = "Date"
+            filterHostSlider.isOn = false;
+            filterLocationSlider.isOn = false;
+        } else if(filterHostSlider.isOn == false && filterLocationSlider.isOn == false && searchBar.placeholder == "Date") {
+            searchBar.placeholder = "Event Name"
+        }
+    }
+    
     
     //filtering event Host
     private let eventHostLabel: UILabel = {
@@ -140,7 +164,8 @@ class HomeEventsViewController: UIViewController, UITableViewDataSource, UITable
         if sender.isOn {
             searchBar.placeholder = "Event Host"
             filterLocationSlider.isOn = false;
-        } else if(filterHostSlider.isOn == false && searchBar.placeholder == "Event Host") {
+            filterDateSwitch.isOn = false;
+        } else if(filterHostSlider.isOn == false && filterDateSwitch.isOn == false && searchBar.placeholder == "Event Host") {
             searchBar.placeholder = "Event Name"
         }
     }
@@ -267,6 +292,16 @@ class HomeEventsViewController: UIViewController, UITableViewDataSource, UITable
                     .contains(searchText.lowercased())})
                 eventsDidUpdate()
             }
+        } else if(filterDateSwitch.isOn) {
+            if(filterSports || filterMaxParticipants) {
+                allEvents.filteredEvents = allEvents.filteredEvents.filter({event in event.date.formatted().lowercased()
+                    .contains(searchText.lowercased())})
+                eventsDidUpdate()
+            } else {
+                allEvents.filteredEvents = allEvents.events.filter({event in event.date.formatted().lowercased()
+                    .contains(searchText.lowercased())})
+                eventsDidUpdate()
+            }
         } else {
             if(filterSports || filterMaxParticipants) {
                 allEvents.filteredEvents = allEvents.filteredEvents.filter({event in event.name.lowercased()
@@ -322,8 +357,10 @@ class HomeEventsViewController: UIViewController, UITableViewDataSource, UITable
         view.addSubview(searchBar)
         view.addSubview(locationLabel)
         view.addSubview(eventHostLabel)
+        view.addSubview(dateLabel)
         view.addSubview(filterHostSlider)
         view.addSubview(filterLocationSlider)
+        view.addSubview(filterDateSwitch)
         
         view.addSubview(sportText)
         sportPicker.tag = 1
@@ -340,7 +377,7 @@ class HomeEventsViewController: UIViewController, UITableViewDataSource, UITable
         view.addSubview(numberMaxParticipants)
         view.addSubview(maxParticipantsText)
 
-        
+        filterDateSwitch.addTarget(self, action: #selector(switchDateSliderChanged), for: .valueChanged)
         filterLocationSlider.addTarget(self, action: #selector(switchLocationSliderChanged), for: .valueChanged)
         filterHostSlider.addTarget(self, action: #selector(switchHostSliderChanged), for: .valueChanged)
         table.dataSource = self
@@ -370,7 +407,15 @@ class HomeEventsViewController: UIViewController, UITableViewDataSource, UITable
                                     y: 95,
                                     width: size,
                                     height: 50)
-        filterLocationSlider.frame = CGRect(x:298,
+        filterLocationSlider.frame = CGRect(x:150,
+                                       y: 100,
+                                       width: 1,
+                                       height: 1)
+        dateLabel.frame = CGRect(x: 250,
+                                    y: 95,
+                                    width: size,
+                                    height: 50)
+        filterDateSwitch.frame = CGRect(x:298,
                                        y: 100,
                                        width: 1,
                                        height: 1)
@@ -378,7 +423,7 @@ class HomeEventsViewController: UIViewController, UITableViewDataSource, UITable
                                     y: 135,
                                     width: size,
                                     height: 50)
-        filterHostSlider.frame = CGRect(x:298,
+        filterHostSlider.frame = CGRect(x:150,
                                        y: 140,
                                        width: 1,
                                        height: 1)
