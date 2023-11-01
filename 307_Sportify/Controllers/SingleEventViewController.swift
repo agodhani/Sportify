@@ -25,7 +25,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         text.textColor = .sportGold
         text.backgroundColor = .clear
         text.textAlignment = .center
-        text.font = .systemFont(ofSize: 50, weight: .bold)
+        text.font = .systemFont(ofSize: 45, weight: .bold)
         text.toggleUnderline(true)
         return text
     }()
@@ -209,13 +209,13 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         }
         
         
-        eventNameText.text = event?.name ?? "Error"
-        descriptionText.text = event?.description ?? "Error description"
-        hostNameText.text = event?.eventHostName ?? "Event Host Error"
-        locationNameText.text = event?.location ?? "Location Error"
-        sportNameText.text = sportList[event?.sport ?? 16]
-        maxParticipantsText.text = String(event?.maxParticipants ?? 0)
-        eventDateText.text = String(event?.date.formatted() ?? Date().formatted())
+        eventNameText.text = (event?.name ?? "Error")
+        descriptionText.text = "Event Description: " + (event?.description ?? "Error description")
+        hostNameText.text = "Event Host: " + (event?.eventHostName ?? "Event Host Error")
+        locationNameText.text = "Location: " + (event?.location ?? "Location Error")
+        sportNameText.text = "Sport: " + sportList[event?.sport ?? 16]
+        maxParticipantsText.text = "Participants: " + String(event?.attendeeList.count ?? 0) + "/" + String(event?.maxParticipants ?? 0)
+        eventDateText.text = "Event Date: " + String(event?.date.formatted() ?? Date().formatted())
         
         isPrivate = event?.privateEvent ?? false
         if (isPrivate) { // private event
@@ -248,18 +248,18 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         editEventButton.addTarget(self, action: #selector(buttonTouchUp), for: .touchUpOutside) // When clicked or touched up outside'
 
         
-        eventNameText.frame = CGRect(x: -80,
-                                    y: 75,
+        eventNameText.frame = CGRect(x: 0,
+                                    y: -100,
                                     width: size,
                                     height: size)
         
-        descriptionText.frame = CGRect(x: -80,
-                                    y: 75,
+        descriptionText.frame = CGRect(x: 0,
+                                    y: 150,
                                     width: size,
                                     height: size)
         
         hostNameText.frame = CGRect(x: 0,
-                                    y: 150,
+                                    y: 120,
                                     width: size,
                                     height: size)
         locationNameText.frame = CGRect(x: 0,
@@ -294,8 +294,8 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                                        y: 750,
                                        width: 80,
                                        height: 45)
-        editEventButton.frame = CGRect(x: 100,
-                                       y: 150,
+        editEventButton.frame = CGRect(x: 150,
+                                       y: 750,
                                        width: 110,
                                        height: 45)
         
