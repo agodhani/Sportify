@@ -193,8 +193,10 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         view.addSubview(attendeeTableView)
         view.addSubview(requestTableView)
         view.addSubview(joinLeaveButton)
-        view.addSubview(editEventButton)
-        
+        if (currUserID == event?.eventHost || (event?.adminsList.contains(currUserID) ?? false)) {
+            // if the user is the host or an admin - display the button
+            view.addSubview(editEventButton)
+        }
         
         
         eventNameText.text = event?.name ?? "Error"
@@ -291,7 +293,8 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @objc private func tappedJoinLeaveButton() {
-        let currUserID = userAuth?.currUser?.id ?? ""
+        var currUserID = userAuth?.currUser?.id ?? ""
+        var currUser = userAuth?.currUser
         if (event?.userIsAttending(userID: currUserID) == false) {
             // TODO JOIN - HERE
             // update user
@@ -303,6 +306,9 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             let id = (event?.id)!
             db.collection("Events").document(id).updateData(["attendeeList":event?.attendeeList])
             print("EVENT JOINED")
+            currUser?.joinEvent(eventID: event?.id ?? "")
+            
+            
         } else {
             // TODO LEAVE - HERE
             //Remove User from Attendee List

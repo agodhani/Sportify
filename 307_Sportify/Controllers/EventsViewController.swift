@@ -120,9 +120,9 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //var currentUser = User(id: "1", name: "test", email: "testEmail", radius: 1, zipCode: "", sportsPreferences: [0], privateAccount: true, profilePicture: "1", age: 1, birthday: Date(), friendList: [], blockList: [], eventsAttending: [], eventsHosting: [], suggestions: []) // REAL comment
         view.backgroundColor = .black
-        
+
+        allEv.getEvents()
         Task {
             await userAuth.getCurrUser()
             let currentUser = userAuth.currUser // REAL uncomment
@@ -133,7 +133,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             self.tableView.reloadData()
         }
-        
+
         // Add subviews
         view.addSubview(createEventButton)
         view.addSubview(myEventsText)
@@ -145,10 +145,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.delegate = self
         tableView.dataSource = self
         view.addSubview(tableView)
-        
-        allEv.getEvents()
-
-        
     }
     
     // Organize view
@@ -157,6 +153,8 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLayoutSubviews()
         let size = view.width / 1.2
         view.frame = view.bounds
+        tableView.reloadData()
+
         
         createEventButton.addTarget(self, action: #selector(tappedCreateEvent), for: .touchUpInside)
         createEventButton.addTarget(self, action: #selector(buttonTouchDown), for: .touchDown) // When clicked or touched down

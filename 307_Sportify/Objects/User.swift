@@ -115,21 +115,22 @@ struct User: Identifiable, Codable, Hashable {
     }
  */
      
-    func joinEvent(eventID: String, user: User) {
-        let eventm = EventMethods()
-        Task {
-            var event = try await eventm.getEvent(eventID: eventID)
-            let attendeeList = event.attendeeList //.append(user)
-            try await eventm.modifyEvent(eventID: eventID, eventName: "", date: event.date, location: "", attendeeList: [String](), privateEvent: event.privateEvent, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "", code: "", blackList: Set<User>(), requestList: [String](), description: "")
-        }
+    mutating func joinEvent(eventID: String) {
+        eventsAttending.append(eventID)
+        let db = Firestore.firestore()
+        db.collection("Users").document(id).updateData(["eventsAttending":eventsAttending])
     }
     
     func leaveEvent() {
         
     }
     
-    func hostEvent() {
-        
+    mutating func hostEvent(eventID: String) {
+        eventsAttending.append(eventID)
+        eventsHosting.append(eventID)
+        let db = Firestore.firestore()
+        db.collection("Users").document(id).updateData(["eventsAttending":eventsAttending])
+        db.collection("Users").document(id).updateData(["eventsHosting":eventsHosting])
     }
     
     mutating func addFriend(name: String) {
@@ -178,8 +179,15 @@ struct User: Identifiable, Codable, Hashable {
 
     func getAllEvents() -> [String] { // returns all the IDs of events part of 
         //let allEvents = self.eventsAttending.append(contentsOf: self.eventsHosting)
-        var allEvents = eventsHosting
-        allEvents.append(contentsOf: eventsAttending)
+        let arr1 = eventsAttending
+        let arr2 = eventsHosting
+        
+        let set1 = Set(arr1)
+        let set2 = Set(arr2)
+        
+        let combinedSet = set1.union(set2)
+        let allEvents = Array(combinedSet)
+        
         return allEvents
     }
     
