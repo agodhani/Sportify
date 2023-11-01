@@ -179,7 +179,6 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         updateLists()
         
         
-        
         let currUserID = userAuth?.currUser?.id ?? ""
         if (event?.userIsAttending(userID: currUserID) == false) {
             // join button
@@ -433,57 +432,69 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // TODO
         // indexPath.row = index of the array
-        let alertController = UIAlertController(title: "Alert", message: "Choose an action:", preferredStyle: .alert)
-        
-        if (tableView.tag == 1) {
-            // attenedeeList clicked
-            // OPTIONS: Kick + Cancel
+        Task {
+            var user = await userAuth?.getCurrUser()
+        }
+        let currUserID = userAuth?.currUser?.id ?? ""
+        if (currUserID == event?.eventHost || (event?.adminsList.contains(currUserID) ?? false)) {
             
-            let kickAction = UIAlertAction(title: "Kick", style: .destructive) { _ in
-                // TODO ANDREW - put the kicking function here
-                //Get User ID of user that was clicked on
-                let userID = self.attendeeListAsUsers[indexPath.row].id
-                //Remove User ID from Event Attendee List
-                if let index = self.event?.attendeeList.firstIndex(of: userID) {
-                    self.event?.attendeeList.remove(at: index)
+            let alertController = UIAlertController(title: "Alert", message: "Choose an action:", preferredStyle: .alert)
+            
+            if (tableView.tag == 1) {
+                // attenedeeList clicked
+                // OPTIONS: Kick + Cancel
+                
+                let kickAction = UIAlertAction(title: "Kick", style: .destructive) { _ in
+                    // TODO ANDREW - put the kicking function here
+                    //Get User ID of user that was clicked on
+                    let userID = self.attendeeListAsUsers[indexPath.row].id
+                    //Remove User ID from Event Attendee List
+                    if let index = self.event?.attendeeList.firstIndex(of: userID) {
+                        self.event?.attendeeList.remove(at: index)
+                    }
+                    //Update DB
+                    let db = Firestore.firestore()
+                    let id = self.event?.id
+                    db.collection("Events").document(id ?? "").updateData(["attendeeList":self.event?.attendeeList])
+                    print("USER KICKED")
+                    //Remove EventID from Users Events Attending,update DB
+                    self.attendeeListAsUsers[indexPath.row].leaveEvent(eventID: id ?? "")
                 }
-                //Update DB
-                let db = Firestore.firestore()
-                let id = self.event?.id
-                db.collection("Events").document(id ?? "").updateData(["attendeeList":self.event?.attendeeList])
-                print("USER KICKED")
-                //Remove EventID from Users Events Attending,update DB
-                self.attendeeListAsUsers[indexPath.row].leaveEvent(eventID: id ?? "")
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+                    print("User cancelled")
+                }
+                alertController.addAction(kickAction)
+                alertController.addAction(cancelAction)
+                
+                
+            } else {
+                // requestList clicked
+                // OPTIONS: Accept + Reject
+                
+                let acceptAction = UIAlertAction(title: "Accept", style: .default) { _ in
+                    // TODO ANDREW - put the kicking function here
+                }
+                
+                let rejectAction = UIAlertAction(title: "Reject", style: .destructive) { _ in
+                    // TODO ANDREW - put the kicking function here
+                }
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+                    print("User cancelled")
+                }
+                alertController.addAction(acceptAction)
+                alertController.addAction(rejectAction)
+                alertController.addAction(cancelAction)
+                
             }
+            present(alertController, animated: true, completion: nil)
             
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-                print("User cancelled")
-            }
-            alertController.addAction(kickAction)
-            alertController.addAction(cancelAction)
-            
-            
-        } else {
-            // requestList clicked
-            // OPTIONS: Accept + Reject
-            
-            let acceptAction = UIAlertAction(title: "Accept", style: .default) { _ in
-                // TODO ANDREW - put the kicking function here
-            }
-            
-            let rejectAction = UIAlertAction(title: "Reject", style: .destructive) { _ in
-                // TODO ANDREW - put the kicking function here
-            }
-            
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-                print("User cancelled")
-            }
-            alertController.addAction(acceptAction)
-            alertController.addAction(rejectAction)
-            alertController.addAction(cancelAction)
             
         }
-        present(alertController, animated: true, completion: nil)
+        
+        
+
         
     }
     
