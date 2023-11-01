@@ -13,7 +13,7 @@ class EventMethods: ObservableObject {
     @Published var thisEvent: Event!
     
     init (){
-        thisEvent = Event(id: "", eventName: "", sport: 0, date: Date.now, location: "", numAttendees: 0, attendeeList: Array<String>(), privateEvent: false, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "", code: "", blackList: Set<User>(), requestList: [String](), description: "")
+        thisEvent = Event(id: "", eventName: "", sport: 0, date: Date.now, location: "", numAttendees: 0, attendeeList: Array<String>(), privateEvent: false, maxParticipants: 0, adminsList: Array<String>(), eventHostID: "", code: "", blackList: Set<User>(), requestList: [String](), description: "")
     }
     init(eventID: String) async {
         thisEvent = await getEvent(eventID: eventID)
@@ -21,7 +21,7 @@ class EventMethods: ObservableObject {
     
     func createEvent(eventName: String, sport: Int, maxParticipants: Int, description: String, location: String, privateEvent: Bool, id: String) async throws {
         do {
-            let event = Event(id: UUID().uuidString, eventName: eventName, sport: sport, date: Date.now, location: location, numAttendees: 1, attendeeList: Array<String>(), privateEvent: privateEvent, maxParticipants: maxParticipants, adminsList: Set<User>(), eventHostID: id, code: "monkeys", blackList: Set<User>(), requestList: [], description: description)
+            let event = Event(id: UUID().uuidString, eventName: eventName, sport: sport, date: Date.now, location: location, numAttendees: 1, attendeeList: Array<String>(), privateEvent: privateEvent, maxParticipants: maxParticipants, adminsList: Array<String>(), eventHostID: id, code: "monkeys", blackList: Set<User>(), requestList: [], description: description)
             let userAuth = UserAuthentication()
             var user = userAuth.currUser
             user?.eventsHosting.append(event.id)
@@ -38,7 +38,7 @@ class EventMethods: ObservableObject {
     
     func createEvent(eventName: String, sport: Int, maxParticipants: Int, description: String, location: String, privateEvent: Bool, id: String, code: String, date: Date) async throws {
         do {
-            let event = Event(id: UUID().uuidString, eventName: eventName, sport: sport, date: date, location: location, numAttendees: 1, attendeeList: [id], privateEvent: privateEvent, maxParticipants: maxParticipants, adminsList: Set<User>(), eventHostID: id, code: code, blackList: Set<User>(), requestList: [], description: description)
+            let event = Event(id: UUID().uuidString, eventName: eventName, sport: sport, date: date, location: location, numAttendees: 1, attendeeList: [id], privateEvent: privateEvent, maxParticipants: maxParticipants, adminsList: Array<String>(), eventHostID: id, code: code, blackList: Set<User>(), requestList: [], description: description)
             let userAuth = UserAuthentication()
             await userAuth.getCurrUser()
             var user = userAuth.currUser
@@ -67,7 +67,7 @@ class EventMethods: ObservableObject {
             return eventData
         } catch {
             print("Event Data retrival failed - you suck!")
-            return Event(id: "", eventName: "", sport: 0, date: Date.now, location: "", numAttendees: 0, attendeeList: Array<String>(), privateEvent: false, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "", code: "", blackList: Set<User>(), requestList: [], description: "")
+            return Event(id: "", eventName: "", sport: 0, date: Date.now, location: "", numAttendees: 0, attendeeList: Array<String>(), privateEvent: false, maxParticipants: 0, adminsList: Array<String>(), eventHostID: "", code: "", blackList: Set<User>(), requestList: [], description: "")
         }
     }
     

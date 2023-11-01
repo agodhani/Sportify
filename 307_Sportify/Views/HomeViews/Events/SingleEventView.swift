@@ -11,7 +11,7 @@ import Firebase
 struct SingleEventView: View {
     
     // this should show if the event didn't load properly
-    @State var event = Event(id: "error id", eventName: "error name", sport: 0, date: Date.now, location: "error location", numAttendees: 0, attendeeList: Array<String>(), privateEvent: false, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "2", code: "code", blackList: Set<User>(), requestList: [], description: "error description")
+    @State var event = Event(id: "error id", eventName: "error name", sport: 0, date: Date.now, location: "error location", numAttendees: 0, attendeeList: Array<String>(), privateEvent: false, maxParticipants: 0, adminsList: Array<String>(), eventHostID: "2", code: "code", blackList: Set<User>(), requestList: [], description: "error description")
     
     @State var userAuth = UserAuthentication()
     @State var userM = UserMethods()

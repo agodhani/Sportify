@@ -21,7 +21,7 @@ struct Event: Identifiable, Codable, Hashable {
     var attendeeList: [String]
     var privateEvent: Bool
     var maxParticipants: Int
-    var adminsList: Set<User>
+    var adminsList: [String]
     var eventHostID: String // this will be the user ID
     var code: String
     var blackList: Set<User>
@@ -174,8 +174,8 @@ struct Event: Identifiable, Codable, Hashable {
         self.attendeeList = newAttendeeList
     }
     
-    mutating func addAdmin(admin: User) {
-        self.adminsList.insert(admin)
+    mutating func addAdmin(admin: String) {
+        self.adminsList.append(admin)
     }
     
     mutating func setHost(host: User) {

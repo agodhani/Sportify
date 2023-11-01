@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
-    
+    var userid: String?
     var event: EventHighLevel?
     
     // TODO - BACK BUTTON
@@ -347,10 +347,12 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         
         randomButton.addTarget(self, action: #selector(randomButtonTapped), for: .touchUpInside)
         view.addSubview(randomButton)
-        
-        deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
-        view.addSubview(deleteButton)
-        
+        if(userid == event?.eventHost ?? "") {
+            deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
+            view.addSubview(deleteButton)
+            
+        }
+
     }
     
     // Organize view

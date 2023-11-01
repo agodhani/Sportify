@@ -407,6 +407,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
     @objc private func tappedEditEventButton() { // TODO EditEventViewController()
         let vc = EditEventViewController()
         vc.event = event
+        vc.userid = userAuth?.currUser?.id
         navigationController?.pushViewController(vc, animated: true)
     }
 
@@ -443,7 +444,14 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             if (tableView.tag == 1) {
                 // attenedeeList clicked
                 // OPTIONS: Kick + Cancel
-                
+                let promoteAction = UIAlertAction(title: "Promote", style: .default) { _ in
+                    let userID = self.attendeeListAsUsers[indexPath.row].id
+                    self.event?.adminsList.append(userID)
+                    let db = Firestore.firestore()
+                    let id = self.event?.id
+                    db.collection("Events").document(id ?? "").updateData(["adminsList":self.event?.adminsList])
+                    
+                }
                 let kickAction = UIAlertAction(title: "Kick", style: .destructive) { _ in
                     // TODO ANDREW - put the kicking function here
                     //Get User ID of user that was clicked on
@@ -466,6 +474,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                 }
                 alertController.addAction(kickAction)
                 alertController.addAction(cancelAction)
+                alertController.addAction(promoteAction)
                 
                 
             } else {
