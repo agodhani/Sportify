@@ -85,7 +85,11 @@ class HomeEventsViewController: UIViewController, UITableViewDataSource, UITable
             navigationController?.pushViewController(vc, animated: true)
         }
     }
-    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        allEvents.getEvents()
+    }
     
     private var myEventsText: UITextView = {
         let text = UITextView()

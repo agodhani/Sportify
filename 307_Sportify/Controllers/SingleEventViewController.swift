@@ -385,13 +385,31 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         } else {
             // TODO LEAVE - HERE
             //Remove User from Attendee List
+            let db = Firestore.firestore()
+            let id = (event?.id)!
             if let index = event?.attendeeList.firstIndex(of: currUserID) {
                 event?.attendeeList.remove(at: index)
             }
-            let db = Firestore.firestore()
-            let id = (event?.id)!
+            if let index2 = event?.adminsList.firstIndex(of: currUserID) {
+                event?.adminsList.remove(at: index2)
+                db.collection("Events").document(id).updateData(["adminsList":event?.adminsList ?? []])
+                print("EVENT LEFT")
+            }
+            
             db.collection("Events").document(id).updateData(["attendeeList":event?.attendeeList ?? []])
             print("EVENT LEFT")
+            if((event?.attendeeList.isEmpty ?? false)) {
+                var eventsm = EventMethods()
+                Task {
+                    await eventsm.deleteEvent(eventID: event?.id ?? "")
+                }
+            } else if(event?.eventHost == currUserID) {
+                var attendee = event?.attendeeList.first
+                event?.eventHost = attendee ?? "error"
+                event?.eventHostName = "New Event Host - name todo"
+                db.collection("Events").document(id).updateData(["eventHostName":event?.eventHostName ?? "error"])
+                db.collection("Events").document(id).updateData(["eventHostID":event?.eventHost ?? "error"])
+            }
             currUser?.leaveEvent(eventID: event?.id ?? "")
             
             let leaveAlertController = UIAlertController(title: "Success", message: "You've successfully left the event.", preferredStyle: .alert)
