@@ -211,7 +211,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         
         eventNameText.text = event?.name ?? "Error"
         descriptionText.text = event?.description ?? "Error description"
-        hostNameText.text = event?.eventHost ?? "Event Host Error"
+        hostNameText.text = event?.eventHostName ?? "Event Host Error"
         locationNameText.text = event?.location ?? "Location Error"
         sportNameText.text = sportList[event?.sport ?? 16]
         maxParticipantsText.text = String(event?.maxParticipants ?? 0)

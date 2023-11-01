@@ -23,6 +23,7 @@ struct Event: Identifiable, Codable, Hashable {
     var maxParticipants: Int
     var adminsList: [String]
     var eventHostID: String // this will be the user ID
+    var eventHostName: String
     var code: String
     var blackList: Set<User>
     var requestList: [String]

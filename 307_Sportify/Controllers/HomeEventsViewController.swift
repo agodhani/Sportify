@@ -259,11 +259,11 @@ class HomeEventsViewController: UIViewController, UITableViewDataSource, UITable
             }
         } else if(filterHostSlider.isOn) {
             if(filterSports || filterMaxParticipants) {
-                allEvents.filteredEvents = allEvents.filteredEvents.filter({event in event.eventHost.lowercased()
+                allEvents.filteredEvents = allEvents.filteredEvents.filter({event in event.eventHostName.lowercased()
                     .contains(searchText.lowercased())})
                 eventsDidUpdate()
             } else {
-                allEvents.filteredEvents = allEvents.events.filter({event in event.eventHost.lowercased()
+                allEvents.filteredEvents = allEvents.events.filter({event in event.eventHostName.lowercased()
                     .contains(searchText.lowercased())})
                 eventsDidUpdate()
             }
