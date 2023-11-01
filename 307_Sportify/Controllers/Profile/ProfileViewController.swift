@@ -186,15 +186,46 @@ class ProfileViewController: UIViewController {
         return button
     }()
     
+    func downloadPic(picView: UIImageView, url: URL) {
+        URLSession.shared.dataTask(with: url, completionHandler: { data, _, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                let image = UIImage(data: data)
+                picView.image = image
+            }
+        }).resume()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .black
         guard let user = userAuth.currUser else {
             print("userAuth.currUser failed!")
             return
         }
+        var user_email = userAuth.currUser?.email
         
-        view.backgroundColor = .black
+        // modify email to tie up user to their profile pic in db
+        var safeEmail: String {
+            var safeEmail = user_email?.replacingOccurrences(of: ".", with: "-")
+            safeEmail = user_email?.replacingOccurrences(of: "@", with: "-")
+            return safeEmail!
+        }
+        let picPath = "profilePictures" + safeEmail
         
+        // get pic from db
+        StorageManager.shared.downloadUrl(for: picPath, completion: { result in
+            switch result {
+            case.success(let url):
+                self.downloadPic(picView: self.picView, url: url)
+            case.failure(let error):
+                print("failed to get url: \(error)")
+            }
+        })
+                
         // Get user's info as labels
         name = userName(user:user)
         location = userLocation(user: user)

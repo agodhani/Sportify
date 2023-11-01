@@ -154,6 +154,7 @@ class EditProfileViewController: UIViewController {
     @objc private func updateProfileTapped() {
         let db = Firestore.firestore()
         let user_id = userAuth.currUser?.id
+        let user_email = userAuth.currUser?.email
         let currentUser = userAuth.currUser
         
         // Update variables
@@ -178,6 +179,26 @@ class EditProfileViewController: UIViewController {
         // Update db
         db.collection("Users").document(user_id!).updateData(["name": newUsername, "email": newEmail, "zipCode": newZipcode])
         self.navigationController?.dismiss(animated: true)
+        
+        guard let image = self.picView.image, let data = image.pngData() else {
+            return
+        }
+        
+        // modify email to tie up user to their profile pic in db
+        var safeEmail: String {
+            var safeEmail = user_email?.replacingOccurrences(of: ".", with: "-")
+            safeEmail = user_email?.replacingOccurrences(of: "@", with: "-")
+            return safeEmail!
+        }
+        let fileName = "\(safeEmail)_profile_picture.png"
+        StorageManager.shared.uploadProfilePic(with: data, fileName: fileName, completion: { result in
+            switch result {
+            case.success(let message):
+                print(message)
+                case.failure(let error):
+                print("storage manager error: \(error)")
+            }
+        })
     }
 }
 
