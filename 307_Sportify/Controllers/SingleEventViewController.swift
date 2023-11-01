@@ -150,7 +150,6 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
     
     func updateLists() {
         Task {
-            var user = await userAuth?.getCurrUser()
             self.attendeeListAsUsers = await event?.attendeeListAsUsers() ?? [User]()
             self.requestListAsUsers = await event?.requestListAsUsers() ?? [User]()
             self.attendeeTableView.reloadData()
