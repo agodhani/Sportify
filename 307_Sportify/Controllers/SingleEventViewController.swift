@@ -10,6 +10,58 @@ import Firebase
 
 // TODO make this look nice
 
+class MyCell: UITableViewCell {
+    
+    var buttonTapCallback: () -> () = { }
+    
+    let kickButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Kick", for: .normal)
+        button.backgroundColor = .red
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        return button
+    }()
+    
+    let label: UILabel = {
+        let lbl = UILabel()
+        lbl.font = UIFont.systemFont(ofSize: 16)
+        lbl.textColor = .red
+        return lbl
+    }()
+    
+    @objc func tappedKickButton() {
+        buttonTapCallback()
+    }
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        //Add button
+        contentView.addSubview(kickButton)
+        kickButton.addTarget(self, action: #selector(tappedKickButton), for: .touchUpInside)
+        
+        //Set constraints as per your requirements
+        kickButton.translatesAutoresizingMaskIntoConstraints = false
+        kickButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        kickButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+        kickButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        kickButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
+        
+        //Add label
+        contentView.addSubview(label)
+        //Set constraints as per your requirements
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.leadingAnchor.constraint(equalTo: kickButton.trailingAnchor, constant: 20).isActive = true
+        label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+        label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10).isActive = true
+        label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
 class SingleEventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var userAuth : UserAuthentication?
@@ -105,6 +157,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
     private let attendeeTableView: UITableView = {
         let tableView = UITableView()
         tableView.tag = 1
+        //tableView.register(MyCell.self, forCellReuseIdentifier: "MyCell") // uncomment for custom cell
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return tableView
     }()
@@ -439,13 +492,19 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         if (tableView.tag == 1) {
+            //let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as! MyCell // uncomment for custom cell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             cell.textLabel?.text = attendeeListAsUsers[indexPath.row].name
+            /*cell.buttonTapCallback = { // uncomment for custom cell
+                print("TAP CALL BACK WORKS")
+            }*/
+            return cell
         } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             cell.textLabel?.text = requestListAsUsers[indexPath.row].name
+            return cell
         }
-        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
