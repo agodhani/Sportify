@@ -536,7 +536,9 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         Task {
             var user = await userAuth?.getCurrUser()
         }
+        var currUser = userAuth?.currUser
         let currUserID = userAuth?.currUser?.id ?? ""
+        var selectedUser = self.attendeeListAsUsers[indexPath.row]
         if (currUserID == event?.eventHost || (event?.adminsList.contains(currUserID) ?? false)) {
             
             let alertController = UIAlertController(title: "Alert", message: "Choose an action:", preferredStyle: .alert)
@@ -545,10 +547,17 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                 // attenedeeList clicked
                 // OPTIONS: Kick + Cancel + Go to profile page
                 let profilePageAction = UIAlertAction(title: "Go to Profile Page", style: .default) { _ in
-                    let selectedUser = self.attendeeListAsUsers[indexPath.row]
                     let vc = ProfileViewController()
                     vc.userAuth.currUser = selectedUser
                     self.navigationController?.pushViewController(vc, animated: true)
+                }
+                let addFriendAction = UIAlertAction(title: "Add Friend", style: .default) { _ in
+                    let db = Firestore.firestore()
+                    let selectedUserID = selectedUser.id
+                    currUser?.friendList.append(selectedUser.name)
+                    db.collection("Users").document(currUserID).updateData(["friendList": currUser?.friendList])
+                    selectedUser.friendList.append(currUser!.name)
+                    db.collection("Users").document(selectedUserID).updateData(["friendList": selectedUser.friendList])
                 }
                 let promoteAction = UIAlertAction(title: "Promote", style: .default) { _ in
                     let userID = self.attendeeListAsUsers[indexPath.row].id
@@ -579,6 +588,9 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                     print("User cancelled")
                 }
                 alertController.addAction(profilePageAction)
+                if (!currUser!.friendList.contains(selectedUser.name)) {
+                    alertController.addAction(addFriendAction)
+                }
                 alertController.addAction(kickAction)
                 alertController.addAction(cancelAction)
                 alertController.addAction(promoteAction)

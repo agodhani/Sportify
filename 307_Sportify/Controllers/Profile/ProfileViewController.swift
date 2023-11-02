@@ -165,7 +165,7 @@ class ProfileViewController: UIViewController {
     // My friends button
     private let myFriendsButton: UIButton = {
         let button = UIButton()
-        button.setTitle("My firends", for: .normal)
+        button.setTitle("My friends", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
         button.backgroundColor = .sportGold
         button.setTitleColor(.black, for: .normal)
