@@ -632,8 +632,20 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
                 
+                let addFriendAction = UIAlertAction(title: "Add Friend", style: .default) { _ in
+                    let db = Firestore.firestore()
+                    let selectedUserID = selectedUser.id
+                    currUser?.friendList.append(selectedUser.name)
+                    db.collection("Users").document(currUserID).updateData(["friendList": currUser?.friendList])
+                    selectedUser.friendList.append(currUser!.name)
+                    db.collection("Users").document(selectedUserID).updateData(["friendList": selectedUser.friendList])
+                }
+                
                 let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
                     print("User cancelled")
+                }
+                if (!currUser!.friendList.contains(selectedUser.name)) {
+                    alertController.addAction(addFriendAction)
                 }
                 alertController.addAction(profilePageAction)
                 alertController.addAction(cancelAction)
