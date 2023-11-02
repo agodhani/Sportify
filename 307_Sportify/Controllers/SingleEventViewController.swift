@@ -74,9 +74,9 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
     private var eventNameText: UITextView = {
         let text = UITextView()
         text.isEditable = false;
-        text.textColor = .sportGold
+        text.textColor = .white
         text.backgroundColor = .clear
-        text.textAlignment = .center
+        text.textAlignment = .left
         text.font = .systemFont(ofSize: 45, weight: .bold)
         text.toggleUnderline(true)
         return text
@@ -87,7 +87,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         text.isEditable = false;
         text.textColor = .white
         text.backgroundColor = .clear
-        text.textAlignment = .center
+        text.textAlignment = .left
         text.font = .systemFont(ofSize: 20, weight: .regular)
         return text
     }()
@@ -97,7 +97,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         text.isEditable = false;
         text.textColor = .white
         text.backgroundColor = .clear
-        text.textAlignment = .center
+        text.textAlignment = .left
         text.font = .systemFont(ofSize: 20, weight: .regular)
         return text
     }()
@@ -107,7 +107,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         text.isEditable = false;
         text.textColor = .white
         text.backgroundColor = .clear
-        text.textAlignment = .center
+        text.textAlignment = .left
         text.font = .systemFont(ofSize: 20, weight: .regular)
         return text
     }()
@@ -117,7 +117,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         text.isEditable = false;
         text.textColor = .sportGold
         text.backgroundColor = .clear
-        text.textAlignment = .center
+        text.textAlignment = .left
         text.font = .systemFont(ofSize: 20, weight: .regular)
         return text
     }()
@@ -127,7 +127,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         text.isEditable = false;
         text.textColor = .sportGold
         text.backgroundColor = .clear
-        text.textAlignment = .center
+        text.textAlignment = .left
         text.font = .systemFont(ofSize: 20, weight: .regular)
         return text
     }()
@@ -137,7 +137,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         text.isEditable = false;
         text.textColor = .sportGold
         text.backgroundColor = .clear
-        text.textAlignment = .center
+        text.textAlignment = .left
         text.font = .systemFont(ofSize: 20, weight: .regular)
         return text
     }()
@@ -147,7 +147,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         text.isEditable = false;
         text.textColor = .sportGold
         text.backgroundColor = .clear
-        text.textAlignment = .center
+        text.textAlignment = .left
         text.font = .systemFont(ofSize: 20, weight: .regular)
         return text
     }()
@@ -209,6 +209,14 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             self.requestTableView.reloadData()
         }
     }
+    
+    var vStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.alignment = .firstBaseline
+        stack.spacing = 10
+        return stack
+    }()
         
     
     override func viewDidLoad() {
@@ -245,6 +253,12 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         }
         
         
+        /*vStack.addArrangedSubview(eventNameText)
+        vStack.addArrangedSubview(descriptionText)
+        vStack.addArrangedSubview(hostNameText)
+        vStack.addArrangedSubview(locationNameText)
+        view.addSubview(vStack)*/
+
         view.addSubview(eventNameText)
         view.addSubview(descriptionText)
         view.addSubview(hostNameText)
@@ -262,7 +276,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         }
         
         
-        eventNameText.text = (event?.name ?? "Error")
+        eventNameText.text = (event?.name ?? "Error Event Name")
         descriptionText.text = "Event Description: " + (event?.description ?? "Error description")
         hostNameText.text = "Event Host: " + (event?.eventHostName ?? "Event Host Error")
         locationNameText.text = "Location: " + (event?.location ?? "Location Error")
@@ -300,46 +314,55 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         editEventButton.addTarget(self, action: #selector(buttonTouchUp), for: .touchUpInside) // When clicked or touched up inside
         editEventButton.addTarget(self, action: #selector(buttonTouchUp), for: .touchUpOutside) // When clicked or touched up outside'
 
+
+        /*vStack.translatesAutoresizingMaskIntoConstraints = false
+        vStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
+        vStack.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
+        vStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25).isActive = true
+        vStack.frame = CGRect(x: 25,
+                              y: 70,
+                              width: size,
+                              height: size)*/
         
-        eventNameText.frame = CGRect(x: 0,
-                                    y: -100,
+        eventNameText.frame = CGRect(x: 25,
+                                    y: 70,
                                     width: size,
                                     height: size)
         
-        descriptionText.frame = CGRect(x: 0,
-                                    y: 150,
+        descriptionText.frame = CGRect(x: 25,
+                                    y: 180,
                                     width: size,
                                     height: size)
         
-        hostNameText.frame = CGRect(x: 0,
-                                    y: 120,
+        hostNameText.frame = CGRect(x: 25,
+                                    y: 210,
                                     width: size,
                                     height: size)
-        locationNameText.frame = CGRect(x: 0,
-                                    y: 200,
+        locationNameText.frame = CGRect(x: 25,
+                                    y: 240,
                                     width: size,
                                     height: size)
-        sportNameText.frame = CGRect(x: 0,
-                                    y: 250,
+        sportNameText.frame = CGRect(x: 25,
+                                    y: 270,
                                     width: size,
                                     height: size)
-        maxParticipantsText.frame = CGRect(x: 0,
-                                    y: 300,
-                                    width: size,
-                                    height: size)
-        privateEventText.frame = CGRect(x: 0,
-                                    y: 350,
-                                    width: size,
-                                    height: size)
-        eventDateText.frame = CGRect(x: 0,
+        maxParticipantsText.frame = CGRect(x: 25,
                                     y: 400,
                                     width: size,
                                     height: size)
-        attendeeTableView.frame = CGRect(x: 0,
+        privateEventText.frame = CGRect(x: 25,
+                                    y: 300,
+                                    width: size,
+                                    height: size)
+        eventDateText.frame = CGRect(x: 25,
+                                    y: 330,
+                                    width: size,
+                                    height: size)
+        attendeeTableView.frame = CGRect(x: 25,
                                     y: 450,
                                     width: size,
                                     height: 100)
-        requestTableView.frame = CGRect(x: 0,
+        requestTableView.frame = CGRect(x: 25,
                                     y: 600,
                                     width: size,
                                     height: 100)
