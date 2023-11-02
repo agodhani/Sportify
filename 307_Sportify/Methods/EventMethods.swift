@@ -96,13 +96,13 @@ class EventMethods: ObservableObject {
         
         do {
             let event = try await self.getEvent(eventID: eventID)
-            if(eventName != "") {
+            if(eventName != event.eventName) {
                 try await Firestore.firestore().collection("Events").document(event.id).updateData(["eventName": eventName])
             }
             if(date != event.date) {
                 try await Firestore.firestore().collection("Events").document(event.id).updateData(["date": date])
             }
-            if(location != "") {
+            if(location != event.location) {
                 try await Firestore.firestore().collection("Events").document(event.id).updateData(["location": location])
             }
             if(attendeeList != Array<String>()) {
@@ -117,10 +117,10 @@ class EventMethods: ObservableObject {
             if(adminsList != Set<User>()) {
                 try await Firestore.firestore().collection("Events").document(event.id).updateData(["adminsList": adminsList])
             }
-            if(eventHostID != "") {
-                try await Firestore.firestore().collection("eventHostID").document(event.id).updateData(["eventHostID": date])
+            if(eventHostID != event.eventHostID) {
+                try await Firestore.firestore().collection("eventHostID").document(event.id).updateData(["eventHostID": eventHostID])
             }
-            if(code != "") {
+            if(code != event.code) {
                 try await Firestore.firestore().collection("Events").document(event.id).updateData(["code": code])
             }
             if(blackList != Set<User>()) {
@@ -129,7 +129,7 @@ class EventMethods: ObservableObject {
             if(requestList != []) {
                 try await Firestore.firestore().collection("Events").document(event.id).updateData(["requestList": requestList])
             }
-            if(description != "") {
+            if(description != event.description) {
                 try await Firestore.firestore().collection("Events").document(event.id).updateData(["description": description])
             }
             
