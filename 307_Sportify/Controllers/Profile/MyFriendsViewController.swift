@@ -38,7 +38,7 @@ class MyFriendsViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let user = userAuth.currUser
         let friends = user?.friendList
-        return friends!.count
+        return friends?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
