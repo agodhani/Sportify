@@ -225,13 +225,17 @@ class ProfileViewController: UIViewController {
                 self.downloadPic(picView: self.picView, url: url)
             case.failure(let error):
                 print("failed to get url: \(error)")
+                DispatchQueue.main.async {
+                    let image = UIImage(systemName: "person")
+                    self.picView.image = image
+                }
             }
         })
-     //   DispatchQueue.main.async {
+        DispatchQueue.main.async {
             self.name.text = user.name
             self.location.text = user.zipCode
             //sportsPreferences = userSports(user: user)
-       // }
+        }
     }
 
     
