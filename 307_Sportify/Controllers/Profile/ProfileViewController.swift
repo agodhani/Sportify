@@ -231,11 +231,11 @@ class ProfileViewController: UIViewController {
                 }
             }
         })
-        DispatchQueue.main.async {
-            self.name.text = user.name
-            self.location.text = user.zipCode
-            //sportsPreferences = userSports(user: user)
-        }
+//        DispatchQueue.main.async {
+//            self.name.text = user.name
+//            self.location.text = user.zipCode
+//            //sportsPreferences = userSports(user: user)
+//        }
     }
 
     
@@ -267,8 +267,8 @@ class ProfileViewController: UIViewController {
 //        })
                 
         // Get user's info as labels
-       // name = userName(user: user)
-        //location = userLocation(user: user)
+        name = userName(user: user)
+        location = userLocation(user: user)
 //        sportsPreferences = userSports(user: user)
         
         // Functionality for the buttons

@@ -543,7 +543,13 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             
             if (tableView.tag == 1) {
                 // attenedeeList clicked
-                // OPTIONS: Kick + Cancel
+                // OPTIONS: Kick + Cancel + Go to profile page
+                let profilePageAction = UIAlertAction(title: "Go to Profile Page", style: .default) { _ in
+                    let selectedUser = self.attendeeListAsUsers[indexPath.row]
+                    let vc = ProfileViewController()
+                    vc.userAuth.currUser = selectedUser
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
                 let promoteAction = UIAlertAction(title: "Promote", style: .default) { _ in
                     let userID = self.attendeeListAsUsers[indexPath.row].id
                     self.event?.adminsList.append(userID)
@@ -572,6 +578,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                 let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
                     print("User cancelled")
                 }
+                alertController.addAction(profilePageAction)
                 alertController.addAction(kickAction)
                 alertController.addAction(cancelAction)
                 alertController.addAction(promoteAction)
