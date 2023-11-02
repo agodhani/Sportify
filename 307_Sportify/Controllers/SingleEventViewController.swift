@@ -607,11 +607,35 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             present(alertController, animated: true, completion: nil)
             
             
+        } else {
+            // for anyone not the host
+            let alertController = UIAlertController(title: "Alert", message: "Choose an action:", preferredStyle: .alert)
+            
+            if (tableView.tag == 1) {
+                // attendeeList clicked
+                let profilePageAction = UIAlertAction(title: "Go to Profile Page", style: .default) { _ in
+                    let selectedUser = self.attendeeListAsUsers[indexPath.row]
+                    let vc = ProfileViewController()
+                    vc.userAuth.currUser = selectedUser
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+                    print("User cancelled")
+                }
+                alertController.addAction(profilePageAction)
+                alertController.addAction(cancelAction)
+                
+                
+            } else {
+                //requestList clicked
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+                    print("User cancelled")
+                }
+                alertController.addAction(cancelAction)
+            }
+            present(alertController, animated: true, completion: nil)
         }
-        
-        
-
-        
     }
     
     @objc private func buttonTouchDown() {
