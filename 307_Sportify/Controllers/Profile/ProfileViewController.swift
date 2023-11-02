@@ -27,6 +27,7 @@ struct ProfileViewControllerRepresentable: UIViewControllerRepresentable {
     
     func updateUIViewController(_ uiViewController: ProfileViewController, context: Context) {
         // Updates the state of the specified view controller with new information from SwiftUI.
+        
     }
 }
 
@@ -48,10 +49,9 @@ class ProfileViewController: UIViewController {
     // Profile picture
     private var picView: UIImageView = {
         let picView = UIImageView()
-        picView.image = UIImage(systemName: "person")
+        //picView.image = UIImage(systemName: "person")
         picView.layer.masksToBounds = true
         picView.contentMode = .scaleAspectFit
-        //picView.layer.cornerRadius = picView.width / 10
         picView.layer.borderWidth = 2
         picView.layer.borderColor = UIColor.lightGray.cgColor
         return picView
@@ -206,7 +206,7 @@ class ProfileViewController: UIViewController {
             print("userAuth.currUser failed!")
             return
         }
-        var user_email = userAuth.currUser?.email
+        let user_email = userAuth.currUser?.email
         
         // modify email to tie up user to their profile pic in db
         var safeEmail: String {
@@ -214,7 +214,7 @@ class ProfileViewController: UIViewController {
             safeEmail = user_email?.replacingOccurrences(of: "@", with: "-")
             return safeEmail!
         }
-        let picPath = "profilePictures" + safeEmail
+        let picPath = "profilePictures/" + safeEmail + "_profile_picture.png"
         
         // get pic from db
         StorageManager.shared.downloadUrl(for: picPath, completion: { result in
@@ -271,6 +271,7 @@ class ProfileViewController: UIViewController {
                                y: 30,
                                width: scrollView.width / 2.5,
                                height: scrollView.width / 2.5)
+        picView.layer.cornerRadius = picView.width / 2
         nameLabel.frame = CGRect(x: 40,
                                  y: picView.bottom + 20,
                                  width: 53,
@@ -319,8 +320,8 @@ class ProfileViewController: UIViewController {
     
     // Edit profile clicked
     @objc private func editProfileTapped() {
-        // Try to do uinavigation controller
         let vc = EditProfileViewController()
+        vc.picView.image = picView.image
         let nav = UINavigationController(rootViewController: vc)
         nav.modalPresentationStyle = .fullScreen
         
@@ -334,7 +335,12 @@ class ProfileViewController: UIViewController {
     
     // My friends clicked
     @objc private func myFriendsTapped() {
+        let vc = EditProfileViewController()
+        vc.picView.image = picView.image
+        let nav = UINavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
         
+        present(nav, animated: true)
     }
     
     // Block users clicked

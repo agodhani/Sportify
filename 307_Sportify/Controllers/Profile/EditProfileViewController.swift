@@ -17,9 +17,9 @@ class EditProfileViewController: UIViewController {
     private var newZipcode = ""
     
     // Profile picture
-    private var picView: UIImageView = {
+    var picView: UIImageView = {
         let picView = UIImageView()
-        picView.image = UIImage(systemName: "person")
+        //picView.image = UIImage(systemName: "person")
         picView.tintColor = .sportGold
         picView.contentMode = .scaleAspectFit
         picView.layer.masksToBounds = true
@@ -178,7 +178,6 @@ class EditProfileViewController: UIViewController {
         
         // Update db
         db.collection("Users").document(user_id!).updateData(["name": newUsername, "email": newEmail, "zipCode": newZipcode])
-        self.navigationController?.dismiss(animated: true)
         
         guard let image = self.picView.image, let data = image.pngData() else {
             return
@@ -191,14 +190,17 @@ class EditProfileViewController: UIViewController {
             return safeEmail!
         }
         let fileName = "\(safeEmail)_profile_picture.png"
+        
+        // upload picture
         StorageManager.shared.uploadProfilePic(with: data, fileName: fileName, completion: { result in
             switch result {
             case.success(let message):
                 print(message)
-                case.failure(let error):
+            case.failure(let error):
                 print("storage manager error: \(error)")
             }
         })
+        self.navigationController?.dismiss(animated: true)
     }
 }
 
