@@ -199,9 +199,11 @@ class ProfileViewController: UIViewController {
         }).resume()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .black
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //let userAuth = UserAuthentication()
+        //self.name.text = userAuth.currUser?.name
+        
         guard let user = userAuth.currUser else {
             print("userAuth.currUser failed!")
             return
@@ -225,11 +227,45 @@ class ProfileViewController: UIViewController {
                 print("failed to get url: \(error)")
             }
         })
+     //   DispatchQueue.main.async {
+            self.name.text = user.name
+            self.location.text = user.zipCode
+            //sportsPreferences = userSports(user: user)
+       // }
+    }
+
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .black
+        guard let user = userAuth.currUser else {
+            print("userAuth.currUser failed!")
+            return
+        }
+//        let user_email = userAuth.currUser?.email
+//        
+//        // modify email to tie up user to their profile pic in db
+//        var safeEmail: String {
+//            var safeEmail = user_email?.replacingOccurrences(of: ".", with: "-")
+//            safeEmail = user_email?.replacingOccurrences(of: "@", with: "-")
+//            return safeEmail!
+//        }
+//        let picPath = "profilePictures/" + safeEmail + "_profile_picture.png"
+//        
+//        // get pic from db
+//        StorageManager.shared.downloadUrl(for: picPath, completion: { result in
+//            switch result {
+//            case.success(let url):
+//                self.downloadPic(picView: self.picView, url: url)
+//            case.failure(let error):
+//                print("failed to get url: \(error)")
+//            }
+//        })
                 
         // Get user's info as labels
-        name = userName(user:user)
-        location = userLocation(user: user)
-        sportsPreferences = userSports(user: user)
+       // name = userName(user: user)
+        //location = userLocation(user: user)
+//        sportsPreferences = userSports(user: user)
         
         // Functionality for the buttons
         editProfileButton.addTarget(self, action: #selector(editProfileTapped), for: .touchUpInside)
@@ -335,8 +371,7 @@ class ProfileViewController: UIViewController {
     
     // My friends clicked
     @objc private func myFriendsTapped() {
-        let vc = EditProfileViewController()
-        vc.picView.image = picView.image
+        let vc = MyFriendsViewController()
         let nav = UINavigationController(rootViewController: vc)
         nav.modalPresentationStyle = .fullScreen
         
