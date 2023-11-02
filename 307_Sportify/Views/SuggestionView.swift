@@ -112,6 +112,8 @@ struct SuggestionView: View {
                     currUser?.newSuggestion(suggestion: suggestion)
                     let db = Firestore.firestore()
                     db.collection("Users").document(userid!).updateData(["suggestions": currUser?.suggestions])
+                    statusText = "Your suggestion has been sent to the developers, thank you!"
+
                 }
                 .foregroundColor(.black)
                 .fontWeight(.heavy)
