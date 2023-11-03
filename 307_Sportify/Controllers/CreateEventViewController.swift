@@ -389,10 +389,10 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
                                     width: 180,
                                     height: 100)
         
-        datePicker.frame = CGRect(x: -20,
-                                  y: 450,
-                                  width: size,
-                                  height: size)
+        datePicker.frame = CGRect(x: 0,
+                                  y: 600,
+                                  width: 300,
+                                  height: 50)
         
         privateText.frame = CGRect(x: 20,
                                     y: 675,
