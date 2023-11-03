@@ -184,7 +184,7 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             selectedSport = row
             
         } else if pickerView.tag == 2 { // Number Picker
-            selectedNumber = numberList[row]
+            selectedNumber = row + 1
         }
     }
     
@@ -309,6 +309,8 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         locationField.text = event?.location
         codeField.text = event?.code
         isPrivateSlider.setOn(event?.privateEvent ?? false, animated: true)
+        selectedSport = event?.sport
+        selectedNumber = event?.maxParticipants
         
         // Add subviews to view
         view.addSubview(editEventText)
@@ -447,7 +449,7 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             
             if (allFieldsFilled) {
                 
-                try await eventsm.modifyEvent(eventID: event?.id ?? "", eventName: eventNameField.text ?? "", date: datePicker.date, location: locationField.text ?? "", attendeeList: event?.attendeeList ?? [String](), privateEvent: isPrivateSlider.isOn, maxParticipants: selectedNumber ?? 25, adminsList: Set<User>(), eventHostID: event?.eventHost ?? "nouid", code: codeField.text ?? "", blackList: Set<User>(), requestList: event?.requestList ?? [String](), description: descriptionField.text ?? "")
+                try await eventsm.modifyEvent(eventID: event?.id ?? "", eventName: eventNameField.text ?? "", date: datePicker.date, location: locationField.text ?? "", attendeeList: event?.attendeeList ?? [String](), privateEvent: isPrivateSlider.isOn, maxParticipants: selectedNumber ?? 25, adminsList: Set<User>(), eventHostID: event?.eventHost ?? "nouid", code: codeField.text ?? "", blackList: Set<User>(), requestList: event?.requestList ?? [String](), description: descriptionField.text ?? "", sport: selectedSport ?? event?.sport ?? 0)
                 
                 navigationController?.popViewController(animated: true)
 

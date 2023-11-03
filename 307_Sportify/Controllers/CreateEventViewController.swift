@@ -160,7 +160,7 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
             let item = sportList[row].name
             return item
         } else {
-            let item = numberList[row]
+            let item = row + 1
             let itemString = String(item)
             return itemString
         }
@@ -179,7 +179,7 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
             selectedSport = row
             
         } else if pickerView.tag == 2 { // Number Picker
-            selectedNumber = numberList[row]
+            selectedNumber = row + 1
         }
     }
     

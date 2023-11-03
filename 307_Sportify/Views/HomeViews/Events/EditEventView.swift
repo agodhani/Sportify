@@ -110,7 +110,7 @@ struct EditEventView: View {
                 Button("Update Event Details") {
                     // TODO update events in firebase
                     Task {
-                        try await eventsm.modifyEvent(eventID: eventid, eventName: "Change", date: newDate, location: newLocation, attendeeList: [], privateEvent: newPrivate, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "", code: "", blackList: Set<User>(), requestList: [], description: "Changing the description")
+                        //try await eventsm.modifyEvent(eventID: eventid, eventName: "Change", date: newDate, location: newLocation, attendeeList: [], privateEvent: newPrivate, maxParticipants: 0, adminsList: Set<User>(), eventHostID: "", code: "", blackList: Set<User>(), requestList: [], description: "Changing the description")
                     }
                 }
                 .foregroundColor(.black)
