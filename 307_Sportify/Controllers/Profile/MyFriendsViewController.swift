@@ -76,10 +76,11 @@ class MyFriendsViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        table.frame = CGRect(x: 10,
-                             y: 20,
-                             width: view.width - 20,
-                             height: view.height - 20)
+        table.frame = CGRect(x: view.left,
+                             y: view.top + 100,
+                             width: view.width,
+                             height: view.height)
+        table.backgroundColor = .black
     }
     
     @objc func backButtonTapped() {

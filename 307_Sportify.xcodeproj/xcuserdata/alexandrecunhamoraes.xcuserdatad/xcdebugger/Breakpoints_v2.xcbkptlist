@@ -540,6 +540,21 @@
                   endingLineNumber = "39"
                   offsetFromSymbolStart = "188">
                </Location>
+               <Location
+                  uuid = "6BBE5531-7A9E-471F-A905-F6C242B94D23 - d38f6fc4bd72fb30"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_07_Sportify.MyFriendsViewController.tableView(_: __C.UITableView, numberOfRowsInSection: Swift.Int) -&gt; Swift.Int"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexandrecunhamoraes/Desktop/Sportify/307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "152">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -587,6 +602,21 @@
                   startingLineNumber = "591"
                   endingLineNumber = "591"
                   offsetFromSymbolStart = "3340">
+               </Location>
+               <Location
+                  uuid = "78622711-0640-4207-B93F-569900C6A123 - 450d481f84281dc1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_07_Sportify.SingleEventViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexandrecunhamoraes/Desktop/Sportify/307_Sportify/Controllers/SingleEventViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "591"
+                  endingLineNumber = "591"
+                  offsetFromSymbolStart = "3644">
                </Location>
             </Locations>
          </BreakpointContent>
