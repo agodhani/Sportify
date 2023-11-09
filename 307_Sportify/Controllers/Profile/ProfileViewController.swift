@@ -139,7 +139,7 @@ class ProfileViewController: UIViewController {
     }()
     
     // Add friends button
-    private let addFirendsButton: UIButton = {
+    private let addFriendsButton: UIButton = {
         let button = UIButton()
         button.setTitle("Add Friends", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
@@ -274,7 +274,7 @@ class ProfileViewController: UIViewController {
         // Functionality for the buttons
         editProfileButton.addTarget(self, action: #selector(editProfileTapped), for: .touchUpInside)
         
-        addFirendsButton.addTarget(self, action: #selector(addFriendsTapped), for: .touchUpInside)
+        addFriendsButton.addTarget(self, action: #selector(addFriendsTapped), for: .touchUpInside)
         
         myFriendsButton.addTarget(self, action: #selector(myFriendsTapped), for: .touchUpInside)
         
@@ -295,7 +295,7 @@ class ProfileViewController: UIViewController {
         scrollView.addSubview(sportsLabel)
         scrollView.addSubview(sportsPreferences)
         scrollView.addSubview(editProfileButton)
-        scrollView.addSubview(addFirendsButton)
+        scrollView.addSubview(addFriendsButton)
         scrollView.addSubview(myFriendsButton)
         scrollView.addSubview(blockUsersButton)
         scrollView.addSubview(suggestionsButton)
@@ -336,12 +336,12 @@ class ProfileViewController: UIViewController {
                                     y: sportsLabel.bottom + 60,
                                     width: 225,
                                     height: 50)
-        addFirendsButton.frame = CGRect(x: 90,
+        addFriendsButton.frame = CGRect(x: 90,
                                         y: editProfileButton.bottom + 30,
                                         width: 225,
                                         height: 50)
         myFriendsButton.frame = CGRect(x: 90,
-                                        y: addFirendsButton.bottom + 30,
+                                        y: addFriendsButton.bottom + 30,
                                         width: 225,
                                         height: 50)
         blockUsersButton.frame = CGRect(x: 90,
