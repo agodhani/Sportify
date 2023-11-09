@@ -152,7 +152,6 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         return text
     }()
     
-    // TODO attendeeList - this may need to be a CollectionView for buttons if want
     // tag = 1
     private let attendeeTableView: UITableView = {
         let tableView = UITableView()
@@ -162,10 +161,6 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         return tableView
     }()
     
-    
-    // TODO kick button
-    
-    // TODO Request list if event host
     // tag = 2
     private let requestTableView: UITableView = {
         let tableView = UITableView()
@@ -174,7 +169,6 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         return tableView
     }()
     
-    // TODO join/leave button
     private let joinLeaveButton: UIButton = {
         let button = UIButton()
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
@@ -187,7 +181,6 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         return button
     }()
     
-    // TODO edit event button
     private let editEventButton: UIButton = {
         let button = UIButton()
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
@@ -389,11 +382,6 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         var currUserID = userAuth?.currUser?.id ?? ""
         var currUser = userAuth?.currUser
         if (event?.userIsAttending(userID: currUserID) == false) {
-            // TODO JOIN - HERE
-            // update user
-            // update DB user
-            // update event
-            // update DB event
             
             if (event?.privateEvent ?? false) {
                 // if it's a private event - prompt for join code
@@ -459,8 +447,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             
             
         } else {
-            // TODO LEAVE - HERE
-            //Remove User from Attendee List
+            // Remove User from Attendee List
             let db = Firestore.firestore()
             let id = (event?.id)!
             if let index = event?.attendeeList.firstIndex(of: currUserID) {
@@ -498,7 +485,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         
     }
     
-    @objc private func tappedEditEventButton() { // TODO EditEventViewController()
+    @objc private func tappedEditEventButton() {
         let vc = EditEventViewController()
         vc.event = event
         vc.userid = userAuth?.currUser?.id
@@ -531,7 +518,6 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO
         // indexPath.row = index of the array
         Task {
             var user = await userAuth?.getCurrUser()
@@ -546,11 +532,15 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             if (tableView.tag == 1) {
                 // attenedeeList clicked
                 // OPTIONS: Kick + Cancel + Go to profile page
+                
+                // Go to Profile
                 let profilePageAction = UIAlertAction(title: "Go to Profile Page", style: .default) { _ in
                     let vc = ProfileViewController()
                     vc.userAuth.currUser = selectedUser
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
+                
+                // Add Friend
                 let addFriendAction = UIAlertAction(title: "Add Friend", style: .default) { _ in
                     let db = Firestore.firestore()
                     let selectedUserID = selectedUser.id
@@ -559,16 +549,56 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                     selectedUser.friendList.append(currUser!.name)
                     db.collection("Users").document(selectedUserID).updateData(["friendList": selectedUser.friendList])
                 }
-                let promoteAction = UIAlertAction(title: "Promote", style: .default) { _ in
+                
+                // promote to Admin
+                let promoteAction = UIAlertAction(title: "Promote to admin", style: .default) { _ in
                     let userID = self.attendeeListAsUsers[indexPath.row].id
                     self.event?.adminsList.append(userID)
                     let db = Firestore.firestore()
                     let id = self.event?.id
                     db.collection("Events").document(id ?? "").updateData(["adminsList":self.event?.adminsList])
-                    
                 }
+                
+                
+                // promote to Event Host
+                let promoteToHostAction = UIAlertAction(title: "Promote to event host", style: .default) { _ in
+                    let userID = self.attendeeListAsUsers[indexPath.row].id
+                    let user = self.attendeeListAsUsers[indexPath.row]
+                    
+                    let eventHostAlertController = UIAlertController(title: "Event Host Promotion", message: "Are you sure you want to promote \(user.name) to host?", preferredStyle: .alert)
+                    
+                    // Promote
+                    let promoteEventHostAction = UIAlertAction(title: "Promote", style: .default) { _ in
+                        
+                        // change the real event host, new event host, and event
+                        // updates DB
+                        // returns an EventHighLevel
+                        Task {
+                            self.event = await currUser?.promoteNewHost(forEventID: self.event?.id ?? "", newHostID: userID)
+                            print("Promoting new user to host")
+                        }
+                        // push out of the event
+                        self.navigationController?.popViewController(animated: true)
+                        
+                        let alertC2 = UIAlertController(title: "Successful promotion", message: "\(user.name) was successfully promoted as host!", preferredStyle: .alert)
+                        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        alertC2.addAction(okAction)
+                        self.present(alertC2, animated: true, completion: nil)
+                    }
+                    
+                    // Cancel
+                    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+                        print("User cancelled")
+                    }
+                    eventHostAlertController.addAction(promoteEventHostAction)
+                    eventHostAlertController.addAction(cancelAction)
+                    self.present(eventHostAlertController, animated: true, completion: nil)
+                }
+                
+                
+                
+                // kick user
                 let kickAction = UIAlertAction(title: "Kick", style: .destructive) { _ in
-                    // TODO ANDREW - put the kicking function here
                     //Get User ID of user that was clicked on
                     let userID = self.attendeeListAsUsers[indexPath.row].id
                     //Remove User ID from Event Attendee List
@@ -584,6 +614,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                     self.attendeeListAsUsers[indexPath.row].leaveEvent(eventID: id ?? "")
                 }
                 
+                // cancel action
                 let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
                     print("User cancelled")
                 }
@@ -594,6 +625,9 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                 alertController.addAction(kickAction)
                 alertController.addAction(cancelAction)
                 alertController.addAction(promoteAction)
+                if (currUserID == event?.eventHost) {
+                    alertController.addAction(promoteToHostAction)
+                }
                 
                 
             } else {
@@ -601,11 +635,11 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                 // OPTIONS: Accept + Reject
                 
                 let acceptAction = UIAlertAction(title: "Accept", style: .default) { _ in
-                    // TODO ANDREW - put the kicking function here
+                    // TODO - put the ACCEPT function here
                 }
                 
                 let rejectAction = UIAlertAction(title: "Reject", style: .destructive) { _ in
-                    // TODO ANDREW - put the kicking function here
+                    // TODO - put the REJECT function here
                 }
                 
                 let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in

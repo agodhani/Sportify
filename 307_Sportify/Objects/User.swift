@@ -152,6 +152,63 @@ struct User: Identifiable, Codable, Hashable {
         }
     }
     
+    /*
+     * Function to update the current event host into a new event host
+     * given the event ID and the new host ID.
+     * Updates both users, event, and the database.
+     * returns EventHighLevel
+     */
+    mutating func promoteNewHost(forEventID: String, newHostID: String) async -> EventHighLevel {
+        
+        let db = Firestore.firestore()
+
+        // change the real event host eventsHosting
+        // remove from eventsHosting
+        if let index = eventsHosting.firstIndex(of: forEventID) {
+            eventsHosting.remove(at: index)
+            
+            // update DB for current host
+            do {
+                try await db.collection("Users").document(id).updateData(["eventsHosting":self.eventsHosting])
+            } catch {
+                print("Failed to update eventsHosting for \(self.name): \(self.id)")
+            }
+        }
+        
+        // change the new event host eventsHosting
+        let userm = UserMethods()
+        var newHost = await userm.getUser(user_id: newHostID)
+        newHost.eventsHosting.append(forEventID)
+        
+        // update DB for new event host
+        do {
+            try await db.collection("Users").document(newHostID).updateData(["eventsHosting":newHost.eventsHosting])
+        } catch {
+            print("Failed to update eventsHosting for \(newHost.name): \(newHost.id)")
+        }
+        
+        // change the event
+        let eventm = EventMethods()
+        var event = await eventm.getEvent(eventID: forEventID)
+        
+        // change eventHostName and eventHostID
+        event.eventHostName = newHost.name
+        event.eventHostID = newHost.id
+        
+        // update DB for the new event
+        do {
+            try await db.collection("Events").document(forEventID).updateData(["eventHostName":newHost.name])
+            try await db.collection("Events").document(forEventID).updateData(["eventHostID":newHostID])
+        } catch {
+            print("Failed to update event")
+        }
+        
+        // return EventHighLevel so that can update UI
+        return EventHighLevel(id: event.id, name: event.eventName, location: event.location, sport: event.sport, maxParticipants: event.maxParticipants, eventHost: event.eventHostName, attendeeList: event.attendeeList, privateEvent: event.privateEvent, date: event.date, requestList: event.requestList, description: event.description, code: event.code, adminsList: event.adminsList, eventHostName: event.eventHostName)
+        
+    }
+    
+    
     func sendInvite() {
         
     }
