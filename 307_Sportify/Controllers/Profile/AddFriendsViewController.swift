@@ -14,8 +14,10 @@ struct AddFriendsViewControllerRepresentable: UIViewControllerRepresentable {
     @ObservedObject var allUsers = AllUsers()
     var userAuth: UserAuthentication
     
+    
     init(userAuth: UserAuthentication) {
         self.userAuth = userAuth
+        
     }
     
     func makeUIViewController(context: Context) -> AddFriendsViewController {
@@ -76,6 +78,10 @@ class AddFriendsViewController: UIViewController, UITableViewDataSource, UITable
                 })
             }
         } else {
+            //need to add this to event home page
+            allUsers.filteredUsers = allUsers.users.filter({user in
+                user.sportPreferences.contains(selectedSport ?? 16)})
+            usersDidUpdate()
             filterLocation = false
         }
         usersDidUpdate()
@@ -113,10 +119,16 @@ class AddFriendsViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let thisUser = userAuth?.currUser
         if pickerView.tag == 1 { // Sport Picker
             selectedSport = row
             if(row == 16) {
                 filterSportPreferences = false
+                if(filterLocation) {
+                    allUsers.filteredUsers = allUsers.users.filter({user in
+                        user.zipCode == (thisUser?.zipCode ?? "0")
+                    })
+                }
                 usersDidUpdate()
             } else {
                 filterSportPreferences = true
