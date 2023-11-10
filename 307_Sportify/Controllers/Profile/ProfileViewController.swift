@@ -43,13 +43,14 @@ class ProfileViewController: UIViewController {
         let scrollView = UIScrollView()
         scrollView.clipsToBounds = true
         scrollView.isScrollEnabled = true
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 50)
         return scrollView
     }()
     
     // Profile picture
     private var picView: UIImageView = {
         let picView = UIImageView()
-        //picView.image = UIImage(systemName: "person")
+        //picView.image = UIImage(systemName: "person.circle")
         picView.layer.masksToBounds = true
         picView.contentMode = .scaleAspectFit
         picView.layer.borderWidth = 2
@@ -226,7 +227,7 @@ class ProfileViewController: UIViewController {
             case.failure(let error):
                 print("failed to get url: \(error)")
                 DispatchQueue.main.async {
-                    let image = UIImage(systemName: "person")
+                    let image = UIImage(systemName: "person.circle")
                     self.picView.image = image
                 }
             }
@@ -285,7 +286,6 @@ class ProfileViewController: UIViewController {
         signOutButton.addTarget(self, action: #selector(signOutTapped), for: .touchUpInside)
         
         // Add subviews to view
-        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 50)
         view.addSubview(scrollView)
         scrollView.addSubview(picView)
         scrollView.addSubview(nameLabel)

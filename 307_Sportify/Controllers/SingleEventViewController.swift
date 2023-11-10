@@ -71,6 +71,24 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
     var attendeeListAsUsers = [User]()
     var requestListAsUsers = [User]()
     
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.clipsToBounds = true
+        scrollView.isScrollEnabled = true
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 50)
+        return scrollView
+    }()
+    
+    private var picView: UIImageView = {
+        let picView = UIImageView()
+        picView.image = UIImage(systemName: "trophy.circle")
+        picView.layer.masksToBounds = true
+        picView.contentMode = .scaleAspectFit
+        picView.layer.borderWidth = 2
+        picView.layer.borderColor = UIColor.lightGray.cgColor
+        return picView
+    }()
+    
     private var eventNameText: UITextView = {
         let text = UITextView()
         text.isEditable = false;
@@ -79,6 +97,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         text.textAlignment = .left
         text.font = .systemFont(ofSize: 45, weight: .bold)
         text.toggleUnderline(true)
+        text.isScrollEnabled = false
         return text
     }()
     
@@ -89,6 +108,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         text.backgroundColor = .clear
         text.textAlignment = .left
         text.font = .systemFont(ofSize: 20, weight: .regular)
+        text.isScrollEnabled = false
         return text
     }()
     
@@ -99,6 +119,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         text.backgroundColor = .clear
         text.textAlignment = .left
         text.font = .systemFont(ofSize: 20, weight: .regular)
+        text.isScrollEnabled = false
         return text
     }()
     
@@ -109,6 +130,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         text.backgroundColor = .clear
         text.textAlignment = .left
         text.font = .systemFont(ofSize: 20, weight: .regular)
+        text.isScrollEnabled = false
         return text
     }()
     
@@ -119,6 +141,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         text.backgroundColor = .clear
         text.textAlignment = .left
         text.font = .systemFont(ofSize: 20, weight: .regular)
+        text.isScrollEnabled = false
         return text
     }()
     
@@ -129,6 +152,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         text.backgroundColor = .clear
         text.textAlignment = .left
         text.font = .systemFont(ofSize: 20, weight: .regular)
+        text.isScrollEnabled = false
         return text
     }()
     
@@ -139,6 +163,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         text.backgroundColor = .clear
         text.textAlignment = .left
         text.font = .systemFont(ofSize: 20, weight: .regular)
+        text.isScrollEnabled = false
         return text
     }()
     
@@ -252,20 +277,23 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         vStack.addArrangedSubview(locationNameText)
         view.addSubview(vStack)*/
 
-        view.addSubview(eventNameText)
-        view.addSubview(descriptionText)
-        view.addSubview(hostNameText)
-        view.addSubview(locationNameText)
-        view.addSubview(sportNameText)
-        view.addSubview(maxParticipantsText)
-        view.addSubview(privateEventText)
-        view.addSubview(eventDateText)
-        view.addSubview(attendeeTableView)
-        view.addSubview(requestTableView)
-        view.addSubview(joinLeaveButton)
+        
+        view.addSubview(scrollView)
+        scrollView.addSubview(picView)
+        scrollView.addSubview(eventNameText)
+        scrollView.addSubview(descriptionText)
+        scrollView.addSubview(hostNameText)
+        scrollView.addSubview(locationNameText)
+        scrollView.addSubview(sportNameText)
+        scrollView.addSubview(maxParticipantsText)
+        scrollView.addSubview(privateEventText)
+        scrollView.addSubview(eventDateText)
+        scrollView.addSubview(attendeeTableView)
+        scrollView.addSubview(requestTableView)
+        scrollView.addSubview(joinLeaveButton)
         if (currUserID == event?.eventHost || (event?.adminsList.contains(currUserID) ?? false)) {
             // if the user is the host or an admin - display the button
-            view.addSubview(editEventButton)
+            scrollView.addSubview(editEventButton)
         }
         
         
@@ -297,8 +325,8 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let size = view.width / 1.2
-        view.frame = view.bounds
-        view.backgroundColor = .black
+        scrollView.frame = view.bounds
+        scrollView.backgroundColor = .black
         
         joinLeaveButton.addTarget(self, action: #selector(tappedJoinLeaveButton), for: .touchUpInside)
         editEventButton.addTarget(self, action: #selector(tappedEditEventButton), for: .touchUpInside)
@@ -317,46 +345,51 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                               width: size,
                               height: size)*/
         
+        picView.frame = CGRect(x: 120,
+                               y: -50,
+                               width: scrollView.width / 2.5,
+                               height: scrollView.width / 2.5)
+        picView.layer.cornerRadius = picView.width / 2
         eventNameText.frame = CGRect(x: 25,
-                                    y: 70,
+                                     y: picView.bottom + 10,
                                     width: size,
-                                    height: size)
+                                    height: 120)
         
         descriptionText.frame = CGRect(x: 25,
-                                    y: 180,
+                                       y: eventNameText.bottom,
                                     width: size,
-                                    height: size)
+                                    height: 32)
         
         hostNameText.frame = CGRect(x: 25,
-                                    y: 210,
+                                    y: descriptionText.bottom,
                                     width: size,
-                                    height: size)
+                                    height: 32)
         locationNameText.frame = CGRect(x: 25,
-                                    y: 240,
+                                        y: hostNameText.bottom,
                                     width: size,
-                                    height: size)
+                                    height: 32)
         sportNameText.frame = CGRect(x: 25,
-                                    y: 270,
+                                     y: locationNameText.bottom,
                                     width: size,
-                                    height: size)
-        maxParticipantsText.frame = CGRect(x: 25,
-                                    y: 400,
-                                    width: size,
-                                    height: size)
+                                    height: 32)
         privateEventText.frame = CGRect(x: 25,
-                                    y: 300,
+                                        y: sportNameText.bottom,
                                     width: size,
-                                    height: size)
+                                    height: 32)
         eventDateText.frame = CGRect(x: 25,
-                                    y: 330,
+                                     y: privateEventText.bottom,
                                     width: size,
-                                    height: size)
+                                    height: 32)
+        maxParticipantsText.frame = CGRect(x: 25,
+                                           y: eventDateText.bottom,
+                                           width: size,
+                                           height: 32)
         attendeeTableView.frame = CGRect(x: 25,
-                                    y: 450,
+                                         y: maxParticipantsText.bottom + 20,
                                     width: size,
                                     height: 100)
         requestTableView.frame = CGRect(x: 25,
-                                    y: 600,
+                                        y: attendeeTableView.bottom + 40,
                                     width: size,
                                     height: 100)
         joinLeaveButton.frame = CGRect(x: 50,

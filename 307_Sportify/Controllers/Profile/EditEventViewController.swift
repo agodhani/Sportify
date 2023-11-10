@@ -26,6 +26,14 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     var descriptionFilled = true
     var locationFilled = true
     
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.clipsToBounds = true
+        scrollView.isScrollEnabled = true
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 50)
+        return scrollView
+    }()
+    
     private var editEventText: UITextView = {
         let text = UITextView()
         text.text = "Edit Event"
@@ -35,6 +43,16 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         text.font = .systemFont(ofSize: 45, weight: .heavy)
         text.isEditable = false
         return text
+    }()
+    
+    private var picView: UIImageView = {
+        let picView = UIImageView()
+        picView.image = UIImage(systemName: "trophy.circle")
+        picView.layer.masksToBounds = true
+        picView.contentMode = .scaleAspectFit
+        picView.layer.borderWidth = 2
+        picView.layer.borderColor = UIColor.lightGray.cgColor
+        return picView
     }()
     
     private var eventNameField: UITextField = {
@@ -220,8 +238,8 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         if #available(iOS 14, *) {
             datePicker.preferredDatePickerStyle = .compact
         }
-        datePicker.tintColor = .sportGold
-        datePicker.backgroundColor = .clear
+        datePicker.tintColor = .white
+        //datePicker.backgroundColor = .clear
         return datePicker
     }()
     
@@ -298,7 +316,7 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
+        scrollView.backgroundColor = .black
         
         eventNameField.delegate = self
         descriptionField.delegate = self
@@ -313,45 +331,47 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         selectedNumber = event?.maxParticipants
         
         // Add subviews to view
-        view.addSubview(editEventText)
-        view.addSubview(eventNameField)
-        view.addSubview(descriptionField)
-        view.addSubview(locationField)
-        view.addSubview(codeField)
+        view.addSubview(scrollView)
+        scrollView.addSubview(editEventText)
+        scrollView.addSubview(picView)
+        scrollView.addSubview(eventNameField)
+        scrollView.addSubview(descriptionField)
+        scrollView.addSubview(locationField)
+        scrollView.addSubview(codeField)
         
-        view.addSubview(sportText)
+        scrollView.addSubview(sportText)
         sportPicker.tag = 1
         sportPicker.delegate = self as UIPickerViewDelegate
         sportPicker.dataSource = self as UIPickerViewDataSource
-        view.addSubview(sportPicker)
+        scrollView.addSubview(sportPicker)
         sportPicker.center = self.view.center
         
-        view.addSubview(participantsText)
+        scrollView.addSubview(participantsText)
         numberPicker.tag = 2
         numberPicker.delegate = self as UIPickerViewDelegate
         numberPicker.dataSource = self as UIPickerViewDataSource
-        view.addSubview(numberPicker)
+        scrollView.addSubview(numberPicker)
         numberPicker.center = self.view.center
         
-        view.addSubview(privateText)
-        view.addSubview(isPrivateSlider)
+        scrollView.addSubview(privateText)
+        scrollView.addSubview(isPrivateSlider)
         
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         saveButton.addTarget(self, action: #selector(buttonTouchDown), for: .touchDown) // When clicked or touched down
         saveButton.addTarget(self, action: #selector(buttonTouchUp), for: .touchUpInside) // When clicked or touched up inside
         saveButton.addTarget(self, action: #selector(buttonTouchUp), for: .touchUpOutside) // When clicked or touched up outside
-        view.addSubview(saveButton)
+        scrollView.addSubview(saveButton)
         
-        view.addSubview(datePicker)
+        scrollView.addSubview(datePicker)
         
         revealButton.addTarget(self, action: #selector(revealButtonTapped), for: .touchUpInside)
-        view.addSubview(revealButton)
+        scrollView.addSubview(revealButton)
         
         randomButton.addTarget(self, action: #selector(randomButtonTapped), for: .touchUpInside)
-        view.addSubview(randomButton)
+        scrollView.addSubview(randomButton)
         if(userid == event?.eventHost ?? "") {
             deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
-            view.addSubview(deleteButton)
+            scrollView.addSubview(deleteButton)
             
         }
 
@@ -360,85 +380,89 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     // Organize view
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        view.frame = view.bounds
+        scrollView.frame = view.bounds
         let size = view.width / 1.2
         
         editEventText.frame = CGRect(x: (view.width - size) / 2,
                                     y: 75,
                                     width: size,
-                                    height: size)
-        
+                                    height: 52)
+        picView.frame = CGRect(x: 120,
+                               y: editEventText.bottom + 30,
+                               width: scrollView.width / 2.5,
+                               height: scrollView.width / 2.5)
+        picView.layer.cornerRadius = picView.width / 2
         eventNameField.frame = CGRect(x: (view.width - size) / 2,
-                                  y: 160,
+                                      y: picView.bottom + 25,
                                   width: size,
                                   height: 50)
         
         descriptionField.frame = CGRect(x: (view.width - size) / 2,
-                                  y: 240,
+                                        y: eventNameField.bottom + 20,
                                   width: size,
                                   height: 50)
         
         locationField.frame = CGRect(x: (view.width - size) / 2,
-                                    y: 320,
+                                     y: descriptionField.bottom + 20,
                                     width: size,
                                     height: 50)
         
         codeField.frame = CGRect(x: (view.width - size) / 2,
-                                    y: 400,
+                                 y: locationField.bottom + 20,
                                     width: size,
                                     height: 50)
         
         revealButton.frame = CGRect(x: -10,
-                                    y: 400,
+                                    y: locationField.bottom + 20,
                                     width: 50,
                                     height: 50)
         
         randomButton.frame = CGRect(x: 350,
-                                    y: 400,
+                                    y: locationField.bottom + 20,
                                     width: 50,
                                     height: 50)
         
         sportText.frame = CGRect(x: -15,
-                                  y: 460,
+                                 y: codeField.bottom + 10,
                                   width: 180,
                                   height: 50)
         
         sportPicker.frame = CGRect(x: -15,
-                                    y: 475,
+                                    y: codeField.bottom + 25,
                                     width: 180,
                                     height: 100)
         
         participantsText.frame = CGRect(x: 180,
-                                    y: 460,
+                                    y: codeField.bottom + 10,
                                     width: 200,
                                     height: 100)
         
         numberPicker.frame = CGRect(x: 200,
-                                    y: 475,
+                                    y: codeField.bottom + 25,
                                     width: 180,
                                     height: 100)
         
         datePicker.frame = CGRect(x: 0,
-                                  y: 600,
+                                  y: sportPicker.bottom,
                                   width: 300,
                                   height: 50)
         
         privateText.frame = CGRect(x: 20,
-                                    y: 675,
+                                   y: datePicker.bottom + 5,
                                     width: 150,
-                                    height: 100)
+                                    height: 50)
         
         isPrivateSlider.frame = CGRect(x: 175,
-                                       y: 680,
+                                       y: datePicker.bottom + 10,
                                        width: 150,
                                        height: 100)
         
         saveButton.frame = CGRect(x: (view.width - 180) / 2,
-                                         y: 750,
+                                  y: privateText.bottom + 10,
                                          width: 180,
                                          height: 60)
         
-        deleteButton.frame = CGRect(x: 300,
+        deleteButton.frame = CGRect(x: 320,
                                          y: 100,
                                          width: 60,
                                          height: 30)
