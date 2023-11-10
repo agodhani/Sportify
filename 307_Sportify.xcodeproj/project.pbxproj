@@ -39,6 +39,7 @@
 		BA2570CE2AC7B846004E528A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2570CD2AC7B846004E528A /* User.swift */; };
 		BA2570D12AC89B4D004E528A /* UserAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2570D02AC89B4D004E528A /* UserAuthentication.swift */; };
 		BA2570D32AC8A58D004E528A /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2570D22AC8A58D004E528A /* SignUpView.swift */; };
+		BA43BB3B2AFDACF0007DE5F8 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA43BB3A2AFDACF0007DE5F8 /* UserProfileViewController.swift */; };
 		BA44F8C22AD8FEFD00BB0CE7 /* CreateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA44F8C12AD8FEFD00BB0CE7 /* CreateEvent.swift */; };
 		BA44F8C62AD9045100BB0CE7 /* EventMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA44F8C52AD9045000BB0CE7 /* EventMethods.swift */; };
 		BA7037D62AE9906D007E27F5 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7037D52AE9906D007E27F5 /* LogInViewController.swift */; };
@@ -125,6 +126,7 @@
 		BA2570CD2AC7B846004E528A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BA2570D02AC89B4D004E528A /* UserAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthentication.swift; sourceTree = "<group>"; };
 		BA2570D22AC8A58D004E528A /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		BA43BB3A2AFDACF0007DE5F8 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		BA44F8C12AD8FEFD00BB0CE7 /* CreateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEvent.swift; sourceTree = "<group>"; };
 		BA44F8C52AD9045000BB0CE7 /* EventMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMethods.swift; sourceTree = "<group>"; };
 		BA7037D52AE9906D007E27F5 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				319514AB2AED7B0E00BCE814 /* EditProfileViewController.swift */,
 				6DAB93B62AEF11B30006BB47 /* EditEventViewController.swift */,
 				6DD44B302AFD4A1800360EEA /* AddFriendsViewController.swift */,
+				BA43BB3A2AFDACF0007DE5F8 /* UserProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 				6DAC69902AD9A544001C197E /* BlockView.swift in Sources */,
 				31854A182AD9ED4F007346F8 /* UserMethods.swift in Sources */,
 				31CB2C532AC89E0600DF43A3 /* Event.swift in Sources */,
+				BA43BB3B2AFDACF0007DE5F8 /* UserProfileViewController.swift in Sources */,
 				31854A162AD9E66F007346F8 /* JoinEvent.swift in Sources */,
 				BA8B749B2AC6301400BBE70B /* _07_SportifyApp.swift in Sources */,
 				FBF11AC02AC8A9A300FF39FC /* ProfileView.swift in Sources */,

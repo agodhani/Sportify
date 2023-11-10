@@ -124,8 +124,10 @@ class HomeEventsViewController: UIViewController, UITableViewDataSource, UITable
             searchBar.placeholder = "Location"
             filterHostSlider.isOn = false;
             filterDateSwitch.isOn = false;
+            eventsDidUpdate()
         } else if(filterHostSlider.isOn == false && filterDateSwitch.isOn == false && searchBar.placeholder == "Location") {
             searchBar.placeholder = "Event Name"
+            eventsDidUpdate()
         }
     }
     
@@ -146,8 +148,10 @@ class HomeEventsViewController: UIViewController, UITableViewDataSource, UITable
             searchBar.placeholder = "Date"
             filterHostSlider.isOn = false;
             filterLocationSlider.isOn = false;
+            eventsDidUpdate()
         } else if(filterHostSlider.isOn == false && filterLocationSlider.isOn == false && searchBar.placeholder == "Date") {
             searchBar.placeholder = "Event Name"
+            eventsDidUpdate()
         }
     }
     
@@ -169,8 +173,10 @@ class HomeEventsViewController: UIViewController, UITableViewDataSource, UITable
             searchBar.placeholder = "Event Host"
             filterLocationSlider.isOn = false;
             filterDateSwitch.isOn = false;
+            eventsDidUpdate()
         } else if(filterHostSlider.isOn == false && filterDateSwitch.isOn == false && searchBar.placeholder == "Event Host") {
             searchBar.placeholder = "Event Name"
+            eventsDidUpdate()
         }
     }
     

@@ -13,11 +13,13 @@ struct Person: Identifiable {
     var id: String
     var name: String
     var zipCode: String
+    var sportPreferences: [Int]
     
-    init(id: String, name: String, zipCode: String){
+    init(id: String, name: String, zipCode: String, sportPreferences: [Int]){
         self.id = id
         self.name = name
         self.zipCode =  zipCode
+        self.sportPreferences = sportPreferences
     }
 }
 
@@ -26,6 +28,9 @@ class AllUsers: ObservableObject {
     //@Published var users = [Users]()
     private var db = Firestore.firestore()
     @Published var users = [Person]()
+    @Published var filteredUsers: [Person] = []
+    weak var delegate: AllUsersDelegate?
+
     
     func getUsers(){
         db.collection("Users").addSnapshotListener {(querySnapshot, error) in
@@ -39,8 +44,10 @@ class AllUsers: ObservableObject {
                     let name = data["name"] as? String ?? ""
                     let id = data["id"] as? String ?? ""
                     let zipCode = data["zipCode"] as? String ?? ""
-                print(Person(id: id, name: name, zipCode: zipCode))
-                return Person(id: id, name: name, zipCode: zipCode)
+                    let sportPreferences = data["sportsPreferences"] as? [Int] ?? []
+                print(Person(id: id, name: name, zipCode: zipCode, sportPreferences: sportPreferences))
+                self.delegate?.usersDidUpdate()
+                return Person(id: id, name: name, zipCode: zipCode, sportPreferences: sportPreferences)
                 }
             }
         }

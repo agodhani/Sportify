@@ -370,6 +370,9 @@ class ProfileViewController: UIViewController {
     
     // Add friends clicked
     @objc private func addFriendsTapped() {
+        let vc = AddFriendsViewController()
+        vc.userAuth = userAuth
+        navigationController?.pushViewController(vc, animated: true)
         
     }
     
