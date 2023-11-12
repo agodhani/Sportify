@@ -37,7 +37,8 @@ class EventMethods: ObservableObject {
         }
     }
     
-    func createEvent(eventName: String, sport: Int, maxParticipants: Int, description: String, location: String, privateEvent: Bool, id: String, code: String, date: Date) async throws {
+    // Added return value to store event picture
+    func createEvent(eventName: String, sport: Int, maxParticipants: Int, description: String, location: String, privateEvent: Bool, id: String, code: String, date: Date) async throws -> String {
         do {
             let userAuth = UserAuthentication()
             await userAuth.getCurrUser()
@@ -53,11 +54,12 @@ class EventMethods: ObservableObject {
             try await Firestore.firestore().collection("Events").document(event.id).setData(encodedEvent)
             print("Go check Firebase to see if the Event was created")
             
-            
+            return event.id
             
         } catch {
             print("Event Creation Failed")
         }
+        return ""
     }
     
     func getEvent(eventID: Event.ID) async -> Event {

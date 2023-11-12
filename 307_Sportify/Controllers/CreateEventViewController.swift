@@ -22,6 +22,14 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
     var descriptionFilled = false
     var locationFilled = false
         
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.clipsToBounds = true
+        scrollView.isScrollEnabled = true
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 50)
+        return scrollView
+    }()
+    
     private var newEventText: UITextView = {
         let text = UITextView()
         text.text = "New Event"
@@ -31,6 +39,16 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
         text.font = .systemFont(ofSize: 45, weight: .heavy)
         text.isEditable = false
         return text
+    }()
+    
+    private var picView: UIImageView = {
+        let picView = UIImageView()
+        picView.image = UIImage(systemName: "trophy.circle")
+        picView.layer.masksToBounds = true
+        picView.contentMode = .scaleAspectFit
+        picView.layer.borderWidth = 2
+        picView.layer.borderColor = UIColor.lightGray.cgColor
+        return picView
     }()
     
     private var eventNameField: UITextField = {
@@ -288,134 +306,169 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
         descriptionField.delegate = self
         locationField.delegate = self
         
-        // Add subviews to view
-        view.addSubview(newEventText)
-        view.addSubview(eventNameField)
-        view.addSubview(descriptionField)
-        view.addSubview(locationField)
-        view.addSubview(codeField)
+        // Make picture tappable
+        picView.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(eventPicTapped))
+        picView.addGestureRecognizer(tap)
         
-        view.addSubview(sportText)
+        // Add subviews to view
+        view.addSubview(scrollView)
+        scrollView.addSubview(newEventText)
+        scrollView.addSubview(picView)
+        scrollView.addSubview(eventNameField)
+        scrollView.addSubview(descriptionField)
+        scrollView.addSubview(locationField)
+        scrollView.addSubview(codeField)
+        
+        scrollView.addSubview(sportText)
         sportPicker.tag = 1
         sportPicker.delegate = self as UIPickerViewDelegate
         sportPicker.dataSource = self as UIPickerViewDataSource
-        view.addSubview(sportPicker)
+        scrollView.addSubview(sportPicker)
         sportPicker.center = self.view.center
         
-        view.addSubview(participantsText)
+        scrollView.addSubview(participantsText)
         numberPicker.tag = 2
         numberPicker.delegate = self as UIPickerViewDelegate
         numberPicker.dataSource = self as UIPickerViewDataSource
-        view.addSubview(numberPicker)
+        scrollView.addSubview(numberPicker)
         numberPicker.center = self.view.center
         
-        view.addSubview(privateText)
-        view.addSubview(isPrivateSlider)
+        scrollView.addSubview(privateText)
+        scrollView.addSubview(isPrivateSlider)
         
         createEventButton.addTarget(self, action: #selector(createEventButtonTapped), for: .touchUpInside)
         createEventButton.addTarget(self, action: #selector(buttonTouchDown), for: .touchDown) // When clicked or touched down
         createEventButton.addTarget(self, action: #selector(buttonTouchUp), for: .touchUpInside) // When clicked or touched up inside
         createEventButton.addTarget(self, action: #selector(buttonTouchUp), for: .touchUpOutside) // When clicked or touched up outside'
-        view.addSubview(createEventButton)
+        scrollView.addSubview(createEventButton)
         
-        view.addSubview(datePicker)
+        scrollView.addSubview(datePicker)
         
         revealButton.addTarget(self, action: #selector(revealButtonTapped), for: .touchUpInside)
-        view.addSubview(revealButton)
+        scrollView.addSubview(revealButton)
         
         randomButton.addTarget(self, action: #selector(randomButtonTapped), for: .touchUpInside)
-        view.addSubview(randomButton)
+        scrollView.addSubview(randomButton)
         
     }
     
     // Organize view
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        view.frame = view.bounds
+        scrollView.frame = view.bounds
         let size = view.width / 1.2
         
         newEventText.frame = CGRect(x: (view.width - size) / 2,
                                     y: 75,
                                     width: size,
-                                    height: size)
+                                    height: 52)
+        
+        picView.frame = CGRect(x: 120,
+                               y: newEventText.bottom + 30,
+                               width: scrollView.width / 2.5,
+                               height: scrollView.width / 2.5)
+        picView.layer.cornerRadius = picView.width / 2
         
         eventNameField.frame = CGRect(x: (view.width - size) / 2,
-                                  y: 160,
+                                  y: picView.bottom + 25,
                                   width: size,
                                   height: 50)
         
         descriptionField.frame = CGRect(x: (view.width - size) / 2,
-                                  y: 240,
+                                        y: eventNameField.bottom + 20,
                                   width: size,
                                   height: 50)
         
         locationField.frame = CGRect(x: (view.width - size) / 2,
-                                    y: 320,
+                                     y: descriptionField.bottom + 20,
                                     width: size,
                                     height: 50)
         
         codeField.frame = CGRect(x: (view.width - size) / 2,
-                                    y: 400,
+                                 y: locationField.bottom + 20,
                                     width: size,
                                     height: 50)
         
         revealButton.frame = CGRect(x: -10,
-                                    y: 400,
+                                    y: locationField.bottom + 20,
                                     width: 50,
                                     height: 50)
         
         randomButton.frame = CGRect(x: 350,
-                                    y: 400,
+                                    y: locationField.bottom + 20,
                                     width: 50,
                                     height: 50)
         
         sportText.frame = CGRect(x: -15,
-                                  y: 460,
+                                 y: codeField.bottom + 10,
                                   width: 180,
                                   height: 50)
         
         sportPicker.frame = CGRect(x: -15,
-                                    y: 475,
+                                   y: codeField.bottom + 25,
                                     width: 180,
                                     height: 100)
         
         participantsText.frame = CGRect(x: 180,
-                                    y: 460,
+                                        y: codeField.bottom + 10,
                                     width: 200,
                                     height: 100)
         
         numberPicker.frame = CGRect(x: 200,
-                                    y: 475,
+                                    y: codeField.bottom + 25,
                                     width: 180,
                                     height: 100)
         
         datePicker.frame = CGRect(x: 0,
-                                  y: 600,
+                                  y: sportPicker.bottom,
                                   width: 300,
                                   height: 50)
         
         privateText.frame = CGRect(x: 20,
-                                    y: 675,
+                                   y: datePicker.bottom + 5,
                                     width: 150,
                                     height: 100)
         
         isPrivateSlider.frame = CGRect(x: 175,
-                                       y: 680,
+                                       y: datePicker.bottom + 10,
                                        width: 150,
                                        height: 100)
         
         createEventButton.frame = CGRect(x: (view.width - 180) / 2,
-                                         y: 750,
+                                         y: privateText.bottom + 10,
                                          width: 180,
                                          height: 60)
     }
     
+    @objc func eventPicTapped() {
+        presentPhotoPicker()
+    }
+    
     @objc private func createEventButtonTapped() {
+        var eventID = ""
         Task {
             
             if (allFieldsFilled) {
                 
-                try await eventsm.createEvent(eventName: eventNameField.text ?? "", sport: selectedSport ?? 0, maxParticipants: selectedNumber ?? 25, description: descriptionField.text ?? "", location: locationField.text ?? "", privateEvent: isPrivateSlider.isOn, id: userAuth.currUser?.id ?? "nouid", code: codeField.text ?? "", date: datePicker.date)
+                try await eventID = eventsm.createEvent(eventName: eventNameField.text ?? "", sport: selectedSport ?? 0, maxParticipants: selectedNumber ?? 25, description: descriptionField.text ?? "", location: locationField.text ?? "", privateEvent: isPrivateSlider.isOn, id: userAuth.currUser?.id ?? "nouid", code: codeField.text ?? "", date: datePicker.date)
+                
+                guard let image = self.picView.image, let data = image.pngData() else {
+                    return
+                }
+                
+                let fileName = "\(eventID)_event_picture.png"
+                
+                // upload picture
+                assert(fileName != "")
+                StorageManager.shared.uploadEventPic(with: data, fileName: fileName, completion: { result in
+                    switch result {
+                    case.success(let message):
+                        print(message)
+                    case.failure(let error):
+                        print("storage manager error: \(error)")
+                    }
+                })
                 
                 navigationController?.popViewController(animated: true)
                 
@@ -463,6 +516,29 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
         codeField.text = eventsm.generateRandomCode(length: 10)
     }
     
+}
+
+extension CreateEventViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        
+        guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
+            return
+        }
+        self.picView.image = selectedImage
+    }
+    
+    func presentPhotoPicker() {
+        let vc = UIImagePickerController()
+        vc.sourceType = .photoLibrary
+        vc.delegate = self
+        vc.allowsEditing = true
+        present(vc, animated: true)
+    }
 }
 
 #Preview {

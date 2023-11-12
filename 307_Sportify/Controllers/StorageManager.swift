@@ -39,6 +39,30 @@ final class StorageManager {
         })
     }
     
+    public func uploadEventPic(with data: Data, fileName: String, completion: @escaping uploadPicCompletion) {
+        storage.child("eventPictures/\(fileName)").putData(data, metadata: nil, completion: { metadata, error in
+            guard error == nil else {
+                // Failed
+                print("failed to upload event pic")
+                completion(.failure(StorageErrors.failedToUpload))
+                return
+            }
+            
+            self.storage.child("eventPictures/\(fileName)").downloadURL(completion: { url, error in
+                guard let url = url else {
+                    print("failed to get url")
+                    completion(.failure(StorageErrors.failedToGetDownloadUrl))
+                    return
+                }
+                
+                let urlString = url.absoluteString
+                print("url returned: \(urlString)")
+                completion(.success("profile pic uploaded!"))
+            })
+        })
+    }
+
+    
     public enum StorageErrors: Error {
         case failedToUpload
         case failedToGetDownloadUrl

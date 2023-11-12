@@ -279,8 +279,8 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
 
         
         view.addSubview(scrollView)
-        scrollView.addSubview(picView)
         scrollView.addSubview(eventNameText)
+        scrollView.addSubview(picView)
         scrollView.addSubview(descriptionText)
         scrollView.addSubview(hostNameText)
         scrollView.addSubview(locationNameText)
