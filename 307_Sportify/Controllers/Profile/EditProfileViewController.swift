@@ -15,6 +15,7 @@ class EditProfileViewController: UIViewController {
     private var newUsername = ""
     private var newEmail = ""
     private var newZipcode = ""
+    var pictureSelected = false
     
     // Profile picture
     var picView: UIImageView = {
@@ -179,27 +180,29 @@ class EditProfileViewController: UIViewController {
         // Update db
         db.collection("Users").document(user_id!).updateData(["name": newUsername, "email": newEmail, "zipCode": newZipcode])
         
-        guard let image = self.picView.image, let data = image.pngData() else {
-            return
-        }
-        
-        // modify email to tie up user to their profile pic in db
-        var safeEmail: String {
-            var safeEmail = user_email?.replacingOccurrences(of: ".", with: "-")
-            safeEmail = user_email?.replacingOccurrences(of: "@", with: "-")
-            return safeEmail!
-        }
-        let fileName = "\(safeEmail)_profile_picture.png"
-        
-        // upload picture
-        StorageManager.shared.uploadProfilePic(with: data, fileName: fileName, completion: { result in
-            switch result {
-            case.success(let message):
-                print(message)
-            case.failure(let error):
-                print("storage manager error: \(error)")
+        if (pictureSelected == true) {
+            guard let image = self.picView.image, let data = image.pngData() else {
+                return
             }
-        })
+            
+            // modify email to tie up user to their profile pic in db
+            var safeEmail: String {
+                var safeEmail = user_email?.replacingOccurrences(of: ".", with: "-")
+                safeEmail = user_email?.replacingOccurrences(of: "@", with: "-")
+                return safeEmail!
+            }
+            let fileName = "\(safeEmail)_profile_picture.png"
+            
+            // upload picture
+            StorageManager.shared.uploadProfilePic(with: data, fileName: fileName, completion: { result in
+                switch result {
+                case.success(let message):
+                    print(message)
+                case.failure(let error):
+                    print("storage manager error: \(error)")
+                }
+            })
+        }
         self.navigationController?.dismiss(animated: true)
     }
 }
@@ -215,6 +218,7 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
         guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
             return
         }
+        pictureSelected = true
         self.picView.image = selectedImage
     }
     

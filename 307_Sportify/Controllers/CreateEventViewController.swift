@@ -21,6 +21,7 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
     var eventNameFilled = false
     var descriptionFilled = false
     var locationFilled = false
+    var pictureSelected = false
         
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -49,6 +50,17 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
         picView.layer.borderWidth = 2
         picView.layer.borderColor = UIColor.lightGray.cgColor
         return picView
+    }()
+    
+    private var editPicPrompt: UITextView = {
+        let text = UITextView()
+        text.text = "Click icon to edit image"
+        text.textColor = .sportGold
+        text.backgroundColor = .clear
+        text.textAlignment = .center
+        text.font = .systemFont(ofSize: 15, weight: .light)
+        text.isEditable = false
+        return text
     }()
     
     private var eventNameField: UITextField = {
@@ -306,15 +318,11 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
         descriptionField.delegate = self
         locationField.delegate = self
         
-        // Make picture tappable
-        picView.isUserInteractionEnabled = true
-        let tap = UITapGestureRecognizer(target: self, action: #selector(eventPicTapped))
-        picView.addGestureRecognizer(tap)
-        
         // Add subviews to view
         view.addSubview(scrollView)
         scrollView.addSubview(newEventText)
         scrollView.addSubview(picView)
+        scrollView.addSubview(editPicPrompt)
         scrollView.addSubview(eventNameField)
         scrollView.addSubview(descriptionField)
         scrollView.addSubview(locationField)
@@ -336,6 +344,11 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
         
         scrollView.addSubview(privateText)
         scrollView.addSubview(isPrivateSlider)
+        
+        // Make picture tappable
+        picView.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(eventPicTapped))
+        picView.addGestureRecognizer(tap)
         
         createEventButton.addTarget(self, action: #selector(createEventButtonTapped), for: .touchUpInside)
         createEventButton.addTarget(self, action: #selector(buttonTouchDown), for: .touchDown) // When clicked or touched down
@@ -370,8 +383,13 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
                                height: scrollView.width / 2.5)
         picView.layer.cornerRadius = picView.width / 2
         
+        editPicPrompt.frame = CGRect(x: (view.width - size) / 2,
+                                     y: picView.bottom + 5,
+                                    width: size,
+                                    height: 25)
+        
         eventNameField.frame = CGRect(x: (view.width - size) / 2,
-                                  y: picView.bottom + 25,
+                                  y: editPicPrompt.bottom + 25,
                                   width: size,
                                   height: 50)
         
@@ -406,17 +424,17 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
                                   height: 50)
         
         sportPicker.frame = CGRect(x: -15,
-                                   y: codeField.bottom + 25,
+                                   y: sportText.bottom - 10,
                                     width: 180,
                                     height: 100)
         
         participantsText.frame = CGRect(x: 180,
                                         y: codeField.bottom + 10,
                                     width: 200,
-                                    height: 100)
+                                    height: 50)
         
         numberPicker.frame = CGRect(x: 200,
-                                    y: codeField.bottom + 25,
+                                    y: participantsText.bottom - 10,
                                     width: 180,
                                     height: 100)
         
@@ -428,7 +446,7 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
         privateText.frame = CGRect(x: 20,
                                    y: datePicker.bottom + 5,
                                     width: 150,
-                                    height: 100)
+                                    height: 35)
         
         isPrivateSlider.frame = CGRect(x: 175,
                                        y: datePicker.bottom + 10,
@@ -436,7 +454,7 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
                                        height: 100)
         
         createEventButton.frame = CGRect(x: (view.width - 180) / 2,
-                                         y: privateText.bottom + 10,
+                                         y: privateText.bottom + 25,
                                          width: 180,
                                          height: 60)
     }
@@ -453,23 +471,25 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 
                 try await eventID = eventsm.createEvent(eventName: eventNameField.text ?? "", sport: selectedSport ?? 0, maxParticipants: selectedNumber ?? 25, description: descriptionField.text ?? "", location: locationField.text ?? "", privateEvent: isPrivateSlider.isOn, id: userAuth.currUser?.id ?? "nouid", code: codeField.text ?? "", date: datePicker.date)
                 
-                guard let image = self.picView.image, let data = image.pngData() else {
-                    return
-                }
-                
-                let fileName = "\(eventID)_event_picture.png"
-                
-                // upload picture
-                assert(fileName != "")
-                StorageManager.shared.uploadEventPic(with: data, fileName: fileName, completion: { result in
-                    switch result {
-                    case.success(let message):
-                        print(message)
-                    case.failure(let error):
-                        print("storage manager error: \(error)")
+                if pictureSelected == true {
+                    guard let image = self.picView.image, let data = image.pngData() else {
+                        return
                     }
-                })
-                
+                    
+                    let fileName = "\(eventID)_event_picture.png"
+                    
+                    // upload picture
+                    assert(fileName != "")
+                    StorageManager.shared.uploadEventPic(with: data, fileName: fileName, completion: { result in
+                        switch result {
+                        case.success(let message):
+                            print(message)
+                        case.failure(let error):
+                            print("storage manager error: \(error)")
+                        }
+                    })
+                }
+                    
                 navigationController?.popViewController(animated: true)
                 
                 let alertController = UIAlertController(title: "Event Created", message: "Your event was successfully created!", preferredStyle: .alert)
@@ -529,6 +549,7 @@ extension CreateEventViewController: UIImagePickerControllerDelegate, UINavigati
         guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
             return
         }
+        pictureSelected = true
         self.picView.image = selectedImage
     }
     

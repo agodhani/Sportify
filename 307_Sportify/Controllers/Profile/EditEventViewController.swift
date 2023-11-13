@@ -25,6 +25,7 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     var eventNameFilled = true
     var descriptionFilled = true
     var locationFilled = true
+    var pictureSelected = false
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -47,12 +48,23 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     private var picView: UIImageView = {
         let picView = UIImageView()
-        picView.image = UIImage(systemName: "trophy.circle")
+        //picView.image = UIImage(systemName: "trophy.circle")
         picView.layer.masksToBounds = true
         picView.contentMode = .scaleAspectFit
         picView.layer.borderWidth = 2
         picView.layer.borderColor = UIColor.lightGray.cgColor
         return picView
+    }()
+    
+    private var editPicPrompt: UITextView = {
+        let text = UITextView()
+        text.text = "Click icon to edit image"
+        text.textColor = .sportGold
+        text.backgroundColor = .clear
+        text.textAlignment = .center
+        text.font = .systemFont(ofSize: 15, weight: .light)
+        text.isEditable = false
+        return text
     }()
     
     private var eventNameField: UITextField = {
@@ -314,6 +326,43 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         }
     }
     
+    func downloadPic(picView: UIImageView, url: URL) {
+        URLSession.shared.dataTask(with: url, completionHandler: { data, _, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                let image = UIImage(data: data)
+                picView.image = image
+            }
+        }).resume()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //let userAuth = UserAuthentication()
+        //self.name.text = userAuth.currUser?.name
+        
+        let eventID = event?.id
+        
+        let picPath = "eventPictures/" + (eventID ?? "") + "_event_picture.png"
+        
+        // get pic from db
+        StorageManager.shared.downloadUrl(for: picPath, completion: { result in
+            switch result {
+            case.success(let url):
+                self.downloadPic(picView: self.picView, url: url)
+            case.failure(let error):
+                print("failed to get url: \(error)")
+                DispatchQueue.main.async {
+                    let image = UIImage(systemName: "trophy.circle")
+                    self.picView.image = image
+                }
+            }
+        })
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.backgroundColor = .black
@@ -334,6 +383,7 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         view.addSubview(scrollView)
         scrollView.addSubview(editEventText)
         scrollView.addSubview(picView)
+        scrollView.addSubview(editPicPrompt)
         scrollView.addSubview(eventNameField)
         scrollView.addSubview(descriptionField)
         scrollView.addSubview(locationField)
@@ -355,6 +405,11 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         
         scrollView.addSubview(privateText)
         scrollView.addSubview(isPrivateSlider)
+        
+        // Make picture tappable
+        picView.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(eventPicTapped))
+        picView.addGestureRecognizer(tap)
         
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         saveButton.addTarget(self, action: #selector(buttonTouchDown), for: .touchDown) // When clicked or touched down
@@ -392,8 +447,12 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
                                width: scrollView.width / 2.5,
                                height: scrollView.width / 2.5)
         picView.layer.cornerRadius = picView.width / 2
+        editPicPrompt.frame = CGRect(x: (view.width - size) / 2,
+                                     y: picView.bottom + 5,
+                                    width: size,
+                                    height: 25)
         eventNameField.frame = CGRect(x: (view.width - size) / 2,
-                                      y: picView.bottom + 25,
+                                      y: editPicPrompt.bottom + 25,
                                   width: size,
                                   height: 50)
         
@@ -428,7 +487,7 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
                                   height: 50)
         
         sportPicker.frame = CGRect(x: -15,
-                                    y: codeField.bottom + 25,
+                                    y: sportText.bottom - 10,
                                     width: 180,
                                     height: 100)
         
@@ -438,7 +497,7 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
                                     height: 100)
         
         numberPicker.frame = CGRect(x: 200,
-                                    y: codeField.bottom + 25,
+                                    y: participantsText.bottom - 10,
                                     width: 180,
                                     height: 100)
         
@@ -458,7 +517,7 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
                                        height: 100)
         
         saveButton.frame = CGRect(x: (view.width - 180) / 2,
-                                  y: privateText.bottom + 10,
+                                  y: privateText.bottom + 25,
                                          width: 180,
                                          height: 60)
         
@@ -468,6 +527,10 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
                                          height: 30)
     }
     
+    @objc func eventPicTapped() {
+        presentPhotoPicker()
+    }
+    
     @objc private func saveButtonTapped() {
         Task {
             
@@ -475,6 +538,27 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
                 
                 try await eventsm.modifyEvent(eventID: event?.id ?? "", eventName: eventNameField.text ?? "", date: datePicker.date, location: locationField.text ?? "", attendeeList: event?.attendeeList ?? [String](), privateEvent: isPrivateSlider.isOn, maxParticipants: selectedNumber ?? 25, adminsList: Set<User>(), eventHostID: event?.eventHost ?? "nouid", code: codeField.text ?? "", blackList: Set<User>(), requestList: event?.requestList ?? [String](), description: descriptionField.text ?? "", sport: selectedSport ?? event?.sport ?? 0)
                 
+                if (pictureSelected == true) {
+                    guard let image = self.picView.image, let data = image.pngData() else {
+                        return
+                    }
+                    
+                    let eventID = String(event?.id ?? "")
+                    
+                    let fileName = "\(eventID)_event_picture.png"
+                    
+                    // upload picture
+                    assert(fileName != "")
+                    StorageManager.shared.uploadEventPic(with: data, fileName: fileName, completion: { result in
+                        switch result {
+                        case.success(let message):
+                            print(message)
+                        case.failure(let error):
+                            print("storage manager error: \(error)")
+                        }
+                    })
+                }
+                    
                 navigationController?.popViewController(animated: true)
 
                 let alertController = UIAlertController(title: "Event Modified", message: "Your event was successfully modified!", preferredStyle: .alert)
@@ -544,6 +628,30 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
     
     
+}
+
+extension EditEventViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        
+        guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
+            return
+        }
+        pictureSelected = true
+        self.picView.image = selectedImage
+    }
+    
+    func presentPhotoPicker() {
+        let vc = UIImagePickerController()
+        vc.sourceType = .photoLibrary
+        vc.delegate = self
+        vc.allowsEditing = true
+        present(vc, animated: true)
+    }
 }
 
 #Preview {
