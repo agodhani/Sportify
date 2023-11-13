@@ -81,7 +81,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
     
     private var picView: UIImageView = {
         let picView = UIImageView()
-        picView.image = UIImage(systemName: "trophy.circle")
+        //picView.image = UIImage(systemName: "trophy.circle")
         picView.layer.masksToBounds = true
         picView.contentMode = .scaleAspectFit
         picView.layer.borderWidth = 2
@@ -236,6 +236,42 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         return stack
     }()
         
+    func downloadPic(picView: UIImageView, url: URL) {
+        URLSession.shared.dataTask(with: url, completionHandler: { data, _, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                let image = UIImage(data: data)
+                picView.image = image
+            }
+        }).resume()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //let userAuth = UserAuthentication()
+        //self.name.text = userAuth.currUser?.name
+        
+        let eventID = event?.id
+        
+        let picPath = "eventPictures/" + (eventID ?? "") + "_event_picture.png"
+        
+        // get pic from db
+        StorageManager.shared.downloadUrl(for: picPath, completion: { result in
+            switch result {
+            case.success(let url):
+                self.downloadPic(picView: self.picView, url: url)
+            case.failure(let error):
+                print("failed to get url: \(error)")
+                DispatchQueue.main.async {
+                    let image = UIImage(systemName: "trophy.circle")
+                    self.picView.image = image
+                }
+            }
+        })
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
