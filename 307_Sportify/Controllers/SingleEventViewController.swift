@@ -645,6 +645,8 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                     print("USER KICKED")
                     //Remove EventID from Users Events Attending,update DB
                     self.attendeeListAsUsers[indexPath.row].leaveEvent(eventID: id ?? "")
+                    //SEND NOTIFICATION
+                    currUser?.addNotification(message: "You have been kicked from the event :/")
                 }
                 
                 // cancel action

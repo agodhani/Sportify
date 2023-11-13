@@ -84,6 +84,7 @@ struct User: Identifiable, Codable, Hashable {
     var eventsAttending: [String]
     var eventsHosting: [String]
     var suggestions: [String]
+    var notifications: [String]
     
     //?might not need this: let password: String
 /*
@@ -288,6 +289,9 @@ struct User: Identifiable, Codable, Hashable {
             blockList.remove(at: blockList.firstIndex(of: unblockUserID)!)
         }
         //ref.child("Users").child(self.id).setValue(["blockList": blockList]) // update DB
+    }
+    mutating func addNotification(message: String) {
+        notifications.append(message)
     }
     
     func isBlocked(userID: String) -> Bool {
