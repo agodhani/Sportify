@@ -733,14 +733,25 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                 
             } else {
                 // requestList clicked
+                // host / admin access only
                 // OPTIONS: Accept + Reject
                 
                 let acceptAction = UIAlertAction(title: "Accept", style: .default) { _ in
-                    // TODO - put the ACCEPT function here
+                    // put the ACCEPT function here
+                    let userID = self.event?.requestList[indexPath.row]
+                    self.event?.acceptUser(acceptUser: userID ?? "") // also updates the DB
+                    self.updateLists()
+                    
+                    // TODO send notification of accept to userID
                 }
                 
                 let rejectAction = UIAlertAction(title: "Reject", style: .destructive) { _ in
-                    // TODO - put the REJECT function here
+                    // put the REJECT function here
+                    let userID = self.event?.requestList[indexPath.row]
+                    self.event?.rejectUser(rejectUser: userID ?? "") // also updates the DB
+                    self.updateLists()
+                    
+                    // TODO send notification of reject to userID
                 }
                 
                 let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in

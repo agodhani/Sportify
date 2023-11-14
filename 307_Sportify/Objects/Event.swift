@@ -219,12 +219,15 @@ struct Event: Identifiable, Codable, Hashable {
     mutating func acceptUser(acceptUser: String) {
         if (requestList.contains(acceptUser)) {
             let index = attendeeList.firstIndex(of: acceptUser)!
+            
             let db = Firestore.firestore()
             requestList.remove(at: index)
             attendeeList.append(acceptUser)
             db.collection("Events").document(self.id).updateData(["attendeeList": attendeeList])
+            db.collection("Events").document(self.id).updateData(["requestList": requestList])
+
         } else {
-            print("User could not be added to attendee list")
+            print("User was not found in requestList")
         }
     }
     
