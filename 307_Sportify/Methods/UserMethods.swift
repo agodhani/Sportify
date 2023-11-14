@@ -18,7 +18,7 @@ class UserMethods: ObservableObject {
             return userData
         } catch {
             print("Couldn't load user")
-            return User(id: "", name: "", email: "", radius: 0, zipCode: "", sportsPreferences: Set<Int>(), privateAccount: false, profilePicture: "", age: 0, birthday: Date.now, friendList: Array<String>(), blockList: Array<String>(), eventsAttending: [String](), eventsHosting: [String](), suggestions: [String](), notifications: [String]())
+            return User(id: "", name: "", email: "", radius: 0, zipCode: "", sportsPreferences: Set<Int>(), privateAccount: false, profilePicture: "", age: 0, birthday: Date.now, friendList: Array<String>(), blockList: Array<String>(), eventsAttending: [String](), eventsHosting: [String](), suggestions: [String](), notifications: [String](), messageList: [String]())
         }
     }
 }

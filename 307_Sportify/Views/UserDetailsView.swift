@@ -18,7 +18,7 @@ struct UserDetailsView: View {
     @State var userAuth = UserAuthentication()
     @State private var profilePic: Image = Image("DefaultProfile")
     @State private var ref = Database.database().reference()
-    @State var user: User = User(id: "ERROR", name: "ERROR", email: "ERROR", radius: 0, zipCode: "ERROR", sportsPreferences: [], privateAccount: false, profilePicture: "ERROR", age: 0, birthday: Date(), friendList: [], blockList: [], eventsAttending: [], eventsHosting: [], suggestions: [], notifications: [])
+    @State var user: User = User(id: "ERROR", name: "ERROR", email: "ERROR", radius: 0, zipCode: "ERROR", sportsPreferences: [], privateAccount: false, profilePicture: "ERROR", age: 0, birthday: Date(), friendList: [], blockList: [], eventsAttending: [], eventsHosting: [], suggestions: [], notifications: [], messageList: [])
 
     //@State var user: User
     
@@ -37,7 +37,7 @@ struct UserDetailsView: View {
                             print(error!.localizedDescription)
                             return
                         }
-                        user = snapshot?.value as? User ?? User(id: "ERROR", name: "ERROR", email: "ERROR", radius: 0, zipCode: "ERROR", sportsPreferences: [], privateAccount: false, profilePicture: "ERROR", age: 0, birthday: Date(), friendList: [], blockList: [], eventsAttending: [], eventsHosting: [], suggestions: [], notifications: []);
+                        user = snapshot?.value as? User ?? User(id: "ERROR", name: "ERROR", email: "ERROR", radius: 0, zipCode: "ERROR", sportsPreferences: [], privateAccount: false, profilePicture: "ERROR", age: 0, birthday: Date(), friendList: [], blockList: [], eventsAttending: [], eventsHosting: [], suggestions: [], notifications: [], messageList: []);
                     });
                 });
             
