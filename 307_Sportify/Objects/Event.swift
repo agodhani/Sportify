@@ -54,6 +54,18 @@ struct Event: Identifiable, Codable, Hashable {
         self.blackList.insert(attendee)
     }*/
     
+    mutating func addUserToRequestList(userID: String) {
+        
+        if (!requestList.contains(userID)) {
+            // if the user isn't in the requestList
+            requestList.append(userID)
+            
+            let db = Firestore.firestore()
+            db.collection("Events").document(self.id).updateData(["requestList": requestList])
+            print("Event requestList updated for \(eventName)")
+        }
+    }
+    
     mutating func generateRandomCode(length: Int) -> String { // returns a random generated 10 character alphanumeric code
         
         // generate random code

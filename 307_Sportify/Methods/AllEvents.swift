@@ -92,6 +92,18 @@ struct EventHighLevel: Identifiable {
         return newCode
     }
     
+    mutating func addUserToRequestList(userID: String) {
+        
+        if (!requestList.contains(userID)) {
+            // if the user isn't in the requestList
+            requestList.append(userID)
+            
+            let db = Firestore.firestore()
+            db.collection("Events").document(self.id).updateData(["requestList": requestList])
+            print("Event requestList updated for \(name)")
+        }
+    }
+    
 }
 class getEvs {
     static let shared = getEvs()

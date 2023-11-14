@@ -453,50 +453,80 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         if (event?.userIsAttending(userID: currUserID) == false) {
             
             if (event?.privateEvent ?? false) {
-                // if it's a private event - prompt for join code
+                // if it's a private event - prompt them for code or request
                 
-                let alertController = UIAlertController(title: "Join Event", message: "Enter Event Code:", preferredStyle: .alert)
-                alertController.addTextField { textField in
-                    textField.placeholder = "Event Code"
+                let privateAlertController = UIAlertController(title: "Join Event", message: "How would you like to join the private event?", preferredStyle: .alert)
+                
+                let codeOption = UIAlertAction(title: "Code", style: .default) { _ in
+                    
+                    let alertController = UIAlertController(title: "Join Event", message: "Enter Event Code:", preferredStyle: .alert)
+                    alertController.addTextField { textField in
+                        textField.placeholder = "Event Code"
+                    }
+                    
+                    let joinAction = UIAlertAction(title: "Join", style: .default) { [weak self] _ in
+                        
+                        guard let eventCode = alertController.textFields?.first?.text, !eventCode.isEmpty else {
+                            // Show an error message if the text field is empty
+                            self?.showAlert(message: "Please enter the event code.")
+                            return
+                        }
+                        
+                        // Check if the entered event code matches the event's code
+                        if eventCode == self?.event?.code {
+                            // Event code is correct, join the event
+                            self?.event?.joinEvent(id: currUserID)
+                            let db = Firestore.firestore()
+                            let id = (self?.event?.id)!
+                            db.collection("Events").document(id).updateData(["attendeeList":self?.event?.attendeeList ?? []])
+                            print("EVENT JOINED")
+                            currUser?.joinEvent(eventID: self?.event?.id ?? "")
+                            
+                            let joinedAlertController = UIAlertController(title: "Success", message: "You've successfully joined the event.", preferredStyle: .alert)
+                            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                            joinedAlertController.addAction(okAction)
+                            self?.present(joinedAlertController, animated: true, completion: nil)
+                            
+                        } else {
+                            // Event code is incorrect, show an error message
+                            self?.showAlert(message: "Incorrect event code. Please try again.")
+                        }
+                    }
+                    
+                    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+                        print("Join canceled")
+                    }
+                    
+                    alertController.addAction(joinAction)
+                    alertController.addAction(cancelAction)
+                    self.present(alertController, animated: true, completion: nil)
+                    self.updateLists()
                 }
                 
-                let joinAction = UIAlertAction(title: "Join", style: .default) { [weak self] _ in
+                let requestOption = UIAlertAction(title: "Send Request", style: .default) { _ in
+                    // TODO
+                    // add user to event requestList and update DB
+                    self.event?.addUserToRequestList(userID: currUserID)
                     
-                    guard let eventCode = alertController.textFields?.first?.text, !eventCode.isEmpty else {
-                        // Show an error message if the text field is empty
-                        self?.showAlert(message: "Please enter the event code.")
-                        return
-                    }
+                    // TODO make the notification
+                    // TODO send notification to host
                     
-                    // Check if the entered event code matches the event's code
-                    if eventCode == self?.event?.code {
-                        // Event code is correct, join the event
-                        self?.event?.joinEvent(id: currUserID)
-                        let db = Firestore.firestore()
-                        let id = (self?.event?.id)!
-                        db.collection("Events").document(id).updateData(["attendeeList":self?.event?.attendeeList ?? []])
-                        print("EVENT JOINED")
-                        currUser?.joinEvent(eventID: self?.event?.id ?? "")
-                        
-                        let joinedAlertController = UIAlertController(title: "Success", message: "You've successfully joined the event.", preferredStyle: .alert)
-                        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                        joinedAlertController.addAction(okAction)
-                        self?.present(joinedAlertController, animated: true, completion: nil)
-                        
-                    } else {
-                        // Event code is incorrect, show an error message
-                        self?.showAlert(message: "Incorrect event code. Please try again.")
-                    }
+                    // SUCCESS MESSAGE
+                    let requestSuccessController = UIAlertController(title: "Request Sent", message: "Request successfully sent!", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    requestSuccessController.addAction(okAction)
+                    self.present(requestSuccessController, animated: true, completion: nil)
+                    self.updateLists()
                 }
                 
                 let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
                     print("Join canceled")
                 }
                 
-                alertController.addAction(joinAction)
-                alertController.addAction(cancelAction)
-                present(alertController, animated: true, completion: nil)
-                updateLists()
+                privateAlertController.addAction(codeOption)
+                privateAlertController.addAction(requestOption)
+                privateAlertController.addAction(cancelAction)
+                self.present(privateAlertController, animated: true, completion: nil)
                 
             } else {
                 // not a private event - join the event
