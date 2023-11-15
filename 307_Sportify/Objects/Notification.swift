@@ -18,6 +18,7 @@ struct Notification: Identifiable, Hashable {
     }
     var messageType: message_type
     var message: String
+    var notifierID: String
     
     
     
@@ -36,6 +37,10 @@ struct Notification: Identifiable, Hashable {
     
     func getMessage() -> String {
         return self.message
+    }
+    
+    mutating func setNotifier(notifier: User) {
+        notifierID = notifier.id
     }
     
     

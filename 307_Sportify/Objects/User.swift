@@ -84,7 +84,7 @@ struct User: Identifiable, Codable, Hashable {
     var eventsAttending: [String]
     var eventsHosting: [String]
     var suggestions: [String]
-    var notifications: [String]
+    var notifications: [String] //Array of notification IDs
     var messageList: [String]
     
     //?might not need this: let password: String
