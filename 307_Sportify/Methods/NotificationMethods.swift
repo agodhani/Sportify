@@ -32,4 +32,22 @@ class NotificationMethods: ObservableObject{
         }
     }
     
+    func getNotification(notificationID: Notification.ID) async -> Notification {
+        
+        do {
+            
+            let notificationDocument = try await Firestore.firestore().collection("Notifications").document(notificationID).getDocument()
+            let notificationData = try notificationDocument.data(as: Notification.self)
+            print ("Notification retrieval successfully")
+            return notificationData
+            
+        } catch {
+            print("Couldn't load Notification \(notificationID)")
+            return Notification(id: "", date: Date(), messageType: .kick, message: "", notifierID: "")
+        }
+        
+    }
+    
+    
+    
 }

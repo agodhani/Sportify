@@ -26,27 +26,30 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
     
     @State var userAuth = UserAuthentication()
     @State var userm = UserMethods()
-    var notifications = [String]() // IDs of Notifs
+    @State var notifcationM = NotificationMethods()
+    
+    var notificationIDs = [String]() // IDs of Notifs
+    var notifications = [Notification]() // Notifications objects
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return notifications.count
+        return notificationIDs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // the cells each show the message of the notification
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        
-        // TODO - it's an ID, so i need to get the actual notification from the DB with the message
-        //cell.textLabel?.text = notifications[indexPath.row].message
-        
-        //allEv.filteredEvents = allEv.events.filter({event in event.attendeeList.contains(userAuth.currUser?.id ?? "")})
-        //cell.textLabel?.text = allEv.filteredEvents[indexPath.row].name
+        cell.textLabel?.text = notifications[indexPath.row].message
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        // TODO
+        let selectedNotif = notifications[indexPath.row]
+        let vc = SingleNotificationViewController() // TODO complete SingleNotificationVC
+        vc.userAuth = self.userAuth
+        vc.notification = selectedNotif
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     
@@ -96,7 +99,13 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
             await userAuth.getCurrUser()
             let currUser = userAuth.currUser
             
-            notifications = currUser?.notifications ?? []
+            notificationIDs = currUser?.notifications ?? [] // IDs
+            
+            // turn all the notifcation IDs from the user into notifcation objects
+            for noID in notificationIDs {
+                await notifications.append(notifcationM.getNotification(notificationID: noID))
+            }
+            
             self.tableView.reloadData()
         }
         
@@ -115,7 +124,6 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidLayoutSubviews()
         view.frame = view.bounds
 
-        
         let size = view.width / 1.2
         
         view.addSubview(notificationsText)
