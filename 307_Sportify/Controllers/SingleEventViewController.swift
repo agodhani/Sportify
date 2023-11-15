@@ -35,11 +35,11 @@ class MyCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        //Add button
+        // Add button
         contentView.addSubview(kickButton)
         kickButton.addTarget(self, action: #selector(tappedKickButton), for: .touchUpInside)
         
-        //Set constraints as per your requirements
+        // Set constraints as per your requirements
         kickButton.translatesAutoresizingMaskIntoConstraints = false
         kickButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         kickButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
@@ -504,7 +504,6 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                 }
                 
                 let requestOption = UIAlertAction(title: "Send Request", style: .default) { _ in
-                    // TODO
                     // add user to event requestList and update DB
                     self.event?.addUserToRequestList(userID: currUserID)
                     
@@ -660,6 +659,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                 
                 
                 // promote to Event Host
+                
                 let promoteToHostAction = UIAlertAction(title: "Promote to event host", style: .default) { _ in
                     let userID = self.attendeeListAsUsers[indexPath.row].id
                     let user = self.attendeeListAsUsers[indexPath.row]
@@ -698,20 +698,20 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                 
                 // kick user
                 let kickAction = UIAlertAction(title: "Kick", style: .destructive) { _ in
-                    //Get User ID of user that was clicked on
+                    // Get User ID of user that was clicked on
                     let userID = self.attendeeListAsUsers[indexPath.row].id
                     //Remove User ID from Event Attendee List
                     if let index = self.event?.attendeeList.firstIndex(of: userID) {
                         self.event?.attendeeList.remove(at: index)
                     }
-                    //Update DB
+                    // Update DB
                     let db = Firestore.firestore()
                     let id = self.event?.id
                     db.collection("Events").document(id ?? "").updateData(["attendeeList":self.event?.attendeeList])
                     print("USER KICKED")
-                    //Remove EventID from Users Events Attending,update DB
+                    // Remove EventID from Users Events Attending,update DB
                     self.attendeeListAsUsers[indexPath.row].leaveEvent(eventID: id ?? "")
-                    //SEND NOTIFICATION
+                    // TODO SEND NOTIFICATION to kicked user
                     currUser?.addNotification(message: "You have been kicked from the event :/")
                 }
                 
