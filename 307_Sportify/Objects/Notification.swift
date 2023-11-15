@@ -10,10 +10,10 @@ import CoreLocation
 import Firebase
 import SwiftUI
 
-struct Notification: Identifiable, Hashable {
-    var id: ObjectIdentifier
+struct Notification: Identifiable, Codable, Hashable {
+    var id: String
     var date: Date
-    enum message_type {
+    enum message_type: String, Codable {
         case kick, join, leave, promote
     }
     var messageType: message_type
