@@ -25,6 +25,7 @@
 		6D00BB912AE957A700E22816 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D00BB902AE957A700E22816 /* ForgotPasswordViewController.swift */; };
 		6D0A7F2E2AED7D1900824FC0 /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0A7F2D2AED7D1900824FC0 /* CreateEventViewController.swift */; };
 		6D39AAB72AC73BFE00515C20 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D39AAB62AC73BFE00515C20 /* ForgotPasswordView.swift */; };
+		6D6A30B42B054F4E00046E1B /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6A30B32B054F4E00046E1B /* Notification.swift */; };
 		6DAB93B72AEF11B30006BB47 /* EditEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAB93B62AEF11B30006BB47 /* EditEventViewController.swift */; };
 		6DAC698C2AD984B8001C197E /* OldBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAC698B2AD984B8001C197E /* OldBlockView.swift */; };
 		6DAC698E2AD98539001C197E /* UserDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAC698D2AD98539001C197E /* UserDetailsView.swift */; };
@@ -115,6 +116,7 @@
 		6D00BB902AE957A700E22816 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		6D0A7F2D2AED7D1900824FC0 /* CreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 		6D39AAB62AC73BFE00515C20 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		6D6A30B32B054F4E00046E1B /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		6DAB93B62AEF11B30006BB47 /* EditEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewController.swift; sourceTree = "<group>"; };
 		6DAC698B2AD984B8001C197E /* OldBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldBlockView.swift; sourceTree = "<group>"; };
 		6DAC698D2AD98539001C197E /* UserDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsView.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 		BA2570CC2AC7B831004E528A /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				6D6A30B32B054F4E00046E1B /* Notification.swift */,
 				BA2570CD2AC7B846004E528A /* User.swift */,
 				31CB2C522AC89E0600DF43A3 /* Event.swift */,
 				BAFF1CDA2AD2854A0010D8B3 /* Sport.swift */,
