@@ -127,6 +127,8 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
         let size = view.width / 1.2
         
         view.addSubview(notificationsText)
+        tableView.delegate = self
+        tableView.dataSource = self
         view.addSubview(tableView)
         
         

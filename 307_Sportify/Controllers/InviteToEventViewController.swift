@@ -26,7 +26,7 @@ class InviteToEventViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedEvent = eventsAttending?[indexPath.row]
+        var selectedEvent = eventsAttending?[indexPath.row]
         
         if (!(selectedEvent?.userIsAttending(userID: userInvitingID ?? "") ?? false) ) {
             // if the user isn't attending the event, invite the user to the event
@@ -35,30 +35,91 @@ class InviteToEventViewController: UIViewController, UITableViewDelegate, UITabl
             // the notification will let them join no matter what
             // when clicked, even if the event is private
             
-            // TODO JOSH
             // If they're in the requestList, be sure to remove them from requestList
             // to keep the DB clean
+            if (selectedEvent?.requestList.contains(userInvitingID ?? "") ?? false) {
+                let index = selectedEvent?.requestList.firstIndex(of: userInvitingID ?? "")
+                if (index != nil) {
+                    selectedEvent?.requestList.remove(at: index ?? 0)
+                }
+            }
             
-            // TODO JOSH show a success alert message
+            // show a success alert message that the user was invited
+            var invitedAlertController = UIAlertController(title: "Invite success!", message: "Successfully invited to the event.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            invitedAlertController.addAction(okAction)
+            self.present(invitedAlertController, animated: true, completion: nil)
+            
+            
         } else {
-            // TODO JOSH show user is already attending event message
+            
+            // show a message if the user is already attending the event
+            var alertController = UIAlertController(title: "Invite fail", message: "This user is already attending this event.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
         }
-        
     }
     
+    private let tableView: UITableView = {
+        let table = UITableView()
+        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        return table
+    }()
+    
+    private var inviteText: UITextView = {
+        let text = UITextView()
+        
+        let attributedString = NSMutableAttributedString.init(string: "INVITE")
+        attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: 1, range: NSRange.init(location: 0, length: attributedString.length))
+        attributedString.addAttribute(NSAttributedString.Key.underlineColor, value: UIColor(white: 1, alpha: 1), range: NSRange.init(location: 0, length: attributedString.length))
+        text.attributedText = attributedString
+        
+        text.textColor = .sportGold
+        text.backgroundColor = .clear
+        text.textAlignment = .center
+        text.font = .systemFont(ofSize: 40, weight: .bold)
+        text.toggleUnderline(true)
+        return text
+    }()
     
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
+        view.addSubview(inviteText)
+        tableView.delegate = self
+        tableView.dataSource = self
+        view.addSubview(tableView)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        let size = view.width / 1.2
+        view.frame = view.bounds
+        tableView.reloadData()
         
+        inviteText.frame = CGRect(x: (view.width - size) / 2,
+                                  y: 80, // was 50
+                                  width: size,
+                                  height: size)
+        
+        tableView.frame = CGRect(x: 0,
+                                 y: 200, // was 50
+                                 width: view.width,
+                                 height: view.height)
     }
+}
+
+#Preview {
+    InviteToEventViewController()
 }
