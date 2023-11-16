@@ -29,6 +29,17 @@ class EditProfileViewController: UIViewController {
         return picView
     }()
     
+    private var editPicPrompt: UITextView = {
+        let text = UITextView()
+        text.text = "Click icon to edit image"
+        text.textColor = .sportGold
+        text.backgroundColor = .clear
+        text.textAlignment = .center
+        text.font = .systemFont(ofSize: 15, weight: .light)
+        text.isEditable = false
+        return text
+    }()
+    
     // New username field
     private let usernameField: UITextField = {
         let field = UITextField()
@@ -110,6 +121,7 @@ class EditProfileViewController: UIViewController {
 
         // Add subviews to view
         view.addSubview(picView)
+        view.addSubview(editPicPrompt)
         view.addSubview(usernameField)
         view.addSubview(emailField)
         view.addSubview(zipcodeField)
@@ -126,8 +138,12 @@ class EditProfileViewController: UIViewController {
                                      width: view.width/2.5,
                                      height: view.width/2.5)
         picView.layer.cornerRadius = picView.width / 2
+        editPicPrompt.frame = CGRect(x: (view.width - size) / 2,
+                                     y: picView.bottom - 3,
+                                     width: size,
+                                     height: 25)
         usernameField.frame = CGRect(x: 45,
-                                 y: picView.bottom + 35,
+                                 y: editPicPrompt.bottom + 20,
                                  width: size,
                                  height: 50)
         emailField.frame = CGRect(x: 45,

@@ -8,10 +8,12 @@
 import UIKit
 import SwiftUI
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     @State var userAuth = UserAuthentication()
     @State var isPrivate = false
-    @State var sportList = ["Tennis", "Table Tennis", "Volleyball", "Soccer", "Basketball", "Football", "Baseball", "Badminton", "Golf", "Cycling", "Running", "Hockey", "Spikeball", "Handball", "Lacrosse", "Squash"]
+    let sportList = Sport.sportData()
+    var selectedSport: Int?
+    var pictureSelected = false
     
     // Might be too long to fit, use a scroll view
     private let scrollView: UIScrollView = {
@@ -32,12 +34,27 @@ class SignUpViewController: UIViewController {
         return button
     }()
     
-    // Logo
-    private var logoView: UIImageView = {
-        let logoView = UIImageView()
-        logoView.image = UIImage(named: "SportifyLogoOriginal")
-        logoView.contentMode = .scaleAspectFit
-        return logoView
+    // Profile picture
+    var picView: UIImageView = {
+        let picView = UIImageView()
+        picView.image = UIImage(systemName: "person.circle")
+        picView.tintColor = .sportGold
+        picView.contentMode = .scaleAspectFit
+        picView.layer.masksToBounds = true
+        picView.layer.borderWidth = 0.5
+        picView.layer.borderColor = UIColor.lightGray.cgColor
+        return picView
+    }()
+    
+    private var editPicPrompt: UITextView = {
+        let text = UITextView()
+        text.text = "Click icon to edit image"
+        text.textColor = .sportGold
+        text.backgroundColor = .clear
+        text.textAlignment = .center
+        text.font = .systemFont(ofSize: 15, weight: .light)
+        text.isEditable = false
+        return text
     }()
     
     // Email txt field
@@ -84,7 +101,7 @@ class SignUpViewController: UIViewController {
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 7, height: 0))
         field.leftViewMode = .always
         field.backgroundColor = .lightGray
-        field.isSecureTextEntry = false
+        field.isSecureTextEntry = true
         field.tintColor = .black
         return field
     }()
@@ -120,22 +137,10 @@ class SignUpViewController: UIViewController {
         return toggle
     }()
     
-    // Update profile pic button
-    private let profilePicButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Upload Profile Picture", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .medium)
-        button.backgroundColor = .black
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.layer.cornerRadius = 15
-        button.layer.masksToBounds = true
-        return button
-    }()
-    
     // Sports label
     private let sportsLabel: UILabel = {
         let label = UILabel()
-        label.text = "Sports:"
+        label.text = "Sport preference:"
         label.textColor = .sportGold
         label.font = .systemFont(ofSize: 18)
         return label
@@ -148,6 +153,41 @@ class SignUpViewController: UIViewController {
         //picker.backgroundColor = .white
         return picker
     }()
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent compontnt: Int) -> Int {
+        return sportList.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let item = sportList[row].name
+        return item
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        return NSAttributedString(string: sportList[row].name, attributes: [NSAttributedString.Key.foregroundColor: UIColor.sportGold])
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedSport = row
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        var pickerLabel: UILabel? = (view as? UILabel)
+        if pickerLabel == nil {
+            pickerLabel = UILabel()
+            pickerLabel?.font = UIFont(name: "", size: 1)
+            pickerLabel?.textAlignment = .center
+        }
+        pickerLabel?.text = sportList[row].name
+        pickerLabel?.textColor = .sportGold
+
+        return pickerLabel!
+    }
+
     
     // Sign up button
     private let signupButton: UIButton = {
@@ -171,12 +211,15 @@ class SignUpViewController: UIViewController {
         
         signupButton.addTarget(self, action: #selector(tappedSignup), for: .touchUpInside)
         
-        profilePicButton.addTarget(self, action: #selector(tappedProfilePic), for: .touchUpInside)
+        picView.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(profilePicTapped))
+        picView.addGestureRecognizer(tap)
         
         // Add subviews to view
         view.addSubview(scrollView)
         scrollView.addSubview(backButton)
-        scrollView.addSubview(logoView)
+        scrollView.addSubview(picView)
+        scrollView.addSubview(editPicPrompt)
         scrollView.addSubview(emailField)
         scrollView.addSubview(nameField)
         scrollView.addSubview(signupButton)
@@ -184,9 +227,12 @@ class SignUpViewController: UIViewController {
         scrollView.addSubview(zipcodeField)
         scrollView.addSubview(isPrivateSlider)
         scrollView.addSubview(privateLabel)
-        scrollView.addSubview(profilePicButton)
+        
         scrollView.addSubview(sportsLabel)
+        sportPicker.delegate = self as UIPickerViewDelegate
+        sportPicker.dataSource = self as UIPickerViewDataSource
         scrollView.addSubview(sportPicker)
+        sportPicker.center = self.view.center
     }
     
     
@@ -200,12 +246,17 @@ class SignUpViewController: UIViewController {
                                   y: 20,
                                   width: 70,
                                   height: 30)
-        logoView.frame = CGRect(x: (scrollView.width - size) / 2 - 3,
-                                y: 10,
-                                width: size,
-                                height: size)
+        picView.frame = CGRect(x: 120,
+                               y: 100,
+                               width: scrollView.width/2.5,
+                               height: scrollView.width/2.5)
+        picView.layer.cornerRadius = picView.width / 2
+        editPicPrompt.frame = CGRect(x: (view.width - size) / 2,
+                                     y: picView.bottom - 3,
+                                     width: size,
+                                     height: 25)
         emailField.frame = CGRect(x: 45,
-                                  y: logoView.bottom - 50,
+                                  y: editPicPrompt.bottom + 20,
                                   width: size,
                                   height: 50)
         nameField.frame = CGRect(x: 45,
@@ -221,27 +272,23 @@ class SignUpViewController: UIViewController {
                                     width: size,
                                     height: 50)
         privateLabel.frame = CGRect(x: 50,
-                                    y: zipcodeField.bottom + 5,
+                                    y: zipcodeField.bottom + 8,
                                     width: size,
                                     height: 50)
         isPrivateSlider.frame = CGRect(x:298,
                                        y: zipcodeField.bottom + 15,
                                        width: 1,
                                        height: 1)
-        profilePicButton.frame = CGRect(x: 47,
-                                  y: privateLabel.bottom - 5,
-                                  width: size / 1.65,
-                                  height: 30)
         sportsLabel.frame = CGRect(x: 50,
-                                   y: profilePicButton.bottom - 3,
+                                   y: privateLabel.bottom,
                                    width: size,
                                    height: 50)
-        sportPicker.frame = CGRect(x:100,
-                                   y: profilePicButton.bottom + 15,
-                                   width: 50,
-                                   height: 50)
+        sportPicker.frame = CGRect(x: 220,
+                                   y: privateLabel.bottom - 25,
+                                   width: 165,
+                                   height: 100)
         signupButton.frame = CGRect(x: 90,
-                                    y: logoView.bottom + 355,
+                                    y: sportPicker.bottom + 15,
                                     width: 225,
                                     height: 50)
     }
@@ -255,18 +302,49 @@ class SignUpViewController: UIViewController {
     @objc private func tappedSignup() {
         guard let email = emailField.text, let password = passwordField.text, let fullName = nameField.text, let zipCode = zipcodeField.text,
               !email.isEmpty, !password.isEmpty,!zipCode.isEmpty, !fullName.isEmpty else {
+            // Show alert popup
+            let alertController = UIAlertController(title: "Fields Incomplete", message: "Please fill out all the fields to create an account.", preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            
+            present(alertController, animated: true, completion: nil)
             print("email is empty, password is empty")
             return
         }
         Task {
-            if try await userAuth.createUser(withEmail: email, password: password, fullname: fullName, privateAccount: isPrivateSlider.isOn, zipCode: zipCode, sport: 0) {
+            if try await userAuth.createUser(withEmail: email, password: password, fullname: fullName, privateAccount: isPrivateSlider.isOn, zipCode: zipCode, sport: selectedSport ?? 0) {
                 print("new user created")
+                
+                if pictureSelected == true {
+                    guard let image = self.picView.image, let data = image.pngData() else {
+                        return
+                    }
+                    
+                    var safeEmail: String {
+                        var safeEmail = email.replacingOccurrences(of: ".", with: "-")
+                        safeEmail = email.replacingOccurrences(of: "@", with: "-")
+                        return safeEmail
+                    }
+                    let fileName = "\(safeEmail)_profile_picture.png"
+                    
+                    // upload picture
+                    assert(fileName != "")
+                    StorageManager.shared.uploadProfilePic(with: data, fileName: fileName, completion: { result in
+                        switch result {
+                        case.success(let message):
+                            print(message)
+                        case.failure(let error):
+                            print("storage manager error: \(error)")
+                        }
+                    })
+                }
             }
         }
     }
     
     // Upload Profile Picture clicked
-    @objc private func tappedProfilePic() {
+    @objc private func profilePicTapped() {
         presentPhotoPicker()
     }
     
@@ -283,18 +361,8 @@ extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationCon
         guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
             return
         }
-                
-        self.logoView.image = selectedImage
-        self.logoView.layer.masksToBounds = true
-        logoView.contentMode = .scaleAspectFit
-
-        self.logoView.layer.cornerRadius = logoView.width / 4
-        self.logoView.layer.borderWidth = 2
-        self.logoView.layer.borderColor = UIColor.lightGray.cgColor
-        self.logoView.frame = CGRect(x: 120,
-                                     y: 70,
-                                     width: scrollView.width/2.5,
-                                     height: scrollView.width/2.5)
+        pictureSelected = true
+        self.picView.image = selectedImage
     }
     
     func presentPhotoPicker() {

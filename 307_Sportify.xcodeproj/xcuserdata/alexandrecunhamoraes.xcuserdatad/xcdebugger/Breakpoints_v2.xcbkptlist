@@ -158,8 +158,8 @@
             filePath = "307_Sportify/Controllers/Login_Signup/SignUpViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
+            startingLineNumber = "315"
+            endingLineNumber = "315"
             landmarkName = "tappedSignup()"
             landmarkType = "7">
             <Locations>
@@ -206,6 +206,51 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "260"
                   endingLineNumber = "260"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  uuid = "D28B9E2B-8A36-41E5-B18B-0283AE934AB6 - b38a39be13ab8deb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_07_Sportify.SignUpViewController.tappedSignup() -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexandrecunhamoraes/Desktop/Sportify/307_Sportify/Controllers/Login_Signup/SignUpViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "315"
+                  endingLineNumber = "315"
+                  offsetFromSymbolStart = "1628">
+               </Location>
+               <Location
+                  uuid = "D28B9E2B-8A36-41E5-B18B-0283AE934AB6 - 3dca203e74b0a922"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () async throws -&gt; () in _07_Sportify.SignUpViewController.tappedSignup() -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexandrecunhamoraes/Desktop/Sportify/307_Sportify/Controllers/Login_Signup/SignUpViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "315"
+                  endingLineNumber = "315"
+                  offsetFromSymbolStart = "224">
+               </Location>
+               <Location
+                  uuid = "D28B9E2B-8A36-41E5-B18B-0283AE934AB6 - 2ad1311b2d0819a1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in _07_Sportify.SignUpViewController.tappedSignup() -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexandrecunhamoraes/Desktop/Sportify/307_Sportify/Controllers/Login_Signup/SignUpViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "315"
+                  endingLineNumber = "315"
                   offsetFromSymbolStart = "64">
                </Location>
             </Locations>
@@ -633,6 +678,21 @@
                   endingLineNumber = "660"
                   offsetFromSymbolStart = "76">
                </Location>
+               <Location
+                  uuid = "78622711-0640-4207-B93F-569900C6A123 - 369b5c4544ae0264"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 (__C.UIAlertAction) -&gt; () in _07_Sportify.SingleEventViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexandrecunhamoraes/Desktop/Sportify/307_Sportify/Controllers/SingleEventViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "660"
+                  endingLineNumber = "660"
+                  offsetFromSymbolStart = "580">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -665,6 +725,38 @@
             startingLineNumber = "212"
             endingLineNumber = "212"
             landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1F4EEEC4-DA6C-42E6-9982-38FC92838774"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Controllers/Login_Signup/SignUpViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "302"
+            endingLineNumber = "302"
+            landmarkName = "tappedSignup()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E15FDBD9-433E-4623-9278-652E613B95A9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Controllers/Login_Signup/SignUpViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
+            landmarkName = "pickerView(_:didSelectRow:inComponent:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

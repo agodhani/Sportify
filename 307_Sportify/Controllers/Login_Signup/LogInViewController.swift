@@ -77,6 +77,12 @@ class LogInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
+        title = "Log In"
+        let appearence = UINavigationBarAppearance()
+        appearence.titleTextAttributes = [.foregroundColor: UIColor.sportGold]
+        navigationItem.standardAppearance = appearence
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: self, action: #selector(backButtonTapped))
+        
         loginButton.addTarget(self, action: #selector(tappedLogIn), for: .touchUpInside)
         forgotPasswordButton.addTarget(self, action: #selector(tappedForgotPassword), for: .touchUpInside)
         //add subviews
@@ -111,6 +117,10 @@ class LogInViewController: UIViewController {
                                            y: logoView.bottom + 200,
                                           width: 225,
                                           height: 50)
+    }
+    
+    @objc private func backButtonTapped() {
+        self.navigationController?.dismiss(animated: true)
     }
     
     @objc private func tappedForgotPassword() {

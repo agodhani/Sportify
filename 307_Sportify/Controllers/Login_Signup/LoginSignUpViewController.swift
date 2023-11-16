@@ -25,7 +25,7 @@ class LoginSignUpViewController: UIViewController {
         button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
         button.backgroundColor = .sportGold
         button.setTitleColor(.black, for: .normal)
-        button.layer.cornerRadius = 15
+        button.layer.cornerRadius = 25
         button.layer.masksToBounds = true
         return button
     }()
@@ -37,7 +37,7 @@ class LoginSignUpViewController: UIViewController {
         button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
         button.backgroundColor = .gray
         button.setTitleColor(.black, for: .normal)
-        button.layer.cornerRadius = 15
+        button.layer.cornerRadius = 25
         button.layer.masksToBounds = true
         return button
     }()
@@ -80,7 +80,9 @@ class LoginSignUpViewController: UIViewController {
     
     @objc private func tappedLogIn() {
         let vc = LogInViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        let nav = UINavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true)
     }
 
 }

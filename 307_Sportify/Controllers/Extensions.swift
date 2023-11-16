@@ -42,19 +42,3 @@ extension UIColor {
         return UIColor(named: "SportGold")!
     }
 }
-
-// Extension for sport picker
-extension SignUpViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    
-    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return sportList.count
-    }
-    
-    private func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> String? {
-        return sportList[row]
-    }
-}
