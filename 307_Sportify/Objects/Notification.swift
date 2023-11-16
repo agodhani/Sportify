@@ -22,19 +22,21 @@ struct Notification: Identifiable, Codable, Hashable {
     
     
     
-    mutating func setMessage(name: String, eventName: String){
+    func setMessage(name: String, eventName: String) -> String {
+        var message = ""
         switch(messageType) {
             case .kick:
-                self.message = "You were kicked from \(eventName) by \(name) on \(self.date)"
+                message = "You were kicked from \(eventName) by \(name) on \(self.date)"
             case .join:
-                self.message = "You joined the event: \(eventName) on \(self.date)"
+                message = "You joined the event: \(eventName) on \(self.date)"
             case .leave:
-                self.message = "You left the event: \(eventName) on \(self.date)"
+                message = "You left the event: \(eventName) on \(self.date)"
             case .promote:
-                self.message = "You were promoted to Admin by \(name) for \(eventName) on \(self.date)"
+                message = "You were promoted to Admin by \(name) for \(eventName) on \(self.date)"
             case .joinedMyEvent:
-                self.message = "\(name) joined your event: \(eventName) on \(self.date)"
+                message = "\(name) joined your event: \(eventName) on \(self.date)"
         }
+        return message
     }
     
     func getMessage() -> String {
