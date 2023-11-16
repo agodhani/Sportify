@@ -14,6 +14,7 @@ class MyCell: UITableViewCell {
     
     var buttonTapCallback: () -> () = { }
     
+    
     let kickButton: UIButton = {
         let button = UIButton()
         button.setTitle("Kick", for: .normal)
@@ -450,6 +451,10 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
     @objc private func tappedJoinLeaveButton() {
         var currUserID = userAuth?.currUser?.id ?? ""
         var currUser = userAuth?.currUser
+        let notifsm = NotificationMethods()
+        Task {
+            try await notifsm.createNotification(type: .join, id: currUserID)
+        }
         if (event?.userIsAttending(userID: currUserID) == false) {
             
             if (event?.privateEvent ?? false) {
@@ -713,7 +718,6 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                     // Remove EventID from Users Events Attending,update DB
                     self.attendeeListAsUsers[indexPath.row].leaveEvent(eventID: id ?? "")
                     // TODO ANDREW SEND NOTIFICATION to kicked user
-                    currUser?.addNotification(message: "You have been kicked from the event :/")
                 }
                 
                 // cancel action

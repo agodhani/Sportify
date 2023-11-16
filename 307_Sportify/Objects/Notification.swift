@@ -14,7 +14,7 @@ struct Notification: Identifiable, Codable, Hashable {
     var id: String
     var date: Date
     enum message_type: String, Codable {
-        case kick, join, leave, promote
+        case kick, join, leave, promote, joinedMyEvent
     }
     var messageType: message_type
     var message: String
@@ -22,16 +22,18 @@ struct Notification: Identifiable, Codable, Hashable {
     
     
     
-    mutating func setMessage(){
+    mutating func setMessage(name: String, eventName: String){
         switch(messageType) {
             case .kick:
-                self.message = "YOU HAVE BEEN KICKED"
+                self.message = "You were kicked from \(eventName) by \(name) on \(self.date)"
             case .join:
-                self.message = "YOU HAVE JOINED AN EVENT"
+                self.message = "You joined the event: \(eventName) on \(self.date)"
             case .leave:
-                self.message = "YOU HAVE LEFT AN EVENT"
+                self.message = "You left the event: \(eventName) on \(self.date)"
             case .promote:
-                self.message = "You have been promoted"
+                self.message = "You were promoted to Admin by \(name) for \(eventName) on \(self.date)"
+            case .joinedMyEvent:
+                self.message = "\(name) joined your event: \(eventName) on \(self.date)"
         }
     }
     
