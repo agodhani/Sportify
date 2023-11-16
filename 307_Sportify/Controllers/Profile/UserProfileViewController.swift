@@ -12,6 +12,10 @@ import Firebase
 class UserProfileViewController: UIViewController {
     var userAuth: UserAuthentication?
     var person: Person?
+    var eventsm = EventMethods()
+    var allEvents: [String] = []
+    var allEventsAsEvents: [Event] = []
+    
     // Name label
     private let nameLabel: UILabel = {
         let label = UILabel()
@@ -32,6 +36,7 @@ class UserProfileViewController: UIViewController {
         button.layer.masksToBounds = true
         return button
     }()
+    
     @objc private func tappedAddFriend() {
         var user = userAuth?.currUser
         user?.addFriend(name: person?.name ?? "Error Friend")
@@ -43,6 +48,38 @@ class UserProfileViewController: UIViewController {
         Task {
             await userAuth?.getCurrUser()
         }
+    }
+    
+    private let inviteButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Invite", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
+        button.backgroundColor = .sportGold
+        button.setTitleColor(.black, for: .normal)
+        button.layer.cornerRadius = 15
+        button.layer.masksToBounds = true
+        return button
+    }()
+    
+    @objc private func tappedInviteButton() {
+        var currUser = userAuth?.currUser
+        let userid = currUser?.id ?? ""
+        
+        let db = Firestore.firestore()
+        
+        Task {
+            allEvents = currUser?.getAllEvents() ?? [String]()
+            
+            for eventID in allEvents {
+                await allEventsAsEvents.append(eventsm.getEvent(eventID: eventID))
+            }
+            
+            let vc = InviteToEventViewController()
+            vc.eventsAttending = allEventsAsEvents
+            vc.userInvitingID = person?.id
+            navigationController?.pushViewController(vc, animated: true)
+        }
+
     }
     
     
@@ -57,6 +94,8 @@ class UserProfileViewController: UIViewController {
         addFriendButton.addTarget(self, action: #selector(tappedAddFriend), for: .touchUpInside)
 
         nameLabel.text = "Name: " + (person?.name ?? "error name")
+        
+        view.addSubview(inviteButton)
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -67,7 +106,18 @@ class UserProfileViewController: UIViewController {
                                  height: 20)
         addFriendButton.frame = CGRect(x: 90,
                                        y: 400,
-                                      width: 225,
-                                      height: 50)
+                                       width: 225,
+                                       height: 50)
+        
+        // TODO edit the positioning on this
+        // coudn't do bc users aren't loading until we change the DB
+        inviteButton.frame = CGRect(x: 0,
+                                    y: 400,
+                                    width: 225,
+                                    height: 50)
     }
+}
+
+#Preview {
+    UserProfileViewController()
 }

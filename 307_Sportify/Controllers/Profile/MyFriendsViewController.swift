@@ -88,3 +88,7 @@ class MyFriendsViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
 }
+
+#Preview {
+    MyFriendsViewController()
+}

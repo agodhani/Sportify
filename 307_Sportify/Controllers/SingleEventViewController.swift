@@ -508,7 +508,8 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                     self.event?.addUserToRequestList(userID: currUserID)
                     
                     // TODO make the notification
-                    // TODO send notification to host
+                    // TODO ANDREW send notification to host
+                    // the notification when clicked takes the host to this SingleEventVC
                     
                     // SUCCESS MESSAGE
                     let requestSuccessController = UIAlertController(title: "Request Sent", message: "Request successfully sent!", preferredStyle: .alert)
@@ -711,7 +712,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                     print("USER KICKED")
                     // Remove EventID from Users Events Attending,update DB
                     self.attendeeListAsUsers[indexPath.row].leaveEvent(eventID: id ?? "")
-                    // TODO SEND NOTIFICATION to kicked user
+                    // TODO ANDREW SEND NOTIFICATION to kicked user
                     currUser?.addNotification(message: "You have been kicked from the event :/")
                 }
                 
@@ -742,7 +743,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                     self.event?.acceptUser(acceptUser: userID ?? "") // also updates the DB
                     self.updateLists()
                     
-                    // TODO send notification of accept to userID
+                    // TODO ANDREW send notification of accept to userID
                 }
                 
                 let rejectAction = UIAlertAction(title: "Reject", style: .destructive) { _ in
@@ -751,7 +752,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                     self.event?.rejectUser(rejectUser: userID ?? "") // also updates the DB
                     self.updateLists()
                     
-                    // TODO send notification of reject to userID
+                    // TODO ANDREW send notification of reject to userID
                 }
                 
                 let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
