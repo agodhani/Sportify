@@ -74,6 +74,12 @@ class LogInViewController: UIViewController {
         return button
     }()
     
+    private var revealButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
@@ -85,12 +91,15 @@ class LogInViewController: UIViewController {
         
         loginButton.addTarget(self, action: #selector(tappedLogIn), for: .touchUpInside)
         forgotPasswordButton.addTarget(self, action: #selector(tappedForgotPassword), for: .touchUpInside)
+        revealButton.addTarget(self, action: #selector(revealButtonTapped), for: .touchUpInside)
+        
         //add subviews
         view.addSubview(logoView)
         view.addSubview(emailField)
         view.addSubview(passwordField)
         view.addSubview(loginButton)
         view.addSubview(forgotPasswordButton)
+        view.addSubview(revealButton)
         
     }
     
@@ -117,10 +126,26 @@ class LogInViewController: UIViewController {
                                            y: logoView.bottom + 200,
                                           width: 225,
                                           height: 50)
+        revealButton.frame = CGRect(x: 45,
+                                    y: logoView.bottom + 50,
+                                    width: 50,
+                                    height: 50)
     }
     
     @objc private func backButtonTapped() {
         self.navigationController?.dismiss(animated: true)
+    }
+    
+    @objc private func revealButtonTapped() {
+        passwordField.isSecureTextEntry = !passwordField.isSecureTextEntry
+        if (passwordField.isSecureTextEntry) {
+            // if hidden
+            revealButton.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+        
+        } else {
+            // if not hidden
+            revealButton.setImage(UIImage(systemName: "eye"), for: .normal)
+        }
     }
     
     @objc private func tappedForgotPassword() {

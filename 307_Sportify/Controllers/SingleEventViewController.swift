@@ -491,6 +491,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                             joinedAlertController.addAction(okAction)
                             self?.present(joinedAlertController, animated: true, completion: nil)
+                            self?.updateLists()
                             
                         } else {
                             // Event code is incorrect, show an error message

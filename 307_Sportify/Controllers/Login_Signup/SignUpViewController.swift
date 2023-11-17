@@ -154,6 +154,12 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         return picker
     }()
     
+    private var revealButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+        return button
+    }()
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -211,6 +217,8 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
         signupButton.addTarget(self, action: #selector(tappedSignup), for: .touchUpInside)
         
+        revealButton.addTarget(self, action: #selector(revealButtonTapped), for: .touchUpInside)
+        
         picView.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(profilePicTapped))
         picView.addGestureRecognizer(tap)
@@ -227,6 +235,7 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         scrollView.addSubview(zipcodeField)
         scrollView.addSubview(isPrivateSlider)
         scrollView.addSubview(privateLabel)
+        scrollView.addSubview(revealButton)
         
         scrollView.addSubview(sportsLabel)
         sportPicker.delegate = self as UIPickerViewDelegate
@@ -291,11 +300,28 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                                     y: sportPicker.bottom + 15,
                                     width: 225,
                                     height: 50)
+        revealButton.frame = CGRect(x: 0,
+                                    y: nameField.bottom + 15,
+                                    width: 50,
+                                    height: 50)
     }
     
     // Back button clicked
     @objc private func backButtonTapped() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    // reveal password
+    @objc private func revealButtonTapped() {
+        passwordField.isSecureTextEntry = !passwordField.isSecureTextEntry
+        if (passwordField.isSecureTextEntry) {
+            // if hidden
+            revealButton.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+        
+        } else {
+            // if not hidden
+            revealButton.setImage(UIImage(systemName: "eye"), for: .normal)
+        }
     }
     
     // Sign up button clicked
