@@ -382,7 +382,7 @@ class ProfileViewController: UIViewController {
         //let nav = UINavigationController(rootViewController: vc)
         //nav.modalPresentationStyle = .fullScreen
         
-        present(vc, animated: true)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     // Block users clicked
