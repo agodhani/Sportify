@@ -16,19 +16,21 @@ class NotificationMethods: ObservableObject{
         notif = Notification(id: "", date: Date.now, messageType: .join, message: "", notifierID: "")
     }
     
-    func createNotification(type: Notification.message_type, id: String)
-    async throws {
+    func createNotification(type: Notification.message_type, id: String, event_name: String, host_name: String)
+    async throws -> String {
         do {
             let userAuth = UserAuthentication()
             var user = userAuth.currUser
-            var mes = notif.setMessage(name: "Andrew", eventName: "Hoops")
+            var mes = notif.setMessage(name: host_name, eventName: event_name)
             let notification = Notification(id: UUID().uuidString, date: Date.now, messageType: type, message: mes, notifierID: id)
             let encodedNotification = try Firestore.Encoder().encode(notification)
             try await Firestore.firestore().collection("Notifications").document(notification.id).setData(encodedNotification)
             print("CHECK FIREBASE TO SEE IF NOTIFICATION WAS CREATED")
+            return notification.id
             
         } catch {
             print("Notification Creation Failed")
+            return ""
         }
     }
     
