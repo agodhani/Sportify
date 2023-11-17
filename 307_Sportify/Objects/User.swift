@@ -140,8 +140,8 @@ struct User: Identifiable, Codable, Hashable {
         db.collection("Users").document(id).updateData(["eventsHosting":eventsHosting])
     }
     
-    mutating func addFriend(name: String) {
-        friendList.append(name)
+    mutating func addFriend(userID: String) {
+        friendList.append(userID)
     }
     
     mutating func newSuggestion(suggestion: String){

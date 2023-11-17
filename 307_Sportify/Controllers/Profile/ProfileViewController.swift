@@ -379,10 +379,10 @@ class ProfileViewController: UIViewController {
     // My friends clicked
     @objc private func myFriendsTapped() {
         let vc = MyFriendsViewController()
-        let nav = UINavigationController(rootViewController: vc)
-        nav.modalPresentationStyle = .fullScreen
+        //let nav = UINavigationController(rootViewController: vc)
+        //nav.modalPresentationStyle = .fullScreen
         
-        present(nav, animated: true)
+        present(vc, animated: true)
     }
     
     // Block users clicked

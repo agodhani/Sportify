@@ -64,7 +64,7 @@ struct DetailsView: View {
         VStack(alignment: .leading) {
             Text(person.name).font(.largeTitle)
             Button("Add Friend"){
-                currUser?.addFriend(name: person.name)
+                currUser?.addFriend(userID: person.id)
                 var userid = currUser?.id
                 let db = Firestore.firestore()
                 db.collection("Users").document(userid!)

@@ -39,7 +39,7 @@ class UserProfileViewController: UIViewController {
     
     @objc private func tappedAddFriend() {
         var user = userAuth?.currUser
-        user?.addFriend(name: person?.name ?? "Error Friend")
+        user?.addFriend(userID: person?.id ?? "Error")
         var userid = user?.id
         let db = Firestore.firestore()
         db.collection("Users").document(userid!)
@@ -88,7 +88,7 @@ class UserProfileViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black
         view.addSubview(nameLabel)
-        if(!((user?.friendList.contains((person?.name ?? "")))!) && user?.name != person?.name) {
+        if(!((user?.friendList.contains((person?.id ?? "")))!) && user?.id != person?.id) {
             view.addSubview(addFriendButton)
         }
         addFriendButton.addTarget(self, action: #selector(tappedAddFriend), for: .touchUpInside)
