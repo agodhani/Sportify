@@ -452,9 +452,9 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         var currUserID = userAuth?.currUser?.id ?? ""
         var currUser = userAuth?.currUser
         let notifsm = NotificationMethods()
-        Task {
-            try await notifsm.createNotification(type: .join, id: currUserID)
-        }
+        var notificationID = ""
+        //Create Notification
+        
         if (event?.userIsAttending(userID: currUserID) == false) {
             
             if (event?.privateEvent ?? false) {
@@ -486,6 +486,17 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                             db.collection("Events").document(id).updateData(["attendeeList":self?.event?.attendeeList ?? []])
                             print("EVENT JOINED")
                             currUser?.joinEvent(eventID: self?.event?.id ?? "")
+                            //JOIN EVENT NOTIFICATION
+                            let eventName = self?.event?.name
+                            let host_name = self?.event?.eventHostName
+                            //Create new Join Notification
+                            Task {
+                                try await notificationID = notifsm.createNotification(type: .join, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "")
+                                print("NOTIFICATION CREATED")
+                            }
+                            currUser?.notifications.append(notificationID)
+                            print("Notification added to user array")
+                            //TODO
                             
                             let joinedAlertController = UIAlertController(title: "Success", message: "You've successfully joined the event.", preferredStyle: .alert)
                             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -542,6 +553,18 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                 print("EVENT JOINED")
                 currUser?.joinEvent(eventID: self.event?.id ?? "")
                 
+                //JOIN EVENT NOTIFICATION
+                let eventName = self.event?.name
+                let host_name = self.event?.eventHostName
+                //Create new Join Notification
+                Task{
+                    try await notificationID = notifsm.createNotification(type: .join, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "")
+                    print(notificationID)
+                    print("NOTIFICATION CREATED")
+                    currUser?.notifications.append(notificationID)
+                    try await db.collection("Users").document(currUserID).updateData(["notifications":currUser?.notifications ?? []])
+                }
+                
                 let joinedAlertController = UIAlertController(title: "Success", message: "You've successfully joined the event.", preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                 joinedAlertController.addAction(okAction)
@@ -578,6 +601,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                 db.collection("Events").document(id).updateData(["eventHostID":event?.eventHost ?? "error"])
             }
             currUser?.leaveEvent(eventID: event?.id ?? "")
+            //LEAVE EVENT NOTIFICATION
             
             let leaveAlertController = UIAlertController(title: "Success", message: "You've successfully left the event.", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)

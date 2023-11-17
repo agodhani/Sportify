@@ -28,7 +28,7 @@ struct Notification: Identifiable, Codable, Hashable {
             case .kick:
                 message = "You were kicked from \(eventName) by \(name) on \(self.date)"
             case .join:
-                message = "You joined the event: \(eventName) on \(self.date)"
+                message = "You successfully joined the event: \(eventName) on \(self.date)"
             case .leave:
                 message = "You left the event: \(eventName) on \(self.date)"
             case .promote:
