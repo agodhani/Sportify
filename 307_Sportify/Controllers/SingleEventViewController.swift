@@ -718,6 +718,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                     // Remove EventID from Users Events Attending,update DB
                     self.attendeeListAsUsers[indexPath.row].leaveEvent(eventID: id ?? "")
                     // TODO ANDREW SEND NOTIFICATION to kicked user
+                    self.updateLists()
                 }
                 
                 // cancel action
@@ -747,6 +748,13 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                     self.event?.acceptUser(acceptUser: userID ?? "") // also updates the DB
                     self.updateLists()
                     
+                    // Successfully Accepted
+                    let acceptedController = UIAlertController(title: "Successfully Accepted", message: "User was accepted into \(self.event?.name ?? "the event")", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                    }
+                    acceptedController.addAction(okAction)
+                    self.present(acceptedController, animated: true, completion: nil)
+                    
                     // TODO ANDREW send notification of accept to userID
                 }
                 
@@ -755,6 +763,13 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                     let userID = self.event?.requestList[indexPath.row]
                     self.event?.rejectUser(rejectUser: userID ?? "") // also updates the DB
                     self.updateLists()
+                    
+                    // Successfully Rejected
+                    let rejectedController = UIAlertController(title: "Rejected", message: "User was rejected from \(self.event?.name ?? "the event")", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                    }
+                    rejectedController.addAction(okAction)
+                    self.present(rejectedController, animated: true, completion: nil)
                     
                     // TODO ANDREW send notification of reject to userID
                 }

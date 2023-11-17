@@ -106,7 +106,7 @@ struct EventHighLevel: Identifiable {
     
     mutating func rejectUser(rejectUser: String) {
         if (requestList.contains(rejectUser)) {
-            let index = attendeeList.firstIndex(of: rejectUser)!
+            let index = requestList.firstIndex(of: rejectUser)!
             let db = Firestore.firestore()
             requestList.remove(at: index)
             db.collection("Events").document(self.id).updateData(["requestList": requestList])
@@ -118,10 +118,10 @@ struct EventHighLevel: Identifiable {
     
     mutating func acceptUser(acceptUser: String) {
         if (requestList.contains(acceptUser)) {
-            let index = attendeeList.firstIndex(of: acceptUser)!
-            
-            let db = Firestore.firestore()
+            let index = requestList.firstIndex(of: acceptUser)!
             requestList.remove(at: index)
+
+            let db = Firestore.firestore()
             attendeeList.append(acceptUser)
             db.collection("Events").document(self.id).updateData(["attendeeList": attendeeList])
             db.collection("Events").document(self.id).updateData(["requestList": requestList])
