@@ -117,10 +117,9 @@ class MyFriendsViewController: UIViewController, UITableViewDataSource, UITableV
         
         Task {
             await userAuth.getCurrUser()
+            self.friendIDs = userAuth.currUser?.friendList ?? []
+            self.table.reloadData()
         }
-        let currUser = userAuth.currUser
-        friendIDs = currUser?.friendList ?? []
-        self.table.reloadData()
         
         view.backgroundColor = .black
         //title = "My Friends"
