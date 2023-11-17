@@ -31,7 +31,6 @@ import Firebase
     }
 }*/
 
-// TODO add the back button
 class MyFriendsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var userAuth = UserAuthentication()
@@ -103,10 +102,12 @@ class MyFriendsViewController: UIViewController, UITableViewDataSource, UITableV
         text.textAlignment = .center
         text.font = .systemFont(ofSize: 40, weight: .bold)
         text.toggleUnderline(true)
+        text.isEditable = false
+        text.isSelectable = false
         return text
     }()
     
-    private let table: UITableView = {
+    private let tableView: UITableView = {
         let table = UITableView()
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return table
@@ -118,27 +119,22 @@ class MyFriendsViewController: UIViewController, UITableViewDataSource, UITableV
         Task {
             await userAuth.getCurrUser()
             self.friendIDs = userAuth.currUser?.friendList ?? []
-            self.table.reloadData()
+            self.tableView.reloadData()
         }
         
         view.backgroundColor = .black
-        //title = "My Friends"
-        //let appearence = UINavigationBarAppearance()
-        //appearence.titleTextAttributes = [.foregroundColor: UIColor.sportGold]
-        //navigationItem.standardAppearance = appearence
-        //navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: self, action: //#selector(backButtonTapped))
         
-        table.dataSource = self
-        table.delegate = self
+        tableView.dataSource = self
+        tableView.delegate = self
         
-        view.addSubview(table)
+        view.addSubview(tableView)
         view.addSubview(myFriendsText)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         DispatchQueue.main.async {
-            self.table.reloadData()
+            self.tableView.reloadData()
         }
     }
     
@@ -151,11 +147,10 @@ class MyFriendsViewController: UIViewController, UITableViewDataSource, UITableV
                                     width: size,
                                     height: size)
         
-        table.frame = CGRect(x: 0,
+        tableView.frame = CGRect(x: 0,
                                  y: 200, // was 50
                                  width: view.width,
                                  height: view.height)
-        //scrollView.backgroundColor = .black
     }
     
     @objc func backButtonTapped() {
