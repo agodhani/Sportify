@@ -603,6 +603,15 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             }
             currUser?.leaveEvent(eventID: event?.id ?? "")
             //LEAVE EVENT NOTIFICATION
+            let eventName = self.event?.name
+            let host_name = self.event?.eventHostName
+            Task{
+                try await notificationID = notifsm.createNotification(type: .leave, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "")
+                print(notificationID)
+                print("Leave NOTIFICATION CREATED")
+                currUser?.notifications.append(notificationID)
+                try await db.collection("Users").document(currUserID).updateData(["notifications":currUser?.notifications ?? []])
+            }
             
             let leaveAlertController = UIAlertController(title: "Success", message: "You've successfully left the event.", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)

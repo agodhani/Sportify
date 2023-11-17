@@ -21,8 +21,8 @@ class NotificationMethods: ObservableObject{
         do {
             let userAuth = UserAuthentication()
             var user = userAuth.currUser
-            var mes = notif.setMessage(name: host_name, eventName: event_name)
-            let notification = Notification(id: UUID().uuidString, date: Date.now, messageType: type, message: mes, notifierID: id)
+            var notification = Notification(id: UUID().uuidString, date: Date.now, messageType: type, message: "", notifierID: id)
+            notification.message = notification.setMessage(name: host_name, eventName: event_name)
             let encodedNotification = try Firestore.Encoder().encode(notification)
             try await Firestore.firestore().collection("Notifications").document(notification.id).setData(encodedNotification)
             print("CHECK FIREBASE TO SEE IF NOTIFICATION WAS CREATED")
