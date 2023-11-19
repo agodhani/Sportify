@@ -695,6 +695,19 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                     let db = Firestore.firestore()
                     let id = self.event?.id
                     db.collection("Events").document(id ?? "").updateData(["adminsList":self.event?.adminsList])
+                    
+                    //PROMOTE NOTIFICATION
+                    Task{
+                        var notificationID = ""
+                        let eventName = self.event?.name
+                        let host_name = self.event?.eventHostName
+                        var notifsm = NotificationMethods()
+                        try await notificationID = notifsm.createNotification(type: .promote, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "")
+                        print(notificationID)
+                        print("Promote NOTIFICATION CREATED")
+                        selectedUser.notifications.append(notificationID)
+                        try await db.collection("Users").document(userID).updateData(["notifications":selectedUser.notifications ?? []])
+                    }
                 }
                 
                 
@@ -753,6 +766,18 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                     self.attendeeListAsUsers[indexPath.row].leaveEvent(eventID: id ?? "")
                     // TODO ANDREW SEND NOTIFICATION to kicked user
                     self.updateLists()
+                    //PROMOTE NOTIFICATION
+                    Task{
+                        var notificationID = ""
+                        let eventName = self.event?.name
+                        let host_name = self.event?.eventHostName
+                        var notifsm = NotificationMethods()
+                        try await notificationID = notifsm.createNotification(type: .kick, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "")
+                        print(notificationID)
+                        print("Kick NOTIFICATION CREATED")
+                        selectedUser.notifications.append(notificationID)
+                        try await db.collection("Users").document(userID).updateData(["notifications":selectedUser.notifications ?? []])
+                    }
                 }
                 
                 // cancel action

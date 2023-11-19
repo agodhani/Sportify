@@ -32,7 +32,7 @@ struct Notification: Identifiable, Codable, Hashable {
             case .leave:
                 message = "You left \(eventName) on \(self.date)"
             case .promote:
-                message = "You were promoted to Admin by \(name) for \(eventName) on \(self.date)"
+                message = "You were promoted by \(name) for \(eventName) on \(self.date)"
             case .joinedMyEvent:
                 message = "\(name) joined your event: \(eventName) on \(self.date)"
         }
