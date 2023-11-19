@@ -101,7 +101,7 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 7, height: 0))
         field.leftViewMode = .always
         field.backgroundColor = .lightGray
-        field.isSecureTextEntry = true
+        field.isSecureTextEntry = false
         field.tintColor = .black
         return field
     }()

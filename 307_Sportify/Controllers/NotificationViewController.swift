@@ -129,6 +129,7 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
         view.addSubview(notificationsText)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorColor = UIColor.green
         view.addSubview(tableView)
         
         
@@ -137,6 +138,7 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
                                          y: 80, // was 50
                                          width: size,
                                          height: size)
+       // notificationsText.textColor = UIColor(red: 0, green: 100, //blue: 0, alpha: 0)
         
         tableView.frame = CGRect(x: 0,
                                  y: 200, // was 50
