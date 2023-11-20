@@ -79,7 +79,6 @@ class UserProfileViewController: UIViewController {
             vc.userInvitingID = person?.id
             navigationController?.pushViewController(vc, animated: true)
         }
-
     }
     
     
@@ -96,6 +95,7 @@ class UserProfileViewController: UIViewController {
         nameLabel.text = "Name: " + (person?.name ?? "error name")
         
         view.addSubview(inviteButton)
+        inviteButton.addTarget(self, action: #selector(tappedInviteButton), for: .touchUpInside)
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -109,10 +109,8 @@ class UserProfileViewController: UIViewController {
                                        width: 225,
                                        height: 50)
         
-        // TODO edit the positioning on this
-        // coudn't do bc users aren't loading until we change the DB
-        inviteButton.frame = CGRect(x: 0,
-                                    y: 400,
+        inviteButton.frame = CGRect(x: 90,
+                                    y: addFriendButton.bottom + 40,
                                     width: 225,
                                     height: 50)
     }
