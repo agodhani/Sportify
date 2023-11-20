@@ -35,14 +35,22 @@ class InviteToEventViewController: UIViewController, UITableViewDelegate, UITabl
             // the notification will let them join no matter what
             // when clicked, even if the event is private
             
+            
+            
+            
+            
+            // IGNORE this
             // If they're in the requestList, be sure to remove them from requestList
             // to keep the DB clean
-            if (selectedEvent?.requestList.contains(userInvitingID ?? "") ?? false) {
+            /*if (selectedEvent?.requestList.contains(userInvitingID ?? "") ?? false) {
                 let index = selectedEvent?.requestList.firstIndex(of: userInvitingID ?? "")
                 if (index != nil) {
                     selectedEvent?.requestList.remove(at: index ?? 0)
+                    
+                    let db = Firestore.firestore()
+                    db.collection("Users").document(userInvitingID ?? "").updateData(["requestList":selectedEvent?.requestList ?? []])
                 }
-            }
+            }*/
             
             // show a success alert message that the user was invited
             var invitedAlertController = UIAlertController(title: "Invite success!", message: "Successfully invited to the event.", preferredStyle: .alert)

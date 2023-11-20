@@ -14,8 +14,8 @@
             filePath = "307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "tableView(_:numberOfRowsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,8 +46,8 @@
             filePath = "307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -62,8 +62,8 @@
             filePath = "307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -78,322 +78,10 @@
             filePath = "307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
             landmarkName = "viewDidLayoutSubviews()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A2CC2C17-136E-4055-B671-EE2927E8AD67"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "tableView(_:didSelectRowAt:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "A2CC2C17-136E-4055-B671-EE2927E8AD67 - 2d28e8246856af26"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 (__C.UIAlertAction) -&gt; () in _07_Sportify.MyFriendsViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69"
-                  offsetFromSymbolStart = "176">
-               </Location>
-               <Location
-                  uuid = "A2CC2C17-136E-4055-B671-EE2927E8AD67 - f2bf68d3c9496be4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 (__C.UIAlertAction) -&gt; () in _07_Sportify.MyFriendsViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69"
-                  offsetFromSymbolStart = "496">
-               </Location>
-               <Location
-                  uuid = "A2CC2C17-136E-4055-B671-EE2927E8AD67 - 2d28e8246856af26"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 (__C.UIAlertAction) -&gt; () in _07_Sportify.MyFriendsViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69"
-                  offsetFromSymbolStart = "148">
-               </Location>
-               <Location
-                  uuid = "A2CC2C17-136E-4055-B671-EE2927E8AD67 - f2bf68d3c9496be4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 (__C.UIAlertAction) -&gt; () in _07_Sportify.MyFriendsViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69"
-                  offsetFromSymbolStart = "512">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A449C7E5-0463-4D15-B136-A60B20A72138"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "tableView(_:didSelectRowAt:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "A449C7E5-0463-4D15-B136-A60B20A72138 - 2d28e8246856ac1c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 (__C.UIAlertAction) -&gt; () in _07_Sportify.MyFriendsViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "75"
-                  endingLineNumber = "75"
-                  offsetFromSymbolStart = "852">
-               </Location>
-               <Location
-                  uuid = "A449C7E5-0463-4D15-B136-A60B20A72138 - f2bf68d3c94968de"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 (__C.UIAlertAction) -&gt; () in _07_Sportify.MyFriendsViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "75"
-                  endingLineNumber = "75"
-                  offsetFromSymbolStart = "556">
-               </Location>
-               <Location
-                  uuid = "A449C7E5-0463-4D15-B136-A60B20A72138 - 2d28e8246856ac5e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 (__C.UIAlertAction) -&gt; () in _07_Sportify.MyFriendsViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "77"
-                  endingLineNumber = "77"
-                  offsetFromSymbolStart = "960">
-               </Location>
-               <Location
-                  uuid = "A449C7E5-0463-4D15-B136-A60B20A72138 - f2bf68d3c949689c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 (__C.UIAlertAction) -&gt; () in _07_Sportify.MyFriendsViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "77"
-                  endingLineNumber = "77"
-                  offsetFromSymbolStart = "572">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "FB9E928F-8053-4373-8B9B-2B5D813A372A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "tableView(_:didSelectRowAt:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "FB9E928F-8053-4373-8B9B-2B5D813A372A - 2d28e8246856ac5e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 (__C.UIAlertAction) -&gt; () in _07_Sportify.MyFriendsViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "77"
-                  endingLineNumber = "77"
-                  offsetFromSymbolStart = "920">
-               </Location>
-               <Location
-                  uuid = "FB9E928F-8053-4373-8B9B-2B5D813A372A - f2bf68d3c949689c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 (__C.UIAlertAction) -&gt; () in _07_Sportify.MyFriendsViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "77"
-                  endingLineNumber = "77"
-                  offsetFromSymbolStart = "624">
-               </Location>
-               <Location
-                  uuid = "FB9E928F-8053-4373-8B9B-2B5D813A372A - 2d28e8246856ac98"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 (__C.UIAlertAction) -&gt; () in _07_Sportify.MyFriendsViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "79"
-                  endingLineNumber = "79"
-                  offsetFromSymbolStart = "1028">
-               </Location>
-               <Location
-                  uuid = "FB9E928F-8053-4373-8B9B-2B5D813A372A - f2bf68d3c949685a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 (__C.UIAlertAction) -&gt; () in _07_Sportify.MyFriendsViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "79"
-                  endingLineNumber = "79"
-                  offsetFromSymbolStart = "640">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7C95BD90-1EF5-473E-95E8-3D8EB55BAF7F"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "tableView(_:didSelectRowAt:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "7C95BD90-1EF5-473E-95E8-3D8EB55BAF7F - 2d28e8246856ac3d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 (__C.UIAlertAction) -&gt; () in _07_Sportify.MyFriendsViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "76"
-                  endingLineNumber = "76"
-                  offsetFromSymbolStart = "880">
-               </Location>
-               <Location
-                  uuid = "7C95BD90-1EF5-473E-95E8-3D8EB55BAF7F - f2bf68d3c94968ff"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 (__C.UIAlertAction) -&gt; () in _07_Sportify.MyFriendsViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "76"
-                  endingLineNumber = "76"
-                  offsetFromSymbolStart = "584">
-               </Location>
-               <Location
-                  uuid = "7C95BD90-1EF5-473E-95E8-3D8EB55BAF7F - 2d28e8246856ac7f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 (__C.UIAlertAction) -&gt; () in _07_Sportify.MyFriendsViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "78"
-                  endingLineNumber = "78"
-                  offsetFromSymbolStart = "988">
-               </Location>
-               <Location
-                  uuid = "7C95BD90-1EF5-473E-95E8-3D8EB55BAF7F - f2bf68d3c94968bd"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 (__C.UIAlertAction) -&gt; () in _07_Sportify.MyFriendsViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "78"
-                  endingLineNumber = "78"
-                  offsetFromSymbolStart = "600">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -406,8 +94,8 @@
             filePath = "307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -416,16 +104,48 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "31445542-985B-48C9-A0EB-AF9C7E3EEE94"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "31445542-985B-48C9-A0EB-AF9C7E3EEE94 - ade2c583e8bdb851"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_07_Sportify.MyFriendsViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
+                  offsetFromSymbolStart = "296">
+               </Location>
+               <Location
+                  uuid = "31445542-985B-48C9-A0EB-AF9C7E3EEE94 - ade2c583e8bdb830"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_07_Sportify.MyFriendsViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "240">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -438,9 +158,25 @@
             filePath = "307_Sportify/Controllers/Profile/MyFriendsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E3FD0461-F640-4BF4-BC8A-D999C3C6F786"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Controllers/Profile/UserProfileViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

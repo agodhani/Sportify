@@ -37,6 +37,7 @@ class MyFriendsViewController: UIViewController, UITableViewDataSource, UITableV
     var eventm = EventMethods()
     var userm = UserMethods()
     var friendIDs = [String]()
+    var allUsers = AllUsers()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let user = userAuth.currUser
@@ -61,9 +62,30 @@ class MyFriendsViewController: UIViewController, UITableViewDataSource, UITableV
         let currUser = userAuth.currUser
         let selectedUserID = friendIDs[indexPath.row]
         
-        let alertController = UIAlertController(title: "Alert", message: "Choose an action:", preferredStyle: .alert)
+        // Go to Profile when click on User
+        Task {
+            let vc = UserProfileViewController()
+
+            vc.userAuth = self.userAuth
+            
+            let selectedUser = await self.userm.getUser(user_id: selectedUserID)
+            var person: Person
+            if (selectedUser != nil) {
+                person = Person(id: selectedUser.id, name: selectedUser.name, zipCode: selectedUser.zipCode, sportPreferences: Array(selectedUser.sportsPreferences))
+            } else {
+                person = Person(id: "", name: "", zipCode: "", sportPreferences: [0])
+                print("Failure")
+            }
+            
+            vc.person = person
+            navigationController?.pushViewController(vc, animated: true)
+        }
         
-        // give option to invite
+        
+        // OLD
+        //let alertController = UIAlertController(title: "Alert", message: "Choose an action:", preferredStyle: .alert)
+        
+        /*// give option to invite
         let inviteAction = UIAlertAction(title: "Invite to event", style: .default) { _ in
             Task {
                 let vc = InviteToEventViewController()
@@ -87,8 +109,8 @@ class MyFriendsViewController: UIViewController, UITableViewDataSource, UITableV
         }
         
         alertController.addAction(inviteAction)
-        alertController.addAction(removeFriendAction)
-        self.present(alertController, animated: true)
+        alertController.addAction(removeFriendAction)*/
+        //self.navigationController?.pushViewController(alertController, animated: true)
     }
     
     private var myFriendsText: UITextView = {
