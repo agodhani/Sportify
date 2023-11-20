@@ -10,6 +10,19 @@ import SwiftUI
 
 class LogInViewController: UIViewController {
     @State var userAuth = UserAuthentication()
+    
+    // Back button
+    private let backButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Back", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .medium)
+        button.backgroundColor = .black
+        button.setTitleColor(.sportGold, for: .normal)
+        button.layer.cornerRadius = 15
+        button.layer.masksToBounds = true
+        return button
+    }()
+    
     // Logo
     private let logoView: UIImageView = {
         let logoView = UIImageView()
@@ -58,7 +71,7 @@ class LogInViewController: UIViewController {
         button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
         button.backgroundColor = .sportGold
         button.setTitleColor(.black, for: .normal)
-        button.layer.cornerRadius = 15
+        button.layer.cornerRadius = 25
         button.layer.masksToBounds = true
         return button
     }()
@@ -89,11 +102,14 @@ class LogInViewController: UIViewController {
         navigationItem.standardAppearance = appearence
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: self, action: #selector(backButtonTapped))
         
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        
         loginButton.addTarget(self, action: #selector(tappedLogIn), for: .touchUpInside)
         forgotPasswordButton.addTarget(self, action: #selector(tappedForgotPassword), for: .touchUpInside)
         revealButton.addTarget(self, action: #selector(revealButtonTapped), for: .touchUpInside)
         
         //add subviews
+        view.addSubview(backButton)
         view.addSubview(logoView)
         view.addSubview(emailField)
         view.addSubview(passwordField)
@@ -106,6 +122,10 @@ class LogInViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let size = view.width / 1.2
+        backButton.frame = CGRect(x: 15,
+                                  y: 70,
+                                  width: 70,
+                                  height: 30)
         logoView.frame = CGRect(x: (view.width - size) / 2,
                                 y: 100,
                                 width: size,
@@ -133,7 +153,7 @@ class LogInViewController: UIViewController {
     }
     
     @objc private func backButtonTapped() {
-        self.navigationController?.dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     @objc private func revealButtonTapped() {
