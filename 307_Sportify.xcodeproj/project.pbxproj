@@ -79,6 +79,7 @@
 		BA8B74E02AC64FBC00BBE70B /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = BA8B74DF2AC64FBC00BBE70B /* FirebaseStorageCombine-Community */; };
 		BA8B74E32AC671E600BBE70B /* LoginSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B74E22AC671E600BBE70B /* LoginSignUpView.swift */; };
 		BA8B74E62AC684AE00BBE70B /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B74E52AC684AE00BBE70B /* LogInView.swift */; };
+		BA99BC7C2B0BF6260032C2D7 /* NewMessageChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA99BC7B2B0BF6260032C2D7 /* NewMessageChatViewController.swift */; };
 		BAC3C3A52B0186F6006A0813 /* MessageChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC3C3A42B0186F6006A0813 /* MessageChatViewController.swift */; };
 		BACFF7382AEDB902005536C4 /* HomeEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACFF7372AEDB902005536C4 /* HomeEventsViewController.swift */; };
 		BACFF73A2AEE084A005536C4 /* SingleEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACFF7392AEE084A005536C4 /* SingleEventViewController.swift */; };
@@ -146,6 +147,7 @@
 		BA8B74A82AC64EEE00BBE70B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BA8B74E22AC671E600BBE70B /* LoginSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignUpView.swift; sourceTree = "<group>"; };
 		BA8B74E52AC684AE00BBE70B /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
+		BA99BC7B2B0BF6260032C2D7 /* NewMessageChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageChatViewController.swift; sourceTree = "<group>"; };
 		BAC3C3A42B0186F6006A0813 /* MessageChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageChatViewController.swift; sourceTree = "<group>"; };
 		BACFF7372AEDB902005536C4 /* HomeEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEventsViewController.swift; sourceTree = "<group>"; };
 		BACFF7392AEE084A005536C4 /* SingleEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleEventViewController.swift; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 			isa = PBXGroup;
 			children = (
 				BA0714EC2AEC9D2B003BD4C4 /* MessageViewController.swift */,
+				BA99BC7B2B0BF6260032C2D7 /* NewMessageChatViewController.swift */,
 				BAC3C3A42B0186F6006A0813 /* MessageChatViewController.swift */,
 			);
 			path = Messages;
@@ -511,6 +514,7 @@
 				6DADC9B42AD6574500483A86 /* SingleEventView.swift in Sources */,
 				FBD626FC2AD242B5005642A3 /* FriendListView.swift in Sources */,
 				315325962AF0B3F2006867F9 /* MyFriendsViewController.swift in Sources */,
+				BA99BC7C2B0BF6260032C2D7 /* NewMessageChatViewController.swift in Sources */,
 				BA44F8C22AD8FEFD00BB0CE7 /* CreateEvent.swift in Sources */,
 				6DAB93B72AEF11B30006BB47 /* EditEventViewController.swift in Sources */,
 				BA0D67362AD9D26000F77044 /* ViewEventsListView.swift in Sources */,
