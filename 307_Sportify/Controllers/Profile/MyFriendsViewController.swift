@@ -68,7 +68,9 @@ class MyFriendsViewController: UIViewController, UITableViewDataSource, UITableV
             Task {
                 let vc = InviteToEventViewController()
                 var eventsAsEvents = [Event]()
-                for eventid in currUser!.eventsAttending {
+                let eventsAtt = currUser?.eventsAttending ?? []
+                
+                for eventid in eventsAtt {
                     let realEvent = await self.eventm.getEvent(eventID: eventid)
                     eventsAsEvents.append(realEvent)
                 }
@@ -81,7 +83,7 @@ class MyFriendsViewController: UIViewController, UITableViewDataSource, UITableV
         
         // give option to remove friend
         let removeFriendAction = UIAlertAction(title: "Remove friend", style: .destructive) { _ in
-            
+            print("TODO")
         }
         
         alertController.addAction(inviteAction)
@@ -127,8 +129,8 @@ class MyFriendsViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.dataSource = self
         tableView.delegate = self
         
-        view.addSubview(tableView)
         view.addSubview(myFriendsText)
+        view.addSubview(tableView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -145,7 +147,7 @@ class MyFriendsViewController: UIViewController, UITableViewDataSource, UITableV
         myFriendsText.frame = CGRect(x: (view.width - size) / 2,
                                     y: 80, // was 50
                                     width: size,
-                                    height: size)
+                                    height: 55)
         
         tableView.frame = CGRect(x: 0,
                                  y: 200, // was 50
