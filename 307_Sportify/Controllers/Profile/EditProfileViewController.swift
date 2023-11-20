@@ -106,11 +106,11 @@ class EditProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
-        title = "Edit Profile"
-        let appearence = UINavigationBarAppearance()
-        appearence.titleTextAttributes = [.foregroundColor: UIColor.sportGold]
-        navigationItem.standardAppearance = appearence
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: self, action: #selector(backButtonTapped))
+//        title = "Edit Profile"
+//        let appearence = UINavigationBarAppearance()
+//        appearence.titleTextAttributes = [.foregroundColor: UIColor.sportGold]
+//        navigationItem.standardAppearance = appearence
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: self, action: #selector(backButtonTapped))
         
         // Functionality for tapping profile pic and update profile button
         picView.isUserInteractionEnabled = true

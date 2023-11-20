@@ -362,10 +362,10 @@ class ProfileViewController: UIViewController {
     @objc private func editProfileTapped() {
         let vc = EditProfileViewController()
         vc.picView.image = picView.image
-        let nav = UINavigationController(rootViewController: vc)
-        nav.modalPresentationStyle = .fullScreen
-        
-        present(nav, animated: true)
+//        let nav = UINavigationController(rootViewController: vc)
+//        nav.modalPresentationStyle = .fullScreen
+//        present(nav, animated: true)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     // Add friends clicked

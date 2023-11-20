@@ -71,6 +71,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
     var isPrivate = false;
     var attendeeListAsUsers = [User]()
     var requestListAsUsers = [User]()
+    var allUsers = AllUsers()
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -673,8 +674,11 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                 
                 // Go to Profile
                 let profilePageAction = UIAlertAction(title: "Go to Profile Page", style: .default) { _ in
-                    let vc = ProfileViewController()
-                    vc.userAuth.currUser = selectedUser
+                    let vc = UserProfileViewController()
+                    vc.userAuth = self.userAuth
+                    let person = Person(id: selectedUser.id, name: selectedUser.name, zipCode: selectedUser.zipCode, sportPreferences: Array(selectedUser.sportsPreferences))
+                    vc.person = person
+                    
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
                 
@@ -851,9 +855,11 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             if (tableView.tag == 1) {
                 // attendeeList clicked
                 let profilePageAction = UIAlertAction(title: "Go to Profile Page", style: .default) { _ in
-                    let selectedUser = self.attendeeListAsUsers[indexPath.row]
-                    let vc = ProfileViewController()
-                    vc.userAuth.currUser = selectedUser
+                    let vc = UserProfileViewController()
+                    vc.userAuth = self.userAuth
+                    let person = Person(id: selectedUser.id, name: selectedUser.name, zipCode: selectedUser.zipCode, sportPreferences: Array(selectedUser.sportsPreferences))
+                    vc.person = person
+                    
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
                 

@@ -13,6 +13,17 @@ class ForgotPasswordViewController: UIViewController {
     
     @State var userAuth = UserAuthentication()
     
+    private let backButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Back", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .medium)
+        button.backgroundColor = .black
+        button.setTitleColor(.sportGold, for: .normal)
+        button.layer.cornerRadius = 15
+        button.layer.masksToBounds = true
+        return button
+    }()
+    
     // Logo
     private var logoView: UIImageView = {
         let logoView = UIImageView()
@@ -53,7 +64,7 @@ class ForgotPasswordViewController: UIViewController {
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
         button.backgroundColor = .sportGold
         button.setTitleColor(.black, for: .normal)
-        button.layer.cornerRadius = 15
+        button.layer.cornerRadius = 25
         button.layer.masksToBounds = true
         return button
     }()
@@ -62,8 +73,11 @@ class ForgotPasswordViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black
         
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         submitButton.addTarget(self, action: #selector(tappedSubmit), for: .touchUpInside)
+        
         // Add subviews to view
+        view.addSubview(backButton)
         view.addSubview(logoView)
         view.addSubview(statusText)
         view.addSubview(emailField)
@@ -75,6 +89,11 @@ class ForgotPasswordViewController: UIViewController {
         super.viewDidLayoutSubviews()
         let size = view.width / 1.2
         view.frame = view.bounds
+        
+        backButton.frame = CGRect(x: 15,
+                                  y: 70,
+                                  width: 70,
+                                  height: 30)
         
         logoView.frame = CGRect(x: (view.width - size) / 2,
                                 y: 10,
@@ -93,9 +112,13 @@ class ForgotPasswordViewController: UIViewController {
                                   height: 50)
         
         submitButton.frame = CGRect(x: 120,
-                                    y: 415,
+                                    y: emailField.bottom + 50,
                                     width: size / 2,
                                     height: 50)
+    }
+    
+    @objc private func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
     }
     
     @objc private func tappedSubmit() {
