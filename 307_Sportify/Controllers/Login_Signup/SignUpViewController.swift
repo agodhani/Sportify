@@ -25,7 +25,7 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     // Back button
     private let backButton: UIButton = {
         let button = UIButton()
-        button.setTitle("< Back", for: .normal)
+        button.setTitle("Back", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .medium)
         button.backgroundColor = .black
         button.setTitleColor(.sportGold, for: .normal)

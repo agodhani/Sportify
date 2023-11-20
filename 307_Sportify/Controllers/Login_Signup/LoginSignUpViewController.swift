@@ -10,6 +10,7 @@ import SwiftUI
 
 class LoginSignUpViewController: UIViewController {
     @EnvironmentObject var userAuth: UserAuthentication
+
     // Logo
     private let logoView: UIImageView = {
         let logoView = UIImageView()
@@ -80,9 +81,10 @@ class LoginSignUpViewController: UIViewController {
     
     @objc private func tappedLogIn() {
         let vc = LogInViewController()
-        let nav = UINavigationController(rootViewController: vc)
-        nav.modalPresentationStyle = .fullScreen
-        present(nav, animated: true)
+//        let nav = UINavigationController(rootViewController: vc)
+//        nav.modalPresentationStyle = .fullScreen
+//        present(nav, animated: true)
+        navigationController?.pushViewController(vc, animated: true)
     }
 
 }
