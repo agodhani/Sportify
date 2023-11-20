@@ -9,6 +9,25 @@ import Foundation
 import Firebase
 
 class UserMethods: ObservableObject {
+    weak var delegate: UserMethodsDelegate?
+
+    
+    func messageListAsUsers(messageList: [String]) async -> [User] {
+        var userList = [User]()
+        let db = Firestore.firestore()
+        
+        for userID in messageList {
+            var userData = try? await db.collection("Users").document(userID).getDocument()
+            do {
+                var user = try userData!.data(as: User.self)
+                userList.append(user)
+            } catch {
+                print("Error getting attendee as User!")
+            }
+        }
+        self.delegate?.usersDidUpdate()
+        return userList
+    }
     
     func getUser(user_id: User.ID) async -> User {
         do {

@@ -26,9 +26,9 @@ struct MessageViewControllerRepresentable: UIViewControllerRepresentable {
         // Updates the state of the specified view controller with new information from SwiftUI.
     }
 }
-import UIKit
-//cell view criteria
-import UIKit
+protocol UserMethodsDelegate: AnyObject {
+    func usersDidUpdate()
+}
 
 class MessageTableViewCell: UITableViewCell {
     let userImageView: UIImageView = {
@@ -93,17 +93,35 @@ class MessageTableViewCell: UITableViewCell {
 }
 
 //messaging view controller
-class MessageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MessageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UserMethodsDelegate {
     var userAuth: UserAuthentication?
+    var userm = UserMethods()
+    var messageListasUsers: [User]?
     
-    private let logoView: UIImageView = {
-        let logoView = UIImageView()
-        logoView.image = UIImage(named: "SportifyLogoOriginal")
-        logoView.tintColor = .yellow
-        logoView.contentMode = .scaleAspectFit
-        return logoView
+    func usersDidUpdate() {
+            DispatchQueue.main.async {
+                self.table.reloadData()
+            }
+        }
+    
+    private let newMessage: UIButton = {
+        let button = UIButton()
+        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
+        button.setTitleColor(.black, for: .normal)
+        button.layer.cornerRadius = 20
+        button.layer.masksToBounds = true
+        button.titleLabel?.lineBreakMode = .byWordWrapping
+        button.titleLabel?.textAlignment = .center
+        button.setTitle("New Message", for: .normal)
+        button.backgroundColor = .sportGold
+        return button
     }()
     
+    @objc private func tappedNewMessageButton() {
+        let vc = NewMessageChatViewController()
+        vc.userAuth = userAuth
+        navigationController?.pushViewController(vc, animated: true)
+    }
     //table and tableview criteria
     private let table: UITableView = {
         let table = UITableView()
@@ -111,13 +129,15 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
         return table
     }()
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        let user = userAuth?.currUser
+        let messages = user?.messageList ?? []
+        return messages.count
         
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCellIdentifier", for: indexPath) as! MessageTableViewCell
         //cell.textLabel?.text = "Username"//eventz[indexPath.row].name
-        cell.usernameLabel.text = "Username"
+        cell.usernameLabel.text = messageListasUsers?[indexPath.row].name
         cell.messageLabel.text = "message"
         cell.dateLabel.text = "11/10/2023"
         cell.userImageView.image = UIImage(named: "SportifyLogoOriginal")
@@ -127,24 +147,46 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //let selectedEvent = allEvents.events[indexPath.row]
         let vc = MessageChatViewController()
+        vc.chatUser = messageListasUsers?[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        Task{
+            await userAuth?.getCurrUser()
+            let messageList = userAuth?.currUser?.messageList ?? []
+            messageListasUsers = await userm.messageListAsUsers(messageList: messageList)
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
-        view.addSubview(logoView)
+        Task{
+            await userAuth?.getCurrUser()
+            let messageList = userAuth?.currUser?.messageList ?? []
+            messageListasUsers = await userm.messageListAsUsers(messageList: messageList)
+        }
+        view.backgroundColor = .white
         view.addSubview(table)
+        view.addSubview(newMessage)
+        userm.delegate = self
         table.dataSource = self
         table.delegate = self
+        newMessage.addTarget(self, action: #selector(tappedNewMessageButton), for: .touchUpInside)
+        table.reloadData()
+
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        let size = view.width / 1.2
+        //let size = view.width / 1.2
         table.frame = CGRect(x: 0,
-                             y: view.top, // was 50
+                             y: 55, // was 50
                             width: view.width,
                             height: view.height)
+        newMessage.frame = CGRect(x: view.right - 100,
+                                  y: view.top,
+                                       width: 100,
+                                       height: 50)
     }
 }
 

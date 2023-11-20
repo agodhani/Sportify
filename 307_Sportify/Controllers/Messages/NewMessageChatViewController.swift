@@ -22,7 +22,6 @@ struct NewMessageChatViewControllerRepresentable: UIViewControllerRepresentable 
     
     
     func makeUIViewController(context: Context) -> NewMessageChatViewController {
-        allUsers.getUsers()
         let vc = NewMessageChatViewController()
         // Do some configurations here if needed.
         vc.userAuth = userAuth
@@ -36,93 +35,84 @@ struct NewMessageChatViewControllerRepresentable: UIViewControllerRepresentable 
 }
 
 
-class NewMessageChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
-
+class NewMessageChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var userAuth : UserAuthentication?
+    var userm = UserMethods()
+    var friendsListAsUsers = [User].self
+    
     
     private let table: UITableView = {
         let table = UITableView()
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return table
     }()
-    
-    
     //Table information
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var user = userAuth?.currUser
-        var counter = user?.friendList.count ?? 0
-        return counter
+        let user = userAuth?.currUser
+        var ids = user?.friendList ?? []
+        let messageList = user?.messageList ?? []
+        ids = ids.filter({id in
+            !messageList.contains(id)})
+        return ids.count
         
     }
-    //filter table views
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        var user = userAuth?.currUser
-        user?.friendList[indexPath.row]
-        cell.textLabel?.text =
-            cell.textLabel?.text = userz[indexPath.row].name
-            return cell
+        Task {
+            let user = userAuth?.currUser
+            var ids = user?.friendList ?? []
+            let messageList = user?.messageList ?? []
+            ids = ids.filter({id in
+                !messageList.contains(id)})
+            let friend = await userm.getUser(user_id: ids[indexPath.row])
+            cell.textLabel?.text = friend.name
+        }
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (filterLocation || filterSportPreferences) {
-            let selectedUser = allUsers.filteredUsers[indexPath.row]
-            let vc = UserProfileViewController()
-            vc.userAuth = userAuth
-            vc.person = selectedUser
+        let vc = MessageChatViewController()
+        vc.userAuth = userAuth
+        Task {
+            var user = userAuth?.currUser
+            var ids = user?.friendList ?? []
+            let messageList = user?.messageList ?? []
+            ids = ids.filter({id in
+                !messageList.contains(id)})
+            let friend = await userm.getUser(user_id: ids[indexPath.row])
+            vc.chatUser = friend
+            user?.messageList.append(friend.id)
+            var userID = (user?.id)!
+            let db = Firestore.firestore()
+            await userAuth?.getCurrUser()
+            try await db.collection("Users").document(userID).updateData(["messageList": user?.messageList ?? []])
             navigationController?.pushViewController(vc, animated: true)
-        } else {
-            let selectedUser = allUsers.users[indexPath.row]
-            let vc = UserProfileViewController()
-            vc.userAuth = userAuth
-            vc.person = selectedUser
-            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Task {
+            await userAuth?.getCurrUser()
+            table.reloadData()
         }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        allUsers.getUsers()
+        table.reloadData()
+        view.addSubview(table)
         table.dataSource = self
         table.delegate = self
-        allUsers.delegate = self
-        sportPicker.delegate = self
-        sportPicker.dataSource = self
-        sportPicker.selectRow(16, inComponent: 0, animated: false)
-        view.addSubview(locationLabel)
-        view.addSubview(filterLocationSlider)
-        view.addSubview(sportPicker)
-        view.addSubview(table)
-        filterLocationSlider.addTarget(self, action: #selector(switchLocationSliderChanged), for: .valueChanged)
-        
     }
-    func usersDidUpdate() {
-            DispatchQueue.main.async {
-                self.table.reloadData()
-            }
-        }
     
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        let size = view.width / 1.2
-        view.frame = view.bounds
-        view.backgroundColor = .black
-        locationLabel.frame = CGRect(x: 50,
-                                    y: 95,
-                                    width: size,
-                                    height: 50)
-        filterLocationSlider.frame = CGRect(x: 150,
-                                       y: 100,
-                                       width: 1,
-                                       height: 1)
         table.frame = CGRect(x: 0,
-                             y: 240, // was 50
-                             width: view.width,
-                             height: view.height)
-        sportPicker.frame = CGRect(x: 150,
-                                    y: 180,
-                                    width: 150,
-                                    height: 50)
+                                 y: 200, // was 50
+                                 width: view.width,
+                                 height: view.height)
+        
     }
     
 }

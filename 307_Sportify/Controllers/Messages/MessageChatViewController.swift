@@ -9,6 +9,7 @@ import UIKit
 
 class MessageChatViewController: UIViewController {
     var userAuth: UserAuthentication?
+    var chatUser: User?
     
     let usernameLabel: UILabel = {
         let label = UILabel()
@@ -40,7 +41,7 @@ class MessageChatViewController: UIViewController {
         view.backgroundColor = .black
 
         view.addSubview(usernameLabel)
-        usernameLabel.text = "Username"
+        usernameLabel.text = chatUser?.name ?? "Username"
         NSLayoutConstraint.activate([
             usernameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             usernameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16)
