@@ -492,7 +492,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                             let host_name = self?.event?.eventHostName
                             //Create new Join Notification
                             Task {
-                                try await notificationID = notifsm.createNotification(type: .join, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "")
+                                try await notificationID = notifsm.createNotification(type: .join, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "", event_id: self?.event?.id ?? "")
                                 print("NOTIFICATION CREATED")
                             }
                             currUser?.notifications.append(notificationID)
@@ -560,7 +560,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                 let host_name = self.event?.eventHostName
                 //Create new Join Notification
                 Task{
-                    try await notificationID = notifsm.createNotification(type: .join, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "")
+                    try await notificationID = notifsm.createNotification(type: .join, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "", event_id: self.event?.id ?? "")
                     print(notificationID)
                     print("NOTIFICATION CREATED")
                     currUser?.notifications.append(notificationID)
@@ -607,7 +607,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             let eventName = self.event?.name
             let host_name = self.event?.eventHostName
             Task{
-                try await notificationID = notifsm.createNotification(type: .leave, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "")
+                try await notificationID = notifsm.createNotification(type: .leave, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "", event_id: self.event?.id ?? "")
                 print(notificationID)
                 print("Leave NOTIFICATION CREATED")
                 currUser?.notifications.append(notificationID)
@@ -706,7 +706,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                         let eventName = self.event?.name
                         let host_name = self.event?.eventHostName
                         var notifsm = NotificationMethods()
-                        try await notificationID = notifsm.createNotification(type: .promote, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "")
+                        try await notificationID = notifsm.createNotification(type: .promote, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "", event_id: self.event?.id ?? "")
                         print(notificationID)
                         print("Promote NOTIFICATION CREATED")
                         selectedUser.notifications.append(notificationID)
@@ -776,7 +776,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                         let eventName = self.event?.name
                         let host_name = self.event?.eventHostName
                         var notifsm = NotificationMethods()
-                        try await notificationID = notifsm.createNotification(type: .kick, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "")
+                        try await notificationID = notifsm.createNotification(type: .kick, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "", event_id: self.event?.id ?? "")
                         print(notificationID)
                         print("Kick NOTIFICATION CREATED")
                         selectedUser.notifications.append(notificationID)

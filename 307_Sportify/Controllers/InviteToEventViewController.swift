@@ -13,6 +13,7 @@ class InviteToEventViewController: UIViewController, UITableViewDelegate, UITabl
     var userAuth = UserAuthentication()
     var eventsAttending: [Event]?
     var userInvitingID: String?
+    var userm = UserMethods()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return eventsAttending?.count ?? 1
@@ -35,30 +36,32 @@ class InviteToEventViewController: UIViewController, UITableViewDelegate, UITabl
             // the notification will let them join no matter what
             // when clicked, even if the event is private
             
-            
-            
-            
-            
-            // IGNORE this
-            // If they're in the requestList, be sure to remove them from requestList
-            // to keep the DB clean
-            /*if (selectedEvent?.requestList.contains(userInvitingID ?? "") ?? false) {
-                let index = selectedEvent?.requestList.firstIndex(of: userInvitingID ?? "")
-                if (index != nil) {
-                    selectedEvent?.requestList.remove(at: index ?? 0)
-                    
-                    let db = Firestore.firestore()
-                    db.collection("Users").document(userInvitingID ?? "").updateData(["requestList":selectedEvent?.requestList ?? []])
-                }
-            }*/
-            
-            // show a success alert message that the user was invited
-            var invitedAlertController = UIAlertController(title: "Invite success!", message: "Successfully invited to the event.", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            invitedAlertController.addAction(okAction)
-            self.present(invitedAlertController, animated: true, completion: nil)
-            
-            
+            Task {
+                
+                await userAuth.getCurrUser()
+                let currUser = userAuth.currUser
+                let currUserID = currUser?.id
+                
+                let notifsm = NotificationMethods()
+                
+                // create invite notification
+                let notificationID = try await notifsm.createNotification(type: .invite, id: currUserID ?? "", event_name: selectedEvent?.eventName ?? "", host_name: selectedEvent?.eventHostName ?? "", event_id: selectedEvent?.id ?? "")
+                
+                // append notification to user
+                var invitingUser = await userm.getUser(user_id: userInvitingID ?? "")
+                invitingUser.notifications.append(notificationID)
+                
+                // change DB
+                let db = Firestore.firestore()
+                try await db.collection("Users").document(userInvitingID ?? "").updateData(["notifications":invitingUser.notifications])
+                
+                
+                // show a success alert message that the user was invited
+                var invitedAlertController = UIAlertController(title: "Invite success!", message: "Successfully invited to the event.", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                invitedAlertController.addAction(okAction)
+                self.present(invitedAlertController, animated: true, completion: nil)
+            }
         } else {
             
             // show a message if the user is already attending the event

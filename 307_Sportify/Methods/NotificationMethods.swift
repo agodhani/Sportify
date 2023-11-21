@@ -13,15 +13,15 @@ class NotificationMethods: ObservableObject{
     @Published var notif: Notification!
     
     init(){
-        notif = Notification(id: "", date: Date.now, messageType: .join, message: "", notifierID: "")
+        notif = Notification(id: "", date: Date.now, messageType: .join, message: "", notifierID: "", eventID: "")
     }
     
-    func createNotification(type: Notification.message_type, id: String, event_name: String, host_name: String)
+    func createNotification(type: Notification.message_type, id: String, event_name: String, host_name: String, event_id: String)
     async throws -> String {
         do {
             let userAuth = UserAuthentication()
             var user = userAuth.currUser
-            var notification = Notification(id: UUID().uuidString, date: Date.now, messageType: type, message: "", notifierID: id)
+            var notification = Notification(id: UUID().uuidString, date: Date.now, messageType: type, message: "", notifierID: id, eventID: event_id)
             notification.message = notification.setMessage(name: host_name, eventName: event_name)
             let encodedNotification = try Firestore.Encoder().encode(notification)
             try await Firestore.firestore().collection("Notifications").document(notification.id).setData(encodedNotification)
@@ -45,7 +45,7 @@ class NotificationMethods: ObservableObject{
             
         } catch {
             print("Couldn't load Notification \(notificationID)")
-            return Notification(id: "", date: Date(), messageType: .kick, message: "", notifierID: "")
+            return Notification(id: "", date: Date(), messageType: .kick, message: "", notifierID: "", eventID: "")
         }
         
     }

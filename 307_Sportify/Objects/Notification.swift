@@ -14,12 +14,12 @@ struct Notification: Identifiable, Codable, Hashable {
     var id: String
     var date: Date
     enum message_type: String, Codable {
-        case kick, join, leave, promote, joinedMyEvent
+        case kick, join, leave, promote, joinedMyEvent, invite
     }
     var messageType: message_type
     var message: String
     var notifierID: String
-    
+    var eventID: String
     
     
     func setMessage(name: String, eventName: String) -> String {
@@ -35,6 +35,9 @@ struct Notification: Identifiable, Codable, Hashable {
                 message = "You were promoted by \(name) for \(eventName) on \(self.date)"
             case .joinedMyEvent:
                 message = "\(name) joined your event: \(eventName) on \(self.date)"
+            case .invite:
+                message = "You were invited by \(name) to join \(eventName). Click to join!"
+            
         }
         return message
     }
