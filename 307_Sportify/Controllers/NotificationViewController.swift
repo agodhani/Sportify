@@ -9,6 +9,20 @@ import UIKit
 import SwiftUI
 import Firebase
 
+// NotificationCell.swift
+
+/*class NotificationCell: UITableViewCell {
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    // Add other UI elements as needed
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+}*/
+
+
 struct NotificationViewControllerRepresentable: UIViewControllerRepresentable {
     typealias UIViewControllerType = NotificationViewController
     
@@ -43,6 +57,17 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = notifications[indexPath.row].message
+        if notifications[indexPath.row].messageType == .join {
+            cell.contentView.backgroundColor = .systemGreen
+        } else if notifications[indexPath.row].messageType == .leave {
+            cell.contentView.backgroundColor = .systemRed
+        } else if notifications[indexPath.row].messageType == .kick {
+            cell.contentView.backgroundColor = .systemRed
+        } else if notifications[indexPath.row].messageType == .promote {
+            cell.contentView.backgroundColor = .systemGreen
+        }
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.lineBreakMode = .byWordWrapping
         return cell
     }
     
@@ -170,6 +195,7 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
         }
         
         //scrollView.addSubview(logoView)
+       // tableView.register(UINib(nibName: "NotificationCell", bundle: nil), forCellReuseIdentifier: "NotificationCell")
         
     }
     

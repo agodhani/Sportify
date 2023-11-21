@@ -24,17 +24,20 @@ struct Notification: Identifiable, Codable, Hashable {
     
     func setMessage(name: String, eventName: String) -> String {
         var message = ""
+        let format = DateFormatter()
+        format.dateFormat = "MM/dd/yyyy hh:mm a"
+        let formattedDate = format.string(from: self.date)
         switch(messageType) {
             case .kick:
-                message = "You were kicked from \(eventName) by \(name) on \(self.date)"
+                message = "You were kicked from \(eventName) by \(name) on \(formattedDate)"
             case .join:
-                message = "You joined \(eventName) on \(self.date)"
+                message = "You joined \(eventName) on \(formattedDate)"
             case .leave:
-                message = "You left \(eventName) on \(self.date)"
+                message = "You left \(eventName) on \(formattedDate)"
             case .promote:
-                message = "You were promoted by \(name) for \(eventName) on \(self.date)"
+                message = "You were promoted by \(name) for \(eventName) on \(formattedDate)"
             case .joinedMyEvent:
-                message = "\(name) joined your event: \(eventName) on \(self.date)"
+                message = "\(name) joined your event: \(eventName) on \(formattedDate)"
             case .invite:
                 message = "You were invited by \(name) to join \(eventName). Click to join!"
             
