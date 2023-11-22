@@ -34,6 +34,9 @@ class MessageChatViewController: UIViewController {
         button.setTitle("Send", for: .normal)
         return button
     }()
+    @objc private func tappedSendButton() {
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +58,7 @@ class MessageChatViewController: UIViewController {
         ])
 
         view.addSubview(sendButton)
+        sendButton.addTarget(self, action: #selector(tappedSendButton), for: .touchUpInside)
         NSLayoutConstraint.activate([
             sendButton.leadingAnchor.constraint(equalTo: newMessageTextField.trailingAnchor, constant: 8), // Adjust leading constraint
             sendButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),

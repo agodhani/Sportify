@@ -17,12 +17,12 @@ class UserMethods: ObservableObject {
         let db = Firestore.firestore()
         
         for userID in messageList {
-            var userData = try? await db.collection("Users").document(userID).getDocument()
             do {
+                var userData = try? await db.collection("Users").document(userID).getDocument()
                 var user = try userData!.data(as: User.self)
                 userList.append(user)
             } catch {
-                print("Error getting attendee as User!")
+                print("Error getting messageList as User!")
             }
         }
         self.delegate?.usersDidUpdate()

@@ -57,15 +57,15 @@ class UserAuthentication: ObservableObject {
     
     func getCurrUser() async {
         guard let userId = Auth.auth().currentUser?.uid else {return }
-        
-        guard let userInfo = try? await Firestore.firestore().collection("Users").document(userId).getDocument() else {return}
-        do {
-            self.currUser = try userInfo.data(as: User.self)
+            do {
+            let userInfo = try? await Firestore.firestore().collection("Users").document(userId).getDocument()
+            if let user = try userInfo?.data(as: User.self) {
+                self.currUser = user
+                print("Current User is \(self.currUser)")
+            }
         } catch {
           print("User fetching data failed")
         }
-        
-        print("Current User is \(self.currUser)")
     }
     
     func signOut() {
