@@ -147,6 +147,7 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //let selectedEvent = allEvents.events[indexPath.row]
         let vc = MessageChatViewController()
+        vc.userAuth = userAuth
         vc.chatUser = messageListasUsers?[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -162,7 +163,6 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         Task{
-            await userAuth?.getCurrUser()
             let messageList = userAuth?.currUser?.messageList ?? []
             messageListasUsers = await userm.messageListAsUsers(messageList: messageList)
         }
