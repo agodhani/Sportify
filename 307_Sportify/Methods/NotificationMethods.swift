@@ -11,6 +11,7 @@ import FirebaseFirestoreSwift
 
 class NotificationMethods: ObservableObject{
     @Published var notif: Notification!
+    weak var delegate: NotificationsDelegate?
     
     init(){
         notif = Notification(id: "", date: Date.now, messageType: .join, message: "", notifierID: "", eventID: "")
@@ -26,6 +27,7 @@ class NotificationMethods: ObservableObject{
             let encodedNotification = try Firestore.Encoder().encode(notification)
             try await Firestore.firestore().collection("Notifications").document(notification.id).setData(encodedNotification)
             print("CHECK FIREBASE TO SEE IF NOTIFICATION WAS CREATED")
+            self.delegate?.notificationsDidUpdate()
             return notification.id
             
         } catch {
@@ -41,6 +43,7 @@ class NotificationMethods: ObservableObject{
             let notificationDocument = try await Firestore.firestore().collection("Notifications").document(notificationID).getDocument()
             let notificationData = try notificationDocument.data(as: Notification.self)
             print ("Notification retrieval successfully")
+            self.delegate?.notificationsDidUpdate()
             return notificationData
             
         } catch {

@@ -37,7 +37,11 @@ struct NotificationViewControllerRepresentable: UIViewControllerRepresentable {
     }
 }
 
-class NotificationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+protocol NotificationsDelegate: AnyObject {
+    func notificationsDidUpdate()
+}
+
+class NotificationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NotificationsDelegate {
     
     @State var userAuth = UserAuthentication()
     @State var userm = UserMethods()
@@ -47,9 +51,13 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
     var notificationIDs = [String]() // IDs of Notifs
     var notifications = [Notification]() // Notifications objects
     
-    
+    func notificationsDidUpdate() {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return notificationIDs.count
+        return notifications.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -189,6 +197,7 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
             // turn all the notifcation IDs from the user into notifcation objects
             for noID in notificationIDs {
                 await notifications.append(notifcationM.getNotification(notificationID: noID))
+                self.tableView.reloadData()
             }
             
             self.tableView.reloadData()
@@ -201,9 +210,7 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        tableView.reloadData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -216,6 +223,7 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorColor = UIColor.green
+        notifcationM.delegate = self
         view.addSubview(tableView)
         
         
