@@ -20,33 +20,65 @@ class FromUserCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .white
         label.textAlignment = .right
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
+    let bubbleView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .sportyGold
+        view.layer.cornerRadius = 8
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
-        contentView.backgroundColor = .systemBlue
-
-        contentView.addSubview(messageLabel)
+        
+        contentView.backgroundColor = .black
+        contentView.addSubview(bubbleView)
+        bubbleView.addSubview(messageLabel)
 
         NSLayoutConstraint.activate([
-            messageLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            messageLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            messageLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
-            messageLabel.leadingAnchor.constraint(greaterThanOrEqualTo: contentView.leadingAnchor, constant: 16)
+            bubbleView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            bubbleView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            bubbleView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            bubbleView.leadingAnchor.constraint(greaterThanOrEqualTo: contentView.leadingAnchor, constant: 16),
+
+            messageLabel.topAnchor.constraint(greaterThanOrEqualTo: bubbleView.topAnchor, constant: 8),
+            messageLabel.trailingAnchor.constraint(equalTo: bubbleView.trailingAnchor, constant: -8),
+            messageLabel.bottomAnchor.constraint(lessThanOrEqualTo: bubbleView.bottomAnchor, constant: -8),
+            messageLabel.leadingAnchor.constraint(equalTo: bubbleView.leadingAnchor, constant: 8),
+            messageLabel.centerYAnchor.constraint(equalTo: bubbleView.centerYAnchor) // Center the label vertically
         ])
+
+        // Content hugging and compression resistance priorities
+        messageLabel.setContentHuggingPriority(.required, for: .vertical)
+        messageLabel.setContentCompressionResistancePriority(.required, for: .vertical)
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // Ensure that the cell can grow vertically to accommodate multiline text
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        contentView.invalidateIntrinsicContentSize()
+    }
+
+    override var intrinsicContentSize: CGSize {
+        let size = contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+        return CGSize(width: UIView.noIntrinsicMetric, height: size.height)
+    }
+    
     func configure(with text: String) {
         messageLabel.text = text
     }
 }
+
+
 
 class ToUserCell: UITableViewCell {
     static let reuseIdentifier = "ToUser"
@@ -55,33 +87,64 @@ class ToUserCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .black
         label.textAlignment = .left
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+
+    let bubbleView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray2
+        view.layer.cornerRadius = 8
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        contentView.backgroundColor = .systemGray2
-
-        contentView.addSubview(messageLabel)
+        contentView.backgroundColor = .black
+        contentView.addSubview(bubbleView)
+        bubbleView.addSubview(messageLabel)
 
         NSLayoutConstraint.activate([
-            messageLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            messageLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            messageLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
-            messageLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -16)
+            bubbleView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            bubbleView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            bubbleView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            bubbleView.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -16),
+
+            messageLabel.topAnchor.constraint(greaterThanOrEqualTo: bubbleView.topAnchor, constant: 8),
+            messageLabel.leadingAnchor.constraint(equalTo: bubbleView.leadingAnchor, constant: 8),
+            messageLabel.bottomAnchor.constraint(lessThanOrEqualTo: bubbleView.bottomAnchor, constant: -8),
+            messageLabel.trailingAnchor.constraint(equalTo: bubbleView.trailingAnchor, constant: -8),
+            messageLabel.centerYAnchor.constraint(equalTo: bubbleView.centerYAnchor) // Center the label vertically
         ])
+
+        // Content hugging and compression resistance priorities
+        messageLabel.setContentHuggingPriority(.required, for: .vertical)
+        messageLabel.setContentCompressionResistancePriority(.required, for: .vertical)
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // Ensure that the cell can grow vertically to accommodate multiline text
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        contentView.invalidateIntrinsicContentSize()
+    }
+
+    override var intrinsicContentSize: CGSize {
+        let size = contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+        return CGSize(width: UIView.noIntrinsicMetric, height: size.height)
+    }
+    
     func configure(with text: String) {
         messageLabel.text = text
     }
 }
+
 
 
 class MessageChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -116,7 +179,7 @@ class MessageChatViewController: UIViewController, UITableViewDelegate, UITableV
     private func fetchMessages() {
         let fromId = userAuth?.currUser?.id ?? ""
         let toId = chatUser?.id ?? ""
-        db.collection("Messages").document(fromId).collection(toId)
+        db.collection("Messages").document(fromId).collection(toId).order(by: "date")
             .addSnapshotListener{querySnapshot, error in
                 if let error = error {
                     print("Failed to fetch messags")
