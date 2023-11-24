@@ -77,15 +77,19 @@ class NewMessageChatViewController: UIViewController, UITableViewDataSource, UIT
             var user = userAuth?.currUser
             var ids = user?.friendList ?? []
             let messageList = user?.messageList ?? []
+            let db = Firestore.firestore()
             ids = ids.filter({id in
                 !messageList.contains(id)})
-            let friend = await userm.getUser(user_id: ids[indexPath.row])
-            vc.chatUser = friend
+            var friend = await userm.getUser(user_id: ids[indexPath.row])
             user?.messageList.append(friend.id)
             var userID = (user?.id)!
-            let db = Firestore.firestore()
+            if(!friend.messageList.contains(userID)) {
+                friend.messageList.append(userID)
+                try await db.collection("Users").document(friend.id).updateData(["messageList": friend.messageList])
+            }
             await userAuth?.getCurrUser()
             try await db.collection("Users").document(userID).updateData(["messageList": user?.messageList ?? []])
+            vc.chatUser = friend
             navigationController?.pushViewController(vc, animated: true)
         }
     }
