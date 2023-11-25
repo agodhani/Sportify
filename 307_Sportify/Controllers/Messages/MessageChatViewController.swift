@@ -203,6 +203,8 @@ class MessageChatViewController: UIViewController, UITableViewDelegate, UITableV
                         let messageInfo = MessageInfo(fromId: fromId, toId: toId, text: text, date: date)
                         self.messages.append(messageInfo)
                         self.table.reloadData()
+                        let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+                        self.table.scrollToRow(at: indexPath, at: .bottom, animated: true)
                     }
                 })
                 
@@ -226,7 +228,8 @@ class MessageChatViewController: UIViewController, UITableViewDelegate, UITableV
         let senderDocument = db.collection("Messages").document(toId).collection(fromId).document()
         let recieverDocument = db.collection("Messages").document(fromId).collection(toId).document()
         let textInfo = ["fromId": fromId, "toId": toId, "message": self.chatField.text, "date": Date.now] as [String : Any]
-        
+        let indexPath = IndexPath(row: messages.count - 1, section: 0)
+        table.scrollToRow(at: indexPath, at: .bottom, animated: true)
         senderDocument.setData(textInfo) { error in
             if let error = error {
                 print("Sender message failed to save in Firestore")
@@ -270,7 +273,7 @@ class MessageChatViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchMessages()
-
+        
         view.backgroundColor = .black
         view.addSubview(table)
         table.delegate = self
