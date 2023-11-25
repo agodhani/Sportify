@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import Firebase
 
 struct MessageViewControllerRepresentable: UIViewControllerRepresentable {
     typealias UIViewControllerType = MessageViewController
@@ -60,13 +61,16 @@ class MessageTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
+        
+        contentView.backgroundColor = .black
         addSubview(userImageView)
         addSubview(usernameLabel)
         addSubview(messageLabel)
         addSubview(dateLabel)
         usernameLabel.textColor = .sportGold
-        messageLabel.textColor = .gray
+        messageLabel.textColor = .systemGray2
+        dateLabel.textColor = .systemGray2
+        
 
         NSLayoutConstraint.activate([
                     userImageView.topAnchor.constraint(equalTo: topAnchor, constant: -8),
@@ -97,7 +101,7 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
     var userAuth: UserAuthentication?
     var userm = UserMethods()
     var messageListasUsers: [User]?
-    
+    var lastMessages = [MessageInfo]()
     func usersDidUpdate() {
             DispatchQueue.main.async {
                 self.table.reloadData()
@@ -137,9 +141,21 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCellIdentifier", for: indexPath) as! MessageTableViewCell
         //cell.textLabel?.text = "Username"//eventz[indexPath.row].name
+        if(messageListasUsers != nil && lastMessages.count != 0 && lastMessages.count == userAuth?.currUser?.messageList.count) {
+            let combined = zip(lastMessages, messageListasUsers ?? [])
+            let sortedCombined = combined.sorted { $0.0.date > $1.0.date }
+            lastMessages = sortedCombined.map { $0.0 }
+            messageListasUsers = sortedCombined.map { $0.1 }
+            lastMessages = lastMessages.sorted(by: { $0.date > $1.date })
+        }
         cell.usernameLabel.text = messageListasUsers?[indexPath.row].name
-        cell.messageLabel.text = "message"
-        cell.dateLabel.text = "11/10/2023"
+        if((lastMessages.count == messageListasUsers?.count ?? -1) ) {
+            cell.messageLabel.text = lastMessages[indexPath.row].text
+            cell.dateLabel.text = lastMessages[indexPath.row].date.formatted()
+        } else {
+            cell.messageLabel.text = "error message loading"
+            cell.dateLabel.text = "date"
+        }
         cell.userImageView.image = UIImage(named: "SportifyLogoOriginal")
         return cell
     }
@@ -154,9 +170,47 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         Task{
+            lastMessages.removeAll()
             await userAuth?.getCurrUser()
             let messageList = userAuth?.currUser?.messageList ?? []
             messageListasUsers = await userm.messageListAsUsers(messageList: messageList)
+            let db = Firestore.firestore()
+            let userID = userAuth?.currUser?.id ?? ""
+            for messageID in messageList {
+                db.collection("Messages").document(userID).collection(messageID).order(by: "date", descending: true).limit(to: 1)
+                    .addSnapshotListener{querySnapshot, error in
+                        if let error = error {
+                            print("Failed to fetch messags")
+                            print(error.localizedDescription)
+                            return
+                        }
+                        
+                        querySnapshot?.documents.forEach({ queryDocumentSnapshot in
+                            let data = queryDocumentSnapshot.data()
+                            let fromId = data["fromId"] as! String
+                            let toId = data["toId"] as! String
+                            let text = data["message"] as! String
+                            let date: Date
+                            if let timestamp = data["date"] as? Timestamp {
+                                date = timestamp.dateValue()
+                            } else if let dateValue = data["date"] as? Date {
+                                date = dateValue
+                            } else {
+                                date = Date()
+                            }
+                            let messageInfo = MessageInfo(fromId: fromId, toId: toId, text: text, date: date)
+                            if(messageList.contains(fromId) && self.lastMessages.count == messageList.count) {
+                                let index = messageList.firstIndex(of: fromId)
+                                self.lastMessages[index ?? 0] = messageInfo
+                            } else {
+                                self.lastMessages.append(messageInfo)
+                            }
+                            self.table.reloadData()
+                        })
+                        self.table.reloadData()
+
+                    }
+            }
         }
     }
     
@@ -166,7 +220,8 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
             let messageList = userAuth?.currUser?.messageList ?? []
             messageListasUsers = await userm.messageListAsUsers(messageList: messageList)
         }
-        view.backgroundColor = .white
+        view.backgroundColor = .black
+        table.backgroundColor = .black
         view.addSubview(table)
         view.addSubview(newMessage)
         userm.delegate = self
