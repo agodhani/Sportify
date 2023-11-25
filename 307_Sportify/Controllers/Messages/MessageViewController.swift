@@ -200,8 +200,10 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
                             }
                             let messageInfo = MessageInfo(fromId: fromId, toId: toId, text: text, date: date)
                             if(messageList.contains(fromId) && self.lastMessages.count == messageList.count) {
-                                let index = messageList.firstIndex(of: fromId)
-                                self.lastMessages[index ?? 0] = messageInfo
+                                let indexs = self.messageListasUsers?.firstIndex(where: { User in
+                                    User.id == fromId
+                                })
+                                self.lastMessages[indexs ?? 0] = messageInfo
                             } else {
                                 self.lastMessages.append(messageInfo)
                             }
