@@ -400,7 +400,12 @@ class ProfileViewController: UIViewController {
     
     // Sign out clicked
     @objc private func signOutTapped() {
-        
+        userAuth.signOut()
+        let vc = LoginSignUpViewController()
+        self.present(vc, animated: true, completion: nil)
+        vc.navigationItem.hidesBackButton = true
+        navigationController?.pushViewController(vc, animated: true)
+
     }
 }
 
