@@ -205,6 +205,7 @@ class MessageChatViewController: UIViewController, UITableViewDelegate, UITableV
                         self.table.reloadData()
                         let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
                         self.table.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                        //add notification for each added message here
                     }
                 })
                 

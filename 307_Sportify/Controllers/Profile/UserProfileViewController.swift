@@ -37,6 +37,18 @@ class UserProfileViewController: UIViewController {
         return button
     }()
     
+    // add friend button
+    private let blockUserButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Block User", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
+        button.backgroundColor = .sportGold
+        button.setTitleColor(.black, for: .normal)
+        button.layer.cornerRadius = 15
+        button.layer.masksToBounds = true
+        return button
+    }()
+    
     @objc private func tappedAddFriend() {
         var user = userAuth?.currUser
         user?.addFriend(userID: person?.id ?? "Error")
@@ -45,6 +57,26 @@ class UserProfileViewController: UIViewController {
         db.collection("Users").document(userid!)
             .updateData(["friendList": user?.friendList])
         print("FRIEND ADDED")
+        Task {
+            await userAuth?.getCurrUser()
+        }
+    }
+    
+    @objc private func tappedBlockUser() {
+        var user = userAuth?.currUser
+        let userid = user?.id
+        if(user?.blockList.contains(person?.id ?? "") ?? false) {
+            let index = user?.blockList.firstIndex(of: person?.id ?? "") ?? 0
+            user?.blockList.remove(at: index)
+            blockUserButton.setTitle("Block User", for: .normal)
+        } else {
+            user?.blockList.append(person?.id ?? "")
+            blockUserButton.setTitle("Unblock User", for: .normal)
+
+        }
+        let db = Firestore.firestore()
+        db.collection("Users").document(userid!)
+            .updateData(["blockList": user?.blockList])
         Task {
             await userAuth?.getCurrUser()
         }
@@ -86,11 +118,19 @@ class UserProfileViewController: UIViewController {
         let user = userAuth?.currUser
         super.viewDidLoad()
         view.backgroundColor = .black
+        if(user?.blockList.contains(person?.id ?? "") ?? false) {
+            blockUserButton.setTitle("Unblock User", for: .normal)
+        } else {
+            blockUserButton.setTitle("Block User", for: .normal)
+
+        }
+        view.addSubview(blockUserButton)
         view.addSubview(nameLabel)
         if(!((user?.friendList.contains((person?.id ?? "")))!) && user?.id != person?.id) {
             view.addSubview(addFriendButton)
         }
         addFriendButton.addTarget(self, action: #selector(tappedAddFriend), for: .touchUpInside)
+        blockUserButton.addTarget(self, action: #selector(tappedBlockUser), for: .touchUpInside)
 
         nameLabel.text = "Name: " + (person?.name ?? "error name")
         
@@ -111,6 +151,10 @@ class UserProfileViewController: UIViewController {
         
         inviteButton.frame = CGRect(x: 90,
                                     y: addFriendButton.bottom + 40,
+                                    width: 225,
+                                    height: 50)
+        blockUserButton.frame = CGRect(x: 90,
+                                    y: inviteButton.bottom + 40,
                                     width: 225,
                                     height: 50)
     }

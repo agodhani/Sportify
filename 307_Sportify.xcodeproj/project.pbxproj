@@ -80,6 +80,7 @@
 		BA8B74E02AC64FBC00BBE70B /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = BA8B74DF2AC64FBC00BBE70B /* FirebaseStorageCombine-Community */; };
 		BA8B74E32AC671E600BBE70B /* LoginSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B74E22AC671E600BBE70B /* LoginSignUpView.swift */; };
 		BA8B74E62AC684AE00BBE70B /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B74E52AC684AE00BBE70B /* LogInView.swift */; };
+		BA8D9B562B12BFE20061A0C9 /* BlockedUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8D9B552B12BFE20061A0C9 /* BlockedUsersViewController.swift */; };
 		BA99BC7C2B0BF6260032C2D7 /* NewMessageChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA99BC7B2B0BF6260032C2D7 /* NewMessageChatViewController.swift */; };
 		BAC3C3A52B0186F6006A0813 /* MessageChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC3C3A42B0186F6006A0813 /* MessageChatViewController.swift */; };
 		BACFF7382AEDB902005536C4 /* HomeEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACFF7372AEDB902005536C4 /* HomeEventsViewController.swift */; };
@@ -149,6 +150,7 @@
 		BA8B74A82AC64EEE00BBE70B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BA8B74E22AC671E600BBE70B /* LoginSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignUpView.swift; sourceTree = "<group>"; };
 		BA8B74E52AC684AE00BBE70B /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
+		BA8D9B552B12BFE20061A0C9 /* BlockedUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedUsersViewController.swift; sourceTree = "<group>"; };
 		BA99BC7B2B0BF6260032C2D7 /* NewMessageChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageChatViewController.swift; sourceTree = "<group>"; };
 		BAC3C3A42B0186F6006A0813 /* MessageChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageChatViewController.swift; sourceTree = "<group>"; };
 		BACFF7372AEDB902005536C4 /* HomeEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEventsViewController.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				3180B1142AEB0B0F009A45D0 /* ProfileViewController.swift */,
+				BA8D9B552B12BFE20061A0C9 /* BlockedUsersViewController.swift */,
 				315325952AF0B3F2006867F9 /* MyFriendsViewController.swift */,
 				319514AB2AED7B0E00BCE814 /* EditProfileViewController.swift */,
 				6DAB93B62AEF11B30006BB47 /* EditEventViewController.swift */,
@@ -560,6 +563,7 @@
 				FB742E152AD9425600BF6094 /* MyFriends.swift in Sources */,
 				FBCC059C2B051ED200A736A0 /* Notification.swift in Sources */,
 				FB69A3762AE5CCE20090667C /* SuggestionView.swift in Sources */,
+				BA8D9B562B12BFE20061A0C9 /* BlockedUsersViewController.swift in Sources */,
 				310A6C422AE45A720089E1A5 /* SignUpViewController.swift in Sources */,
 				31E86E992AF209A1000E0CA7 /* StorageManager.swift in Sources */,
 				FBCC059E2B056E9B00A736A0 /* NotificationMethods.swift in Sources */,

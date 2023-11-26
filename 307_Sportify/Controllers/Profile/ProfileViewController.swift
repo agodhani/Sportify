@@ -142,7 +142,7 @@ class ProfileViewController: UIViewController {
     // Add friends button
     private let addFriendsButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Add Friends", for: .normal)
+        button.setTitle("Other Users", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
         button.backgroundColor = .sportGold
         button.setTitleColor(.black, for: .normal)
@@ -154,7 +154,7 @@ class ProfileViewController: UIViewController {
     // Block users button
     private let blockUsersButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Block Users", for: .normal)
+        button.setTitle("Blocked Users", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
         button.backgroundColor = .sportGold
         button.setTitleColor(.black, for: .normal)
@@ -166,7 +166,7 @@ class ProfileViewController: UIViewController {
     // My friends button
     private let myFriendsButton: UIButton = {
         let button = UIButton()
-        button.setTitle("My friends", for: .normal)
+        button.setTitle("My Friends", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
         button.backgroundColor = .sportGold
         button.setTitleColor(.black, for: .normal)
@@ -387,6 +387,9 @@ class ProfileViewController: UIViewController {
     
     // Block users clicked
     @objc private func blockUsersTapped() {
+        let vc = BlockedUsersViewController()
+        vc.userAuth = userAuth
+        navigationController?.pushViewController(vc, animated: true)
         
     }
     
