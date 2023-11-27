@@ -363,6 +363,22 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         })
     }
     
+    // Back button
+    private let backButton: UIButton = {
+        let backButton = UIButton(type: .system)
+        backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+               backButton.setTitle("Back", for: .normal)
+               backButton.titleLabel?.font = UIFont.systemFont(ofSize: 17.0)
+               backButton.sizeToFit()
+        return backButton
+    }()
+    
+    @objc func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
+        //        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        //backButton.frame = CGRect(x: 10, y: 60, width: 70, height: 30)
+
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.backgroundColor = .black
@@ -381,6 +397,7 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         
         // Add subviews to view
         view.addSubview(scrollView)
+        scrollView.addSubview(backButton)
         scrollView.addSubview(editEventText)
         scrollView.addSubview(picView)
         scrollView.addSubview(editPicPrompt)
@@ -415,6 +432,7 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         saveButton.addTarget(self, action: #selector(buttonTouchDown), for: .touchDown) // When clicked or touched down
         saveButton.addTarget(self, action: #selector(buttonTouchUp), for: .touchUpInside) // When clicked or touched up inside
         saveButton.addTarget(self, action: #selector(buttonTouchUp), for: .touchUpOutside) // When clicked or touched up outside
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         scrollView.addSubview(saveButton)
         
         scrollView.addSubview(datePicker)
@@ -437,7 +455,7 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         super.viewDidLayoutSubviews()
         scrollView.frame = view.bounds
         let size = view.width / 1.2
-        
+        backButton.frame = CGRect(x: 10, y: 60, width: 70, height: 30)
         editEventText.frame = CGRect(x: (view.width - size) / 2,
                                     y: 75,
                                     width: size,

@@ -56,7 +56,8 @@ class BlockedUsersViewController: UIViewController, UITableViewDataSource, UITab
         table.delegate = self
         userm.delegate = self
         view.addSubview(table)
-        
+        view.addSubview(backButton)
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
     }
     func usersDidUpdate() {
             DispatchQueue.main.async {
@@ -74,6 +75,20 @@ class BlockedUsersViewController: UIViewController, UITableViewDataSource, UITab
                              y: 240, // was 50
                              width: view.width,
                              height: view.height)
+        backButton.frame = CGRect(x: 10, y: 60, width: 70, height: 30)
+    }
+    // Back button
+    private let backButton: UIButton = {
+        let backButton = UIButton(type: .system)
+        backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+               backButton.setTitle("Back", for: .normal)
+               backButton.titleLabel?.font = UIFont.systemFont(ofSize: 17.0)
+               backButton.sizeToFit()
+        return backButton
+    }()
+    
+    @objc func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
     }
     
 }

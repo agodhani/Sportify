@@ -381,7 +381,6 @@ class ProfileViewController: UIViewController {
         let vc = MyFriendsViewController()
         //let nav = UINavigationController(rootViewController: vc)
         //nav.modalPresentationStyle = .fullScreen
-        
         navigationController?.pushViewController(vc, animated: true)
     }
     

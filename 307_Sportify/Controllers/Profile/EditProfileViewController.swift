@@ -103,6 +103,23 @@ class EditProfileViewController: UIViewController {
         return button
     }()
     
+    // Back button
+    private let backButton: UIButton = {
+        let backButton = UIButton(type: .system)
+        backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+               backButton.setTitle("Back", for: .normal)
+               backButton.titleLabel?.font = UIFont.systemFont(ofSize: 17.0)
+               backButton.sizeToFit()
+        return backButton
+    }()
+    
+    @objc func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
+        //        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        //backButton.frame = CGRect(x: 10, y: 60, width: 70, height: 30)
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
@@ -126,6 +143,8 @@ class EditProfileViewController: UIViewController {
         view.addSubview(emailField)
         view.addSubview(zipcodeField)
         view.addSubview(updateProfileButton)
+        view.addSubview(backButton)
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
     }
     
     // Organize view
@@ -133,6 +152,7 @@ class EditProfileViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         let size = view.width / 1.3
+        backButton.frame = CGRect(x: 10, y: 60, width: 70, height: 30)
         picView.frame = CGRect(x: 120,
                                      y: 100,
                                      width: view.width/2.5,
@@ -160,9 +180,6 @@ class EditProfileViewController: UIViewController {
                                         height: 50)
     }
     
-    @objc private func backButtonTapped() {
-        self.navigationController?.dismiss(animated: true)
-    }
     
     @objc func profilePicTapped() {
         presentPhotoPicker()

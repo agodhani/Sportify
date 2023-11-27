@@ -150,7 +150,8 @@ class MyFriendsViewController: UIViewController, UITableViewDataSource, UITableV
         
         tableView.dataSource = self
         tableView.delegate = self
-        
+        view.addSubview(backButton)
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         view.addSubview(myFriendsText)
         view.addSubview(tableView)
     }
@@ -175,10 +176,26 @@ class MyFriendsViewController: UIViewController, UITableViewDataSource, UITableV
                                  y: 200, // was 50
                                  width: view.width,
                                  height: view.height)
+        backButton.frame = CGRect(x: 10,
+                                  y: 60,
+                                  width: 70,
+                                  height: 30)
     }
+    // Back button
+    private let backButton: UIButton = {
+        let backButton = UIButton(type: .system)
+        backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+               backButton.setTitle("Back", for: .normal)
+               backButton.titleLabel?.font = UIFont.systemFont(ofSize: 17.0)
+               backButton.sizeToFit()
+        return backButton
+    }()
     
     @objc func backButtonTapped() {
-        self.navigationController?.dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
+        //        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        //backButton.frame = CGRect(x: 10, y: 60, width: 70, height: 30)
+
     }
     
 }

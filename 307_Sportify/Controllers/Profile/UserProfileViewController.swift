@@ -112,7 +112,22 @@ class UserProfileViewController: UIViewController {
             navigationController?.pushViewController(vc, animated: true)
         }
     }
+    // Back button
+    private let backButton: UIButton = {
+        let backButton = UIButton(type: .system)
+        backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+               backButton.setTitle("Back", for: .normal)
+               backButton.titleLabel?.font = UIFont.systemFont(ofSize: 17.0)
+               backButton.sizeToFit()
+        return backButton
+    }()
     
+    @objc func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
+        //        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        //backButton.frame = CGRect(x: 10, y: 60, width: 70, height: 30)
+
+    }
     
     override func viewDidLoad() {
         let user = userAuth?.currUser
@@ -126,6 +141,8 @@ class UserProfileViewController: UIViewController {
         }
         view.addSubview(blockUserButton)
         view.addSubview(nameLabel)
+        view.addSubview(backButton)
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         if(!((user?.friendList.contains((person?.id ?? "")))!) && user?.id != person?.id) {
             view.addSubview(addFriendButton)
         }
@@ -157,6 +174,7 @@ class UserProfileViewController: UIViewController {
                                     y: inviteButton.bottom + 40,
                                     width: 225,
                                     height: 50)
+        backButton.frame = CGRect(x: 10, y: 60, width: 70, height: 30)
     }
 }
 

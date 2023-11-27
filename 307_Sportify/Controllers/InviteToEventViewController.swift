@@ -103,6 +103,8 @@ class InviteToEventViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.delegate = self
         tableView.dataSource = self
         view.addSubview(tableView)
+        view.addSubview(backButton)
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -118,7 +120,7 @@ class InviteToEventViewController: UIViewController, UITableViewDelegate, UITabl
         let size = view.width / 1.2
         view.frame = view.bounds
         tableView.reloadData()
-        
+        backButton.frame = CGRect(x: 10, y: 60, width: 70, height: 30)
         inviteText.frame = CGRect(x: (view.width - size) / 2,
                                   y: 80, // was 50
                                   width: size,
@@ -128,6 +130,22 @@ class InviteToEventViewController: UIViewController, UITableViewDelegate, UITabl
                                  y: 200, // was 50
                                  width: view.width,
                                  height: view.height)
+    }
+    // Back button
+    private let backButton: UIButton = {
+        let backButton = UIButton(type: .system)
+        backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+               backButton.setTitle("Back", for: .normal)
+               backButton.titleLabel?.font = UIFont.systemFont(ofSize: 17.0)
+               backButton.sizeToFit()
+        return backButton
+    }()
+    
+    @objc func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
+        //        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        //backButton.frame = CGRect(x: 10, y: 60, width: 70, height: 30)
+
     }
 }
 

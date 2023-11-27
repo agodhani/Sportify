@@ -363,15 +363,33 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
         
         randomButton.addTarget(self, action: #selector(randomButtonTapped), for: .touchUpInside)
         scrollView.addSubview(randomButton)
+        scrollView.addSubview(backButton)
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         
     }
     
+    // Back button
+    private let backButton: UIButton = {
+        let backButton = UIButton(type: .system)
+        backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+               backButton.setTitle("Back", for: .normal)
+               backButton.titleLabel?.font = UIFont.systemFont(ofSize: 17.0)
+               backButton.sizeToFit()
+        return backButton
+    }()
+    
+    @objc func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
+        //        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        //backButton.frame = CGRect(x: 10, y: 60, width: 70, height: 30)
+
+    }
     // Organize view
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         scrollView.frame = view.bounds
         let size = view.width / 1.2
-        
+        backButton.frame = CGRect(x: 10, y: 60, width: 70, height: 30)
         newEventText.frame = CGRect(x: (view.width - size) / 2,
                                     y: 75,
                                     width: size,

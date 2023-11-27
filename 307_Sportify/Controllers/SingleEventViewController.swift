@@ -275,10 +275,25 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             }
         })
     }
+    // Back button
+    private let backButton: UIButton = {
+        let backButton = UIButton(type: .system)
+        backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+               backButton.setTitle("Back", for: .normal)
+               backButton.titleLabel?.font = UIFont.systemFont(ofSize: 17.0)
+               backButton.sizeToFit()
+        return backButton
+    }()
     
+    @objc func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
+        //        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        //backButton.frame = CGRect(x: 10, y: 60, width: 70, height: 30)
+
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         attendeeTableView.tag = 1
         attendeeTableView.delegate = self
         attendeeTableView.dataSource = self
@@ -318,6 +333,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
 
         
         view.addSubview(scrollView)
+        scrollView.addSubview(backButton)
         scrollView.addSubview(eventNameText)
         scrollView.addSubview(picView)
         scrollView.addSubview(descriptionText)
@@ -383,7 +399,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                               y: 70,
                               width: size,
                               height: size)*/
-        
+        backButton.frame = CGRect(x: 10, y: 60, width: 70, height: 30)
         picView.frame = CGRect(x: 120,
                                y: -50,
                                width: scrollView.width / 2.5,

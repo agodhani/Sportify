@@ -272,11 +272,33 @@ class MessageChatViewController: UIViewController, UITableViewDelegate, UITableV
             return cell
         }
     }
+    // Back button
+    private let backButton: UIButton = {
+        let backButton = UIButton(type: .system)
+        backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+               backButton.setTitle("Back", for: .normal)
+               backButton.titleLabel?.font = UIFont.systemFont(ofSize: 17.0)
+               backButton.sizeToFit()
+        return backButton
+    }()
+    
+    @objc func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
+        //        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        //backButton.frame = CGRect(x: 10, y: 60, width: 70, height: 30)
 
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        backButton.frame = CGRect(x: 10, y: 60, width: 70, height: 30)
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchMessages()
-        
+        view.addSubview(backButton)
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         view.backgroundColor = .black
         view.addSubview(table)
         table.delegate = self

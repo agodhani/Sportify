@@ -204,6 +204,8 @@ class AddFriendsViewController: UIViewController, UITableViewDataSource, UITable
         view.addSubview(sportPicker)
         view.addSubview(table)
         filterLocationSlider.addTarget(self, action: #selector(switchLocationSliderChanged), for: .valueChanged)
+        view.addSubview(backButton)
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         
     }
     func usersDidUpdate() {
@@ -234,6 +236,23 @@ class AddFriendsViewController: UIViewController, UITableViewDataSource, UITable
                                     y: 180,
                                     width: 150,
                                     height: 50)
+        backButton.frame = CGRect(x: 10, y: 60, width: 70, height: 30)
+    }
+    // Back button
+    private let backButton: UIButton = {
+        let backButton = UIButton(type: .system)
+        backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+               backButton.setTitle("Back", for: .normal)
+               backButton.titleLabel?.font = UIFont.systemFont(ofSize: 17.0)
+               backButton.sizeToFit()
+        return backButton
+    }()
+    
+    @objc func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
+        //        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        //backButton.frame = CGRect(x: 10, y: 60, width: 70, height: 30)
+
     }
     
 }
