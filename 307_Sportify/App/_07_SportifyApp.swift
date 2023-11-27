@@ -30,7 +30,7 @@ struct YourApp: App {
       WindowGroup {
           NavigationView {
               if(userAuth.userSession != nil) {
-                  HomePageView()
+                  TabBarController(userAuth: $userAuth)
               } else {
                   TestViewController()
               }

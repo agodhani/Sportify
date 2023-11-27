@@ -46,6 +46,7 @@
 		BA44F8C22AD8FEFD00BB0CE7 /* CreateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA44F8C12AD8FEFD00BB0CE7 /* CreateEvent.swift */; };
 		BA44F8C62AD9045100BB0CE7 /* EventMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA44F8C52AD9045000BB0CE7 /* EventMethods.swift */; };
 		BA7037D62AE9906D007E27F5 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7037D52AE9906D007E27F5 /* LogInViewController.swift */; };
+		BA83473E2B15457A0003CA69 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA83473D2B15457A0003CA69 /* TabBarController.swift */; };
 		BA86EF7F2AD4B97600E37BF7 /* SportPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA86EF7E2AD4B97600E37BF7 /* SportPreferences.swift */; };
 		BA8B749B2AC6301400BBE70B /* _07_SportifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B749A2AC6301400BBE70B /* _07_SportifyApp.swift */; };
 		BA8B749F2AC6301600BBE70B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA8B749E2AC6301600BBE70B /* Assets.xcassets */; };
@@ -142,6 +143,7 @@
 		BA44F8C12AD8FEFD00BB0CE7 /* CreateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEvent.swift; sourceTree = "<group>"; };
 		BA44F8C52AD9045000BB0CE7 /* EventMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMethods.swift; sourceTree = "<group>"; };
 		BA7037D52AE9906D007E27F5 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		BA83473D2B15457A0003CA69 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		BA86EF7E2AD4B97600E37BF7 /* SportPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportPreferences.swift; sourceTree = "<group>"; };
 		BA8B74972AC6301400BBE70B /* 307_Sportify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 307_Sportify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA8B749A2AC6301400BBE70B /* _07_SportifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _07_SportifyApp.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 				6D0A7F2D2AED7D1900824FC0 /* CreateEventViewController.swift */,
 				31E86E982AF209A1000E0CA7 /* StorageManager.swift */,
 				6D043A2F2B064992003E49D3 /* InviteToEventViewController.swift */,
+				BA83473D2B15457A0003CA69 /* TabBarController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 				3174F1662AE0949D00C2C49D /* Extensions.swift in Sources */,
 				BA2570CE2AC7B846004E528A /* User.swift in Sources */,
 				6DD44B312AFD4A1800360EEA /* AddFriendsViewController.swift in Sources */,
+				BA83473E2B15457A0003CA69 /* TabBarController.swift in Sources */,
 				BAFF1CDB2AD2854A0010D8B3 /* Sport.swift in Sources */,
 				6DAC698C2AD984B8001C197E /* OldBlockView.swift in Sources */,
 				31ECFA7D2B0BC234001B2C08 /* NotificationPreferencesViewController.swift in Sources */,
