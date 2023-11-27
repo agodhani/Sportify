@@ -365,5 +365,266 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5ADE49F0-1B19-4C9C-95EE-EE2219BC0FFF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Controllers/SingleEventViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "681"
+            endingLineNumber = "681"
+            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5ADE49F0-1B19-4C9C-95EE-EE2219BC0FFF - d59d0b13a5d07aac"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_07_Sportify.SingleEventViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/SingleEventViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "681"
+                  endingLineNumber = "681"
+                  offsetFromSymbolStart = "1404">
+               </Location>
+               <Location
+                  uuid = "5ADE49F0-1B19-4C9C-95EE-EE2219BC0FFF - 67a377b183c4b22a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (__C.UIAlertAction) -&gt; () in _07_Sportify.SingleEventViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/SingleEventViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "681"
+                  endingLineNumber = "681"
+                  offsetFromSymbolStart = "156">
+               </Location>
+               <Location
+                  uuid = "5ADE49F0-1B19-4C9C-95EE-EE2219BC0FFF - 87ff4bbdb68f042b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 (__C.UIAlertAction) -&gt; () in _07_Sportify.SingleEventViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/SingleEventViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "681"
+                  endingLineNumber = "681"
+                  offsetFromSymbolStart = "220">
+               </Location>
+               <Location
+                  uuid = "5ADE49F0-1B19-4C9C-95EE-EE2219BC0FFF - a60b1f4965566e34"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 (__C.UIAlertAction) -&gt; () in _07_Sportify.SingleEventViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/SingleEventViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "681"
+                  endingLineNumber = "681"
+                  offsetFromSymbolStart = "488">
+               </Location>
+               <Location
+                  uuid = "5ADE49F0-1B19-4C9C-95EE-EE2219BC0FFF - 29f37a5c5c0c4ea5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () async throws -&gt; () in closure #4 (__C.UIAlertAction) -&gt; () in _07_Sportify.SingleEventViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/SingleEventViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "681"
+                  endingLineNumber = "681"
+                  offsetFromSymbolStart = "296">
+               </Location>
+               <Location
+                  uuid = "5ADE49F0-1B19-4C9C-95EE-EE2219BC0FFF - f61aa5c3b6610dbb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in closure #4 (__C.UIAlertAction) -&gt; () in _07_Sportify.SingleEventViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/SingleEventViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "681"
+                  endingLineNumber = "681"
+                  offsetFromSymbolStart = "152">
+               </Location>
+               <Location
+                  uuid = "5ADE49F0-1B19-4C9C-95EE-EE2219BC0FFF - e673a7613cd91a36"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #6 (__C.UIAlertAction) -&gt; () in _07_Sportify.SingleEventViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/SingleEventViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "681"
+                  endingLineNumber = "681"
+                  offsetFromSymbolStart = "460">
+               </Location>
+               <Location
+                  uuid = "5ADE49F0-1B19-4C9C-95EE-EE2219BC0FFF - 29f37a5c5c0c4ea5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () async throws -&gt; () in closure #6 (__C.UIAlertAction) -&gt; () in _07_Sportify.SingleEventViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/SingleEventViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "681"
+                  endingLineNumber = "681"
+                  offsetFromSymbolStart = "296">
+               </Location>
+               <Location
+                  uuid = "5ADE49F0-1B19-4C9C-95EE-EE2219BC0FFF - f61aa5c3b6610dbb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in closure #6 (__C.UIAlertAction) -&gt; () in _07_Sportify.SingleEventViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/SingleEventViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "681"
+                  endingLineNumber = "681"
+                  offsetFromSymbolStart = "152">
+               </Location>
+               <Location
+                  uuid = "5ADE49F0-1B19-4C9C-95EE-EE2219BC0FFF - 2498b7dffcd30a13"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #11 (__C.UIAlertAction) -&gt; () in _07_Sportify.SingleEventViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/SingleEventViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "681"
+                  endingLineNumber = "681"
+                  offsetFromSymbolStart = "156">
+               </Location>
+               <Location
+                  uuid = "5ADE49F0-1B19-4C9C-95EE-EE2219BC0FFF - 8975ab7792c15f1c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #12 (__C.UIAlertAction) -&gt; () in _07_Sportify.SingleEventViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/SingleEventViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "681"
+                  endingLineNumber = "681"
+                  offsetFromSymbolStart = "220">
+               </Location>
+               <Location
+                  uuid = "5ADE49F0-1B19-4C9C-95EE-EE2219BC0FFF - d59d0b13a5d07aac"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_07_Sportify.SingleEventViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/SingleEventViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "681"
+                  endingLineNumber = "681"
+                  offsetFromSymbolStart = "1372">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "227D249C-070E-4EBA-9084-0DCE92788D16"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "307_Sportify/Controllers/SingleEventViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "763"
+            endingLineNumber = "763"
+            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "227D249C-070E-4EBA-9084-0DCE92788D16 - c627d355081ebfa7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #5 (__C.UIAlertAction) -&gt; () in _07_Sportify.SingleEventViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/SingleEventViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "763"
+                  endingLineNumber = "763"
+                  offsetFromSymbolStart = "1720">
+               </Location>
+               <Location
+                  uuid = "227D249C-070E-4EBA-9084-0DCE92788D16 - 984abe60d55be88d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (__C.UIAlertAction) -&gt; () in closure #5 (__C.UIAlertAction) -&gt; () in _07_Sportify.SingleEventViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/SingleEventViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "764"
+                  endingLineNumber = "764"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  uuid = "227D249C-070E-4EBA-9084-0DCE92788D16 - c627d355081ebfa7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #5 (__C.UIAlertAction) -&gt; () in _07_Sportify.SingleEventViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "307_Sportify"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joshstseng/XCODE%20projects/WorkCloneSportify/307_Sportify/Controllers/SingleEventViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "763"
+                  endingLineNumber = "763"
+                  offsetFromSymbolStart = "1488">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

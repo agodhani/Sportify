@@ -678,7 +678,6 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         }
         var currUser = userAuth?.currUser
         let currUserID = userAuth?.currUser?.id ?? ""
-        var selectedUser = self.attendeeListAsUsers[indexPath.row]
         if (currUserID == event?.eventHost || (event?.adminsList.contains(currUserID) ?? false)) {
             
             let alertController = UIAlertController(title: "Alert", message: "Choose an action:", preferredStyle: .alert)
@@ -686,6 +685,9 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             if (tableView.tag == 1) {
                 // attenedeeList clicked
                 // OPTIONS: Kick + Cancel + Go to profile page
+                
+                var selectedUser = self.attendeeListAsUsers[indexPath.row]
+
                 
                 // Go to Profile
                 let profilePageAction = UIAlertAction(title: "Go to Profile Page", style: .default) { _ in
@@ -701,9 +703,9 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                 let addFriendAction = UIAlertAction(title: "Add Friend", style: .default) { _ in
                     let db = Firestore.firestore()
                     let selectedUserID = selectedUser.id
-                    currUser?.friendList.append(selectedUser.name)
+                    currUser?.friendList.append(selectedUser.id)
                     db.collection("Users").document(currUserID).updateData(["friendList": currUser?.friendList])
-                    selectedUser.friendList.append(currUser!.name)
+                    selectedUser.friendList.append(currUser!.id)
                     db.collection("Users").document(selectedUserID).updateData(["friendList": selectedUser.friendList])
                 }
                 
@@ -761,6 +763,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                     let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
                         print("User cancelled")
                     }
+                    
                     eventHostAlertController.addAction(promoteEventHostAction)
                     eventHostAlertController.addAction(cancelAction)
                     self.present(eventHostAlertController, animated: true, completion: nil)
@@ -809,9 +812,13 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                 }
                 alertController.addAction(kickAction)
                 alertController.addAction(cancelAction)
-                alertController.addAction(promoteAction)
+                if (selectedUser.id != event?.eventHost) {
+                    alertController.addAction(promoteAction)
+                }
                 if (currUserID == event?.eventHost) {
-                    alertController.addAction(promoteToHostAction)
+                    if (selectedUser.id != event?.eventHost) {
+                        alertController.addAction(promoteToHostAction)
+                    }
                 }
                 
                 
@@ -819,6 +826,8 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                 // requestList clicked
                 // host / admin access only
                 // OPTIONS: Accept + Reject
+                
+                var selectedUser = self.requestListAsUsers[indexPath.row]
                 
                 let acceptAction = UIAlertAction(title: "Accept", style: .default) { _ in
                     // put the ACCEPT function here
@@ -864,6 +873,8 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             
             
         } else {
+            var selectedUser = self.attendeeListAsUsers[indexPath.row]
+            
             // for anyone not the host
             let alertController = UIAlertController(title: "Alert", message: "Choose an action:", preferredStyle: .alert)
             
@@ -881,9 +892,9 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                 let addFriendAction = UIAlertAction(title: "Add Friend", style: .default) { _ in
                     let db = Firestore.firestore()
                     let selectedUserID = selectedUser.id
-                    currUser?.friendList.append(selectedUser.name)
+                    currUser?.friendList.append(selectedUser.id)
                     db.collection("Users").document(currUserID).updateData(["friendList": currUser?.friendList])
-                    selectedUser.friendList.append(currUser!.name)
+                    selectedUser.friendList.append(currUser!.id)
                     db.collection("Users").document(selectedUserID).updateData(["friendList": selectedUser.friendList])
                 }
                 
@@ -898,7 +909,9 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                 
                 
             } else {
-                //requestList clicked
+                // requestList clicked
+                var selectedUser = self.requestListAsUsers[indexPath.row]
+                
                 let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
                     print("User cancelled")
                 }
