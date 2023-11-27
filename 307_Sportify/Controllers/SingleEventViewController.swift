@@ -687,7 +687,6 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                 // OPTIONS: Kick + Cancel + Go to profile page
                 
                 var selectedUser = self.attendeeListAsUsers[indexPath.row]
-
                 
                 // Go to Profile
                 let profilePageAction = UIAlertAction(title: "Go to Profile Page", style: .default) { _ in
@@ -807,7 +806,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                     print("User cancelled")
                 }
                 alertController.addAction(profilePageAction)
-                if (!currUser!.friendList.contains(selectedUser.name)) {
+                if (currUser!.id != selectedUser.id && !currUser!.friendList.contains(selectedUser.name)) {
                     alertController.addAction(addFriendAction)
                 }
                 alertController.addAction(kickAction)
@@ -901,7 +900,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                 let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
                     print("User cancelled")
                 }
-                if (!currUser!.friendList.contains(selectedUser.name)) {
+                if (currUser!.id != selectedUser.id && !currUser!.friendList.contains(selectedUser.name)) {
                     alertController.addAction(addFriendAction)
                 }
                 alertController.addAction(profilePageAction)

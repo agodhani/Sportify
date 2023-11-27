@@ -210,6 +210,26 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        Task {
+            await userAuth.getCurrUser()
+            let currUser = userAuth.currUser
+            notificationIDs = currUser?.notifications ?? [] // IDs
+            
+            var newNotifications: [Notification] = []
+            
+            for noID in notificationIDs {
+                await newNotifications.append(notifcationM.getNotification(notificationID: noID))
+            }
+            
+            notifications = newNotifications
+            
+            self.tableView.reloadData()
+        }
+
+        
+        
+        
         tableView.reloadData()
     }
     
