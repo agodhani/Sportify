@@ -40,7 +40,7 @@ class UserAuthentication: ObservableObject {
         do {
             let result = try await Auth.auth().createUser(withEmail: email, password: password)
             self.userSession = result.user
-            let user = User(id: result.user.uid, name: fullname, email: email, radius: 1, zipCode: zipCode, sportsPreferences: [sport], privateAccount: privateAccount, profilePicture: String(), age: 20, birthday: Date(), friendList: [String](), blockList: [String](), eventsAttending: [String](), eventsHosting: [String](), suggestions: [String](), notifications: [String](), messageList: [String]())
+            let user = User(id: result.user.uid, name: fullname, email: email, radius: 1, zipCode: zipCode, sportsPreferences: [sport], privateAccount: privateAccount, profilePicture: String(), age: 20, birthday: Date(), friendList: [String](), blockList: [String](), eventsAttending: [String](), eventsHosting: [String](), suggestions: [String](), notifications: [String](), messageList: [String](), generalNotifications: true, dmNotifications: true, eventNotifications: true, friendRequestNotifications: true)
             //encode takes the "codable" protocal (in User), and encodes it as raw Data but as the User struct
             let encodedUser  = try Firestore.Encoder().encode(user)
             //adds to the collecton of Users, and adds the User data

@@ -2,12 +2,15 @@
 //  NotificationPreferencesViewController.swift
 //  307_Sportify
 //
-//  Created by Alexandre Cunha Moraes on 11/20/23.
+//  Created by Alexandre Cunha on 11/20/23.
 //
 
 import UIKit
+import Firebase
 
 class NotificationPreferencesViewController: UIViewController {
+    
+    var userAuth = UserAuthentication()
 
     private let logoView: UIImageView = {
         let logoView = UIImageView()
@@ -94,6 +97,20 @@ class NotificationPreferencesViewController: UIViewController {
         return button
     }()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        guard let user = userAuth.currUser else {
+            print("userAuth.currUser failed")
+            return
+        }
+        
+        generalNotificationsSlider.isOn = user.generalNotifications
+        dmNotificationsSlider.isOn = user.dmNotifications
+        eventNotificationsSlider.isOn = user.eventNotifications
+        friendRequestNotificationsSlider.isOn = user.friendRequestNotifications
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
@@ -162,6 +179,15 @@ class NotificationPreferencesViewController: UIViewController {
                                     y: friendRequestNotificationsText.bottom + 70,
                                     width: 225,
                                     height: 50)
+    }
+    
+    // Update db
+    @objc private func updatePreferencesTapped() {
+        let db = Firestore.firestore()
+        let user_id = userAuth.currUser?.id ?? ""
+        let currUser = userAuth.currUser
+        
+        db.collection("Users").document(user_id).updateData(["generalNotifications": generalNotificationsSlider.isOn, "dmNotifications": dmNotificationsSlider.isOn, "eventNotifications": eventNotificationsSlider.isOn, "friendRequestNotifications": friendRequestNotificationsSlider.isOn])
     }
 }
 

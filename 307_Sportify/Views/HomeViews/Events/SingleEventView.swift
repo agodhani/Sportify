@@ -50,7 +50,7 @@ struct SingleEventView: View {
     var body: some View {
                 
         //let currentUser = userAuth.currUser // REAL - uncomment
-        @State var currentUser = User(id: "tWqBAVZ9uFgyusKjyIFZGuyNZqb2", name: "test current user", email: "current@gmail.com", radius: 0, zipCode: "47906", sportsPreferences: [], privateAccount: false, profilePicture: "ERROR", age: 0, birthday: Date(), friendList: [], blockList: [], eventsAttending: [], eventsHosting: [], suggestions: [], notifications: [], messageList: []) // REAL - comment
+        @State var currentUser = User(id: "tWqBAVZ9uFgyusKjyIFZGuyNZqb2", name: "test current user", email: "current@gmail.com", radius: 0, zipCode: "47906", sportsPreferences: [], privateAccount: false, profilePicture: "ERROR", age: 0, birthday: Date(), friendList: [], blockList: [], eventsAttending: [], eventsHosting: [], suggestions: [], notifications: [], messageList: [], generalNotifications: true, dmNotifications: true, eventNotifications: true, friendRequestNotifications: true) // REAL - comment
         
 
             ZStack {
