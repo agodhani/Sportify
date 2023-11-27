@@ -72,6 +72,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
     var attendeeListAsUsers = [User]()
     var requestListAsUsers = [User]()
     var allUsers = AllUsers()
+    var userm = UserMethods()
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -525,9 +526,23 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                     // add user to event requestList and update DB
                     self.event?.addUserToRequestList(userID: currUserID)
                     
-                    // TODO make the notification
-                    // TODO ANDREW send notification to host
+                    // send notification to event host
                     // the notification when clicked takes the host to this SingleEventVC
+                    let db = Firestore.firestore()
+                    let eventName = self.event?.name
+                    let host_name = self.event?.eventHostName
+                    
+                    Task{
+                        
+                        var eventHostUser = await self.userm.getUser(user_id: self.event?.eventHost ?? "")
+                        
+                        try await notificationID = notifsm.createNotification(type: .request, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "", event_id: self.event?.id ?? "")
+                        print(notificationID)
+                        print("NOTIFICATION CREATED")
+                        eventHostUser.notifications.append(notificationID)
+                        try await db.collection("Users").document(eventHostUser.id).updateData(["notifications":eventHostUser.notifications])
+                    }
+                    
                     
                     // SUCCESS MESSAGE
                     let requestSuccessController = UIAlertController(title: "Request Sent", message: "Request successfully sent!", preferredStyle: .alert)
@@ -555,10 +570,10 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                 print("EVENT JOINED")
                 currUser?.joinEvent(eventID: self.event?.id ?? "")
                 
-                //JOIN EVENT NOTIFICATION
+                // JOIN EVENT NOTIFICATION
                 let eventName = self.event?.name
                 let host_name = self.event?.eventHostName
-                //Create new Join Notification
+                // Create new Join Notification
                 Task{
                     try await notificationID = notifsm.createNotification(type: .join, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "", event_id: self.event?.id ?? "")
                     print(notificationID)
