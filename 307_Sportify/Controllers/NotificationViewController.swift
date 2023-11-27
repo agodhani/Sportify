@@ -86,63 +86,77 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
             
             await userAuth.getCurrUser()
             var currUser = userAuth.currUser
-
-            let vc = SingleEventViewController()
-            vc.userAuth = self.userAuth
-
-            let event = await eventm.getEvent(eventID: selectedNotif.eventID)
-            var ehl = EventHighLevel(id: event.id, name: event.eventName, location: event.location, sport: event.sport, maxParticipants: event.maxParticipants, eventHost: event.eventHostName, attendeeList: event.attendeeList, privateEvent: event.privateEvent, date: event.date, requestList: event.requestList, description: event.description, code: event.code, adminsList: event.adminsList, eventHostName: event.eventHostName)
             
-            vc.event = ehl
-
-            // if it's an invite notification, the user will join
-            if (selectedNotif.messageType == .invite && !event.userIsAttending(userID: currUser?.id ?? "")) {
+            if (selectedNotif.messageType == .newDM) {
+                // it's a DM related notification
                 
-                // join the event
-                ehl.joinEvent(id: userAuth.currUser?.id ?? "")
+                let vc = MessageChatViewController()
+                vc.userAuth = self.userAuth
+                vc.chatUser = await userm.getUser(user_id: selectedNotif.notifierID)
                 
-                // remove the user if they are in the request list
-                if (ehl.requestList.contains(userAuth.currUser?.id ?? "")) {
-                    ehl.requestList.remove(at: ehl.requestList.firstIndex(of: userAuth.currUser?.id ?? "") ?? 0)
-                }
-                
-                let db = Firestore.firestore()
-                do {
-                    try await db.collection("Events").document(event.id).updateData(["attendeeList":ehl.attendeeList])
-                    try await db.collection("Events").document(event.id).updateData(["requestList":ehl.requestList])
-                    
-                } catch {
-                    print("Couldn't update the event in Firebase")
-                }
-                
-                // joined success
-                let joinedAlertController = UIAlertController(title: "Success", message: "You've successfully joined the event.", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                joinedAlertController.addAction(okAction)
                 navigationController?.pushViewController(vc, animated: true)
-                present(joinedAlertController, animated: true, completion: nil)
-            } else {
                 
-                if (selectedNotif.messageType == .invite && event.userIsAttending(userID: currUser?.id ?? "")) {
-                    let joinedAlertController = UIAlertController(title: "Already joined", message: "You've already joined this event.", preferredStyle: .alert)
+            } else {
+                // it's an event related notification
+                
+                let vc = SingleEventViewController()
+                vc.userAuth = self.userAuth
+
+                let event = await eventm.getEvent(eventID: selectedNotif.eventID)
+                var ehl = EventHighLevel(id: event.id, name: event.eventName, location: event.location, sport: event.sport, maxParticipants: event.maxParticipants, eventHost: event.eventHostName, attendeeList: event.attendeeList, privateEvent: event.privateEvent, date: event.date, requestList: event.requestList, description: event.description, code: event.code, adminsList: event.adminsList, eventHostName: event.eventHostName)
+                
+                vc.event = ehl
+
+                // if it's an invite notification, the user will join
+                if (selectedNotif.messageType == .invite && !event.userIsAttending(userID: currUser?.id ?? "")) {
+                    
+                    // join the event
+                    ehl.joinEvent(id: userAuth.currUser?.id ?? "")
+                    
+                    // remove the user if they are in the request list
+                    if (ehl.requestList.contains(userAuth.currUser?.id ?? "")) {
+                        ehl.requestList.remove(at: ehl.requestList.firstIndex(of: userAuth.currUser?.id ?? "") ?? 0)
+                    }
+                    
+                    let db = Firestore.firestore()
+                    do {
+                        try await db.collection("Events").document(event.id).updateData(["attendeeList":ehl.attendeeList])
+                        try await db.collection("Events").document(event.id).updateData(["requestList":ehl.requestList])
+                        
+                    } catch {
+                        print("Couldn't update the event in Firebase")
+                    }
+                    
+                    // joined success
+                    let joinedAlertController = UIAlertController(title: "Success", message: "You've successfully joined the event.", preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                     joinedAlertController.addAction(okAction)
                     navigationController?.pushViewController(vc, animated: true)
                     present(joinedAlertController, animated: true, completion: nil)
                 } else {
-                    // push the SingleEventView for the notification regardless
-                    navigationController?.pushViewController(vc, animated: true)
+                    
+                    if (selectedNotif.messageType == .invite && event.userIsAttending(userID: currUser?.id ?? "")) {
+                        let joinedAlertController = UIAlertController(title: "Already joined", message: "You've already joined this event.", preferredStyle: .alert)
+                        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        joinedAlertController.addAction(okAction)
+                        navigationController?.pushViewController(vc, animated: true)
+                        present(joinedAlertController, animated: true, completion: nil)
+                    } else {
+                        // push the SingleEventView for the notification regardless
+                        navigationController?.pushViewController(vc, animated: true)
+                    }
                 }
+                
             }
+            
+
             
 
         }
         
 
         
-        // if it was a join Notification, show them a success message and have them join the event
         
-        //navigationController?.pushViewController(vc, animated: true)
     }
     
     
@@ -188,6 +202,7 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidLoad()
         view.backgroundColor = .black
         
+        /*
         Task {
             await userAuth.getCurrUser()
             let currUser = userAuth.currUser
@@ -201,7 +216,7 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
             }
             
             self.tableView.reloadData()
-        }
+        }*/
         
         //scrollView.addSubview(logoView)
        // tableView.register(UINib(nibName: "NotificationCell", bundle: nil), forCellReuseIdentifier: "NotificationCell")

@@ -14,7 +14,7 @@ struct Notification: Identifiable, Codable, Hashable {
     var id: String
     var date: Date
     enum message_type: String, Codable {
-        case kick, join, leave, promote, joinedMyEvent, invite, request
+        case kick, join, leave, promote, joinedMyEvent, invite, request, newDM
     }
     var messageType: message_type
     var message: String
@@ -42,7 +42,8 @@ struct Notification: Identifiable, Codable, Hashable {
                 message = "You were invited by \(name) to join \(eventName). Click to join!"
             case .request:
                 message = "\(name) has requested to join \(eventName) on \(formattedDate)"
-            
+            case .newDM:
+                message = "\(name) has created a new chat with you on \(formattedDate)"
         }
         return message
     }

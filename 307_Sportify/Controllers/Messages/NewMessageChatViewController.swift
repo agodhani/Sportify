@@ -82,13 +82,21 @@ class NewMessageChatViewController: UIViewController, UITableViewDataSource, UIT
                 !messageList.contains(id)})
             var friend = await userm.getUser(user_id: ids[indexPath.row])
             user?.messageList.append(friend.id)
-            var userID = (user?.id)!
+            let userID = (user?.id)!
             if(!friend.messageList.contains(userID)) {
                 friend.messageList.append(userID)
                 try await db.collection("Users").document(friend.id).updateData(["messageList": friend.messageList])
             }
             await userAuth?.getCurrUser()
             try await db.collection("Users").document(userID).updateData(["messageList": user?.messageList ?? []])
+            
+            // notification for the user chatting with
+            let notifsm = NotificationMethods()
+            let notificationID = try await notifsm.createNotification(type: .newDM, id: user?.id ?? "", event_name: "new dm", host_name: user?.name ?? "", event_id: "")
+            friend.notifications.append(notificationID)
+            try await db.collection("Users").document(friend.id).updateData(["notifications":friend.notifications])
+
+            
             vc.chatUser = friend
             navigationController?.pushViewController(vc, animated: true)
         }
