@@ -367,9 +367,6 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             scrollView.addSubview(editEventButton)
             scrollView.addSubview(announcementButton)
         }
-        scrollView.addSubview(editEventButton)
-        scrollView.addSubview(announcementButton)
-        
         
         eventNameText.text = (event?.name ?? "Error Event Name")
         descriptionText.text = "Event Description: " + (event?.description ?? "Error description")

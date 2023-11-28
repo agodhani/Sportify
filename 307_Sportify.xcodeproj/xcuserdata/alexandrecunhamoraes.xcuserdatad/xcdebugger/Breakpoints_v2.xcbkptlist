@@ -14,42 +14,10 @@
             filePath = "307_Sportify/Controllers/SingleEventViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "389"
-            endingLineNumber = "389"
-            landmarkName = "viewDidLayoutSubviews()"
+            startingLineNumber = "386"
+            endingLineNumber = "386"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "046C203B-17E5-493A-83A0-17CFDE3E6B01 - c090662b238bb560"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "_07_Sportify.SingleEventViewController.viewDidLayoutSubviews() -&gt; ()"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alexandrecunhamoraes/Desktop/Sportify/307_Sportify/Controllers/SingleEventViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "389"
-                  endingLineNumber = "389"
-                  offsetFromSymbolStart = "916">
-               </Location>
-               <Location
-                  uuid = "046C203B-17E5-493A-83A0-17CFDE3E6B01 - c090662b238bb560"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "_07_Sportify.SingleEventViewController.viewDidLayoutSubviews() -&gt; ()"
-                  moduleName = "307_Sportify"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alexandrecunhamoraes/Desktop/Sportify/307_Sportify/Controllers/SingleEventViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "389"
-                  endingLineNumber = "389"
-                  offsetFromSymbolStart = "736">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
