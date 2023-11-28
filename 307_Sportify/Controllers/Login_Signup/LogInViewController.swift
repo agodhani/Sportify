@@ -183,6 +183,32 @@ class LogInViewController: UIViewController {
             if(try await userAuth.signIn(withEmail: email, password: password)) {
                 print("log in success")
                 //TODO link to new homepage
+                let tabBarController = UITabBarController()
+
+                let eventsViewController = UIHostingController(rootView: EventsViewControllerRepresentable())
+                let notificationViewController = UIHostingController(rootView: NotificationViewControllerRepresentable())
+                let homeEventsViewController = UIHostingController(rootView: HomeEventsViewControllerRepresentable(userAuth: userAuth))
+                let messageViewController = UIHostingController(rootView: MessageViewControllerRepresentable(userAuth: userAuth))
+                let profileViewController = UIHostingController(rootView: ProfileViewControllerRepresentable(userAuth: userAuth))
+                
+                eventsViewController.tabBarItem = UITabBarItem(title: "Events", image: UIImage(systemName: "calendar.badge.clock"), selectedImage: nil)
+                       notificationViewController.tabBarItem = UITabBarItem(title: "Notifications", image: UIImage(systemName: "bell.badge"), selectedImage: nil)
+                       homeEventsViewController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house.circle"), selectedImage: nil)
+                       messageViewController.tabBarItem = UITabBarItem(title: "Messages", image: UIImage(systemName: "plus.message.fill"), selectedImage: nil)
+                       profileViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), selectedImage: nil)
+                
+                tabBarController.viewControllers = [
+                    eventsViewController,
+                    notificationViewController,
+                    homeEventsViewController,
+                    messageViewController,
+                    profileViewController
+                ]
+
+                   
+                   // Set the UITabBarController as the root view controller
+                   UIApplication.shared.windows.first?.rootViewController = tabBarController
+                   UIApplication.shared.windows.first?.makeKeyAndVisible()
                 let vc = EventsViewController()
                 navigationController?.pushViewController(vc, animated: true)
             } else {
