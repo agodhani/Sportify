@@ -875,10 +875,10 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                 if (currUser!.id != selectedUser.id && !currUser!.friendList.contains(selectedUser.name)) {
                     alertController.addAction(addFriendAction)
                 }
-                alertController.addAction(kickAction)
                 alertController.addAction(cancelAction)
                 if (selectedUser.id != event?.eventHost) {
                     alertController.addAction(promoteAction)
+                    alertController.addAction(kickAction)
                 }
                 if (currUserID == event?.eventHost) {
                     if (selectedUser.id != event?.eventHost) {
