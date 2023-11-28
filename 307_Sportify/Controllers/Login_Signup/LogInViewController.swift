@@ -230,17 +230,14 @@ class LogInViewController: UIViewController {
 
                    
                    // Set the UITabBarController as the root view controller
-                   //UIApplication.shared.windows.first?.rootViewController = tabBarController
-                   UIApplication.shared.windows.first?.makeKeyAndVisible()
-                //let vc = EventsViewController()
-                let vc = tabBarController
-                vc.navigationItem.hidesBackButton = true
+                //UIApplication.shared.windows.first?.rootViewController = tabBarController
+                //UIApplication.shared.windows.first?.makeKeyAndVisible()
+                tabBarController.navigationItem.hidesBackButton = true
+                //UIApplication.shared.windows.first?.rootViewController = tabBarController
+                //navigationController?.popToRootViewController(animated: false)
+                navigationController?.pushViewController(tabBarController, animated: true)
+                //UIApplication.shared.windows.first?.rootViewController = tabBarController
 
-                navigationController?.pushViewController(vc, animated: true)
-                //vc.navigationItem.setHidesBackButton(true, animated: true)
-                //self.navigationItem.hidesBackButton = true
-                //self.navigationItem.setHidesBackButton(true, animated: true)
-                
             } else {
                 print("log in failed")
                 wrongText.isHidden = false
