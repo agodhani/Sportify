@@ -222,19 +222,19 @@ class AddFriendsViewController: UIViewController, UITableViewDataSource, UITable
         view.backgroundColor = .black
         locationLabel.frame = CGRect(x: 50,
                                     y: 95,
-                                    width: size,
+                                    width: 80,
                                     height: 50)
         filterLocationSlider.frame = CGRect(x: 150,
                                        y: 100,
-                                       width: 1,
-                                       height: 1)
+                                       width: 30,
+                                       height: 30)
         table.frame = CGRect(x: 0,
                              y: 240, // was 50
                              width: view.width,
                              height: view.height)
         sportPicker.frame = CGRect(x: 150,
                                     y: 180,
-                                    width: 150,
+                                    width: 170,
                                     height: 50)
         backButton.frame = CGRect(x: 10, y: 60, width: 70, height: 30)
     }
@@ -255,4 +255,8 @@ class AddFriendsViewController: UIViewController, UITableViewDataSource, UITable
 
     }
     
+}
+
+#Preview() {
+    AddFriendsViewController()
 }
