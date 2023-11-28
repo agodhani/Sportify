@@ -596,12 +596,13 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                     let db = Firestore.firestore()
                     let eventName = self.event?.name
                     let host_name = self.event?.eventHostName
+                    let requester_name = currUser?.name
                     
                     Task{
                         
                         var eventHostUser = await self.userm.getUser(user_id: self.event?.eventHost ?? "")
                         
-                        try await notificationID = notifsm.createNotification(type: .request, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "", event_id: self.event?.id ?? "")
+                        try await notificationID = notifsm.createNotification(type: .request, id: currUserID, event_name: eventName ?? "", host_name: requester_name ?? "", event_id: self.event?.id ?? "")
                         print(notificationID)
                         print("NOTIFICATION CREATED")
                         eventHostUser.notifications.insert(notificationID, at: 0)
@@ -923,7 +924,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                     }
                     //Create new Joined My Event Notification
                     Task{
-                        try await notificationID = notifsm.createNotification(type: .joinedMyEvent, id: currUserID ?? "", event_name: eventName ?? "", host_name: host_name ?? "", event_id: self.event?.id ?? "")
+                        try await notificationID = notifsm.createNotification(type: .joinedMyEvent, id: currUserID ?? "", event_name: eventName ?? "", host_name: selectedUser.name ?? "", event_id: self.event?.id ?? "")
                         print(notificationID)
                         print("NOTIFICATION CREATED")
                         currUser?.notifications.insert(notificationID, at: 0)
