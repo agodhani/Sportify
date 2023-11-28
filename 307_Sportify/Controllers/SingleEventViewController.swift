@@ -177,6 +177,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         text.backgroundColor = .clear
         text.textAlignment = .left
         text.font = .systemFont(ofSize: 20, weight: .regular)
+        text.isScrollEnabled = false
         return text
     }()
     
@@ -184,6 +185,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
     private let attendeeTableView: UITableView = {
         let tableView = UITableView()
         tableView.tag = 1
+        tableView.layer.cornerRadius = 20
         //tableView.register(MyCell.self, forCellReuseIdentifier: "MyCell") // uncomment for custom cell
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return tableView
@@ -193,6 +195,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
     private let requestTableView: UITableView = {
         let tableView = UITableView()
         tableView.tag = 2
+        tableView.layer.cornerRadius = 20
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return tableView
     }()
@@ -218,6 +221,19 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         button.titleLabel?.lineBreakMode = .byWordWrapping
         button.titleLabel?.textAlignment = .center
         button.setTitle("Edit Event", for: .normal)
+        button.backgroundColor = .sportGold
+        return button
+    }()
+    
+    private let announcementButton: UIButton = {
+        let button = UIButton()
+        button.titleLabel?.font = .systemFont(ofSize: 13, weight: .bold)
+        button.setTitleColor(.black, for: .normal)
+        button.layer.cornerRadius = 20
+        button.layer.masksToBounds = true
+        button.titleLabel?.lineBreakMode = .byWordWrapping
+        button.titleLabel?.textAlignment = .center
+        button.setTitle("Send announcement", for: .normal)
         button.backgroundColor = .sportGold
         return button
     }()
@@ -349,7 +365,10 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         if (currUserID == event?.eventHost || (event?.adminsList.contains(currUserID) ?? false)) {
             // if the user is the host or an admin - display the button
             scrollView.addSubview(editEventButton)
+            scrollView.addSubview(announcementButton)
         }
+        scrollView.addSubview(editEventButton)
+        scrollView.addSubview(announcementButton)
         
         
         eventNameText.text = (event?.name ?? "Error Event Name")
@@ -383,6 +402,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         scrollView.frame = view.bounds
         scrollView.backgroundColor = .black
         
+        announcementButton.addTarget(self, action: #selector(tappedSendAnnouncement), for: .touchUpInside)
         joinLeaveButton.addTarget(self, action: #selector(tappedJoinLeaveButton), for: .touchUpInside)
         editEventButton.addTarget(self, action: #selector(tappedEditEventButton), for: .touchUpInside)
         
@@ -439,22 +459,26 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                                            y: eventDateText.bottom,
                                            width: size,
                                            height: 32)
-        attendeeTableView.frame = CGRect(x: 25,
+        attendeeTableView.frame = CGRect(x: 35,
                                          y: maxParticipantsText.bottom + 20,
                                     width: size,
                                     height: 100)
-        requestTableView.frame = CGRect(x: 25,
+        requestTableView.frame = CGRect(x: 35,
                                         y: attendeeTableView.bottom + 40,
                                     width: size,
                                     height: 100)
-        joinLeaveButton.frame = CGRect(x: 50,
+        joinLeaveButton.frame = CGRect(x: 30,
                                        y: 750,
                                        width: 80,
                                        height: 45)
-        editEventButton.frame = CGRect(x: 150,
+        editEventButton.frame = CGRect(x: joinLeaveButton.right + 20,
                                        y: 750,
                                        width: 110,
                                        height: 45)
+        announcementButton.frame = CGRect(x: editEventButton.right + 20,
+                                          y: 750,
+                                          width: 110,
+                                          height: 45)
         
         
     }
@@ -464,6 +488,34 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
+    }
+    
+    @objc private func tappedSendAnnouncement() {
+        print("tapped annpoumce,ent")
+        let alertController = UIAlertController(title: "Send Announcement", message: "Enter Announcement Message", preferredStyle: .alert)
+        alertController.addTextField { textField in
+            textField.placeholder = "Message"
+        }
+        
+        let sendAction = UIAlertAction(title: "Send", style: .default) { [weak self] _ in
+            
+            guard let announcementMessage = alertController.textFields?.first?.text, !announcementMessage.isEmpty else {
+                // Show an error message if the text field is empty
+                self?.showAlert(message: "Please enter the announcement message.")
+                return
+            }
+            
+            // SEND ANNOUNCEMENT HERE
+            
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            print("announcement canceled")
+        }
+        
+        alertController.addAction(sendAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     @objc private func tappedJoinLeaveButton() {
