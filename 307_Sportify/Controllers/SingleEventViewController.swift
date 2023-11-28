@@ -512,7 +512,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                                 try await notificationID = notifsm.createNotification(type: .join, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "", event_id: self?.event?.id ?? "")
                                 print("NOTIFICATION CREATED")
                             }
-                            currUser?.notifications.append(notificationID)
+                            currUser?.notifications.insert(notificationID, at: 0)
                             print("Notification added to user array")
                             //TODO
                             
@@ -555,7 +555,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                         try await notificationID = notifsm.createNotification(type: .request, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "", event_id: self.event?.id ?? "")
                         print(notificationID)
                         print("NOTIFICATION CREATED")
-                        eventHostUser.notifications.append(notificationID)
+                        eventHostUser.notifications.insert(notificationID, at: 0)
                         try await db.collection("Users").document(eventHostUser.id).updateData(["notifications":eventHostUser.notifications])
                     }
                     
@@ -594,7 +594,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                     try await notificationID = notifsm.createNotification(type: .join, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "", event_id: self.event?.id ?? "")
                     print(notificationID)
                     print("NOTIFICATION CREATED")
-                    currUser?.notifications.append(notificationID)
+                    currUser?.notifications.insert(notificationID, at: 0)
                     try await db.collection("Users").document(currUserID).updateData(["notifications":currUser?.notifications ?? []])
                 }
                 
@@ -641,7 +641,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                 try await notificationID = notifsm.createNotification(type: .leave, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "", event_id: self.event?.id ?? "")
                 print(notificationID)
                 print("Leave NOTIFICATION CREATED")
-                currUser?.notifications.append(notificationID)
+                currUser?.notifications.insert(notificationID, at: 0)
                 try await db.collection("Users").document(currUserID).updateData(["notifications":currUser?.notifications ?? []])
             }
             
@@ -741,7 +741,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                         try await notificationID = notifsm.createNotification(type: .promote, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "", event_id: self.event?.id ?? "")
                         print(notificationID)
                         print("Promote NOTIFICATION CREATED")
-                        selectedUser.notifications.append(notificationID)
+                        selectedUser.notifications.insert(notificationID, at: 0)
                         try await db.collection("Users").document(userID).updateData(["notifications":selectedUser.notifications ?? []])
                     }
                 }
@@ -812,7 +812,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                         try await notificationID = notifsm.createNotification(type: .kick, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "", event_id: self.event?.id ?? "")
                         print(notificationID)
                         print("Kick NOTIFICATION CREATED")
-                        selectedUser.notifications.append(notificationID)
+                        selectedUser.notifications.insert(notificationID, at: 0)
                         try await db.collection("Users").document(userID).updateData(["notifications":selectedUser.notifications ?? []])
                     }
                 }
@@ -869,7 +869,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                         try await notificationID = notifsm.createNotification(type: .join, id: userID ?? "", event_name: eventName ?? "", host_name: host_name ?? "", event_id: self.event?.id ?? "")
                         print(notificationID)
                         print("NOTIFICATION CREATED")
-                        selectedUser.notifications.append(notificationID)
+                        selectedUser.notifications.insert(notificationID, at: 0)
                         try await db.collection("Users").document(userID ?? "").updateData(["notifications":selectedUser.notifications ?? []])
                     }
                     //Create new Joined My Event Notification
@@ -877,7 +877,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                         try await notificationID = notifsm.createNotification(type: .joinedMyEvent, id: currUserID ?? "", event_name: eventName ?? "", host_name: host_name ?? "", event_id: self.event?.id ?? "")
                         print(notificationID)
                         print("NOTIFICATION CREATED")
-                        currUser?.notifications.append(notificationID)
+                        currUser?.notifications.insert(notificationID, at: 0)
                         try await db.collection("Users").document(currUserID ?? "").updateData(["notifications":currUser?.notifications ?? []])
                     }
                 }
