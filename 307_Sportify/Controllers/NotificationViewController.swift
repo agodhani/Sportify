@@ -73,6 +73,12 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
             cell.contentView.backgroundColor = .systemRed
         } else if notifications[indexPath.row].messageType == .promote {
             cell.contentView.backgroundColor = .systemGreen
+        } else if notifications[indexPath.row].messageType == .request {
+            cell.contentView.backgroundColor = .systemOrange
+        } else if notifications[indexPath.row].messageType == .invite {
+            cell.contentView.backgroundColor = .systemOrange
+        } else if notifications[indexPath.row].messageType == .joinedMyEvent {
+            cell.contentView.backgroundColor = .systemGreen
         }
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.lineBreakMode = .byWordWrapping
@@ -257,7 +263,7 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
         view.addSubview(notificationsText)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.separatorColor = UIColor.green
+        //tableView.separatorColor = UIColor.green
         notifcationM.delegate = self
         view.addSubview(tableView)
         

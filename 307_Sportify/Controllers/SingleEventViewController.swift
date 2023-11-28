@@ -858,6 +858,28 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                     self.present(acceptedController, animated: true, completion: nil)
                     
                     // TODO ANDREW send notification of accept to userID
+                    
+                    let eventName = self.event?.name
+                    let host_name = self.event?.eventHostName
+                    let notifsm = NotificationMethods()
+                    var notificationID = ""
+                    let db = Firestore.firestore()
+                    // Create new Join Notification
+                    Task{
+                        try await notificationID = notifsm.createNotification(type: .join, id: userID ?? "", event_name: eventName ?? "", host_name: host_name ?? "", event_id: self.event?.id ?? "")
+                        print(notificationID)
+                        print("NOTIFICATION CREATED")
+                        selectedUser.notifications.append(notificationID)
+                        try await db.collection("Users").document(userID ?? "").updateData(["notifications":selectedUser.notifications ?? []])
+                    }
+                    //Create new Joined My Event Notification
+                    Task{
+                        try await notificationID = notifsm.createNotification(type: .joinedMyEvent, id: currUserID ?? "", event_name: eventName ?? "", host_name: host_name ?? "", event_id: self.event?.id ?? "")
+                        print(notificationID)
+                        print("NOTIFICATION CREATED")
+                        currUser?.notifications.append(notificationID)
+                        try await db.collection("Users").document(currUserID ?? "").updateData(["notifications":currUser?.notifications ?? []])
+                    }
                 }
                 
                 let rejectAction = UIAlertAction(title: "Reject", style: .destructive) { _ in
