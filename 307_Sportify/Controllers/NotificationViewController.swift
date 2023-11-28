@@ -109,7 +109,7 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
                 vc.userAuth = self.userAuth
 
                 let event = await eventm.getEvent(eventID: selectedNotif.eventID)
-                var ehl = EventHighLevel(id: event.id, name: event.eventName, location: event.location, sport: event.sport, maxParticipants: event.maxParticipants, eventHost: event.eventHostName, attendeeList: event.attendeeList, privateEvent: event.privateEvent, date: event.date, requestList: event.requestList, description: event.description, code: event.code, adminsList: event.adminsList, eventHostName: event.eventHostName)
+                var ehl = EventHighLevel(id: event.id, name: event.eventName, location: event.location, sport: event.sport, maxParticipants: event.maxParticipants, eventHost: event.eventHostID, attendeeList: event.attendeeList, privateEvent: event.privateEvent, date: event.date, requestList: event.requestList, description: event.description, code: event.code, adminsList: event.adminsList, eventHostName: event.eventHostName)
                 
                 vc.event = ehl
 
