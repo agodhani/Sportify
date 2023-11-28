@@ -402,8 +402,11 @@ class ProfileViewController: UIViewController {
         userAuth.signOut()
         let vc = LoginSignUpViewController()
         //self.present(vc, animated: true, completion: nil)
-        //vc.navigationItem.hidesBackButton = true
+        vc.navigationItem.hidesBackButton = true
         navigationController?.pushViewController(vc, animated: true)
+        //vc.navigationItem.setHidesBackButton(true, animated: true)
+        //self.navigationItem.hidesBackButton = true
+        //self.navigationItem.setHidesBackButton(true, animated: true)
 
     }
 }
