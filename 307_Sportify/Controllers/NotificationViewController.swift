@@ -184,6 +184,19 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
         return logoView
     }()
     
+    private let preferencesButton: UIButton = {
+        let button = UIButton()
+        button.titleLabel?.font = .systemFont(ofSize: 14, weight: .bold)
+        button.setTitleColor(.black, for: .normal)
+        button.layer.cornerRadius = 20
+        button.layer.masksToBounds = true
+        button.titleLabel?.lineBreakMode = .byWordWrapping
+        button.titleLabel?.textAlignment = .center
+        button.setTitle("Set preferences", for: .normal)
+        button.backgroundColor = .sportGold
+        return button
+    }()
+    
     private var notificationsText: UITextView = {
         let text = UITextView()
         
@@ -209,6 +222,7 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
+        view.addSubview(preferencesButton)
         
         /*
         Task {
@@ -262,6 +276,8 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
 
         let size = view.width / 1.2
         
+        preferencesButton.addTarget(self, action: #selector(tappedPreferencesButton), for: .touchUpInside)
+        
         view.addSubview(notificationsText)
         tableView.delegate = self
         tableView.dataSource = self
@@ -286,7 +302,17 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
                                 y: 100,
                                 width: size,
                                 height: size)*/
+        preferencesButton.frame = CGRect(x: 250,
+                                          y: 40,
+                                          width: 120,
+                                          height: 40)
     }
+    
+    @objc private func tappedPreferencesButton() {
+        let vc = NotificationPreferencesViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }
 
 #Preview {
