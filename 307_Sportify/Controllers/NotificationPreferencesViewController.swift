@@ -185,7 +185,11 @@ class NotificationPreferencesViewController: UIViewController {
     @objc private func updatePreferencesTapped() {
         let db = Firestore.firestore()
         let user_id = userAuth.currUser?.id ?? ""
-        let currUser = userAuth.currUser
+        var currUser = userAuth.currUser
+        currUser?.generalNotifications = generalNotificationsSlider.isOn
+        currUser?.dmNotifications = dmNotificationsSlider.isOn
+        currUser?.eventNotifications = eventNotificationsSlider.isOn
+        currUser?.friendRequestNotifications = friendRequestNotificationsSlider.isOn
         
         db.collection("Users").document(user_id).updateData(["generalNotifications": generalNotificationsSlider.isOn, "dmNotifications": dmNotificationsSlider.isOn, "eventNotifications": eventNotificationsSlider.isOn, "friendRequestNotifications": friendRequestNotificationsSlider.isOn])
     }

@@ -503,6 +503,27 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             }
             
             // SEND ANNOUNCEMENT HERE
+            let db = Firestore.firestore()
+            let hostName = self?.event?.eventHostName
+            var notificationID = ""
+            var notifs = NotificationMethods()
+           // var userAuth: UserAuthentication?
+            var currUser = self?.userAuth?.currUser
+            var currUserID = currUser?.id
+            for var i in self!.attendeeListAsUsers {
+                var currID = i.id
+                if (currID != currUserID) {
+                    if (i.generalNotifications == true)
+                    {
+                        Task {
+                            try await notificationID = notifs.createNotification(type: .announcement, id: currUserID ?? "", event_name: announcementMessage, host_name: hostName ?? "", event_id: self?.event?.id ?? "")
+                            i.notifications.insert(notificationID, at: 0)
+                            try await db.collection("Users").document(currID).updateData(["notifications":i.notifications ?? []])
+                        }
+                    }
+                }
+                
+            }
             
         }
         
@@ -554,15 +575,18 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                             print("EVENT JOINED")
                             currUser?.joinEvent(eventID: self?.event?.id ?? "")
                             //JOIN EVENT NOTIFICATION
-                            let eventName = self?.event?.name
-                            let host_name = self?.event?.eventHostName
-                            //Create new Join Notification
-                            Task {
-                                try await notificationID = notifsm.createNotification(type: .join, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "", event_id: self?.event?.id ?? "")
-                                print("NOTIFICATION CREATED")
+                            if (currUser?.generalNotifications == true && currUser?.eventNotifications == true)
+                            {
+                                let eventName = self?.event?.name
+                                let host_name = self?.event?.eventHostName
+                                //Create new Join Notification
+                                Task {
+                                    try await notificationID = notifsm.createNotification(type: .join, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "", event_id: self?.event?.id ?? "")
+                                    print("NOTIFICATION CREATED")
+                                }
+                                currUser?.notifications.insert(notificationID, at: 0)
+                                print("Notification added to user array")
                             }
-                            currUser?.notifications.insert(notificationID, at: 0)
-                            print("Notification added to user array")
                             //TODO
                             
                             let joinedAlertController = UIAlertController(title: "Success", message: "You've successfully joined the event.", preferredStyle: .alert)
@@ -637,17 +661,19 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                 currUser?.joinEvent(eventID: self.event?.id ?? "")
                 
                 // JOIN EVENT NOTIFICATION
-                let eventName = self.event?.name
-                let host_name = self.event?.eventHostName
-                // Create new Join Notification
-                Task{
-                    try await notificationID = notifsm.createNotification(type: .join, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "", event_id: self.event?.id ?? "")
-                    print(notificationID)
-                    print("NOTIFICATION CREATED")
-                    currUser?.notifications.insert(notificationID, at: 0)
-                    try await db.collection("Users").document(currUserID).updateData(["notifications":currUser?.notifications ?? []])
+                if (currUser?.generalNotifications == true && currUser?.eventNotifications == true)
+                {
+                    let eventName = self.event?.name
+                    let host_name = self.event?.eventHostName
+                    // Create new Join Notification
+                    Task{
+                        try await notificationID = notifsm.createNotification(type: .join, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "", event_id: self.event?.id ?? "")
+                        print(notificationID)
+                        print("NOTIFICATION CREATED")
+                        currUser?.notifications.insert(notificationID, at: 0)
+                        try await db.collection("Users").document(currUserID).updateData(["notifications":currUser?.notifications ?? []])
+                    }
                 }
-                
                 let joinedAlertController = UIAlertController(title: "Success", message: "You've successfully joined the event.", preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                 joinedAlertController.addAction(okAction)
@@ -685,14 +711,17 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             }
             currUser?.leaveEvent(eventID: event?.id ?? "")
             //LEAVE EVENT NOTIFICATION
-            let eventName = self.event?.name
-            let host_name = self.event?.eventHostName
-            Task{
-                try await notificationID = notifsm.createNotification(type: .leave, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "", event_id: self.event?.id ?? "")
-                print(notificationID)
-                print("Leave NOTIFICATION CREATED")
-                currUser?.notifications.insert(notificationID, at: 0)
-                try await db.collection("Users").document(currUserID).updateData(["notifications":currUser?.notifications ?? []])
+            if (currUser?.eventNotifications == true && currUser?.generalNotifications == true)
+            {
+                let eventName = self.event?.name
+                let host_name = self.event?.eventHostName
+                Task{
+                    try await notificationID = notifsm.createNotification(type: .leave, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "", event_id: self.event?.id ?? "")
+                    print(notificationID)
+                    print("Leave NOTIFICATION CREATED")
+                    currUser?.notifications.insert(notificationID, at: 0)
+                    try await db.collection("Users").document(currUserID).updateData(["notifications":currUser?.notifications ?? []])
+                }
             }
             
             let leaveAlertController = UIAlertController(title: "Success", message: "You've successfully left the event.", preferredStyle: .alert)
@@ -783,16 +812,19 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                     db.collection("Events").document(id ?? "").updateData(["adminsList":self.event?.adminsList])
                     
                     //PROMOTE NOTIFICATION
-                    Task{
-                        var notificationID = ""
-                        let eventName = self.event?.name
-                        let host_name = self.event?.eventHostName
-                        var notifsm = NotificationMethods()
-                        try await notificationID = notifsm.createNotification(type: .promote, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "", event_id: self.event?.id ?? "")
-                        print(notificationID)
-                        print("Promote NOTIFICATION CREATED")
-                        selectedUser.notifications.insert(notificationID, at: 0)
-                        try await db.collection("Users").document(userID).updateData(["notifications":selectedUser.notifications ?? []])
+                    if (selectedUser.generalNotifications == true && selectedUser.eventNotifications == true)
+                    {
+                        Task{
+                            var notificationID = ""
+                            let eventName = self.event?.name
+                            let host_name = self.event?.eventHostName
+                            var notifsm = NotificationMethods()
+                            try await notificationID = notifsm.createNotification(type: .promote, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "", event_id: self.event?.id ?? "")
+                            print(notificationID)
+                            print("Promote NOTIFICATION CREATED")
+                            selectedUser.notifications.insert(notificationID, at: 0)
+                            try await db.collection("Users").document(userID).updateData(["notifications":selectedUser.notifications ?? []])
+                        }
                     }
                 }
                 
@@ -854,16 +886,19 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                     // TODO ANDREW SEND NOTIFICATION to kicked user
                     self.updateLists()
                     //PROMOTE NOTIFICATION
-                    Task{
-                        var notificationID = ""
-                        let eventName = self.event?.name
-                        let host_name = self.event?.eventHostName
-                        var notifsm = NotificationMethods()
-                        try await notificationID = notifsm.createNotification(type: .kick, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "", event_id: self.event?.id ?? "")
-                        print(notificationID)
-                        print("Kick NOTIFICATION CREATED")
-                        selectedUser.notifications.insert(notificationID, at: 0)
-                        try await db.collection("Users").document(userID).updateData(["notifications":selectedUser.notifications ?? []])
+                    if (selectedUser.generalNotifications == true && selectedUser.eventNotifications == true)
+                    {
+                        Task{
+                            var notificationID = ""
+                            let eventName = self.event?.name
+                            let host_name = self.event?.eventHostName
+                            var notifsm = NotificationMethods()
+                            try await notificationID = notifsm.createNotification(type: .kick, id: currUserID, event_name: eventName ?? "", host_name: host_name ?? "", event_id: self.event?.id ?? "")
+                            print(notificationID)
+                            print("Kick NOTIFICATION CREATED")
+                            selectedUser.notifications.insert(notificationID, at: 0)
+                            try await db.collection("Users").document(userID).updateData(["notifications":selectedUser.notifications ?? []])
+                        }
                     }
                 }
                 
@@ -915,20 +950,26 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                     var notificationID = ""
                     let db = Firestore.firestore()
                     // Create new Join Notification
-                    Task{
-                        try await notificationID = notifsm.createNotification(type: .join, id: userID ?? "", event_name: eventName ?? "", host_name: host_name ?? "", event_id: self.event?.id ?? "")
-                        print(notificationID)
-                        print("NOTIFICATION CREATED")
-                        selectedUser.notifications.insert(notificationID, at: 0)
-                        try await db.collection("Users").document(userID ?? "").updateData(["notifications":selectedUser.notifications ?? []])
+                    if (selectedUser.generalNotifications == true && selectedUser.eventNotifications == true)
+                    {
+                        Task{
+                            try await notificationID = notifsm.createNotification(type: .join, id: userID ?? "", event_name: eventName ?? "", host_name: host_name ?? "", event_id: self.event?.id ?? "")
+                            print(notificationID)
+                            print("NOTIFICATION CREATED")
+                            selectedUser.notifications.insert(notificationID, at: 0)
+                            try await db.collection("Users").document(userID ?? "").updateData(["notifications":selectedUser.notifications ?? []])
+                        }
                     }
                     //Create new Joined My Event Notification
-                    Task{
-                        try await notificationID = notifsm.createNotification(type: .joinedMyEvent, id: currUserID ?? "", event_name: eventName ?? "", host_name: selectedUser.name ?? "", event_id: self.event?.id ?? "")
-                        print(notificationID)
-                        print("NOTIFICATION CREATED")
-                        currUser?.notifications.insert(notificationID, at: 0)
-                        try await db.collection("Users").document(currUserID ?? "").updateData(["notifications":currUser?.notifications ?? []])
+                    if (currUser?.generalNotifications == true && currUser?.eventNotifications == true)
+                    {
+                        Task{
+                            try await notificationID = notifsm.createNotification(type: .joinedMyEvent, id: currUserID ?? "", event_name: eventName ?? "", host_name: selectedUser.name ?? "", event_id: self.event?.id ?? "")
+                            print(notificationID)
+                            print("NOTIFICATION CREATED")
+                            currUser?.notifications.insert(notificationID, at: 0)
+                            try await db.collection("Users").document(currUserID ?? "").updateData(["notifications":currUser?.notifications ?? []])
+                        }
                     }
                 }
                 
