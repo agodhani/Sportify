@@ -115,6 +115,8 @@ class NotificationPreferencesViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black
         
+        updatePreferencesButton.addTarget(self, action: #selector(updatePreferencesTapped), for: .touchUpInside)
+        
         // Add subviews
         view.addSubview(logoView)
         view.addSubview(notificationsText)
