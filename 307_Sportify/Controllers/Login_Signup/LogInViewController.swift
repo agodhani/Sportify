@@ -93,6 +93,20 @@ class LogInViewController: UIViewController {
         return button
     }()
     
+    private var wrongText: UITextView = {
+        let text = UITextView()
+        text.isEditable = false;
+        text.textColor = .white
+        text.backgroundColor = .clear
+        text.textAlignment = .left
+        text.font = .systemFont(ofSize: 15, weight: .regular)
+        text.isScrollEnabled = false
+        text.textColor = .red
+        text.text = "Invalid email or password"
+        text.isHidden = true
+        return text
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
@@ -116,20 +130,28 @@ class LogInViewController: UIViewController {
         view.addSubview(loginButton)
         view.addSubview(forgotPasswordButton)
         view.addSubview(revealButton)
+        view.addSubview(wrongText)
         
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let size = view.width / 1.2
+        
         backButton.frame = CGRect(x: 15,
                                   y: 70,
                                   width: 70,
                                   height: 30)
+        
+
         logoView.frame = CGRect(x: (view.width - size) / 2,
                                 y: 100,
                                 width: size,
                                 height: size)
+        wrongText.frame = CGRect(x: 108,
+                                 y: logoView.bottom - 65,
+                                 width: 225,
+                                 height: 50)
         emailField.frame = CGRect(x: 90,
                                    y: logoView.bottom - 20,
                                    width: 225,
@@ -183,6 +205,7 @@ class LogInViewController: UIViewController {
             if(try await userAuth.signIn(withEmail: email, password: password)) {
                 print("log in success")
                 //TODO link to new homepage
+                
                 let tabBarController = UITabBarController()
 
                 let eventsViewController = UIHostingController(rootView: EventsViewControllerRepresentable())
@@ -207,12 +230,17 @@ class LogInViewController: UIViewController {
 
                    
                    // Set the UITabBarController as the root view controller
-                   UIApplication.shared.windows.first?.rootViewController = tabBarController
-                   UIApplication.shared.windows.first?.makeKeyAndVisible()
-                let vc = EventsViewController()
-                navigationController?.pushViewController(vc, animated: true)
+                //UIApplication.shared.windows.first?.rootViewController = tabBarController
+                //UIApplication.shared.windows.first?.makeKeyAndVisible()
+                tabBarController.navigationItem.hidesBackButton = true
+                //UIApplication.shared.windows.first?.rootViewController = tabBarController
+                //navigationController?.popToRootViewController(animated: false)
+                navigationController?.pushViewController(tabBarController, animated: true)
+                //UIApplication.shared.windows.first?.rootViewController = tabBarController
+
             } else {
                 print("log in failed")
+                wrongText.isHidden = false
             }
         }
     }
