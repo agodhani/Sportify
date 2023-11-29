@@ -81,6 +81,8 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
             cell.contentView.backgroundColor = .systemGreen
         } else if notifications[indexPath.row].messageType == .announcement {
             cell.contentView.backgroundColor = .systemYellow
+        } else if notifications[indexPath.row].messageType == .newDM {
+            cell.contentView.backgroundColor = .systemBlue
         }
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.lineBreakMode = .byWordWrapping

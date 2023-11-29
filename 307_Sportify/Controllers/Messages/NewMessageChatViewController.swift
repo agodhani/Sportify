@@ -91,12 +91,14 @@ class NewMessageChatViewController: UIViewController, UITableViewDataSource, UIT
             try await db.collection("Users").document(userID).updateData(["messageList": user?.messageList ?? []])
             
             // notification for the user chatting with
-            let notifsm = NotificationMethods()
-            let notificationID = try await notifsm.createNotification(type: .newDM, id: user?.id ?? "", event_name: "new dm", host_name: user?.name ?? "", event_id: "")
-            friend.notifications.append(notificationID)
-            try await db.collection("Users").document(friend.id).updateData(["notifications":friend.notifications])
+            if(friend.dmNotifications == true && friend.generalNotifications == true)
+            {
+                let notifsm = NotificationMethods()
+                let notificationID = try await notifsm.createNotification(type: .newDM, id: user?.id ?? "", event_name: "new dm", host_name: user?.name ?? "", event_id: "")
+                friend.notifications.insert(notificationID, at: 0)
+                try await db.collection("Users").document(friend.id).updateData(["notifications":friend.notifications])
+            }
 
-            
             vc.chatUser = friend
             navigationController?.pushViewController(vc, animated: true)
         }

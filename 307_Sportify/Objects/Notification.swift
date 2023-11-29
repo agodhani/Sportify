@@ -43,7 +43,7 @@ struct Notification: Identifiable, Codable, Hashable {
             case .request:
                 message = "\(name) has requested to join \(eventName) on \(formattedDate)"
             case .newDM:
-                message = "\(name) has created a new chat with you on \(formattedDate)"
+                message = "\(name) created a new chat with you on \(formattedDate)"
             case .announcement:
                 message =  "You received an Announcement from \(name): \(eventName)"
         }
