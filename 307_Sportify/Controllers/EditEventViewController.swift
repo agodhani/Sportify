@@ -58,7 +58,7 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     private var editPicPrompt: UITextView = {
         let text = UITextView()
-        text.text = "Click icon to edit image"
+        text.text = "Click to edit image"
         text.textColor = .sportGold
         text.backgroundColor = .clear
         text.textAlignment = .center
@@ -577,13 +577,17 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
                     })
                 }
                     
-                navigationController?.popViewController(animated: true)
+                //navigationController?.popViewController(animated: true)
+                //navigationController?.topViewController =
 
                 let alertController = UIAlertController(title: "Event Modified", message: "Your event was successfully modified!", preferredStyle: .alert)
                 
-                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                    self.navigationController?.popViewController(animated: true)
+                }
                 alertController.addAction(okAction)
                 present(alertController, animated: true, completion: nil)
+                
                 
             } else {
                 // Fields aren't filled, show a popup (alert)

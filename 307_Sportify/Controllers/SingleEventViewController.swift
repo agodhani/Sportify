@@ -273,6 +273,26 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         //let userAuth = UserAuthentication()
         //self.name.text = userAuth.currUser?.name
         
+        eventNameText.text = (event?.name ?? "Error Event Name")
+        descriptionText.text = "Event Description: " + (event?.description ?? "Error description")
+        hostNameText.text = "Event Host: " + (event?.eventHostName ?? "Event Host Error")
+        locationNameText.text = "Location: " + (event?.location ?? "Location Error")
+        sportNameText.text = "Sport: " + sportList[event?.sport ?? 16]
+        maxParticipantsText.text = "Participants: " + String(event?.attendeeList.count ?? 0) + "/" + String(event?.maxParticipants ?? 0)
+        eventDateText.text = "Event Date: " + String(event?.date.formatted() ?? Date().formatted())
+        
+        isPrivate = event?.privateEvent ?? false
+        if (isPrivate) { // private event
+            privateEventText.text = "Private Event"
+            privateEventText.textColor = .red
+        } else {
+            privateEventText.text = "Public Event"
+            privateEventText.textColor = .green
+        }
+        
+        self.attendeeTableView.reloadData()
+        self.requestTableView.reloadData()
+        
         let eventID = event?.id
         
         let picPath = "eventPictures/" + (eventID ?? "") + "_event_picture.png"

@@ -230,6 +230,7 @@
 				3174F1612AE08D6300C2C49D /* FlowViewController.swift */,
 				3137F3C42AE89668000E5460 /* Login_Signup */,
 				3174F1652AE0949D00C2C49D /* Extensions.swift */,
+				6DAB93B62AEF11B30006BB47 /* EditEventViewController.swift */,
 				BACFF7372AEDB902005536C4 /* HomeEventsViewController.swift */,
 				BACFF7392AEE084A005536C4 /* SingleEventViewController.swift */,
 				31ECFA7C2B0BC234001B2C08 /* NotificationPreferencesViewController.swift */,
@@ -251,7 +252,6 @@
 				BA8D9B552B12BFE20061A0C9 /* BlockedUsersViewController.swift */,
 				315325952AF0B3F2006867F9 /* MyFriendsViewController.swift */,
 				319514AB2AED7B0E00BCE814 /* EditProfileViewController.swift */,
-				6DAB93B62AEF11B30006BB47 /* EditEventViewController.swift */,
 				6DD44B302AFD4A1800360EEA /* AddFriendsViewController.swift */,
 				BA43BB3A2AFDACF0007DE5F8 /* UserProfileViewController.swift */,
 			);
