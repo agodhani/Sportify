@@ -94,7 +94,7 @@ class EventMethods: ObservableObject {
         }
     }
     
-    func modifyEvent(eventID: Event.ID, eventName: String, date: Date, location: String, attendeeList: Array<String>, privateEvent: Bool, maxParticipants: Int, adminsList: Set<User>, eventHostID: String, code: String, blackList: Set<User>, requestList: [String], description: String, sport: Int) async throws {
+    func modifyEvent(eventID: Event.ID, eventName: String, date: Date, location: String, attendeeList: Array<String>, privateEvent: Bool, maxParticipants: Int, adminsList: Set<User>, eventHostID: String, code: String, blackList: Set<User>, requestList: [String], description: String, sport: Int) async throws -> Bool {
         
         do {
             let event = try await self.getEvent(eventID: eventID)
@@ -137,10 +137,12 @@ class EventMethods: ObservableObject {
             if(description != event.description) {
                 try await Firestore.firestore().collection("Events").document(event.id).updateData(["description": description])
             }
+            return true
             
             //"eventName": event.eventName, "date": event.date, "location": event.location, "attendeeList": event.attendeeList, "privateEvent":event.privateEvent, "maxParticipants":event.maxParticipants, "adminsList":event.adminsList, "eventHostID" : event.eventHostID, "code":event.code, "blackList": event.blackList, "requestList": event.requestList, "description":event.description
         } catch {
             print("your stuff is broken - cannot update event")
+            return false
         }
         
     }

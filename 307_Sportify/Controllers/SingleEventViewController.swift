@@ -10,6 +10,10 @@ import Firebase
 
 // TODO make this look nice
 
+protocol EventUpdatedDelegate: AnyObject {
+    func eventDidUpdate()
+}
+
 class MyCell: UITableViewCell {
     
     var buttonTapCallback: () -> () = { }
@@ -63,7 +67,7 @@ class MyCell: UITableViewCell {
     
 }
 
-class SingleEventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SingleEventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, EventUpdatedDelegate, AllEventsDelegate {
     
     var userAuth : UserAuthentication?
     var event: EventHighLevel?
@@ -73,6 +77,23 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
     var requestListAsUsers = [User]()
     var allUsers = AllUsers()
     var userm = UserMethods()
+    var allEvent = AllEvents()
+    
+    func eventDidUpdate() {
+            DispatchQueue.main.async {
+                self.allEvent.delegate = self
+                self.allEvent.getEvents()
+            }
+        }
+    
+    func eventsDidUpdate() {
+        DispatchQueue.main.async {
+            var events = self.allEvent.events.filter({event in
+                event.id == self.event?.id})
+            self.event = events.first
+            self.viewDidLoad()
+        }
+    }
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -751,13 +772,14 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             updateLists()
             
         }
-        
+        eventDidUpdate()
     }
     
     @objc private func tappedEditEventButton() {
         let vc = EditEventViewController()
         vc.event = event
         vc.userid = userAuth?.currUser?.id
+        vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }
 
@@ -868,7 +890,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                             print("Promoting new user to host")
                         }
                         // push out of the event
-                        self.navigationController?.popViewController(animated: true)
+                        //self.navigationController?.popViewController(animated: true)
                         
                         let alertC2 = UIAlertController(title: "Successful promotion", message: "\(user.name) was successfully promoted as host!", preferredStyle: .alert)
                         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -1067,6 +1089,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             }
             present(alertController, animated: true, completion: nil)
         }
+        self.eventDidUpdate()
     }
     
     @objc private func buttonTouchDown() {

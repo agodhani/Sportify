@@ -26,6 +26,7 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     var descriptionFilled = true
     var locationFilled = true
     var pictureSelected = false
+    weak var delegate: EventUpdatedDelegate?
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -551,10 +552,11 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     @objc private func saveButtonTapped() {
         Task {
-            
             if (allFieldsFilled) {
                 
-                try await eventsm.modifyEvent(eventID: event?.id ?? "", eventName: eventNameField.text ?? "", date: datePicker.date, location: locationField.text ?? "", attendeeList: event?.attendeeList ?? [String](), privateEvent: isPrivateSlider.isOn, maxParticipants: selectedNumber ?? 25, adminsList: Set<User>(), eventHostID: event?.eventHost ?? "nouid", code: codeField.text ?? "", blackList: Set<User>(), requestList: event?.requestList ?? [String](), description: descriptionField.text ?? "", sport: selectedSport ?? event?.sport ?? 0)
+                if try await eventsm.modifyEvent(eventID: event?.id ?? "", eventName: eventNameField.text ?? "", date: datePicker.date, location: locationField.text ?? "", attendeeList: event?.attendeeList ?? [String](), privateEvent: isPrivateSlider.isOn, maxParticipants: selectedNumber ?? 25, adminsList: Set<User>(), eventHostID: event?.eventHost ?? "nouid", code: codeField.text ?? "", blackList: Set<User>(), requestList: event?.requestList ?? [String](), description: descriptionField.text ?? "", sport: selectedSport ?? event?.sport ?? 0) {
+                    self.delegate?.eventDidUpdate()
+                }
                 
                 if (pictureSelected == true) {
                     guard let image = self.picView.image, let data = image.pngData() else {
