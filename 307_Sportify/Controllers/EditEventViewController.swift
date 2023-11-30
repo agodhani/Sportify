@@ -406,20 +406,21 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         scrollView.addSubview(descriptionField)
         scrollView.addSubview(locationField)
         scrollView.addSubview(codeField)
-        
+        scrollView.addSubview(numberPicker)
         scrollView.addSubview(sportText)
         sportPicker.tag = 1
         sportPicker.delegate = self as UIPickerViewDelegate
         sportPicker.dataSource = self as UIPickerViewDataSource
         scrollView.addSubview(sportPicker)
         sportPicker.center = self.view.center
-        
+        sportPicker.selectRow(event?.sport ?? 0, inComponent: 0, animated: false)
         scrollView.addSubview(participantsText)
         numberPicker.tag = 2
         numberPicker.delegate = self as UIPickerViewDelegate
         numberPicker.dataSource = self as UIPickerViewDataSource
         scrollView.addSubview(numberPicker)
         numberPicker.center = self.view.center
+        numberPicker.selectRow((event!.maxParticipants - 1), inComponent: 0, animated: false)
         
         scrollView.addSubview(privateText)
         scrollView.addSubview(isPrivateSlider)
