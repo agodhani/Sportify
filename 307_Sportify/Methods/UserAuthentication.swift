@@ -61,7 +61,7 @@ class UserAuthentication: ObservableObject {
             let userInfo = try? await Firestore.firestore().collection("Users").document(userId).getDocument()
             if let user = try userInfo?.data(as: User.self) {
                 self.currUser = user
-                print("Current User is \(self.currUser)")
+                print("Current User is \(self.currUser ?? User(id: "", name: "", email: "", radius: 0, zipCode: "", sportsPreferences: [], privateAccount: false, profilePicture: "", age: 0, birthday: Date.now, friendList: [], blockList: [], eventsAttending: [], eventsHosting: [], suggestions: [], notifications: [], messageList: [], generalNotifications: false, dmNotifications: false, eventNotifications: false, friendRequestNotifications: false))")
             }
         } catch {
           print("User fetching data failed")
