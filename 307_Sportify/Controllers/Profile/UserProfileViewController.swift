@@ -60,6 +60,18 @@ class UserProfileViewController: UIViewController {
         Task {
             await userAuth?.getCurrUser()
         }
+        //Create Friend Notification
+        var userm = UserMethods()
+        Task {
+            var friend = await userm.getUser(user_id: person?.id ?? "")
+            if (friend.generalNotifications == true && friend.friendRequestNotifications) {
+                let notifsm = NotificationMethods()
+                let notificationID = try await notifsm.createNotification(type: .newFriend, id: user?.id ?? "", event_name: "new friend", host_name: user?.name ?? "", event_id: "")
+                friend.notifications.insert(notificationID, at: 0)
+                try await db.collection("Users").document(friend.id).updateData(["notifications":friend.notifications])
+            }
+        }
+        
     }
     
     @objc private func tappedBlockUser() {
