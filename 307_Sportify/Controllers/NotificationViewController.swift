@@ -298,7 +298,7 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
         tableView.frame = CGRect(x: 0,
                                  y: 200, // was 50
                                  width: view.width,
-                                 height: view.height)
+                                 height: view.height - 200)
         
         /*logoView.frame = CGRect(x: (view.width - size) / 2,
                                 y: 100,
