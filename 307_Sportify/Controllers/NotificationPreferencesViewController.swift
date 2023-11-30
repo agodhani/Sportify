@@ -10,7 +10,7 @@ import Firebase
 
 class NotificationPreferencesViewController: UIViewController {
     
-    var userAuth = UserAuthentication()
+    var userAuth: UserAuthentication?
 
     private let logoView: UIImageView = {
         let logoView = UIImageView()
@@ -100,7 +100,7 @@ class NotificationPreferencesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        guard let user = userAuth.currUser else {
+        guard let user = userAuth?.currUser else {
             print("userAuth.currUser failed")
             return
         }
@@ -129,13 +129,30 @@ class NotificationPreferencesViewController: UIViewController {
         view.addSubview(friendRequestNotificationsText)
         view.addSubview(friendRequestNotificationsSlider)
         view.addSubview(updatePreferencesButton)
+        view.addSubview(backButton)
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
     }
+    // Back button
+    private let backButton: UIButton = {
+        let backButton = UIButton(type: .system)
+        backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+               backButton.setTitle("Back", for: .normal)
+               backButton.titleLabel?.font = UIFont.systemFont(ofSize: 17.0)
+               backButton.sizeToFit()
+        return backButton
+    }()
     
+    @objc func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
+        //        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        //backButton.frame = CGRect(x: 10, y: 60, width: 70, height: 30)
+
+    }
     // Organize view
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let size = view.width / 1.2
-        
+        backButton.frame = CGRect(x: 10, y: 60, width: 70, height: 30)
         logoView.frame = CGRect(x: (view.width - size) / 2,
                                 y: -10,
                                 width: size,
@@ -187,8 +204,8 @@ class NotificationPreferencesViewController: UIViewController {
     @objc private func updatePreferencesTapped() {
         print("UPDATE USER")
         let db = Firestore.firestore()
-        let user_id = userAuth.currUser?.id ?? ""
-        var currUser = userAuth.currUser
+        let user_id = userAuth?.currUser?.id ?? ""
+        var currUser = userAuth?.currUser
         currUser?.generalNotifications = generalNotificationsSlider.isOn
         currUser?.dmNotifications = dmNotificationsSlider.isOn
         currUser?.eventNotifications = eventNotificationsSlider.isOn

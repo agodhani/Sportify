@@ -312,6 +312,7 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
     
     @objc private func tappedPreferencesButton() {
         let vc = NotificationPreferencesViewController()
+        vc.userAuth = userAuth
         navigationController?.pushViewController(vc, animated: true)
     }
     
