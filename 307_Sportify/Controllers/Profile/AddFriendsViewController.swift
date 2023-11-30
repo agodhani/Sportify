@@ -51,11 +51,17 @@ class AddFriendsViewController: UIViewController, UITableViewDataSource, UITable
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return table
     }()
-    
+    private let sportLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Sport Filter"
+        label.textColor = .sportGold
+        label.font = .systemFont(ofSize: 18)
+        return label
+    }()
     //filtering location
     private let locationLabel: UILabel = {
         let label = UILabel()
-        label.text = "Location"
+        label.text = "Location Filter"
         label.textColor = .sportGold
         label.font = .systemFont(ofSize: 18)
         return label
@@ -203,6 +209,7 @@ class AddFriendsViewController: UIViewController, UITableViewDataSource, UITable
         view.addSubview(filterLocationSlider)
         view.addSubview(sportPicker)
         view.addSubview(table)
+        view.addSubview(sportLabel)
         filterLocationSlider.addTarget(self, action: #selector(switchLocationSliderChanged), for: .valueChanged)
         view.addSubview(backButton)
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
@@ -222,9 +229,9 @@ class AddFriendsViewController: UIViewController, UITableViewDataSource, UITable
         view.backgroundColor = .black
         locationLabel.frame = CGRect(x: 50,
                                     y: 95,
-                                    width: 80,
+                                    width: 120,
                                     height: 50)
-        filterLocationSlider.frame = CGRect(x: 150,
+        filterLocationSlider.frame = CGRect(x: locationLabel.right + 25,
                                        y: 100,
                                        width: 30,
                                        height: 30)
@@ -232,6 +239,10 @@ class AddFriendsViewController: UIViewController, UITableViewDataSource, UITable
                              y: 240, // was 50
                              width: view.width,
                              height: view.height)
+        sportLabel.frame = CGRect(x: 50,
+                                y: 180,
+                                width: 120,
+                                height: 50)
         sportPicker.frame = CGRect(x: 150,
                                     y: 180,
                                     width: 170,
