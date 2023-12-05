@@ -214,6 +214,7 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
         text.textAlignment = .center
         text.font = .systemFont(ofSize: 40, weight: .bold)
         text.toggleUnderline(true)
+        text.isEditable = false
         return text
     }()
     
