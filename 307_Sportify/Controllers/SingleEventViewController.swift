@@ -91,7 +91,7 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
             var events = self.allEvent.events.filter({event in
                 event.id == self.event?.id})
             self.event = events.first
-            self.viewDidLoad()
+            self.viewWillAppear(false)
         }
     }
     
@@ -331,6 +331,47 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                 }
             }
         })
+        
+        updateLists()
+        
+        
+        let currUserID = userAuth?.currUser?.id ?? ""
+        if (event?.userIsAttending(userID: currUserID) == false) {
+            // join button
+            joinLeaveButton.setTitle("Join", for: .normal)
+            joinLeaveButton.backgroundColor = .green
+        } else {
+            // leave button
+            joinLeaveButton.setTitle("Leave", for: .normal)
+            joinLeaveButton.backgroundColor = .red
+            print("HERE")
+        }
+
+        if (currUserID == event?.eventHost || (event?.adminsList.contains(currUserID) ?? false)) {
+            // if the user is the host or an admin - display the button
+            scrollView.addSubview(editEventButton)
+            scrollView.addSubview(announcementButton)
+        }
+        
+        eventNameText.text = (event?.name ?? "Error Event Name")
+        descriptionText.text = "Event Description: " + (event?.description ?? "Error description")
+        hostNameText.text = "Event Host: " + (event?.eventHostName ?? "Event Host Error")
+        locationNameText.text = "Location: " + (event?.location ?? "Location Error")
+        sportNameText.text = "Sport: " + sportList[event?.sport ?? 16]
+        maxParticipantsText.text = "Participants: " + String(event?.attendeeList.count ?? 0) + "/" + String(event?.maxParticipants ?? 0)
+        eventDateText.text = "Event Date: " + String(event?.date.formatted() ?? Date().formatted())
+        
+        isPrivate = event?.privateEvent ?? false
+        if (isPrivate) { // private event
+            privateEventText.text = "Private Event"
+            privateEventText.textColor = .red
+        } else {
+            privateEventText.text = "Public Event"
+            privateEventText.textColor = .green
+        }
+        
+        self.attendeeTableView.reloadData()
+        self.requestTableView.reloadData()
     }
     // Back button
     private let backButton: UIButton = {
