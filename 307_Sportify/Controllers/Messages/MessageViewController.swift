@@ -110,14 +110,8 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     private let newMessage: UIButton = {
         let button = UIButton()
-        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
-        button.setTitleColor(.black, for: .normal)
-        button.layer.cornerRadius = 20
-        button.layer.masksToBounds = true
-        button.titleLabel?.lineBreakMode = .byWordWrapping
-        button.titleLabel?.textAlignment = .center
-        button.setTitle("New Message", for: .normal)
-        button.backgroundColor = .sportGold
+        button.setImage(UIImage(systemName: "plus"), for: .normal)
+        button.layer.cornerRadius = button.frame.size.width / 2
         return button
     }()
     
