@@ -123,6 +123,7 @@ class EditProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
+        self.hideKeyboardWhenTappedAround()
 //        title = "Edit Profile"
 //        let appearence = UINavigationBarAppearance()
 //        appearence.titleTextAttributes = [.foregroundColor: UIColor.sportGold]

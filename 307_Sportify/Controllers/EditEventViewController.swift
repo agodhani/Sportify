@@ -382,6 +382,7 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         scrollView.backgroundColor = .black
         
         eventNameField.delegate = self

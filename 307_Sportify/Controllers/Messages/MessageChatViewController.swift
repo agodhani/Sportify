@@ -296,6 +296,7 @@ class MessageChatViewController: UIViewController, UITableViewDelegate, UITableV
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         fetchMessages()
         view.addSubview(backButton)
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)

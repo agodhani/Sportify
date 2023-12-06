@@ -72,7 +72,7 @@ class ForgotPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
-        
+        self.hideKeyboardWhenTappedAround()
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         submitButton.addTarget(self, action: #selector(tappedSubmit), for: .touchUpInside)
         

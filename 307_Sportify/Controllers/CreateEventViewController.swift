@@ -365,7 +365,8 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
         scrollView.addSubview(randomButton)
         scrollView.addSubview(backButton)
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        
+        self.hideKeyboardWhenTappedAround()
+
     }
     
     // Back button

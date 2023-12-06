@@ -211,7 +211,7 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
-        
+        self.hideKeyboardWhenTappedAround()
         // Functionality for the buttons
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         

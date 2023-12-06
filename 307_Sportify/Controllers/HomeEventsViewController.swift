@@ -362,6 +362,7 @@ class HomeEventsViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         allEvents.getEvents()
         view.addSubview(myEventsText)
         view.addSubview(searchBar)
