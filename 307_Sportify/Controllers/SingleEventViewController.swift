@@ -202,6 +202,30 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         return text
     }()
     
+    private var participantsListText: UITextView = {
+        let text = UITextView()
+        text.isEditable = false;
+        text.textColor = .sportGold
+        text.backgroundColor = .clear
+        text.textAlignment = .left
+        text.font = .systemFont(ofSize: 20, weight: .regular)
+        text.isScrollEnabled = false
+        text.text = "Participants"
+        return text
+    }()
+    
+    private var requestListText: UITextView = {
+        let text = UITextView()
+        text.text = "Requests"
+        text.isEditable = false;
+        text.textColor = .sportGold
+        text.backgroundColor = .clear
+        text.textAlignment = .left
+        text.font = .systemFont(ofSize: 20, weight: .regular)
+        text.isScrollEnabled = false
+        return text
+    }()
+    
     // tag = 1
     private let attendeeTableView: UITableView = {
         let tableView = UITableView()
@@ -444,6 +468,8 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
         scrollView.addSubview(attendeeTableView)
         scrollView.addSubview(requestTableView)
         scrollView.addSubview(joinLeaveButton)
+        scrollView.addSubview(requestListText)
+        scrollView.addSubview(participantsListText)
         if (currUserID == event?.eventHost || (event?.adminsList.contains(currUserID) ?? false)) {
             // if the user is the host or an admin - display the button
             scrollView.addSubview(editEventButton)
@@ -538,16 +564,28 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                                            y: eventDateText.bottom,
                                            width: size,
                                            height: 32)
+        
+        participantsListText.frame = CGRect (x: 25,
+                                            y: maxParticipantsText.bottom + 10,
+                                            width: size,
+                                            height: 32)
+        
         attendeeTableView.frame = CGRect(x: 35,
-                                         y: maxParticipantsText.bottom + 20,
+                                         y: maxParticipantsText.bottom + 50,
                                     width: size,
                                     height: 100)
+        
+        requestListText.frame = CGRect (x: 25,
+                                            y: attendeeTableView.bottom + 20,
+                                            width: size,
+                                            height: 32)
+        
         requestTableView.frame = CGRect(x: 35,
-                                        y: attendeeTableView.bottom + 40,
+                                        y: attendeeTableView.bottom + 60,
                                     width: size,
                                     height: 100)
         joinLeaveButton.frame = CGRect(x: 30,
-                                       y: 750,
+                                       y: 800,
                                        width: 80,
                                        height: 45)
         editEventButton.frame = CGRect(x: joinLeaveButton.right + 20,
