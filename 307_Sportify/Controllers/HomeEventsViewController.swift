@@ -438,30 +438,30 @@ class HomeEventsViewController: UIViewController, UITableViewDataSource, UITable
                                        y: 140,
                                        width: 1,
                                        height: 1)
-        sportText.frame = CGRect(x: -15,
+        sportText.frame = CGRect(x: 15,
                                   y: 170,
                                   width: 180,
                                   height: 50)
         
-        sportPicker.frame = CGRect(x: 50,
+        sportPicker.frame = CGRect(x: 15,
                                     y: 190,
                                     width: 180,
                                     height: 50)
-        sportText.frame = CGRect(x: -15,
+        /*sportText.frame = CGRect(x: -15,
                                   y: 170,
                                   width: 100,
-                                  height: 50)
+                                  height: 50)*/
         
-        sportPicker.frame = CGRect(x: -15,
+        /*sportPicker.frame = CGRect(x: -15,
                                     y: 180,
                                     width: 150,
-                                    height: 50)
-        maxParticipantsText.frame = CGRect(x: 125,
+                                    height: 50)*/
+        maxParticipantsText.frame = CGRect(x: 190,
                                   y: 170,
                                   width: 180,
                                   height: 50)
         
-        numberMaxParticipants.frame = CGRect(x: 175,
+        numberMaxParticipants.frame = CGRect(x: 190,
                                     y: 190,
                                     width: 180,
                                     height: 50)

@@ -518,7 +518,7 @@ class EditEventViewController: UIViewController, UIPickerViewDelegate, UIPickerV
                                     height: 100)
         
         numberPicker.frame = CGRect(x: 200,
-                                    y: participantsText.bottom - 10,
+                                    y: sportText.bottom - 10,
                                     width: 180,
                                     height: 100)
         

@@ -589,11 +589,11 @@ class SingleEventViewController: UIViewController, UITableViewDelegate, UITableV
                                        width: 80,
                                        height: 45)
         editEventButton.frame = CGRect(x: joinLeaveButton.right + 20,
-                                       y: 750,
+                                       y: 800,
                                        width: 110,
                                        height: 45)
         announcementButton.frame = CGRect(x: editEventButton.right + 20,
-                                          y: 750,
+                                          y: 800,
                                           width: 110,
                                           height: 45)
         
