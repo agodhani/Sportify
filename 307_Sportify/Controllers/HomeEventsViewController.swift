@@ -272,7 +272,7 @@ class HomeEventsViewController: UIViewController, UITableViewDataSource, UITable
     private var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.placeholder = "Event Name"
-        searchBar.barTintColor = .white
+        searchBar.barTintColor = .black
         return searchBar
     }()
     

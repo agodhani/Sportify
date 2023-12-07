@@ -63,36 +63,40 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         text.backgroundColor = .sportGold
         text.textAlignment = .center
         text.font = .systemFont(ofSize: 20, weight: .heavy)
+        text.isEditable = false
         return text
     }()
     
     private var sportText: UITextView = {
         let text = UITextView()
-        text.text = "Sport"
+        text.text = ""
         text.textColor = .white
         text.backgroundColor = .clear
         text.textAlignment = .center
         text.font = .systemFont(ofSize: 20, weight: .heavy)
+        text.isEditable = false
         return text
     }()
     
     private var locationText: UITextView = {
         let text = UITextView()
-        text.text = "Location"
+        text.text = ""
         text.textColor = .white
         text.backgroundColor = .clear
         text.textAlignment = .center
         text.font = .systemFont(ofSize: 20, weight: .heavy)
+        text.isEditable = false
         return text
     }()
     
     private var dateText: UITextView = {
         let text = UITextView()
-        text.text = "Date"
+        text.text = ""
         text.textColor = .white
         text.backgroundColor = .clear
         text.textAlignment = .center
         text.font = .systemFont(ofSize: 20, weight: .heavy)
+        text.isEditable = false
         return text
     }()
     

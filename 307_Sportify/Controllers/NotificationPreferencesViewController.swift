@@ -26,6 +26,7 @@ class NotificationPreferencesViewController: UIViewController {
         text.textColor = .white
         text.textAlignment = .center
         text.font = .systemFont(ofSize: 30, weight: .semibold)
+        text.isEditable = false
         return text
     }()
     
@@ -35,6 +36,7 @@ class NotificationPreferencesViewController: UIViewController {
         text.textColor = .white
         text.backgroundColor = .black
         text.font = .systemFont(ofSize: 20, weight: .regular)
+        text.isEditable = false
         return text
     }()
     
@@ -49,6 +51,8 @@ class NotificationPreferencesViewController: UIViewController {
         text.textColor = .white
         text.backgroundColor = .black
         text.font = .systemFont(ofSize: 20, weight: .regular)
+        text.isEditable = false
+
         return text
     }()
     
@@ -63,6 +67,7 @@ class NotificationPreferencesViewController: UIViewController {
         text.textColor = .white
         text.backgroundColor = .black
         text.font = .systemFont(ofSize: 20, weight: .regular)
+        text.isEditable = false
         return text
     }()
     
@@ -77,6 +82,7 @@ class NotificationPreferencesViewController: UIViewController {
         text.textColor = .white
         text.backgroundColor = .black
         text.font = .systemFont(ofSize: 20, weight: .regular)
+        text.isEditable = false
         return text
     }()
     

@@ -51,8 +51,16 @@ class UserProfileViewController: UIViewController {
     
     @objc private func tappedAddFriend() {
         var user = userAuth?.currUser
-        user?.addFriend(userID: person?.id ?? "Error")
-        var userid = user?.id
+        let userid = user?.id
+        if(user?.friendList.contains(person?.id ?? "") ?? false) {
+            let index = user?.blockList.firstIndex(of: person?.id ?? "") ?? 0
+            user?.friendList.remove(at: index)
+            addFriendButton.setTitle("Add Friend", for: .normal)
+        } else {
+            user?.friendList.append(person?.id ?? "")
+            addFriendButton.setTitle("Unfriend", for: .normal)
+
+        }
         let db = Firestore.firestore()
         db.collection("Users").document(userid!)
             .updateData(["friendList": user?.friendList])
@@ -156,8 +164,14 @@ class UserProfileViewController: UIViewController {
         view.addSubview(backButton)
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         if(!((user?.friendList.contains((person?.id ?? "")))!) && user?.id != person?.id) {
-            view.addSubview(addFriendButton)
+            
         }
+        if(user?.friendList.contains(person?.id ?? "") ?? false) {
+            addFriendButton.setTitle("Unfriend", for: .normal)
+        } else {
+            addFriendButton.setTitle("Add Friend", for: .normal)
+        }
+        view.addSubview(addFriendButton)
         addFriendButton.addTarget(self, action: #selector(tappedAddFriend), for: .touchUpInside)
         blockUserButton.addTarget(self, action: #selector(tappedBlockUser), for: .touchUpInside)
 
