@@ -49,7 +49,7 @@ class InviteToEventViewController: UIViewController, UITableViewDelegate, UITabl
                 
                 // append notification to user
                 var invitingUser = await userm.getUser(user_id: userInvitingID ?? "")
-                invitingUser.notifications.append(notificationID)
+                invitingUser.notifications.insert(notificationID, at:0)
                 
                 // change DB
                 let db = Firestore.firestore()
