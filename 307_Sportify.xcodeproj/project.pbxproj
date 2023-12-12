@@ -7,8 +7,48 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		310A6C422AE45A720089E1A5 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310A6C412AE45A720089E1A5 /* SignUpViewController.swift */; };
+		315325962AF0B3F2006867F9 /* MyFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315325952AF0B3F2006867F9 /* MyFriendsViewController.swift */; };
+		31562B9A2ACE4225002B3863 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31562B992ACE4225002B3863 /* EditProfileView.swift */; };
+		31562B9C2ACE4BDF002B3863 /* SelectPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31562B9B2ACE4BDF002B3863 /* SelectPicture.swift */; };
+		3174F1622AE08D6300C2C49D /* FlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3174F1612AE08D6300C2C49D /* FlowViewController.swift */; };
+		3174F1642AE08D9800C2C49D /* LoginSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3174F1632AE08D9800C2C49D /* LoginSignUpViewController.swift */; };
+		3174F1662AE0949D00C2C49D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3174F1652AE0949D00C2C49D /* Extensions.swift */; };
+		3180B1152AEB0B0F009A45D0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3180B1142AEB0B0F009A45D0 /* ProfileViewController.swift */; };
+		31854A142AD9332E007346F8 /* EditEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31854A132AD9332E007346F8 /* EditEventView.swift */; };
+		31854A162AD9E66F007346F8 /* JoinEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31854A152AD9E66F007346F8 /* JoinEvent.swift */; };
+		31854A182AD9ED4F007346F8 /* UserMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31854A172AD9ED4F007346F8 /* UserMethods.swift */; };
+		319514AC2AED7B0E00BCE814 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319514AB2AED7B0E00BCE814 /* EditProfileViewController.swift */; };
+		31B877D22AD4D776004D7F2A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B877D12AD4D776004D7F2A /* ImagePicker.swift */; };
+		31CB2C532AC89E0600DF43A3 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CB2C522AC89E0600DF43A3 /* Event.swift */; };
+		31E86E992AF209A1000E0CA7 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E86E982AF209A1000E0CA7 /* StorageManager.swift */; };
+		31ECFA7D2B0BC234001B2C08 /* NotificationPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31ECFA7C2B0BC234001B2C08 /* NotificationPreferencesViewController.swift */; };
+		6D00BB912AE957A700E22816 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D00BB902AE957A700E22816 /* ForgotPasswordViewController.swift */; };
+		6D043A302B064992003E49D3 /* InviteToEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D043A2F2B064992003E49D3 /* InviteToEventViewController.swift */; };
+		6D0A7F2E2AED7D1900824FC0 /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0A7F2D2AED7D1900824FC0 /* CreateEventViewController.swift */; };
+		6D2CBBF52B058E82005FAA76 /* SingleNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CBBF42B058E82005FAA76 /* SingleNotificationViewController.swift */; };
+		6D39AAB72AC73BFE00515C20 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D39AAB62AC73BFE00515C20 /* ForgotPasswordView.swift */; };
+		6DAB93B72AEF11B30006BB47 /* EditEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAB93B62AEF11B30006BB47 /* EditEventViewController.swift */; };
+		6DAC698C2AD984B8001C197E /* OldBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAC698B2AD984B8001C197E /* OldBlockView.swift */; };
+		6DAC698E2AD98539001C197E /* UserDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAC698D2AD98539001C197E /* UserDetailsView.swift */; };
+		6DAC69902AD9A544001C197E /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAC698F2AD9A544001C197E /* BlockView.swift */; };
+		6DADC9B42AD6574500483A86 /* SingleEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DADC9B32AD6574500483A86 /* SingleEventView.swift */; };
+		6DD44B312AFD4A1800360EEA /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD44B302AFD4A1800360EEA /* AddFriendsViewController.swift */; };
+		6DDAB0D92AEBF6B100235EE0 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDAB0D82AEBF6B100235EE0 /* EventsViewController.swift */; };
+		BA0714EB2AEC9A75003BD4C4 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0714EA2AEC9A75003BD4C4 /* NotificationViewController.swift */; };
+		BA0714ED2AEC9D2B003BD4C4 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0714EC2AEC9D2B003BD4C4 /* MessageViewController.swift */; };
+		BA0D67342AD9D05200F77044 /* AllEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0D67332AD9D05200F77044 /* AllEvents.swift */; };
+		BA0D67362AD9D26000F77044 /* ViewEventsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0D67352AD9D26000F77044 /* ViewEventsListView.swift */; };
+		BA2570CE2AC7B846004E528A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2570CD2AC7B846004E528A /* User.swift */; };
+		BA2570D12AC89B4D004E528A /* UserAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2570D02AC89B4D004E528A /* UserAuthentication.swift */; };
+		BA2570D32AC8A58D004E528A /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2570D22AC8A58D004E528A /* SignUpView.swift */; };
+		BA43BB3B2AFDACF0007DE5F8 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA43BB3A2AFDACF0007DE5F8 /* UserProfileViewController.swift */; };
+		BA44F8C22AD8FEFD00BB0CE7 /* CreateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA44F8C12AD8FEFD00BB0CE7 /* CreateEvent.swift */; };
+		BA44F8C62AD9045100BB0CE7 /* EventMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA44F8C52AD9045000BB0CE7 /* EventMethods.swift */; };
+		BA7037D62AE9906D007E27F5 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7037D52AE9906D007E27F5 /* LogInViewController.swift */; };
+		BA83473E2B15457A0003CA69 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA83473D2B15457A0003CA69 /* TabBarController.swift */; };
+		BA86EF7F2AD4B97600E37BF7 /* SportPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA86EF7E2AD4B97600E37BF7 /* SportPreferences.swift */; };
 		BA8B749B2AC6301400BBE70B /* _07_SportifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B749A2AC6301400BBE70B /* _07_SportifyApp.swift */; };
-		BA8B749D2AC6301400BBE70B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B749C2AC6301400BBE70B /* ContentView.swift */; };
 		BA8B749F2AC6301600BBE70B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA8B749E2AC6301600BBE70B /* Assets.xcassets */; };
 		BA8B74A22AC6301600BBE70B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA8B74A12AC6301600BBE70B /* Preview Assets.xcassets */; };
 		BA8B74A92AC64EEE00BBE70B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA8B74A82AC64EEE00BBE70B /* GoogleService-Info.plist */; };
@@ -39,15 +79,98 @@
 		BA8B74DC2AC64FBC00BBE70B /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BA8B74DB2AC64FBC00BBE70B /* FirebaseRemoteConfigSwift */; };
 		BA8B74DE2AC64FBC00BBE70B /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = BA8B74DD2AC64FBC00BBE70B /* FirebaseStorage */; };
 		BA8B74E02AC64FBC00BBE70B /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = BA8B74DF2AC64FBC00BBE70B /* FirebaseStorageCombine-Community */; };
+		BA8B74E32AC671E600BBE70B /* LoginSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B74E22AC671E600BBE70B /* LoginSignUpView.swift */; };
+		BA8B74E62AC684AE00BBE70B /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B74E52AC684AE00BBE70B /* LogInView.swift */; };
+		BA8D9B562B12BFE20061A0C9 /* BlockedUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8D9B552B12BFE20061A0C9 /* BlockedUsersViewController.swift */; };
+		BA99BC7C2B0BF6260032C2D7 /* NewMessageChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA99BC7B2B0BF6260032C2D7 /* NewMessageChatViewController.swift */; };
+		BAC3C3A52B0186F6006A0813 /* MessageChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC3C3A42B0186F6006A0813 /* MessageChatViewController.swift */; };
+		BACFF7382AEDB902005536C4 /* HomeEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACFF7372AEDB902005536C4 /* HomeEventsViewController.swift */; };
+		BACFF73A2AEE084A005536C4 /* SingleEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACFF7392AEE084A005536C4 /* SingleEventViewController.swift */; };
+		BAFF1CDB2AD2854A0010D8B3 /* Sport.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFF1CDA2AD2854A0010D8B3 /* Sport.swift */; };
+		FB69A3762AE5CCE20090667C /* SuggestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB69A3752AE5CCE20090667C /* SuggestionView.swift */; };
+		FB742E152AD9425600BF6094 /* MyFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB742E142AD9425600BF6094 /* MyFriends.swift */; };
+		FBBBD55E2AD92FB900050C36 /* AllUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBBD55D2AD92FB900050C36 /* AllUsers.swift */; };
+		FBCC059C2B051ED200A736A0 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC059B2B051ED200A736A0 /* Notification.swift */; };
+		FBCC059E2B056E9B00A736A0 /* NotificationMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC059D2B056E9B00A736A0 /* NotificationMethods.swift */; };
+		FBCFFDAD2AEADA8900525D61 /* SuggestionViewMail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCFFDAC2AEADA8900525D61 /* SuggestionViewMail.swift */; };
+		FBD626FC2AD242B5005642A3 /* FriendListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD626FB2AD242B5005642A3 /* FriendListView.swift */; };
+		FBF11AB82AC8A8EF00FF39FC /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF11AB72AC8A8EF00FF39FC /* EventsView.swift */; };
+		FBF11ABA2AC8A91900FF39FC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF11AB92AC8A91900FF39FC /* HomeView.swift */; };
+		FBF11ABC2AC8A95200FF39FC /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF11ABB2AC8A95100FF39FC /* MessageView.swift */; };
+		FBF11ABE2AC8A97E00FF39FC /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF11ABD2AC8A97E00FF39FC /* NotificationView.swift */; };
+		FBF11AC02AC8A9A300FF39FC /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF11ABF2AC8A9A300FF39FC /* ProfileView.swift */; };
+		FBF11AC22AC8A9EC00FF39FC /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF11AC12AC8A9EC00FF39FC /* HomePageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		310A6C412AE45A720089E1A5 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		315325952AF0B3F2006867F9 /* MyFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsViewController.swift; sourceTree = "<group>"; };
+		31562B992ACE4225002B3863 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		31562B9B2ACE4BDF002B3863 /* SelectPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPicture.swift; sourceTree = "<group>"; };
+		3174F1612AE08D6300C2C49D /* FlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowViewController.swift; sourceTree = "<group>"; };
+		3174F1632AE08D9800C2C49D /* LoginSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignUpViewController.swift; sourceTree = "<group>"; };
+		3174F1652AE0949D00C2C49D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		3180B1142AEB0B0F009A45D0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		31854A132AD9332E007346F8 /* EditEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventView.swift; sourceTree = "<group>"; };
+		31854A152AD9E66F007346F8 /* JoinEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinEvent.swift; sourceTree = "<group>"; };
+		31854A172AD9ED4F007346F8 /* UserMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMethods.swift; sourceTree = "<group>"; };
+		319514AB2AED7B0E00BCE814 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		31B877D12AD4D776004D7F2A /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		31CB2C522AC89E0600DF43A3 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		31E86E982AF209A1000E0CA7 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		31ECFA7C2B0BC234001B2C08 /* NotificationPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPreferencesViewController.swift; sourceTree = "<group>"; };
+		6D00BB902AE957A700E22816 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		6D043A2F2B064992003E49D3 /* InviteToEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteToEventViewController.swift; sourceTree = "<group>"; };
+		6D0A7F2D2AED7D1900824FC0 /* CreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
+		6D2CBBF42B058E82005FAA76 /* SingleNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleNotificationViewController.swift; sourceTree = "<group>"; };
+		6D39AAB62AC73BFE00515C20 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		6D6A30B32B054F4E00046E1B /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		6DAB93B62AEF11B30006BB47 /* EditEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewController.swift; sourceTree = "<group>"; };
+		6DAC698B2AD984B8001C197E /* OldBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldBlockView.swift; sourceTree = "<group>"; };
+		6DAC698D2AD98539001C197E /* UserDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsView.swift; sourceTree = "<group>"; };
+		6DAC698F2AD9A544001C197E /* BlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
+		6DADC9B32AD6574500483A86 /* SingleEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleEventView.swift; sourceTree = "<group>"; };
+		6DD44B302AFD4A1800360EEA /* AddFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendsViewController.swift; sourceTree = "<group>"; };
+		6DDAB0D82AEBF6B100235EE0 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		BA0714EA2AEC9A75003BD4C4 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		BA0714EC2AEC9D2B003BD4C4 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		BA0D67332AD9D05200F77044 /* AllEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllEvents.swift; sourceTree = "<group>"; };
+		BA0D67352AD9D26000F77044 /* ViewEventsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEventsListView.swift; sourceTree = "<group>"; };
+		BA2570CD2AC7B846004E528A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		BA2570D02AC89B4D004E528A /* UserAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthentication.swift; sourceTree = "<group>"; };
+		BA2570D22AC8A58D004E528A /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		BA43BB3A2AFDACF0007DE5F8 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		BA44F8C12AD8FEFD00BB0CE7 /* CreateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEvent.swift; sourceTree = "<group>"; };
+		BA44F8C52AD9045000BB0CE7 /* EventMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMethods.swift; sourceTree = "<group>"; };
+		BA7037D52AE9906D007E27F5 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		BA83473D2B15457A0003CA69 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		BA86EF7E2AD4B97600E37BF7 /* SportPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportPreferences.swift; sourceTree = "<group>"; };
 		BA8B74972AC6301400BBE70B /* 307_Sportify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 307_Sportify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA8B749A2AC6301400BBE70B /* _07_SportifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _07_SportifyApp.swift; sourceTree = "<group>"; };
-		BA8B749C2AC6301400BBE70B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BA8B749E2AC6301600BBE70B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BA8B74A12AC6301600BBE70B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BA8B74A82AC64EEE00BBE70B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BA8B74E22AC671E600BBE70B /* LoginSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignUpView.swift; sourceTree = "<group>"; };
+		BA8B74E52AC684AE00BBE70B /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
+		BA8D9B552B12BFE20061A0C9 /* BlockedUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedUsersViewController.swift; sourceTree = "<group>"; };
+		BA99BC7B2B0BF6260032C2D7 /* NewMessageChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageChatViewController.swift; sourceTree = "<group>"; };
+		BAC3C3A42B0186F6006A0813 /* MessageChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageChatViewController.swift; sourceTree = "<group>"; };
+		BACFF7372AEDB902005536C4 /* HomeEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEventsViewController.swift; sourceTree = "<group>"; };
+		BACFF7392AEE084A005536C4 /* SingleEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleEventViewController.swift; sourceTree = "<group>"; };
+		BAFF1CDA2AD2854A0010D8B3 /* Sport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sport.swift; sourceTree = "<group>"; };
+		FB69A3752AE5CCE20090667C /* SuggestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionView.swift; sourceTree = "<group>"; };
+		FB742E142AD9425600BF6094 /* MyFriends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriends.swift; sourceTree = "<group>"; };
+		FBBBD55D2AD92FB900050C36 /* AllUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllUsers.swift; sourceTree = "<group>"; };
+		FBCC059B2B051ED200A736A0 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		FBCC059D2B056E9B00A736A0 /* NotificationMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationMethods.swift; sourceTree = "<group>"; };
+		FBCFFDAC2AEADA8900525D61 /* SuggestionViewMail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionViewMail.swift; sourceTree = "<group>"; };
+		FBD626FB2AD242B5005642A3 /* FriendListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListView.swift; sourceTree = "<group>"; };
+		FBF11AB72AC8A8EF00FF39FC /* EventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
+		FBF11AB92AC8A91900FF39FC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		FBF11ABB2AC8A95100FF39FC /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		FBF11ABD2AC8A97E00FF39FC /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		FBF11ABF2AC8A9A300FF39FC /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		FBF11AC12AC8A9EC00FF39FC /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +211,101 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3137F3C42AE89668000E5460 /* Login_Signup */ = {
+			isa = PBXGroup;
+			children = (
+				3174F1632AE08D9800C2C49D /* LoginSignUpViewController.swift */,
+				310A6C412AE45A720089E1A5 /* SignUpViewController.swift */,
+				6D00BB902AE957A700E22816 /* ForgotPasswordViewController.swift */,
+				BA7037D52AE9906D007E27F5 /* LogInViewController.swift */,
+			);
+			path = Login_Signup;
+			sourceTree = "<group>";
+		};
+		3174F15E2AE084AB00C2C49D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BAC3C3A32B018219006A0813 /* Messages */,
+				3180B1132AEB0AEB009A45D0 /* Profile */,
+				3174F1612AE08D6300C2C49D /* FlowViewController.swift */,
+				3137F3C42AE89668000E5460 /* Login_Signup */,
+				3174F1652AE0949D00C2C49D /* Extensions.swift */,
+				6DAB93B62AEF11B30006BB47 /* EditEventViewController.swift */,
+				BACFF7372AEDB902005536C4 /* HomeEventsViewController.swift */,
+				BACFF7392AEE084A005536C4 /* SingleEventViewController.swift */,
+				31ECFA7C2B0BC234001B2C08 /* NotificationPreferencesViewController.swift */,
+				BA0714EA2AEC9A75003BD4C4 /* NotificationViewController.swift */,
+				6D2CBBF42B058E82005FAA76 /* SingleNotificationViewController.swift */,
+				6DDAB0D82AEBF6B100235EE0 /* EventsViewController.swift */,
+				6D0A7F2D2AED7D1900824FC0 /* CreateEventViewController.swift */,
+				31E86E982AF209A1000E0CA7 /* StorageManager.swift */,
+				6D043A2F2B064992003E49D3 /* InviteToEventViewController.swift */,
+				BA83473D2B15457A0003CA69 /* TabBarController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		3180B1132AEB0AEB009A45D0 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				3180B1142AEB0B0F009A45D0 /* ProfileViewController.swift */,
+				BA8D9B552B12BFE20061A0C9 /* BlockedUsersViewController.swift */,
+				315325952AF0B3F2006867F9 /* MyFriendsViewController.swift */,
+				319514AB2AED7B0E00BCE814 /* EditProfileViewController.swift */,
+				6DD44B302AFD4A1800360EEA /* AddFriendsViewController.swift */,
+				BA43BB3A2AFDACF0007DE5F8 /* UserProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		BA2570CC2AC7B831004E528A /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				6D6A30B32B054F4E00046E1B /* Notification.swift */,
+				BA2570CD2AC7B846004E528A /* User.swift */,
+				31CB2C522AC89E0600DF43A3 /* Event.swift */,
+				BAFF1CDA2AD2854A0010D8B3 /* Sport.swift */,
+				FBCC059B2B051ED200A736A0 /* Notification.swift */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		BA2570CF2AC89B2C004E528A /* Methods */ = {
+			isa = PBXGroup;
+			children = (
+				BA2570D02AC89B4D004E528A /* UserAuthentication.swift */,
+				BA0D67332AD9D05200F77044 /* AllEvents.swift */,
+				BA44F8C52AD9045000BB0CE7 /* EventMethods.swift */,
+				31562B9B2ACE4BDF002B3863 /* SelectPicture.swift */,
+				FBBBD55D2AD92FB900050C36 /* AllUsers.swift */,
+				31854A152AD9E66F007346F8 /* JoinEvent.swift */,
+				31854A172AD9ED4F007346F8 /* UserMethods.swift */,
+				FBCC059D2B056E9B00A736A0 /* NotificationMethods.swift */,
+			);
+			path = Methods;
+			sourceTree = "<group>";
+		};
+		BA44F8C32AD8FF0800BB0CE7 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				FBF11AB72AC8A8EF00FF39FC /* EventsView.swift */,
+				BA44F8C12AD8FEFD00BB0CE7 /* CreateEvent.swift */,
+				6DADC9B32AD6574500483A86 /* SingleEventView.swift */,
+				31854A132AD9332E007346F8 /* EditEventView.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		BA44F8C42AD8FF1E00BB0CE7 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				FBF11ABF2AC8A9A300FF39FC /* ProfileView.swift */,
+				31562B992ACE4225002B3863 /* EditProfileView.swift */,
+				31B877D12AD4D776004D7F2A /* ImagePicker.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		BA8B748E2AC6301400BBE70B = {
 			isa = PBXGroup;
 			children = (
@@ -107,9 +325,11 @@
 		BA8B74992AC6301400BBE70B /* 307_Sportify */ = {
 			isa = PBXGroup;
 			children = (
-				BA8B74A82AC64EEE00BBE70B /* GoogleService-Info.plist */,
-				BA8B749A2AC6301400BBE70B /* _07_SportifyApp.swift */,
-				BA8B749C2AC6301400BBE70B /* ContentView.swift */,
+				3174F15E2AE084AB00C2C49D /* Controllers */,
+				BA8B74E42AC679AF00BBE70B /* App */,
+				BA2570CF2AC89B2C004E528A /* Methods */,
+				BA8B74E12AC671A900BBE70B /* Views */,
+				BA2570CC2AC7B831004E528A /* Objects */,
 				BA8B749E2AC6301600BBE70B /* Assets.xcassets */,
 				BA8B74A02AC6301600BBE70B /* Preview Content */,
 			);
@@ -122,6 +342,67 @@
 				BA8B74A12AC6301600BBE70B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BA8B74E12AC671A900BBE70B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BAFF1CD82AD2548E0010D8B3 /* LoginViews */,
+				BAFF1CD92AD254AB0010D8B3 /* HomeViews */,
+				FBD626FB2AD242B5005642A3 /* FriendListView.swift */,
+				BA0D67352AD9D26000F77044 /* ViewEventsListView.swift */,
+				FB742E142AD9425600BF6094 /* MyFriends.swift */,
+				6DAC698B2AD984B8001C197E /* OldBlockView.swift */,
+				6DAC698D2AD98539001C197E /* UserDetailsView.swift */,
+				FB69A3752AE5CCE20090667C /* SuggestionView.swift */,
+				FBCFFDAC2AEADA8900525D61 /* SuggestionViewMail.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BA8B74E42AC679AF00BBE70B /* App */ = {
+			isa = PBXGroup;
+			children = (
+				BA8B74A82AC64EEE00BBE70B /* GoogleService-Info.plist */,
+				BA8B749A2AC6301400BBE70B /* _07_SportifyApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		BAC3C3A32B018219006A0813 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				BA0714EC2AEC9D2B003BD4C4 /* MessageViewController.swift */,
+				BA99BC7B2B0BF6260032C2D7 /* NewMessageChatViewController.swift */,
+				BAC3C3A42B0186F6006A0813 /* MessageChatViewController.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		BAFF1CD82AD2548E0010D8B3 /* LoginViews */ = {
+			isa = PBXGroup;
+			children = (
+				BA8B74E22AC671E600BBE70B /* LoginSignUpView.swift */,
+				BA8B74E52AC684AE00BBE70B /* LogInView.swift */,
+				BA2570D22AC8A58D004E528A /* SignUpView.swift */,
+				BA86EF7E2AD4B97600E37BF7 /* SportPreferences.swift */,
+				6D39AAB62AC73BFE00515C20 /* ForgotPasswordView.swift */,
+			);
+			path = LoginViews;
+			sourceTree = "<group>";
+		};
+		BAFF1CD92AD254AB0010D8B3 /* HomeViews */ = {
+			isa = PBXGroup;
+			children = (
+				BA44F8C32AD8FF0800BB0CE7 /* Events */,
+				FBF11AB92AC8A91900FF39FC /* HomeView.swift */,
+				BA44F8C42AD8FF1E00BB0CE7 /* Profile */,
+				FBF11ABB2AC8A95100FF39FC /* MessageView.swift */,
+				FBF11ABD2AC8A97E00FF39FC /* NotificationView.swift */,
+				FBF11AC12AC8A9EC00FF39FC /* HomePageView.swift */,
+				6DAC698F2AD9A544001C197E /* BlockView.swift */,
+			);
+			path = HomeViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,8 +508,69 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA8B749D2AC6301400BBE70B /* ContentView.swift in Sources */,
+				6DAC698E2AD98539001C197E /* UserDetailsView.swift in Sources */,
+				BA8B74E32AC671E600BBE70B /* LoginSignUpView.swift in Sources */,
+				FBF11AB82AC8A8EF00FF39FC /* EventsView.swift in Sources */,
+				BA0714EB2AEC9A75003BD4C4 /* NotificationViewController.swift in Sources */,
+				31562B9A2ACE4225002B3863 /* EditProfileView.swift in Sources */,
+				BA0D67342AD9D05200F77044 /* AllEvents.swift in Sources */,
+				31B877D22AD4D776004D7F2A /* ImagePicker.swift in Sources */,
+				FBF11ABC2AC8A95200FF39FC /* MessageView.swift in Sources */,
+				31562B9C2ACE4BDF002B3863 /* SelectPicture.swift in Sources */,
+				BA8B74E62AC684AE00BBE70B /* LogInView.swift in Sources */,
+				319514AC2AED7B0E00BCE814 /* EditProfileViewController.swift in Sources */,
+				BA2570D12AC89B4D004E528A /* UserAuthentication.swift in Sources */,
+				6DADC9B42AD6574500483A86 /* SingleEventView.swift in Sources */,
+				FBD626FC2AD242B5005642A3 /* FriendListView.swift in Sources */,
+				315325962AF0B3F2006867F9 /* MyFriendsViewController.swift in Sources */,
+				BA99BC7C2B0BF6260032C2D7 /* NewMessageChatViewController.swift in Sources */,
+				BA44F8C22AD8FEFD00BB0CE7 /* CreateEvent.swift in Sources */,
+				6DAB93B72AEF11B30006BB47 /* EditEventViewController.swift in Sources */,
+				BA0D67362AD9D26000F77044 /* ViewEventsListView.swift in Sources */,
+				BA2570D32AC8A58D004E528A /* SignUpView.swift in Sources */,
+				FBBBD55E2AD92FB900050C36 /* AllUsers.swift in Sources */,
+				3174F1622AE08D6300C2C49D /* FlowViewController.swift in Sources */,
+				FBCFFDAD2AEADA8900525D61 /* SuggestionViewMail.swift in Sources */,
+				BA0714ED2AEC9D2B003BD4C4 /* MessageViewController.swift in Sources */,
+				3174F1642AE08D9800C2C49D /* LoginSignUpViewController.swift in Sources */,
+				BACFF73A2AEE084A005536C4 /* SingleEventViewController.swift in Sources */,
+				BACFF7382AEDB902005536C4 /* HomeEventsViewController.swift in Sources */,
+				6D0A7F2E2AED7D1900824FC0 /* CreateEventViewController.swift in Sources */,
+				6D2CBBF52B058E82005FAA76 /* SingleNotificationViewController.swift in Sources */,
+				BA44F8C62AD9045100BB0CE7 /* EventMethods.swift in Sources */,
+				3174F1662AE0949D00C2C49D /* Extensions.swift in Sources */,
+				BA2570CE2AC7B846004E528A /* User.swift in Sources */,
+				6DD44B312AFD4A1800360EEA /* AddFriendsViewController.swift in Sources */,
+				BA83473E2B15457A0003CA69 /* TabBarController.swift in Sources */,
+				BAFF1CDB2AD2854A0010D8B3 /* Sport.swift in Sources */,
+				6DAC698C2AD984B8001C197E /* OldBlockView.swift in Sources */,
+				31ECFA7D2B0BC234001B2C08 /* NotificationPreferencesViewController.swift in Sources */,
+				6D00BB912AE957A700E22816 /* ForgotPasswordViewController.swift in Sources */,
+				FBF11ABA2AC8A91900FF39FC /* HomeView.swift in Sources */,
+				6D39AAB72AC73BFE00515C20 /* ForgotPasswordView.swift in Sources */,
+				6DDAB0D92AEBF6B100235EE0 /* EventsViewController.swift in Sources */,
+				31854A142AD9332E007346F8 /* EditEventView.swift in Sources */,
+				BA86EF7F2AD4B97600E37BF7 /* SportPreferences.swift in Sources */,
+				BA7037D62AE9906D007E27F5 /* LogInViewController.swift in Sources */,
+				6D043A302B064992003E49D3 /* InviteToEventViewController.swift in Sources */,
+				6DAC69902AD9A544001C197E /* BlockView.swift in Sources */,
+				BAC3C3A52B0186F6006A0813 /* MessageChatViewController.swift in Sources */,
+				31854A182AD9ED4F007346F8 /* UserMethods.swift in Sources */,
+				31CB2C532AC89E0600DF43A3 /* Event.swift in Sources */,
+				BA43BB3B2AFDACF0007DE5F8 /* UserProfileViewController.swift in Sources */,
+				31854A162AD9E66F007346F8 /* JoinEvent.swift in Sources */,
 				BA8B749B2AC6301400BBE70B /* _07_SportifyApp.swift in Sources */,
+				FBF11AC02AC8A9A300FF39FC /* ProfileView.swift in Sources */,
+				FBF11AC22AC8A9EC00FF39FC /* HomePageView.swift in Sources */,
+				3180B1152AEB0B0F009A45D0 /* ProfileViewController.swift in Sources */,
+				FBF11ABE2AC8A97E00FF39FC /* NotificationView.swift in Sources */,
+				FB742E152AD9425600BF6094 /* MyFriends.swift in Sources */,
+				FBCC059C2B051ED200A736A0 /* Notification.swift in Sources */,
+				FB69A3762AE5CCE20090667C /* SuggestionView.swift in Sources */,
+				BA8D9B562B12BFE20061A0C9 /* BlockedUsersViewController.swift in Sources */,
+				310A6C422AE45A720089E1A5 /* SignUpViewController.swift in Sources */,
+				31E86E992AF209A1000E0CA7 /* StorageManager.swift in Sources */,
+				FBCC059E2B056E9B00A736A0 /* NotificationMethods.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,8 +704,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"307_Sportify/Preview Content\"";
+				DEVELOPMENT_TEAM = R362FXYNBV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access to take a profile picture";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow access to select a picture for your profile";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -390,8 +735,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"307_Sportify/Preview Content\"";
+				DEVELOPMENT_TEAM = R362FXYNBV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access to take a profile picture";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow access to select a picture for your profile";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -18,17 +18,23 @@ class AppDelegate: NSObject, UIApplicationDelegate {
   }
 }
 
+// testing git again lol
+
 @main
 struct YourApp: App {
   // register app delegate for Firebase setup
-  @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-
-
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    
   var body: some Scene {
-    WindowGroup {
-      NavigationView {
-        ContentView()
+      @State var userAuth = UserAuthentication()
+      WindowGroup {
+          NavigationView {
+              if(userAuth.userSession != nil) {
+                  TabBarController(userAuth: $userAuth)
+              } else {
+                  TestViewController()
+              }
+          }
       }
-    }
   }
 }
